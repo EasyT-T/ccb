@@ -1,0 +1,45 @@
+﻿namespace CCB.Syntax;
+
+public enum SyntaxKind
+{
+    None,
+    Identifier,
+    Class,
+    Public,
+    Const,
+    Void,
+    Int,
+    Float,
+    Bool,
+    In,
+    Out,
+    Comma,
+    Semicolon,
+    OpenParen,
+    CloseParen,
+    OpenBrace,
+    CloseBrace,
+    EqualTo,
+    Ref,
+    Handle,
+    StringLiteral,
+    NumberLiteral,
+
+    WhiteSpace,
+    NewLine,
+    Comment,
+
+    Root,
+    ClassDeclaration,
+    FunctionDeclaration,
+    MethodDeclaration,
+    FieldDeclaration,
+    Parameter,
+    ParameterList,
+    ParameterSeparatedElement,
+    SyntaxList,
+
+    Type,
+
+    EndOfFile,
+}

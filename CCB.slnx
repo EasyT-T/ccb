@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/SourceGenerators/">
+    <Project Path="SourceGenerators/CCB.AstGenerator/CCB.AstGenerator/CCB.AstGenerator.csproj" />
+  </Folder>
+  <Project Path="CCB.Generator/CCB.Generator.csproj" />
+  <Project Path="CCB.Syntax/CCB.Syntax.csproj" />
+  <Project Path="CCB.Test/CCB.Test.csproj" />
+  <Project Path="CCB/CCB.csproj" />
+</Solution>
