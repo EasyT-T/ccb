@@ -28,6 +28,11 @@ internal partial class SyntaxLexer
 
         var fracPart = this.LexDigitPart();
 
+        if (textWindow.PeekChar() == 'f')
+        {
+            textWindow.AdvanceChar();
+        }
+
         return BuildToken(SyntaxKind.NumberLiteral, sign + intPart + "." + fracPart, leadingTrivia);
     }
 

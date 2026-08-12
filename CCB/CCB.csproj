@@ -4,6 +4,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -14,4 +15,14 @@
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Content Include="CCB.csproj.user" />
+    </ItemGroup>
+
+    <Target Name="CopyFileAfterBuild" AfterTargets="AfterBuild">
+        <Copy
+                SourceFiles="$(TargetDir)CCB.dll"
+                DestinationFolder="$(CopyPath)"
+                SkipUnchangedFiles="false" />
+    </Target>
 </Project>

@@ -8,19 +8,21 @@ using CCB.Syntax.Visitor;
 public class ScriptGenerator : SimpleVisitor
 {
     private readonly RootSyntax _root;
-    private readonly IndentedTextWriter _writer;
+    private readonly IndentedTextWriter _scriptWriter;
+    private readonly IndentedTextWriter _pluginWriter;
 
     private readonly ClassGenerator _classGenerator;
     private readonly ClassFuncDefGenerator _funcDefGenerator;
 
     private readonly GenerateConfigBuilder _configBuilder;
 
-    public ScriptGenerator(RootSyntax root, TextWriter writer, GenerateConfigBuilder configBuilder)
+    public ScriptGenerator(RootSyntax root, TextWriter scriptWriter, TextWriter pluginWriter, GenerateConfigBuilder configBuilder)
     {
         this._root = root;
-        this._writer = new IndentedTextWriter(writer);
-        this._classGenerator = new ClassGenerator(this._writer);
-        this._funcDefGenerator = new ClassFuncDefGenerator(this._writer);
+        this._scriptWriter = new IndentedTextWriter(scriptWriter);
+        this._pluginWriter = new IndentedTextWriter(pluginWriter);
+        this._classGenerator = new ClassGenerator(this._scriptWriter);
+        this._funcDefGenerator = new ClassFuncDefGenerator(this._scriptWriter, this._pluginWriter);
         this._configBuilder = configBuilder;
     }
 
@@ -28,31 +30,45 @@ public class ScriptGenerator : SimpleVisitor
     {
         this._root.Accept(this);
 
-        this._writer.Flush();
+        this._scriptWriter.Flush();
     }
 
     public override void VisitRoot(RootSyntax root)
     {
-        this._writer.WriteLine("void OnInitialize()");
-        this._writer.WriteLine("{");
+        this._pluginWriter.WriteLine("void OnInitialize()");
+        this._pluginWriter.WriteLine("{");
 
-        using (this._writer.Indent())
+        using (this._pluginWriter.Indent())
         {
-            this._writer.WriteLine($"SetLibrary(LoadLibrary(\"{this._configBuilder.ExternalAssemblyPath}\"));");
-            this._writer.WriteLine($"SetConvType({this._configBuilder.ConvType});");
+            this._pluginWriter.WriteLine($"SetLibrary(LoadLibrary(\"{this._configBuilder.ExternalAssemblyPath}\"));");
+            this._pluginWriter.WriteLine($"SetConvType({this._configBuilder.ConvType});");
 
-            this._writer.WriteLine("ccb::internal::register_external_functions();");
-            this._writer.WriteLine("ccb::internal::register_all_functions();");
+            this._pluginWriter.WriteLine("register_all_funcdef();");
+            this._pluginWriter.WriteLine("register_external_functions();");
         }
 
-        this._writer.WriteLine("}");
+        this._pluginWriter.WriteLine("}");
 
-        this._writer.WriteLine();
+        this._pluginWriter.WriteLine();
+        this._pluginWriter.WriteLine(GeneratorFacts.PluginCode);
+        this._pluginWriter.WriteLine();
 
-        this._writer.WriteLine("namespace ccb");
-        this._writer.WriteLine("{");
+        this._scriptWriter.WriteLine("void OnInitialize()");
+        this._scriptWriter.WriteLine("{");
 
-        using (this._writer.Indent())
+        using (this._scriptWriter.Indent())
+        {
+            this._scriptWriter.WriteLine("load_ccb();");
+            this._scriptWriter.WriteLine("ccb::internal::register_all_functions();");
+        }
+
+        this._scriptWriter.WriteLine("}");
+        this._scriptWriter.WriteLine();
+
+        this._scriptWriter.WriteLine("namespace ccb");
+        this._scriptWriter.WriteLine("{");
+
+        using (this._scriptWriter.Indent())
         {
             root.Accept(this._funcDefGenerator);
 
@@ -60,7 +76,7 @@ public class ScriptGenerator : SimpleVisitor
             {
                 if (i > 0)
                 {
-                    this._writer.WriteLine();
+                    this._scriptWriter.WriteLine();
                 }
 
                 var member = root.Members[i];
@@ -68,7 +84,7 @@ public class ScriptGenerator : SimpleVisitor
             }
         }
 
-        this._writer.WriteLine("}");
+        this._scriptWriter.WriteLine("}");
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -118,13 +134,167 @@ internal class FuncDefList(string returnType, IEnumerable<string> parameters) : 
     }
 }
 
+internal class ClassFuncDefGenerator(IndentedTextWriter scriptWriter, IndentedTextWriter pluginWriter) : SimpleVisitor
+{
+    private int _index = 1;
+
+    private readonly Dictionary<FuncDefList, int> _defKeyMap = [];
+
+    private readonly List<(string className, string methodName, int index)> _defList = [];
+
+    public override void VisitRoot(RootSyntax root)
+    {
+        const string registerMethodName = "register_method";
+
+        scriptWriter.WriteLine("namespace internal");
+        scriptWriter.WriteLine("{");
+
+        pluginWriter.WriteLine("void register_all_funcdef()");
+        pluginWriter.WriteLine("{");
+
+        using (scriptWriter.Indent())
+        using (pluginWriter.Indent())
+        {
+            foreach (var member in root.Members)
+            {
+                member.Accept(this);
+            }
+
+            scriptWriter.WriteLine("void register_all_functions()");
+            scriptWriter.WriteLine("{");
+
+            using (scriptWriter.Indent())
+            {
+                for (var i = 0; i < this._defList.Count; i++)
+                {
+                    var (className, methodName, index) = this._defList[i];
+                    var funcDef = GeneratorHelper.GetFuncDefName(index);
+
+                    scriptWriter.WriteLine($"{funcDef} @func{i} = @_{className}::{methodName};");
+                    scriptWriter.WriteLine(
+                        $"{registerMethodName}({index}, \"{className}\", \"{methodName}\", func{i});");
+                }
+            }
+
+            scriptWriter.WriteLine("}");
+        }
+
+        scriptWriter.WriteLine("}");
+        scriptWriter.WriteLine();
+
+        pluginWriter.WriteLine("}");
+        pluginWriter.WriteLine();
+        pluginWriter.WriteLine("void register_external_functions()");
+        pluginWriter.WriteLine("{");
+
+        using (pluginWriter.Indent())
+        {
+            pluginWriter.WriteLine("RegisterFunction(\"bool load_ccb()\", \"load_ccb\");");
+
+            foreach (var funcDef in this._defKeyMap.Values.Select(GeneratorHelper.GetFuncDefName))
+            {
+                pluginWriter.WriteLine($"RegisterFunction(\"void {registerMethodName}(int index, const char class_name, const char method_name, {funcDef} @def)\", \"{registerMethodName}\");");
+            }
+        }
+
+        pluginWriter.WriteLine("}");
+    }
+
+    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    {
+        foreach (var member in node.Members)
+        {
+            member.Accept(this);
+        }
+    }
+
+    public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+    {
+        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
+        var methodName = node.Identifier.Text;
+
+        var list = ConstructMethodDef(node, className, out var parameters);
+
+        if (!this._defKeyMap.TryGetValue(list, out var index))
+        {
+            var parametersText = string.Join(", ", parameters);
+
+            index = this._index++;
+
+            this._defKeyMap.Add(list, index);
+
+            var returnTypeName = node.ReturnType.Identifier.Text + node.ReturnType.RefHandle.Text;
+
+            // TODO Find a better way to fix TXT_REF_CANT_BE_RETURNED_DEFERRED_PARAM
+            if (className == "Config" && methodName == "Get")
+            {
+                returnTypeName = "string";
+            }
+
+            pluginWriter.WriteLine($"RegisterFuncdef(\"{returnTypeName} {GeneratorHelper.GetFuncDefName(index)}({parametersText})\");");
+        }
+
+        this._defList.Add((className, methodName, index));
+
+        return;
+
+        static FuncDefList ConstructMethodDef(MethodDeclarationSyntax node, string className, out IEnumerable<string> parameters)
+        {
+            parameters = node.ParameterList.Parameters
+                .Select(p => GeneratorHelper.GetTypeName(p.Element.Type))
+                .Prepend(className);
+
+            return new FuncDefList(node.ReturnType.Identifier.Text, parameters);
+        }
+    }
+
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
+        var typeName = GeneratorHelper.GetReturnTypeName(node);
+
+        var getDef = new FuncDefList(typeName, [className]);
+        var getMethodName = $"Get{node.Identifier.Text}";
+
+        if (!this._defKeyMap.TryGetValue(getDef, out var getIndex))
+        {
+            getIndex = this._index++;
+
+            this._defKeyMap.Add(getDef, getIndex);
+
+            pluginWriter.WriteLine($"RegisterFuncdef(\"{typeName} {GeneratorHelper.GetFuncDefName(getIndex)}({className})\");");
+        }
+
+        this._defList.Add((className, getMethodName, getIndex));
+
+        if (node.Modifiers.Any(SyntaxKind.Const))
+        {
+            return;
+        }
+
+        var setDef = new FuncDefList("void", [className, typeName]);
+        var setMethodName = $"Set{node.Identifier.Text}";
+
+        if (!this._defKeyMap.TryGetValue(setDef, out var setIndex))
+        {
+            setIndex = this._index++;
+
+            this._defKeyMap.Add(setDef, setIndex);
+
+            pluginWriter.WriteLine($"RegisterFuncdef(\"void {GeneratorHelper.GetFuncDefName(setIndex)}({className}, {typeName})\");");
+        }
+
+        this._defList.Add((className, setMethodName, setIndex));
+    }
+}
+
 internal class ClassGenerator(IndentedTextWriter writer) : SimpleVisitor
 {
     private readonly ClassImplGenerator _implGenerator = new ClassImplGenerator(writer);
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
-        writer.WriteLine($"namespace {node.Identifier.Text}");
+        writer.WriteLine($"namespace _{node.Identifier.Text}");
         writer.WriteLine("{");
 
         using (writer.Indent())
@@ -145,172 +315,49 @@ internal class ClassGenerator(IndentedTextWriter writer) : SimpleVisitor
     }
 }
 
-internal class ClassFuncDefGenerator(IndentedTextWriter writer) : SimpleVisitor
-{
-    private int _index = 1;
-
-    private readonly Dictionary<FuncDefList, int> _defKeyMap = [];
-
-    private readonly List<(string className, string methodName, int index)> _defList = [];
-
-    public override void VisitRoot(RootSyntax root)
-    {
-        const string registerMethodName = "register_method";
-
-        writer.WriteLine("namespace Internal");
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
-            foreach (var member in root.Members)
-            {
-                member.Accept(this);
-            }
-
-            writer.WriteLine();
-
-            writer.WriteLine("external shared bool load_ccb();");
-
-            foreach (var funcDef in this._defKeyMap.Values.Select(GeneratorHelper.GetFuncDefName))
-            {
-                writer.WriteLine($"external shared void {registerMethodName}(int index, const char class_name, const char method_name, {funcDef} @def);");
-            }
-
-            writer.WriteLine();
-
-            writer.WriteLine("void register_external_functions()");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                writer.WriteLine("RegisterFunction(\"bool load_ccb()\", \"load_ccb\");");
-
-                foreach (var funcDef in this._defKeyMap.Values.Select(GeneratorHelper.GetFuncDefName))
-                {
-                    writer.WriteLine($"RegisterFunction(\"{registerMethodName}(int index, const char class_name, const char method_name, {funcDef} @def)\", \"{registerMethodName}\");");
-                }
-            }
-
-            writer.WriteLine("}");
-
-            writer.WriteLine();
-
-            writer.WriteLine("void register_all_functions()");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                foreach (var (className, methodName, index) in this._defList)
-                {
-                    var funcDef = GeneratorHelper.GetFuncDefName(index);
-
-                    writer.WriteLine($"{registerMethodName}({index}, \"{className}\", \"{methodName}\", cast<{funcDef}>(@{className}::{methodName}));");
-                }
-            }
-
-            writer.WriteLine("}");
-        }
-
-        writer.WriteLine("}");
-        writer.WriteLine();
-    }
-
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-    {
-        foreach (var member in node.Members)
-        {
-            member.Accept(this);
-        }
-    }
-
-    public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
-    {
-        var list = ConstructMethodDef(node, out var parameterTypeList);
-
-        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
-        var methodName = node.Identifier.Text;
-
-        if (!this._defKeyMap.TryGetValue(list, out var index))
-        {
-            index = this._index++;
-
-            this._defKeyMap.Add(list, index);
-
-            var returnTypeName = node.ReturnType.Identifier.Text + node.ReturnType.RefHandle.Text;
-
-            writer.WriteLine($"funcdef {returnTypeName} {GeneratorHelper.GetFuncDefName(index)}({string.Join(", ", parameterTypeList)});");
-        }
-
-        this._defList.Add((className, methodName, index));
-
-        return;
-
-        static FuncDefList ConstructMethodDef(MethodDeclarationSyntax node, out IEnumerable<string> parameterTypeList)
-        {
-            var parameters = GeneratorHelper.ExtractParameters(node);
-
-            parameterTypeList = parameters.Select(p => p.TypeName);
-            return new FuncDefList(node.ReturnType.Identifier.Text, parameterTypeList);
-        }
-    }
-
-    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
-    {
-        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
-        var typeName = node.Type.Identifier.Text + node.Type.RefHandle.Text;
-
-        var getDef = new FuncDefList(typeName, [className]);
-        var setDef = new FuncDefList("void", [className, typeName]);
-
-        var getMethodName = $"Get{node.Identifier.Text}";
-        var setMethodName = $"Set{node.Identifier.Text}";
-
-        if (!this._defKeyMap.TryGetValue(getDef, out var getIndex))
-        {
-            getIndex = this._index++;
-
-            this._defKeyMap.Add(getDef, getIndex);
-
-            writer.WriteLine($"funcdef {typeName} {GeneratorHelper.GetFuncDefName(getIndex)}({className});");
-        }
-
-        if (!this._defKeyMap.TryGetValue(setDef, out var setIndex))
-        {
-            setIndex = this._index++;
-
-            this._defKeyMap.Add(setDef, setIndex);
-
-            writer.WriteLine($"funcdef void {GeneratorHelper.GetFuncDefName(setIndex)}({className}, {typeName});");
-        }
-
-        this._defList.Add((className, getMethodName, getIndex));
-        this._defList.Add((className, setMethodName, setIndex));
-    }
-}
-
 internal class ClassImplGenerator(IndentedTextWriter writer) : SimpleVisitor
 {
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
         var isVoid = node.ReturnType.IsVoid;
-        var returnTypeName = node.ReturnType.Identifier.Text + node.ReturnType.RefHandle.Text;
-        var leadingModifiersText = GeneratorHelper.JoinModifiers(node.LeadingModifiers);
-        var trailingModifiersText = GeneratorHelper.JoinModifiers(node.TrailingModifiers);
+        var returnTypeName = GeneratorHelper.GetTypeName(node.ReturnType);
+        var leadingModifiersText = node.LeadingModifiers.Count > 0
+            ? string.Join(' ', node.LeadingModifiers.Select(m => m.Text))
+            : string.Empty;
         var methodName = node.Identifier.Text;
 
-        var parameters = GeneratorHelper.ExtractParameters(node);
-        var parametersText = GeneratorHelper.BuildParametersText(className, parameters);
+        var parameters = node.ParameterList.Parameters
+            .Select((p, i) =>
+            {
+                var element = p.Element;
+                var typeName = GeneratorHelper.GetTypeName(element.Type);
+                var paramName = element.Unnamed ? $"unname{i}" : element.Identifier.Text;
+
+                return (TypeName: typeName, ParameterName: paramName);
+            })
+            .ToImmutableArray();
+
+        var parametersText = string.Join(", ",
+            parameters
+                .Select(p => $"{p.TypeName} {p.ParameterName}")
+                .Prepend($"{className} {GeneratorFacts.ThisVarName}"));
         var argumentsText = string.Join(", ", parameters.Select(p => p.ParameterName));
 
-        writer.WriteLine($"{leadingModifiersText}{returnTypeName} {methodName}({parametersText}){trailingModifiersText}");
+        // TODO Find a better way to fix TXT_REF_CANT_BE_RETURNED_DEFERRED_PARAM
+        if (className == "Config" && methodName == "Get")
+        {
+            returnTypeName = "string";
+        }
+
+        writer.WriteLine($"{leadingModifiersText}{returnTypeName} {methodName}({parametersText})");
         writer.WriteLine("{");
 
         using (writer.Indent())
         {
             writer.WriteLine(isVoid
-                ? $"{GeneratorHelper.ThisVarName}.{methodName}({argumentsText});"
-                : $"return {GeneratorHelper.ThisVarName}.{methodName}({argumentsText});");
+                ? $"{GeneratorFacts.ThisVarName}.{methodName}({argumentsText});"
+                : $"return {GeneratorFacts.ThisVarName}.{methodName}({argumentsText});");
         }
 
         writer.WriteLine("}");
@@ -319,26 +366,31 @@ internal class ClassImplGenerator(IndentedTextWriter writer) : SimpleVisitor
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
-        var typeName = node.Type.Identifier.Text + node.Type.RefHandle.Text;
+        var typeName = GeneratorHelper.GetReturnTypeName(node);
 
-        writer.WriteLine($"{typeName} Get{node.Identifier.Text}({className} {GeneratorHelper.ThisVarName})");
+        writer.WriteLine($"{typeName} Get{node.Identifier.Text}({className} {GeneratorFacts.ThisVarName})");
         writer.WriteLine("{");
 
         using (writer.Indent())
         {
-            writer.WriteLine($"return {GeneratorHelper.ThisVarName}.{node.Identifier.Text};");
+            writer.WriteLine($"return {GeneratorFacts.ThisVarName}.{node.Identifier.Text};");
         }
 
         writer.WriteLine("}");
 
+        if (node.Modifiers.Any(SyntaxKind.Const))
+        {
+            return;
+        }
+
         writer.WriteLine();
 
-        writer.WriteLine($"void Set{node.Identifier.Text}({className} {GeneratorHelper.ThisVarName}, {typeName} value)");
+        writer.WriteLine($"void Set{node.Identifier.Text}({className} {GeneratorFacts.ThisVarName}, {typeName} value)");
         writer.WriteLine("{");
 
         using (writer.Indent())
         {
-            writer.WriteLine($"{GeneratorHelper.ThisVarName}.{node.Identifier.Text} = value;");
+            writer.WriteLine($"{GeneratorFacts.ThisVarName}.{node.Identifier.Text} = value;");
         }
 
         writer.WriteLine("}");
@@ -393,39 +445,22 @@ internal class IndentedTextWriter(TextWriter innerWriter, string indentString = 
 
 internal static class GeneratorHelper
 {
-    public const string ThisVarName = "_this";
-
     public static string GetFuncDefName(int index)
     {
         return $"_FUNC_DEF_{index}";
     }
 
-    public static ImmutableArray<(string TypeName, string ParameterName)> ExtractParameters(MethodDeclarationSyntax node)
+    public static string GetReturnTypeName(FieldDeclarationSyntax node)
     {
-        return node.ParameterList.Parameters
-            .Select((p, i) =>
-            {
-                var element = p.Element;
-                var typeName = element.Type.Identifier.Text + element.Type.RefHandle.Text;
-                var paramName = element.Unnamed ? $"unname{i}" : element.Identifier.Text;
-
-                return (TypeName: typeName, ParameterName: paramName);
-            })
-            .ToImmutableArray();
+        return node.Modifiers.Count > 0
+            ? string.Join(' ', node.Modifiers) + ' ' + node.Type.Identifier.Text + node.Type.RefHandle.Text
+            : node.Type.Identifier.Text + node.Type.RefHandle.Text;
     }
 
-    public static string BuildParametersText(string className, ImmutableArray<(string TypeName, string ParameterName)> parameters)
+    public static string GetTypeName(TypeSyntax type)
     {
-        return string.Join(", ",
-            parameters
-                .Select(p => $"{p.TypeName} {p.ParameterName}")
-                .Prepend($"{className} {ThisVarName}"));
-    }
-
-    public static string JoinModifiers(SyntaxTokenList modifiers)
-    {
-        return modifiers.Count > 0
-            ? string.Join(' ', modifiers.Select(m => m.Text))
-            : string.Empty;
+        return type.Inout.Kind == SyntaxKind.None
+            ? type.Identifier.Text + type.RefHandle.Text
+            : type.Identifier.Text + type.RefHandle.Text + ' ' + type.Inout.Text;
     }
 }

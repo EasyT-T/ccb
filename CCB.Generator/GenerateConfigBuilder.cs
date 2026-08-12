@@ -4,7 +4,7 @@ public class GenerateConfigBuilder
 {
     internal string ExternalAssemblyPath { get; private set; } = string.Empty;
 
-    internal int ConvType { get; private set; } = 1;
+    internal int ConvType { get; private set; }
 
     public GenerateConfigBuilder WithExternalAssembly(string externalAssemblyPath)
     {

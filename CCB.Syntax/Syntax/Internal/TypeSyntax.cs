@@ -2,6 +2,7 @@
 
 using CCB.AstGenerator;
 
+// TODO Move modifiers from FieldDeclarationSyntax to TypeSyntax
 [SyntaxNode]
 internal partial class TypeSyntax : GreenNode
 {
