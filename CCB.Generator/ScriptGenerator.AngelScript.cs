@@ -4,15 +4,11 @@ using System.Collections.Immutable;
 using CCB.Syntax;
 using CCB.Syntax.Visitor;
 
-internal class AngelScriptGenerator(IndentedTextWriter writer, GeneratorContext context) : SimpleVisitor
+internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
 {
     public override void VisitRoot(RootSyntax root)
     {
         GenerateOnInitialize();
-
-        writer.WriteLine();
-
-        GenerateInternal();
 
         writer.WriteLine();
 
@@ -45,30 +41,10 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GeneratorContext 
             using (writer.Indent())
             {
                 writer.WriteLine("load_ccb();");
-                writer.WriteLine("ccb::internal::register_all_functions();");
             }
 
             writer.WriteLine("}");
             writer.WriteLine();
-        }
-
-        void GenerateInternal()
-        {
-            writer.WriteLine($"void {GeneratorFacts.RegisterAllFunctionsName}()");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                foreach (var (functionDefinition, className, functionName, functionPointer) in context.FunctionMetadatas)
-                {
-                    var definitionIndex = GeneratorFacts.GetDefinitionIndex(functionDefinition);
-                    var definitionName = GeneratorFacts.GetDefinitionName(functionDefinition);
-
-                    writer.WriteLine($"{GeneratorFacts.RegisterMethodName}({definitionIndex}, \"{className}\", \"{functionName}\", cast<{definitionName}>({functionPointer}));");
-                }
-            }
-
-            writer.WriteLine("}");
         }
     }
 
@@ -196,10 +172,6 @@ internal class AngelPluginGenerator(IndentedTextWriter writer, GeneratorContext 
 
         writer.WriteLine();
 
-        GenerateRegisterAllFuncDefs();
-
-        writer.WriteLine();
-
         GenerateRegisterAllFunctions();
 
         return;
@@ -214,28 +186,7 @@ internal class AngelPluginGenerator(IndentedTextWriter writer, GeneratorContext 
                 writer.WriteLine($"SetLibrary(LoadLibrary(\"{context.Config.ExternalAssemblyPath}\"));");
                 writer.WriteLine($"SetConvType({context.Config.ConvType});");
 
-                writer.WriteLine($"{GeneratorFacts.RegisterAllFunctionDefsName}();");
                 writer.WriteLine($"{GeneratorFacts.RegisterAllFunctionsName}();");
-            }
-
-            writer.WriteLine("}");
-        }
-
-        void GenerateRegisterAllFuncDefs()
-        {
-            writer.WriteLine($"void {GeneratorFacts.RegisterAllFunctionDefsName}()");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                foreach (var definition in context.FunctionDefinitions)
-                {
-                    var returnTypeName = definition.ReturnType;
-                    var definitionName = GeneratorFacts.GetDefinitionName(definition);
-                    var parametersText = definition.ParametersText;
-
-                    writer.WriteLine($"{GeneratorFacts.RegisterFuncdefName}(\"{returnTypeName} {definitionName}({parametersText})\");");
-                }
             }
 
             writer.WriteLine("}");
@@ -249,11 +200,6 @@ internal class AngelPluginGenerator(IndentedTextWriter writer, GeneratorContext 
             using (writer.Indent())
             {
                 GenerateRegisterFunction(GeneratorFacts.LoadCcbDef, GeneratorFacts.LoadCcbName);
-
-                foreach (var definitionName in context.FunctionDefinitions.Select(GeneratorFacts.GetDefinitionName))
-                {
-                    GenerateRegisterFunction(GeneratorFacts.RegisterMethodDefinition(definitionName), GeneratorFacts.RegisterMethodName);
-                }
             }
 
             writer.WriteLine("}");

@@ -13,17 +13,21 @@ public class ScriptGenerator : SimpleVisitor
 
     private readonly AngelPluginGenerator _angelPluginGenerator;
 
-    public ScriptGenerator(RootSyntax root, TextWriter scriptWriter, TextWriter pluginWriter, GenerateConfig config)
+    private readonly CSharpScriptGenerator _csharpScriptGenerator;
+
+    public ScriptGenerator(RootSyntax root, TextWriter scriptWriter, TextWriter pluginWriter, TextWriter csharpWriter, GenerateConfig config)
     {
         this._root = root;
         var scriptIndentedWriter = new IndentedTextWriter(scriptWriter);
         var pluginIndentedWriter = new IndentedTextWriter(pluginWriter);
+        var csharpIndentedWriter = new IndentedTextWriter(csharpWriter);
 
         var context = new GeneratorContext([], [], config);
 
         this._definitionGenerator = new DefinitionsGenerator(context);
-        this._angelScriptGenerator = new AngelScriptGenerator(scriptIndentedWriter, context);
+        this._angelScriptGenerator = new AngelScriptGenerator(scriptIndentedWriter);
         this._angelPluginGenerator = new AngelPluginGenerator(pluginIndentedWriter, context);
+        this._csharpScriptGenerator = new CSharpScriptGenerator(csharpIndentedWriter, context);
     }
 
     public void Generate()
@@ -36,6 +40,7 @@ public class ScriptGenerator : SimpleVisitor
         root.Accept(this._definitionGenerator);
         root.Accept(this._angelPluginGenerator);
         root.Accept(this._angelScriptGenerator);
+        root.Accept(this._csharpScriptGenerator);
     }
 }
 

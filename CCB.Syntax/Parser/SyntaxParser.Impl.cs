@@ -187,7 +187,7 @@ internal partial class SyntaxParser
                 this._tokenWindow.AdvanceToken();
 
                 break;
-            case SyntaxKind.Ref:
+            case SyntaxKind.Ampersand:
                 refHandle = token;
 
                 this._tokenWindow.AdvanceToken();

@@ -19,6 +19,10 @@
       <Content Include="CCB.csproj.user" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Extensions\" />
+    </ItemGroup>
+
     <Target Name="CopyFileAfterBuild" AfterTargets="AfterBuild">
         <Copy
                 SourceFiles="$(TargetDir)CCB.dll"

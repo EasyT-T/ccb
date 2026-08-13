@@ -45,45 +45,19 @@ internal static class GeneratorFacts
 
     public const string RegisterAllFunctionsName = "register_all_functions";
 
-    public const string RegisterAllFunctionDefsName = "register_all_funcdef()";
-
     public const string LoadCcbName = "load_ccb";
 
     public const string LoadCcbDef = $"bool {LoadCcbName}()";
-
-    public const string RegisterMethodName = "register_method";
-
-    public const string RegisterFuncdefName = "RegisterFuncdef";
 
     public const string RegisterFunctionName = "RegisterFunction";
 
     public const string OnInitializeName = "OnInitialize";
 
-    private static int _index;
+    public const string ScriptFunctionsName = "ScriptFunctions";
 
-    private static readonly Dictionary<FunctionDefinition, int> DefinitionIndexes = [];
+    public const string NativeBindingsName = "NativeBindings";
 
-    public static string RegisterMethodDefinition(string definition)
-    {
-        return $"void {RegisterMethodName}(int index, const char class_name, const char method_name, {definition} @definition)";
-    }
-
-    public static string GetDefinitionName(FunctionDefinition definition)
-    {
-        return $"_FUNC_DEF_{GetDefinitionIndex(definition)}";
-    }
-
-    public static int GetDefinitionIndex(FunctionDefinition definition)
-    {
-        if (!DefinitionIndexes.TryGetValue(definition, out var index))
-        {
-            index = _index++;
-
-            DefinitionIndexes.Add(definition, index);
-        }
-
-        return index;
-    }
+    public const string ModuleHandleName = "ModuleHandle";
 
     public static string GetReturnTypeName(FieldDeclarationSyntax node)
     {
@@ -97,5 +71,29 @@ internal static class GeneratorFacts
         return type.Inout.Kind == SyntaxKind.None
             ? type.Identifier.Text + type.RefHandle.Text
             : type.Identifier.Text + type.RefHandle.Text + ' ' + type.Inout.Text;
+    }
+
+    public static string GetCSharpTypeName(TypeSyntax type)
+    {
+        //Patch ref
+        if (type.Kind == SyntaxKind.Ref)
+        {
+            return "nint";
+        }
+
+        var typeName = type.Identifier.Text;
+
+        var refName = type.RefHandle.Kind != SyntaxKind.None ? "ref " : string.Empty;
+
+        var inoutName = type.Inout.Kind switch
+        {
+            SyntaxKind.In => "in ",
+            SyntaxKind.Out => "out ",
+            _ => string.Empty,
+        };
+
+        return type.Inout.Kind != SyntaxKind.None
+            ? inoutName + typeName
+            : refName + typeName;
     }
 }
