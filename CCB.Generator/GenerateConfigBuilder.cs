@@ -19,4 +19,9 @@ public class GenerateConfigBuilder
 
         return this;
     }
+
+    public GenerateConfig Build()
+    {
+        return new GenerateConfig(this.ExternalAssemblyPath, this.ConvType);
+    }
 }
