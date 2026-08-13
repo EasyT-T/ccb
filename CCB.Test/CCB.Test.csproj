@@ -15,4 +15,10 @@
       <ProjectReference Include="..\CCB\CCB.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="all.h">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

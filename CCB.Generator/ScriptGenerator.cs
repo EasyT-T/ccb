@@ -1,71 +1,45 @@
 namespace CCB.Generator;
 
-using System.Collections.Immutable;
-using System.Text;
 using CCB.Syntax;
 using CCB.Syntax.Visitor;
 
 public class ScriptGenerator : SimpleVisitor
 {
     private readonly RootSyntax _root;
-    private readonly IndentedTextWriter _scriptWriter;
-    private readonly IndentedTextWriter _pluginWriter;
 
-    private readonly ClassGenerator _classGenerator;
+    private readonly DefinitionsGenerator _definitionGenerator;
 
+    private readonly AngelScriptGenerator _angelScriptGenerator;
 
-    private readonly GenerateConfigBuilder _configBuilder;
+    private readonly AngelPluginGenerator _angelPluginGenerator;
 
-    private readonly GeneratorContext _context;
-
-    public ScriptGenerator(RootSyntax root, TextWriter scriptWriter, TextWriter pluginWriter, GenerateConfigBuilder configBuilder)
+    public ScriptGenerator(RootSyntax root, TextWriter scriptWriter, TextWriter pluginWriter, GenerateConfig config)
     {
         this._root = root;
-        this._scriptWriter = new IndentedTextWriter(scriptWriter);
-        this._pluginWriter = new IndentedTextWriter(pluginWriter);
+        var scriptIndentedWriter = new IndentedTextWriter(scriptWriter);
+        var pluginIndentedWriter = new IndentedTextWriter(pluginWriter);
 
-        this._context = new GeneratorContext([], []);
+        var context = new GeneratorContext([], [], config);
 
-        this._classGenerator = new ClassGenerator(this._scriptWriter);
-        this._funcDefGenerator =
-        this._configBuilder = configBuilder;
+        this._definitionGenerator = new DefinitionsGenerator(context);
+        this._angelScriptGenerator = new AngelScriptGenerator(scriptIndentedWriter, context);
+        this._angelPluginGenerator = new AngelPluginGenerator(pluginIndentedWriter, context);
     }
 
     public void Generate()
     {
         this._root.Accept(this);
-
-        this._scriptWriter.Flush();
     }
 
     public override void VisitRoot(RootSyntax root)
     {
-        this._pluginWriter.WriteLine("void OnInitialize()");
-        this._pluginWriter.WriteLine("{");
-
-        using (this._pluginWriter.Indent())
-        {
-            this._pluginWriter.WriteLine($"SetLibrary(LoadLibrary(\"{this._configBuilder.ExternalAssemblyPath}\"));");
-            this._pluginWriter.WriteLine($"SetConvType({this._configBuilder.ConvType});");
-
-            this._pluginWriter.WriteLine("register_all_funcdef();");
-            this._pluginWriter.WriteLine("register_external_functions();");
-        }
-
-        this._pluginWriter.WriteLine("}");
-
-        this._pluginWriter.WriteLine();
-        this._pluginWriter.WriteLine(GeneratorFacts.PluginCode);
-        this._pluginWriter.WriteLine();
-    }
-
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-    {
-        node.Accept(this._classGenerator);
+        root.Accept(this._definitionGenerator);
+        root.Accept(this._angelPluginGenerator);
+        root.Accept(this._angelScriptGenerator);
     }
 }
 
 internal record GeneratorContext(
     HashSet<FunctionDefinition> FunctionDefinitions,
-    HashSet<FunctionMetadata> FunctionMetadatas,
+    HashSet<MethodMetadata> FunctionMetadatas,
     GenerateConfig Config);

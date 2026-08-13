@@ -2,7 +2,7 @@
 
 using CCB.Syntax;
 
-public static class GeneratorFacts
+internal static class GeneratorFacts
 {
     public const string PluginCode = """
                                      enum ConvTypes
@@ -59,14 +59,30 @@ public static class GeneratorFacts
 
     public const string OnInitializeName = "OnInitialize";
 
-    public static string RegisterMethodDef(string funcDef)
+    private static int _index;
+
+    private static readonly Dictionary<FunctionDefinition, int> DefinitionIndexes = [];
+
+    public static string RegisterMethodDefinition(string definition)
     {
-        return $"void {RegisterMethodName}(int index, const char class_name, const char method_name, {funcDef} @def)";
+        return $"void {RegisterMethodName}(int index, const char class_name, const char method_name, {definition} @definition)";
     }
 
-    public static string GetFuncDefName(int index)
+    public static string GetDefinitionName(FunctionDefinition definition)
     {
-        return $"_FUNC_DEF_{index}";
+        return $"_FUNC_DEF_{GetDefinitionIndex(definition)}";
+    }
+
+    public static int GetDefinitionIndex(FunctionDefinition definition)
+    {
+        if (!DefinitionIndexes.TryGetValue(definition, out var index))
+        {
+            index = _index++;
+
+            DefinitionIndexes.Add(definition, index);
+        }
+
+        return index;
     }
 
     public static string GetReturnTypeName(FieldDeclarationSyntax node)

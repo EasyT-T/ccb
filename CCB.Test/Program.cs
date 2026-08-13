@@ -10,7 +10,8 @@ using var scriptOutput = new StringWriter();
 using var pluginOutput = new StringWriter();
 var generator = new ScriptGenerator(root, scriptOutput, pluginOutput, new GenerateConfigBuilder()
     .WithExternalAssembly("ccb_rust.dll")
-    .WithConvType(0));
+    .WithConvType(0)
+    .Build());
 generator.Generate();
 
 File.WriteAllText("script.as", scriptOutput.ToString());
