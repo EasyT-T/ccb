@@ -34,7 +34,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
     {
         var className = node.Identifier.Text;
 
-        writer.WriteLine($"internal class {className}(ObjectHandle handle) : IScriptObject");
+        writer.WriteLine($"internal struct {className}(ObjectHandle handle) : IScriptObject");
         writer.WriteLine("{");
 
         using (writer.Indent())
@@ -153,6 +153,134 @@ internal class ScriptFunctionsGenerator(IndentedTextWriter writer, GeneratorCont
                 writer.WriteLine();
 
                 member.Accept(this);
+            }
+        }
+
+        writer.WriteLine("}");
+    }
+
+    public override void VisitFunctionDeclaration(FunctionDeclarationSyntax node)
+    {
+        var methodName = node.Identifier.Text;
+
+        var parameters = node.ParameterList.Parameters
+            .Select((p, i) =>
+            {
+                var element = p.Element;
+                var typeName = GeneratorFacts.GetCSharpTypeName(element.Type);
+                var identifierName = element.Identifier.Kind == SyntaxKind.None
+                    ? $"unnamed{i}"
+                    : element.Identifier.Text;
+
+                var hasFuncDef = context.Config.FuncDefs.Any(d => d.DefName == element.Type.Identifier.Text);
+
+                return (
+                    TypeKind: element.Type.Kind,
+                    TypeName: typeName,
+                    Out: element.Type.Inout.Kind == SyntaxKind.Out ? "out " : string.Empty,
+                    IdentifierName: identifierName,
+                    HasFuncDef: hasFuncDef
+                );
+            }).ToImmutableArray();
+
+        if (parameters.Any(p => p.HasFuncDef))
+        {
+            // TODO FuncDef fix
+            return;
+        }
+
+        var parametersText = string.Join(", ", parameters.Select(p => $"{p.TypeName} {p.IdentifierName}"));
+
+        var declarationParameters = node.ParameterList.Parameters
+            .Select(p =>
+            {
+                var element = p.Element;
+                var typeName = GeneratorFacts.GetTypeName(element.Type);
+                var identifierName = element.Identifier.Text;
+
+                return $"{typeName} {identifierName}";
+            });
+
+        var declarationParametersWithThisText = string.Join(", ", declarationParameters);
+
+        var declaration = $"{GeneratorFacts.GetTypeName(node.ReturnType)} {methodName}({declarationParametersWithThisText})";
+
+        writer.WriteLine($"public static {node.ReturnType.Identifier.Text} {methodName}({parametersText})");
+        writer.WriteLine("{");
+
+        using (writer.Indent())
+        {
+            const string functionIndexVar = "functionIndex";
+
+            writer.WriteLine($"var {functionIndexVar} = {GeneratorFacts.NativeBindingsName}.FindModuleFunction({GeneratorFacts.ModuleHandleName}, \"{declaration}\", true);");
+#if DEBUG
+            writer.WriteLine();
+            writer.WriteLine("Debug.Assert(functionIndex >= 0);");
+            writer.WriteLine();
+#endif
+            writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.PrepareModuleFunction({GeneratorFacts.ModuleHandleName}, {functionIndexVar});");
+            writer.WriteLine();
+
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                var parameter = parameters[i];
+
+                var value = $"{parameter.Out}{parameter.IdentifierName}";
+
+                switch (parameter.TypeKind)
+                {
+                    case SyntaxKind.Int:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgInt({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                    case SyntaxKind.UInt:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgUInt({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                    case SyntaxKind.Bool:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgBoolean({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                    case SyntaxKind.Float:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgFloat({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                    case SyntaxKind.String:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgString({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                    case SyntaxKind.Ref or SyntaxKind.QuestionMark:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgAddress({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                    default:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgObject({GeneratorFacts.ModuleHandleName}, {i}, {value});");
+                        break;
+                }
+            }
+
+            writer.WriteLine();
+            writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.ExecuteModuleFunction({GeneratorFacts.ModuleHandleName});");
+
+            if (!node.ReturnType.IsVoid)
+            {
+                writer.WriteLine();
+
+                switch (node.ReturnType.Kind)
+                {
+                    case SyntaxKind.Int:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnInt({GeneratorFacts.ModuleHandleName});");
+                        break;
+                    case SyntaxKind.UInt:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnUInt({GeneratorFacts.ModuleHandleName});");
+                        break;
+                    case SyntaxKind.Bool:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnBoolean({GeneratorFacts.ModuleHandleName});");
+                        break;
+                    case SyntaxKind.Float:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnFloat({GeneratorFacts.ModuleHandleName});");
+                        break;
+                    case SyntaxKind.String:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnString({GeneratorFacts.ModuleHandleName});");
+                        break;
+                    default:
+                        writer.WriteLine($"return new {node.ReturnType.Identifier.Text}({GeneratorFacts.NativeBindingsName}.GetModuleReturnObject({GeneratorFacts.ModuleHandleName}));");
+                        break;
+                }
             }
         }
 

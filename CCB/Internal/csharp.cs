@@ -8887,7 +8887,7 @@ internal class Object(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Player(ObjectHandle handle) : IScriptObject
+internal readonly struct Player(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque

@@ -6,23 +6,20 @@ using System.Runtime.InteropServices;
 internal static class Interop
 {
     [UnmanagedCallersOnly]
-    public static void RegisterMethod(int index, nint classNamePtr, nint methodNamePtr, nint functionPtr)
+    public static void Load()
     {
         while (!Debugger.IsAttached)
         {
             Thread.Sleep(100);
         }
 
-        var className = Marshal.PtrToStringUTF8(classNamePtr);
-        var methodName = Marshal.PtrToStringUTF8(methodNamePtr);
+        var moduleHandle = NativeBindings.GetExecutedModule();
 
-        if (className is null || methodName is null)
-        {
-            return;
-        }
+        ScriptFunctions.ModuleHandle = moduleHandle;
+    }
 
-        var metadata = new MethodMetadata(index, className, methodName);
-
-        FunctionRegistry.Singleton.RegisterMethod(metadata, functionPtr);
+    [UnmanagedCallersOnly]
+    public static void RegisterMethod(int index, nint classNamePtr, nint methodNamePtr, nint functionPtr)
+    {
     }
 }

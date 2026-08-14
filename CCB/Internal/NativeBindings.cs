@@ -141,7 +141,7 @@ internal static partial class NativeBindings
 
     [LibraryImport(DllName, EntryPoint = "_GetExecutedModule@0")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial IntPtr GetExecutedModule();
+    public static partial ModuleHandle GetExecutedModule();
 
     [LibraryImport(DllName, EntryPoint = "_GetModuleException@4", StringMarshalling = StringMarshalling.Utf8)]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

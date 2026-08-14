@@ -29,6 +29,7 @@ public static class SyntaxFacts
             SyntaxKind.EqualTo => "=",
             SyntaxKind.Ampersand => "&",
             SyntaxKind.Handle => "@",
+            SyntaxKind.QuestionMark => "?",
             SyntaxKind.EndOfFile => "\0",
             _ => null,
         };
@@ -61,6 +62,7 @@ public static class SyntaxFacts
             "=" => SyntaxKind.EqualTo,
             "&" => SyntaxKind.Ampersand,
             "@" => SyntaxKind.Handle,
+            "?" => SyntaxKind.QuestionMark,
             "\0" => SyntaxKind.EndOfFile,
             " " => SyntaxKind.WhiteSpace,
             "\r" or "\n" => SyntaxKind.NewLine,

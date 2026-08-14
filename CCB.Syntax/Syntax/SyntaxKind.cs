@@ -25,6 +25,7 @@ public enum SyntaxKind
     EqualTo,
     Ampersand,
     Handle,
+    QuestionMark,
     StringLiteral,
     NumberLiteral,
 

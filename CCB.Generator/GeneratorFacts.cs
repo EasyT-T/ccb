@@ -96,4 +96,14 @@ internal static class GeneratorFacts
             ? inoutName + typeName
             : refName + typeName;
     }
+
+    public static string GetEventArgName(string eventName)
+    {
+        return $"{eventName}EventArg";
+    }
+
+    public static string GetHandlerName(string handlerName)
+    {
+        return $"On{handlerName}";
+    }
 }
