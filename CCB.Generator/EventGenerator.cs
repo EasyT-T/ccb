@@ -230,6 +230,6 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
 
         writer.WriteLine("}");
 
-        this._events.Add(($"{returnTypeName} ccb::internal::invoke_{eventName}{declarationParametersText}", eventName, parameters, rawParameters, returnTypeName, handlerName));
+        this._events.Add(($"{returnTypeName} ccb::internal::invoke_{eventName}({declarationParametersText})", eventName, parameters, rawParameters, returnTypeName, handlerName));
     }
 }

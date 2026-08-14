@@ -345,117 +345,117 @@ internal static class EventRegistry
 
     internal static unsafe void RegisterEventFunctions()
     {
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnInitialize", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnOnInitialize));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnInitialize()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnOnInitialize));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnTerminate", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnOnTerminate));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnTerminate()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnOnTerminate));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_ServerUpdate", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnServerUpdate));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_ServerUpdate()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnServerUpdate));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ServerConsoleconst char", (IntPtr)(delegate* unmanaged[Stdcall]<IntPtr, bool>)(&OnServerConsole));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ServerConsole(const char)", (IntPtr)(delegate* unmanaged[Stdcall]<IntPtr, bool>)(&OnServerConsole));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_ServerRestart", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnServerRestart));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_ServerRestart()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnServerRestart));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_WorldLoaded", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnWorldLoaded));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_WorldLoaded()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnWorldLoaded));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_WorldUpdate", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnWorldUpdate));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_WorldUpdate()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnWorldUpdate));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerUpdatePlayer", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerUpdate));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerUpdate(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerUpdate));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerConnectPlayer", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerConnect));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerConnect(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerConnect));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerDisconnectPlayer", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerDisconnect));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerDisconnect(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerDisconnect));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerChatPlayer, const char", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, IntPtr, bool>)(&OnPlayerChat));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerChat(Player, const char)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, IntPtr, bool>)(&OnPlayerChat));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerAttachesUpdatePlayer", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerAttachesUpdate));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerAttachesUpdate(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerAttachesUpdate));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerTakeItemPlayer, Items", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerTakeItem));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerTakeItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerTakeItem));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerDropItemPlayer, Items", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerDropItem));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerDropItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerDropItem));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerDialogActionPlayer, int, bool, const char, int", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool, IntPtr, int, void>)(&OnPlayerDialogAction));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerDialogAction(Player, int, bool, const char, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool, IntPtr, int, void>)(&OnPlayerDialogAction));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerShootPlayerPlayer, Player, float, float, float, float, bool", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, float, float, float, bool, bool>)(&OnPlayerShootPlayer));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerShootPlayer(Player, Player, float, float, float, float, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, float, float, float, bool, bool>)(&OnPlayerShootPlayer));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerShootPlayer, Items, int", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, bool>)(&OnPlayerShoot));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerShoot(Player, Items, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, bool>)(&OnPlayerShoot));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerPressPlayerPlayer, Player", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerPressPlayer));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerPressPlayer(Player, Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerPressPlayer));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerConsolePlayer, const char", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, IntPtr, bool>)(&OnPlayerConsole));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerConsole(Player, const char)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, IntPtr, bool>)(&OnPlayerConsole));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerDeathPlayer, Corpse", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerDeath));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerDeath(Player, Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerDeath));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerRespawnPlayer", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerRespawn));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerRespawn(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerRespawn));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerHitPlayerPlayer, Player, int, float", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, float, void>)(&OnPlayerHitPlayer));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerHitPlayer(Player, Player, int, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, float, void>)(&OnPlayerHitPlayer));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerExploreCorpsePlayer, Corpse", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerExploreCorpse));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerExploreCorpse(Player, Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerExploreCorpse));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerClickObjectPlayer, Object", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerClickObject));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerClickObject(Player, Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerClickObject));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerShootObjectPlayer, Object", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerShootObject));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerShootObject(Player, Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerShootObject));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerUseDoorButtonPlayer, Door, Items", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, bool>)(&OnPlayerUseDoorButton));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerUseDoorButton(Player, Door, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, bool>)(&OnPlayerUseDoorButton));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerUseItemPlayer, Items", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerUseItem));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerUseItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerUseItem));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerSelectItemPlayer, Items", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerSelectItem));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerSelectItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, bool>)(&OnPlayerSelectItem));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerUse914Player, int", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, void>)(&OnPlayerUse914));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerUse914(Player, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, void>)(&OnPlayerUse914));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerSelectGUIPlayer, GUIElement", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerSelectGUI));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerSelectGUI(Player, GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerSelectGUI));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerVoicePlayer, int, bool", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool, bool>)(&OnPlayerVoice));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerVoice(Player, int, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool, bool>)(&OnPlayerVoice));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerTeleportElevatorPlayer, Room, Entity, Entity, float, float", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, ObjectHandle, float, float, void>)(&OnPlayerTeleportElevator));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerTeleportElevator(Player, Room, Entity, Entity, float, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, ObjectHandle, float, float, void>)(&OnPlayerTeleportElevator));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerShootNPCPlayer, NPC", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerShootNPC));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerShootNPC(Player, NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerShootNPC));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerKeyActionPlayer, int, int", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, void>)(&OnPlayerKeyAction));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_PlayerKeyAction(Player, int, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, void>)(&OnPlayerKeyAction));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerSpectateActionPlayer, Player, int", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, bool>)(&OnPlayerSpectateAction));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_PlayerSpectateAction(Player, Player, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, bool>)(&OnPlayerSpectateAction));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_IncomingConnectionConnection", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnIncomingConnection));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_IncomingConnection(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnIncomingConnection));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ConnectionLoadedConnection", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, bool>)(&OnConnectionLoaded));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ConnectionLoaded(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, bool>)(&OnConnectionLoaded));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_ConnectionClosedConnection", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnConnectionClosed));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_ConnectionClosed(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnConnectionClosed));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ShellDamagePlayerShell, Player, float", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, bool>)(&OnShellDamagePlayer));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ShellDamagePlayer(Shell, Player, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, bool>)(&OnShellDamagePlayer));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ShellExplodeShell", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, bool>)(&OnShellExplode));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_ShellExplode(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, bool>)(&OnShellExplode));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnLogconst char", (IntPtr)(delegate* unmanaged[Stdcall]<IntPtr, void>)(&OnOnLog));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnLog(const char)", (IntPtr)(delegate* unmanaged[Stdcall]<IntPtr, void>)(&OnOnLog));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_FineItemItems, int", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool>)(&OnFineItem));
+        NativeBindings.RegisterGlobalFunction("bool ccb::internal::invoke_FineItem(Items, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool>)(&OnFineItem));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateItemItems", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateItem));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateItem(Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateItem));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveItemItems", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveItem));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveItem(Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveItem));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateNPCNPC", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateNPC));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateNPC(NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateNPC));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveNPCNPC", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveNPC));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveNPC(NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveNPC));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateCorpseCorpse", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateCorpse));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateCorpse(Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateCorpse));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveCorpseCorpse", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveCorpse));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveCorpse(Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveCorpse));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateObjectObject", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateObject));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateObject(Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateObject));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveObjectObject", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveObject));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveObject(Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveObject));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateLightLight", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateLight));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateLight(Light)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateLight));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveLightLight", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveLight));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveLight(Light)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveLight));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateGUIElementGUIElement", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateGUIElement));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateGUIElement(GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateGUIElement));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveGUIElementGUIElement", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveGUIElement));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveGUIElement(GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveGUIElement));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateShellShell", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateShell));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnCreateShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnCreateShell));
 
-        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveShellShell", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveShell));
+        NativeBindings.RegisterGlobalFunction("void ccb::internal::invoke_OnRemoveShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnOnRemoveShell));
     }
 }
 

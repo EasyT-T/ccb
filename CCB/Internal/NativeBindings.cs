@@ -155,9 +155,17 @@ internal static partial class NativeBindings
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial void SetModuleArgByte(ModuleHandle module, int arg, int value);
 
+    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    public static partial void SetModuleArgByte(ModuleHandle module, int arg, out byte value);
+
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgShort@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial void SetModuleArgShort(ModuleHandle module, int arg, int value);
+
+    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    public static partial void SetModuleArgShort(ModuleHandle module, int arg, out short value);
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgInt@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

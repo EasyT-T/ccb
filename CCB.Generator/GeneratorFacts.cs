@@ -73,15 +73,25 @@ internal static class GeneratorFacts
             : type.Identifier.Text + type.RefHandle.Text + ' ' + type.Inout.Text;
     }
 
-    public static string GetCSharpTypeName(TypeSyntax type)
+    public static string GetCSharpTypeName(TypeSyntax type, bool withInOut = true)
     {
-        //Patch ref
-        if (type.Kind == SyntaxKind.Ref)
+        //Patch ref/?
+        if (type.Kind is SyntaxKind.Ref or SyntaxKind.QuestionMark)
         {
             return "nint";
         }
 
-        var typeName = type.Identifier.Text;
+        var typeName = type.Identifier.Kind switch
+        {
+            SyntaxKind.Int8 => "byte",
+            SyntaxKind.Int16 => "short",
+            _ => type.Identifier.Text,
+        };
+
+        if (!withInOut)
+        {
+            return typeName;
+        }
 
         var refName = type.RefHandle.Kind != SyntaxKind.None ? "ref " : string.Empty;
 

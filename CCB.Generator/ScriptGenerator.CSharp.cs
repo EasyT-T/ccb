@@ -20,12 +20,13 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
 
         for (var i = 0; i < root.Members.Count; i++)
         {
-            if (i > 0)
+            var member = root.Members[i];
+
+            if (i > 0 && member is ClassDeclarationSyntax)
             {
                 writer.WriteLine();
             }
 
-            var member = root.Members[i];
             member.Accept(this);
         }
     }
@@ -205,7 +206,7 @@ internal class ScriptFunctionsGenerator(IndentedTextWriter writer, GeneratorCont
 
         var declaration = $"{GeneratorFacts.GetTypeName(node.ReturnType)} {methodName}({declarationParametersWithThisText})";
 
-        writer.WriteLine($"public static {node.ReturnType.Identifier.Text} {methodName}({parametersText})");
+        writer.WriteLine($"public static {GeneratorFacts.GetCSharpTypeName(node.ReturnType, false)} {methodName}({parametersText})");
         writer.WriteLine("{");
 
         using (writer.Indent())
@@ -229,6 +230,12 @@ internal class ScriptFunctionsGenerator(IndentedTextWriter writer, GeneratorCont
 
                 switch (parameter.TypeKind)
                 {
+                    case SyntaxKind.Int8:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgByte({GeneratorFacts.ModuleHandleName}, {i}, (int){value});");
+                        break;
+                    case SyntaxKind.Int16:
+                        writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgShort({GeneratorFacts.ModuleHandleName}, {i}, (int){value});");
+                        break;
                     case SyntaxKind.Int:
                         writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.SetModuleArgInt({GeneratorFacts.ModuleHandleName}, {i}, {value});");
                         break;
@@ -262,6 +269,12 @@ internal class ScriptFunctionsGenerator(IndentedTextWriter writer, GeneratorCont
 
                 switch (node.ReturnType.Kind)
                 {
+                    case SyntaxKind.Int8:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnByte({GeneratorFacts.ModuleHandleName});");
+                        break;
+                    case SyntaxKind.Int16:
+                        writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnShort({GeneratorFacts.ModuleHandleName});");
+                        break;
                     case SyntaxKind.Int:
                         writer.WriteLine($"return {GeneratorFacts.NativeBindingsName}.GetModuleReturnInt({GeneratorFacts.ModuleHandleName});");
                         break;

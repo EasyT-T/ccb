@@ -7,6 +7,968 @@ internal static class ScriptFunctions
 {
     public static ModuleHandle ModuleHandle { get; internal set; }
 
+    public static Entity CreatePivot(int parent)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "Entity CreatePivot(int parent)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, parent);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return new Entity(NativeBindings.GetModuleReturnObject(ModuleHandle));
+    }
+
+    public static Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, x);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, y);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 2, z);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 3, dx);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 4, dy);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 5, dz);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 6, radius);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return new Entity(NativeBindings.GetModuleReturnObject(ModuleHandle));
+    }
+
+    public static Player GetPlayer(int index)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "Player GetPlayer(int index)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, index);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return new Player(NativeBindings.GetModuleReturnObject(ModuleHandle));
+    }
+
+    public static float PeekFloat(int bank, int offset)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PeekFloat(int bank, int offset)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float PickedNX()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PickedNX()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float PickedNY()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PickedNY()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float PickedNZ()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PickedNZ()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float PickedX()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PickedX()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float PickedY()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PickedY()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float PickedZ()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float PickedZ()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float TFormedX()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float TFormedX()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float TFormedY()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float TFormedY()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float TFormedZ()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float TFormedZ()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float clamp(float val, float minimal, float maximum)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float clamp(float val, float minimal, float maximum)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, val);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, minimal);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 2, maximum);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float frand(float from, float to)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float frand(float from, float to)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, from);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, to);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float max(float val, float val2)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float max(float val, float val2)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, val);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, val2);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static float min(float val, float val2)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "float min(float val, float val2)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, val);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, val2);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnFloat(ModuleHandle);
+    }
+
+    public static int BankSize(int bank)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int BankSize(int bank)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int BankStringSize(in string unnamed0)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int BankStringSize(string& in )", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, unnamed0);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int CreateBank(int size)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int CreateBank(int size)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, size);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int CreateTimer(nint callback, int time, bool repeat, int timerdata)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int CreateTimer(ref& in callback, int time, bool repeat, int timerdata)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 0, callback);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, time);
+        NativeBindings.SetModuleArgBoolean(ModuleHandle, 2, repeat);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 3, timerdata);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int CreateTimer(in string funcdecl, int time, bool repeat, int timerdata)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int CreateTimer(string& in funcdecl, int time, bool repeat, int timerdata)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, funcdecl);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, time);
+        NativeBindings.SetModuleArgBoolean(ModuleHandle, 2, repeat);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 3, timerdata);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int CreateTimerData()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int CreateTimerData()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int CreateTimerEx(nint callback, int time, bool repeat, nint unnamed3, nint unnamed4, nint unnamed5, nint unnamed6, nint unnamed7, nint unnamed8, nint unnamed9, nint unnamed10)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int CreateTimerEx(ref& in callback, int time, bool repeat, ?& in , ?& in , ?& in , ?& in , ?& in , ?& in , ?& in , ?& in )", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 0, callback);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, time);
+        NativeBindings.SetModuleArgBoolean(ModuleHandle, 2, repeat);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 3, unnamed3);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 4, unnamed4);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 5, unnamed5);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 6, unnamed6);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 7, unnamed7);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 8, unnamed8);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 9, unnamed9);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 10, unnamed10);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int CreateTimerEx(in string funcdecl, int time, bool repeat, nint unnamed3, nint unnamed4, nint unnamed5, nint unnamed6, nint unnamed7, nint unnamed8, nint unnamed9, nint unnamed10)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int CreateTimerEx(string& in funcdecl, int time, bool repeat, ?& in , ?& in , ?& in , ?& in , ?& in , ?& in , ?& in , ?& in )", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, funcdecl);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, time);
+        NativeBindings.SetModuleArgBoolean(ModuleHandle, 2, repeat);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 3, unnamed3);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 4, unnamed4);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 5, unnamed5);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 6, unnamed6);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 7, unnamed7);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 8, unnamed8);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 9, unnamed9);
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 10, unnamed10);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int GetActiveContext()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int GetActiveContext()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int GetPlayersCount()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int GetPlayersCount()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int GetProcAddress(int unnamed0, in string unnamed1)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int GetProcAddress(int , string& in )", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, unnamed0);
+        NativeBindings.SetModuleArgString(ModuleHandle, 1, unnamed1);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int LoadLibrary(in string unnamed0)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int LoadLibrary(string& in )", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, unnamed0);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int PeekInt(int bank, int offset)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int PeekInt(int bank, int offset)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int rand(int from, int to)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int rand(int from, int to)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, from);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, to);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int rndseed()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int rndseed()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int round(bool val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int round(bool val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgBoolean(ModuleHandle, 0, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int round(float val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int round(float val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static int srand(int val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int srand(int val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnInt(ModuleHandle);
+    }
+
+    public static short PeekShort(int bank, int offset)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int16 PeekShort(int bank, int offset)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnShort(ModuleHandle);
+    }
+
+    public static byte PeekByte(int bank, int offset)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "int8 PeekByte(int bank, int offset)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnByte(ModuleHandle);
+    }
+
+    public static string PeekString(int bank, int offset)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "string& PeekString(int bank, int offset)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnString(ModuleHandle);
+    }
+
+    public static string StripFormatting(in string txt)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "string& StripFormatting(string& in txt)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, txt);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+
+        return NativeBindings.GetModuleReturnString(ModuleHandle);
+    }
+
+    public static void Collisions(int src_type, int dest_type, int method, int response)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void Collisions(int src_type, int dest_type, int method, int response)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, src_type);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, dest_type);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 2, method);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 3, response);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void FreeBank(int bank)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void FreeBank(int bank)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void PokeByte(int bank, int offset, int value)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void PokeByte(int bank, int offset, int value)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 2, value);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void PokeFloat(int bank, int offset, float value)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void PokeFloat(int bank, int offset, float value)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 2, value);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void PokeInt(int bank, int offset, int value)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void PokeInt(int bank, int offset, int value)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 2, value);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void PokeShort(int bank, int offset, int value)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void PokeShort(int bank, int offset, int value)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 2, value);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void PokeString(int bank, int offset, in string value)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void PokeString(int bank, int offset, string& in value)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, bank);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, offset);
+        NativeBindings.SetModuleArgString(ModuleHandle, 2, value);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RegisterFuncdef(in string declaration)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RegisterFuncdef(string& in declaration)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, declaration);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RegisterLibraryFunction(in string decl, int procaddress, int convtype)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RegisterLibraryFunction(string& in decl, int procaddress, int convtype)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, decl);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, procaddress);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 2, convtype);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RegisterLibraryMethod(in string classname, in string decl, int procaddress, int convtype)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RegisterLibraryMethod(string& in classname, string& in decl, int procaddress, int convtype)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, classname);
+        NativeBindings.SetModuleArgString(ModuleHandle, 1, decl);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 2, procaddress);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 3, convtype);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RegisterLibraryObject(in string classname)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RegisterLibraryObject(string& in classname)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, classname);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RemoveTimer()
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RemoveTimer()", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RemoveTimer(int timer)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RemoveTimer(int timer)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, timer);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void RemoveTimer(nint callback)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void RemoveTimer(ref& in callback)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgAddress(ModuleHandle, 0, callback);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void SetTimerBool(int timerdata, bool val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void SetTimerBool(int timerdata, bool val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, timerdata);
+        NativeBindings.SetModuleArgBoolean(ModuleHandle, 1, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void SetTimerFloat(int timerdata, float val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void SetTimerFloat(int timerdata, float val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, timerdata);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void SetTimerHandle(int timerdata, int handle)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void SetTimerHandle(int timerdata, int handle)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, timerdata);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, handle);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void SetTimerInt(int timerdata, int val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void SetTimerInt(int timerdata, int val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, timerdata);
+        NativeBindings.SetModuleArgInt(ModuleHandle, 1, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void SetTimerString(int timerdata, in string val)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void SetTimerString(int timerdata, string& in val)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, timerdata);
+        NativeBindings.SetModuleArgString(ModuleHandle, 1, val);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void TFormNormal(float x, float y, float z, Entity src, Entity dest)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void TFormNormal(float x, float y, float z, Entity src, Entity dest)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, x);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, y);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 2, z);
+        NativeBindings.SetModuleArgObject(ModuleHandle, 3, src);
+        NativeBindings.SetModuleArgObject(ModuleHandle, 4, dest);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void TFormPoint(float x, float y, float z, Entity src, Entity dest)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void TFormPoint(float x, float y, float z, Entity src, Entity dest)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, x);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, y);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 2, z);
+        NativeBindings.SetModuleArgObject(ModuleHandle, 3, src);
+        NativeBindings.SetModuleArgObject(ModuleHandle, 4, dest);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void TFormVector(float x, float y, float z, Entity src, Entity dest)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void TFormVector(float x, float y, float z, Entity src, Entity dest)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 0, x);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 1, y);
+        NativeBindings.SetModuleArgFloat(ModuleHandle, 2, z);
+        NativeBindings.SetModuleArgObject(ModuleHandle, 3, src);
+        NativeBindings.SetModuleArgObject(ModuleHandle, 4, dest);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void print(in string message)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void print(string& in message)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgString(ModuleHandle, 0, message);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
+    public static void sleep(int milliseconds)
+    {
+        var functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, "void sleep(int milliseconds)", true);
+
+        Debug.Assert(functionIndex >= 0);
+
+        NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+
+        NativeBindings.SetModuleArgInt(ModuleHandle, 0, milliseconds);
+
+        NativeBindings.ExecuteModuleFunction(ModuleHandle);
+    }
+
     internal static class AsAudio
     {
         public static Sound Play3DSound(Audio @this, in string filenameorurl, Player player, float range, float volume, bool norange)
@@ -7327,7 +8289,8 @@ internal static class ScriptFunctions
         }
     }
 }
-internal class Audio(ObjectHandle handle) : IScriptObject
+
+internal struct Audio(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -7382,7 +8345,7 @@ internal class Audio(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Chat(ObjectHandle handle) : IScriptObject
+internal struct Chat(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -7407,7 +8370,7 @@ internal class Chat(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Config(ObjectHandle handle) : IScriptObject
+internal struct Config(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -7437,7 +8400,7 @@ internal class Config(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Connection(ObjectHandle handle) : IScriptObject
+internal struct Connection(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -7512,7 +8475,7 @@ internal class Connection(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Corpse(ObjectHandle handle) : IScriptObject
+internal struct Corpse(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -7607,7 +8570,7 @@ internal class Corpse(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Door(ObjectHandle handle) : IScriptObject
+internal struct Door(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -7702,7 +8665,7 @@ internal class Door(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Entity(ObjectHandle handle) : IScriptObject
+internal struct Entity(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8112,7 +9075,7 @@ internal class Entity(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Event(ObjectHandle handle) : IScriptObject
+internal struct Event(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8187,7 +9150,7 @@ internal class Event(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class GUIElement(ObjectHandle handle) : IScriptObject
+internal struct GUIElement(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8348,7 +9311,7 @@ internal class GUIElement(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Graphics(ObjectHandle handle) : IScriptObject
+internal struct Graphics(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8403,7 +9366,7 @@ internal class Graphics(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Items(ObjectHandle handle) : IScriptObject
+internal struct Items(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8528,7 +9491,7 @@ internal class Items(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Light(ObjectHandle handle) : IScriptObject
+internal struct Light(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8658,7 +9621,7 @@ internal class Light(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class ModelPreset(ObjectHandle handle) : IScriptObject
+internal struct ModelPreset(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8721,7 +9684,7 @@ internal class ModelPreset(ObjectHandle handle) : IScriptObject
 
 }
 
-internal class NPC(ObjectHandle handle) : IScriptObject
+internal struct NPC(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8816,7 +9779,7 @@ internal class NPC(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Object(ObjectHandle handle) : IScriptObject
+internal struct Object(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -8887,7 +9850,7 @@ internal class Object(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal readonly struct Player(ObjectHandle handle) : IScriptObject
+internal struct Player(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -9473,7 +10436,7 @@ internal readonly struct Player(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Room(ObjectHandle handle) : IScriptObject
+internal struct Room(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -9543,7 +10506,7 @@ internal class Room(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Server(ObjectHandle handle) : IScriptObject
+internal struct Server(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -9629,7 +10592,7 @@ internal class Server(ObjectHandle handle) : IScriptObject
 
 }
 
-internal class Shell(ObjectHandle handle) : IScriptObject
+internal struct Shell(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -9859,7 +10822,7 @@ internal class Shell(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Sound(ObjectHandle handle) : IScriptObject
+internal struct Sound(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -9889,7 +10852,7 @@ internal class Sound(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class Waypoint(ObjectHandle handle) : IScriptObject
+internal struct Waypoint(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque
@@ -9919,7 +10882,7 @@ internal class Waypoint(ObjectHandle handle) : IScriptObject
     }
 }
 
-internal class World(ObjectHandle handle) : IScriptObject
+internal struct World(ObjectHandle handle) : IScriptObject
 {
     [StructLayout(LayoutKind.Sequential)]
     private readonly struct Opaque

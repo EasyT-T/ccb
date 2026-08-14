@@ -8,6 +8,8 @@ public enum SyntaxKind
     Public,
     Const,
     Void,
+    Int8,
+    Int16,
     Int,
     UInt,
     Float,

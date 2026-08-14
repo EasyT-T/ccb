@@ -15,7 +15,7 @@ internal static class Interop
 
         var moduleHandle = NativeBindings.GetExecutedModule();
 
-        ScriptFunctions.ModuleHandle = moduleHandle;
+        //ScriptFunctions.ModuleHandle = moduleHandle;
     }
 
     [UnmanagedCallersOnly]
