@@ -27,5 +27,28 @@ public static class StringExtension
 
             return result;
         }
+
+        public string ToUpperCamelCase()
+        {
+            var index = content[0] == '@' ? 1 : 0;
+
+            if (char.IsUpper(content[index]))
+            {
+                return content;
+            }
+
+            var result = string.Create(
+                content.Length,
+                content,
+                (span, content) =>
+                {
+                    var contentSpan = content.AsSpan();
+
+                    contentSpan.CopyTo(span);
+                    span[index] = char.ToUpperInvariant(contentSpan[index]);
+                });
+
+            return result;
+        }
     }
 }

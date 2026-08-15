@@ -3,7 +3,7 @@ namespace CCB.Internal;
 using System.Runtime.InteropServices;
 
 [StructLayout(LayoutKind.Sequential)]
-internal struct ModuleHandle
+public readonly struct ModuleHandle(IntPtr handle)
 {
-    private IntPtr _handle;
+    private readonly IntPtr _handle = handle;
 }

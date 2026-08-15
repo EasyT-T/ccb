@@ -23,7 +23,7 @@ internal partial class SyntaxParser(TokenWindow tokenWindow)
                     members.Add(this.ParseClass());
                     break;
                 default:
-                    members.Add(this.ParseFunction());
+                    members.Add(this.ParseGlobalSyntax());
                     break;
             }
         }

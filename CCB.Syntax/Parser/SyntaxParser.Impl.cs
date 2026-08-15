@@ -212,13 +212,15 @@ internal partial class SyntaxParser
         return SyntaxFactory.Type(typeToken, refHandle, inout);
     }
 
-    private FunctionDeclarationSyntax ParseFunction()
+    private GreenNode ParseGlobalSyntax()
     {
         var leadingModifiers = new List<SyntaxToken>();
 
+        SyntaxToken token;
+
         while (true)
         {
-            var token = this._tokenWindow.PeekToken();
+            token = this._tokenWindow.PeekToken();
 
             if (SyntaxFacts.IsAccessModifier(token.Kind) || token.Kind is SyntaxKind.Const)
             {
@@ -232,16 +234,32 @@ internal partial class SyntaxParser
             }
         }
 
+        var leadingModifiersList = new SyntaxList<SyntaxToken>(SyntaxFactory.List(leadingModifiers));
         var type = this.ParseTypeSyntax();
-
         var identifier = this._tokenWindow.AdvanceToken();
 
+        token = this._tokenWindow.PeekToken();
+
+        return token.Kind == SyntaxKind.OpenParen
+            ? this.ParseFunction(leadingModifiersList, type, identifier)
+            : this.ParseGlobalProperty(leadingModifiersList, type, identifier);
+    }
+
+    private GlobalPropertySyntax ParseGlobalProperty(SyntaxList<SyntaxToken> leadingModifiers, TypeSyntax type, SyntaxToken identifier)
+    {
+        var semicolon = this._tokenWindow.AdvanceToken();
+
+        return SyntaxFactory.GlobalProperty(leadingModifiers, type, identifier, semicolon);
+    }
+
+    private FunctionDeclarationSyntax ParseFunction(SyntaxList<SyntaxToken> leadingModifiers, TypeSyntax type, SyntaxToken identifier)
+    {
         var paramList = this.ParseParameterList();
 
         var semicolon = this._tokenWindow.AdvanceToken(); // TODO
 
         return SyntaxFactory.FunctionDeclaration(
-            new SyntaxList<SyntaxToken>(SyntaxFactory.List(leadingModifiers)),
+            leadingModifiers,
             type,
             identifier,
             paramList,

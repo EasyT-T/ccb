@@ -44,6 +44,7 @@ public enum SyntaxKind
     ParameterList,
     ParameterSeparatedElement,
     SyntaxList,
+    GlobalProperty,
 
     Type,
 

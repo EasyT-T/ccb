@@ -16,6 +16,10 @@ public class PluginGenerator(RootSyntax root, TextWriter writer, GenerateConfig 
     {
         GenerateOnInitialize();
 
+        writer.WriteLine();
+
+        writer.WriteLine(GeneratorFacts.PluginCode);
+
         this._writer.WriteLine();
 
         GenerateRegisterAllFunctions();
@@ -46,6 +50,7 @@ public class PluginGenerator(RootSyntax root, TextWriter writer, GenerateConfig 
             using (this._writer.Indent())
             {
                 GenerateRegisterFunction(GeneratorFacts.LoadCcbDef, GeneratorFacts.LoadCcbName);
+                GenerateRegisterFunction(GeneratorFacts.IntToConstCharDef, GeneratorFacts.IntToConstCharName);
             }
 
             this._writer.WriteLine("}");

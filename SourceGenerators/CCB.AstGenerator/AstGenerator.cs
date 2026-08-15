@@ -81,7 +81,7 @@ public class AstGenerator : IIncrementalGenerator
             .ToImmutableArray();
 
         var factoryName = className.EndsWith("Syntax", StringComparison.Ordinal)
-            ? className[..^"Syntax".Length]
+            ? className.Substring(0, className.Length - "Syntax".Length)
             : className;
 
         var updateArgList = propertyInfos.Select(i => "this." + i.PropertyName).ToImmutableArray();
@@ -372,7 +372,7 @@ public class AstGenerator : IIncrementalGenerator
                                       {
                                           public virtual TResult Visit{{factoryName}}({{className}} node)
                                           {
-                                              throw new System.Diagnostics.UnreachableException();
+                                              return default(TResult);
                                           }
                                       }
                                       """);

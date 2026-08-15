@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\CCB\CCB.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="WelcomePlugin.csproj.user" />
+    </ItemGroup>
+
+    <Target Name="CopyFileAfterBuild" AfterTargets="AfterBuild">
+        <Copy
+                SourceFiles="$(TargetDir)WelcomePlugin.dll"
+                DestinationFolder="$(CopyPath)"
+                SkipUnchangedFiles="false" />
+    </Target>
+</Project>

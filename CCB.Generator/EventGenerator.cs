@@ -36,8 +36,14 @@ public class EventGenerator : SimpleVisitor
 
 internal class ScriptEventGenerator(IndentedTextWriter writer, GenerateConfig config) : SimpleVisitor
 {
+    private readonly List<string> _events = [];
+
     public override void VisitRoot(RootSyntax root)
     {
+        writer.WriteLine("#include \"uerm.as\"");
+
+        writer.WriteLine();
+
         writer.WriteLine("namespace ccb");
         writer.WriteLine("{");
 
@@ -64,6 +70,30 @@ internal class ScriptEventGenerator(IndentedTextWriter writer, GenerateConfig co
         }
 
         writer.WriteLine("}");
+
+        writer.WriteLine();
+
+        GenerateOnInitialize();
+
+        return;
+
+        void GenerateOnInitialize()
+        {
+            writer.WriteLine("void OnInitialize()");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("RegisterAllCallbacks();");
+
+                foreach (var eventName in this._events)
+                {
+                    writer.WriteLine($"RegisterCallback({eventName}_c, ccb::event::On{eventName});");
+                }
+            }
+
+            writer.WriteLine("}");
+        }
     }
 
     public override void VisitFunctionDeclaration(FunctionDeclarationSyntax node)
@@ -73,6 +103,7 @@ internal class ScriptEventGenerator(IndentedTextWriter writer, GenerateConfig co
         var returnType = node.ReturnType.Identifier.Text;
         var parametersText = node.ParameterList.ToString();
         var argumentsText = string.Join(", ", node.ParameterList.Parameters.Select(p => p.Element.Identifier.Text));
+        var handlerName = $"ccb_internal_invoke_{eventName}";
 
         writer.WriteLine($"{returnType} On{eventName}{parametersText}");
         writer.WriteLine("{");
@@ -80,11 +111,13 @@ internal class ScriptEventGenerator(IndentedTextWriter writer, GenerateConfig co
         using (writer.Indent())
         {
             writer.WriteLine(isVoid
-                ? $"ccb::internal::invoke_{eventName}({argumentsText});"
-                : $"return ccb::internal::invoke_{eventName}({argumentsText});");
+                ? $"{handlerName}({argumentsText});"
+                : $"return {handlerName}({argumentsText});");
         }
 
         writer.WriteLine("}");
+
+        this._events.Add(eventName);
     }
 }
 
@@ -99,13 +132,11 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
         writer.WriteLine("using System.Runtime.CompilerServices;");
         writer.WriteLine("using System.Runtime.InteropServices;");
         writer.WriteLine();
-        writer.WriteLine("internal static class EventRegistry");
+        writer.WriteLine("public static class EventRegistry");
         writer.WriteLine("{");
 
         using (writer.Indent())
         {
-            writer.WriteLine("public static EventHandler GlobalHandler { get; internal set; }");
-
             foreach (var member in root.Members)
             {
                 writer.WriteLine();
@@ -134,22 +165,14 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
                         rawParameterTypesText += ", ";
                     }
 
+                    returnType = returnType == "bool" ? "int" : returnType;
+
                     writer.WriteLine($"{GeneratorFacts.NativeBindingsName}.RegisterGlobalFunction(\"{declaration}\", (IntPtr)(delegate* unmanaged[Stdcall]<{rawParameterTypesText}{returnType}>)(&{handlerName}));");
                 }
             }
 
             writer.WriteLine("}");
-        }
 
-        writer.WriteLine("}");
-
-        writer.WriteLine();
-
-        writer.WriteLine("internal abstract class EventHandler");
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
             for (var i = 0; i < this._events.Count; i++)
             {
                 if (i > 0)
@@ -161,7 +184,29 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
                 var handlerName = GeneratorFacts.GetHandlerName(eventInfo.EventName);
                 var parametersText = string.Join(", ", eventInfo.Parameters.Select(p => $"{p.Type} {p.Name}"));
 
-                writer.WriteLine($"public abstract {eventInfo.ReturnType} {handlerName}({parametersText});");
+                writer.WriteLine($"public class {GeneratorFacts.GetEventArgName(eventInfo.EventName)}({parametersText})");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    foreach (var parameter in eventInfo.Parameters)
+                    {
+                        writer.WriteLine($"public {parameter.Type} {parameter.Name.ToUpperCamelCase()} {{ get; }} = {parameter.Name};");
+                        writer.WriteLine();
+                    }
+
+                    if (eventInfo.ReturnType != "void")
+                    {
+                        writer.WriteLine($"public {eventInfo.ReturnType} EventResult {{ get; set; }} = true;");
+                    }
+                }
+
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+                writer.WriteLine($"public delegate void {handlerName}({GeneratorFacts.GetEventArgName(eventInfo.EventName)} args);");
+                writer.WriteLine();
+                writer.WriteLine($"public static event {handlerName}? {eventInfo.EventName};");
             }
         }
 
@@ -215,21 +260,51 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
         var rawParametersText = string.Join(", ", rawParameters.Select(p => $"{p.Type} {p.Name}"));
         var argumentsText = string.Join(", ", arguments);
 
-        var handlerName = GeneratorFacts.GetHandlerName(eventName);
+        var handlerName = GeneratorFacts.GetHandlerName(eventName) + "Internal";
+
+        var isReturnBool = node.ReturnType.Identifier.Kind == SyntaxKind.Bool;
+        var returnTypeConverted = isReturnBool ? "int" : returnTypeName;
 
         writer.WriteLine("[UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]");
-        writer.WriteLine($"private static {returnTypeName} {handlerName}({rawParametersText})");
+        writer.WriteLine($"private static {returnTypeConverted} {handlerName}({rawParametersText})");
         writer.WriteLine("{");
 
         using (writer.Indent())
         {
-            writer.WriteLine(node.ReturnType.IsVoid
-                ? $"GlobalHandler.{handlerName}({argumentsText});"
-                : $"return GlobalHandler.{handlerName}({argumentsText});");
+            writer.WriteLine("try");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine($"var args = new {GeneratorFacts.GetEventArgName(eventName)}({argumentsText});");
+
+                writer.WriteLine(node.ReturnType.Identifier.Kind switch
+                {
+                    SyntaxKind.Void => $"{eventName}?.Invoke(args);",
+                    SyntaxKind.Bool => $"{eventName}?.Invoke(args); return args.EventResult ? 1 : 0;",
+                    _ => throw new NotSupportedException(),
+                });
+            }
+
+            writer.WriteLine("}");
+            writer.WriteLine("catch(Exception e)");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("ScriptFunctions.print(e.ToString());");
+
+                if (!node.ReturnType.IsVoid)
+                {
+                    writer.WriteLine("return 1;");
+                }
+            }
+
+            writer.WriteLine("}");
         }
 
         writer.WriteLine("}");
 
-        this._events.Add(($"{returnTypeName} ccb::internal::invoke_{eventName}({declarationParametersText})", eventName, parameters, rawParameters, returnTypeName, handlerName));
+        this._events.Add(($"{returnTypeName} ccb_internal_invoke_{eventName}({declarationParametersText})", eventName, parameters, rawParameters, returnTypeName, handlerName));
     }
 }

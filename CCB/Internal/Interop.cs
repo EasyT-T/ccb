@@ -1,21 +1,55 @@
 namespace CCB.Internal;
 
-using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Loader;
 
 internal static class Interop
 {
+    private static Loader? loader;
+
     [UnmanagedCallersOnly]
     public static void Load()
     {
-        while (!Debugger.IsAttached)
+        try
         {
-            Thread.Sleep(100);
+            var moduleHandle = NativeBindings.GetExecutedModule();
+
+            ScriptFunctions.ModuleHandle = moduleHandle;
+
+            EventRegistry.RegisterEventFunctions();
+
+            var eventScript = NativeBindings.LoadAngelScriptModule("event.as", "./ccb/event.as", 0);
+            var function = NativeBindings.FindModuleFunction(eventScript, "void OnInitialize()", true);
+            NativeBindings.PrepareModuleFunction(eventScript, function);
+            NativeBindings.ExecuteModuleFunction(eventScript);
+
+            var currentAssembly = Assembly.GetExecutingAssembly();
+
+            AssemblyLoadContext.Default.Resolving += (context, assemblyName) =>
+            {
+                if (assemblyName.Name == currentAssembly.GetName().Name)
+                {
+                    return currentAssembly;
+                }
+
+                var dependenciesPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "ccb",
+                    "dependencies",
+                    assemblyName.Name + ".dll");
+
+                return File.Exists(dependenciesPath) ? context.LoadFromAssemblyPath(dependenciesPath) : null;
+            };
+
+            loader = new Loader();
+
+            loader.LoadAllPlugins();
         }
-
-        var moduleHandle = NativeBindings.GetExecutedModule();
-
-        //ScriptFunctions.ModuleHandle = moduleHandle;
+        catch (Exception e)
+        {
+            Console.Error.WriteLine(e);
+        }
     }
 
     [UnmanagedCallersOnly]

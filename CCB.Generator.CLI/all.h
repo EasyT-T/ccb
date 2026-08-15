@@ -1,3 +1,8 @@
+Chat chat;
+Audio audio;
+Graphics graphics;
+World world;
+
 Entity CreatePivot(int parent=0);
 Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius=0.0);
 Player GetPlayer(int index);
@@ -21,8 +26,6 @@ int CreateBank(int size);
 int CreateTimer(ref &in callback, int time, bool repeat, int timerdata=0);
 int CreateTimer(string &in funcdecl, int time, bool repeat, int timerdata=0);
 int CreateTimerData();
-int CreateTimerEx(ref &in callback, int time, bool repeat, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null);
-int CreateTimerEx(string &in funcdecl, int time, bool repeat, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null, ?&in=null);
 int GetActiveContext();
 int GetPlayersCount();
 int GetProcAddress(int, string &in);
@@ -71,7 +74,7 @@ class Audio
     Sound PlaySoundForPlayer(Player player, string& in filenameorurl) ;
     Sound Play3DSoundForPlayer(Player player, string& in filenameorurl, Entity entity, float range, float volume, bool norange = false) ;
     Sound Play3DSoundForPlayer(Player player, string& in filenameorurl, float x, float y, float z, float range, float volume, bool norange = false) ;
-    Sound Play3DSoundForPlayer(Player player, string& in filenameorurl, Player player, float range, float volume, bool norange = false) ;
+    Sound Play3DSoundForPlayer(Player player_to, string& in filenameorurl, Player player, float range, float volume, bool norange = false) ;
 }
 class Chat
 {

@@ -1,5 +1,7 @@
 ﻿namespace CCB.Generator;
 
+using System.Diagnostics;
+using System.Text;
 using CCB.Syntax;
 
 internal static class GeneratorFacts
@@ -49,6 +51,10 @@ internal static class GeneratorFacts
 
     public const string LoadCcbDef = $"bool {LoadCcbName}()";
 
+    public const string IntToConstCharName = "int_to_const_char";
+
+    public const string IntToConstCharDef = $"const char {IntToConstCharName}(int)";
+
     public const string RegisterFunctionName = "RegisterFunction";
 
     public const string OnInitializeName = "OnInitialize";
@@ -59,11 +65,70 @@ internal static class GeneratorFacts
 
     public const string ModuleHandleName = "ModuleHandle";
 
-    public static string GetReturnTypeName(FieldDeclarationSyntax node)
+    public static void GenerateCSharpSetArgCode(TextWriter writer, SyntaxKind kind, int index, string value)
     {
-        return node.Modifiers.Count > 0
-            ? string.Join(' ', node.Modifiers) + ' ' + node.Type.Identifier.Text + node.Type.RefHandle.Text
-            : node.Type.Identifier.Text + node.Type.RefHandle.Text;
+        switch (kind)
+        {
+            case SyntaxKind.Int8:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgByte({ModuleHandleName}, {index}, (int){value});");
+                break;
+            case SyntaxKind.Int16:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgShort({ModuleHandleName}, {index}, (int){value});");
+                break;
+            case SyntaxKind.Int:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgInt({ModuleHandleName}, {index}, {value});");
+                break;
+            case SyntaxKind.UInt:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgUInt({ModuleHandleName}, {index}, {value});");
+                break;
+            case SyntaxKind.Bool:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgBoolean({ModuleHandleName}, {index}, {value});");
+                break;
+            case SyntaxKind.Float:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgFloat({ModuleHandleName}, {index}, {value});");
+                break;
+            case SyntaxKind.String:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgObject({ModuleHandleName}, {index}, new ObjectHandle((IntPtr){value}));");
+                break;
+            case SyntaxKind.Ref or SyntaxKind.QuestionMark:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgAddress({ModuleHandleName}, {index}, {value});");
+                break;
+            default:
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgObject({ModuleHandleName}, {index}, {value});");
+                break;
+        }
+    }
+
+    public static void GenerateCSharpReturnCode(TextWriter writer, SyntaxKind kind, bool returnHandle, string? objectName = null)
+    {
+        switch (kind)
+        {
+            case SyntaxKind.Int8:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnByte({ModuleHandleName});");
+                break;
+            case SyntaxKind.Int16:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnShort({ModuleHandleName});");
+                break;
+            case SyntaxKind.Int:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnInt({ModuleHandleName});");
+                break;
+            case SyntaxKind.UInt:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnUInt({ModuleHandleName});");
+                break;
+            case SyntaxKind.Bool:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnBoolean({ModuleHandleName});");
+                break;
+            case SyntaxKind.Float:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnFloat({ModuleHandleName});");
+                break;
+            case SyntaxKind.String:
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnCString({ModuleHandleName});");
+                break;
+            default:
+                Debug.Assert(objectName is not null);
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnObject<{objectName}>({ModuleHandleName}, {(returnHandle ? "true" : "false")});");
+                break;
+        }
     }
 
     public static string GetTypeName(TypeSyntax type)
@@ -105,6 +170,65 @@ internal static class GeneratorFacts
         return type.Inout.Kind != SyntaxKind.None
             ? inoutName + typeName
             : refName + typeName;
+    }
+
+    public static void GenerateInvokeCode(IndentedTextWriter writer, IList<(string Name, string InOut, SyntaxKind TypeKind)> parameters, string declaration)
+    {
+        const string functionIndexVar = "functionIndex";
+
+        writer.WriteLine($"var {functionIndexVar} = {NativeBindingsName}.FindModuleFunction({ModuleHandleName}, \"{declaration}\", true);");
+#if DEBUG
+        writer.WriteLine();
+        writer.WriteLine("Debug.Assert(functionIndex > 0);");
+        writer.WriteLine();
+#endif
+        writer.WriteLine($"{NativeBindingsName}.PrepareModuleFunction({ModuleHandleName}, {functionIndexVar});");
+        writer.WriteLine();
+
+        var freeCodeBuilder = new StringBuilder();
+
+        for (var i = 0; i < parameters.Count; i++)
+        {
+            var parameter = parameters[i];
+
+            var value = $"{parameter.InOut}{parameter.Name}";
+
+            if (parameter.TypeKind == SyntaxKind.String && string.IsNullOrEmpty(parameter.InOut))
+            {
+                value = $"unmanagedStr{i}";
+                writer.WriteLine($"var {value} = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged({parameter.Name});");
+                freeCodeBuilder.AppendLine(
+                    $"System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.Free({value});");
+            }
+
+            GenerateCSharpSetArgCode(writer, parameter.TypeKind, i, value);
+        }
+
+        writer.WriteLine();
+        writer.WriteLine($"{NativeBindingsName}.ExecuteModuleFunction({ModuleHandleName});");
+        writer.WriteLine();
+
+        writer.Write(freeCodeBuilder);
+    }
+
+    public static void GenerateInvokeCode(
+        IndentedTextWriter writer,
+        IList<(string Name, string InOut, SyntaxKind TypeKind)> parameters,
+        string declaration,
+        SyntaxKind returnKind,
+        string returnTypeName,
+        bool returnHandle)
+    {
+        GenerateInvokeCode(writer, parameters, declaration);
+
+        if (returnKind == SyntaxKind.Void)
+        {
+            return;
+        }
+
+        writer.WriteLine();
+
+        GenerateCSharpReturnCode(writer, returnKind, returnHandle, returnTypeName);
     }
 
     public static string GetEventArgName(string eventName)

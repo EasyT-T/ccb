@@ -1,6 +1,6 @@
 ﻿namespace CCB.Generator;
 
-using System.Collections.Immutable;
+using CCB.Extensions;
 using CCB.Syntax;
 using CCB.Syntax.Visitor;
 
@@ -48,6 +48,72 @@ internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
         }
     }
 
+    public override void VisitGlobalProperty(GlobalPropertySyntax node)
+    {
+        var propertyName = node.Identifier.Text;
+        var isString = node.Type.Identifier.Kind == SyntaxKind.String;
+        var returnTypeName = isString ? "char" : node.ToStructuredString();
+
+        GenerateGet();
+
+        return;
+
+        void GenerateGet()
+        {
+            writer.WriteLine($"{returnTypeName} Get{propertyName}()");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine($"return {propertyName};");
+            }
+
+            writer.WriteLine("}");
+        }
+    }
+
+    public override void VisitFunctionDeclaration(FunctionDeclarationSyntax node)
+    {
+        var isVoid = node.ReturnType.IsVoid;
+        var returnTypeName = node.ReturnType.Identifier.Kind == SyntaxKind.String
+            ? "char"
+            : node.ReturnType.ToStructuredString();
+
+        var methodName = node.Identifier.Text;
+
+        var parameters = new List<(string Type, string Name)>();
+
+        for (var i = 0; i < node.ParameterList.Parameters.Count; i++)
+        {
+            var parameter = node.ParameterList.Parameters[i];
+            var element = parameter.Element;
+
+            var typeName = element.Type.Identifier.Kind == SyntaxKind.String
+                ? "const char"
+                : element.Type.ToStructuredString();
+
+            var paramName = element.Unnamed ? $"unname{i}" : element.Identifier.Text;
+
+            parameters.Add((typeName, paramName));
+        }
+
+        var parametersText = string.Join(", ", parameters.Select(p => $"{p.Type} {p.Name}"));
+
+        var argumentsText = string.Join(", ", parameters.Select(p => p.Name));
+
+        writer.WriteLine($"{returnTypeName} {methodName}({parametersText})");
+        writer.WriteLine("{");
+
+        using (writer.Indent())
+        {
+            writer.WriteLine(isVoid
+                ? $"::{methodName}({argumentsText});"
+                : $"return ::{methodName}({argumentsText});");
+        }
+
+        writer.WriteLine("}");
+    }
+
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
         var className = node.Identifier.Text;
@@ -76,37 +142,37 @@ internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
     {
         var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
         var isVoid = node.ReturnType.IsVoid;
-        var returnTypeName = GeneratorFacts.GetTypeName(node.ReturnType);
+        var returnTypeName = node.ReturnType.Identifier.Kind == SyntaxKind.String
+            ? "char"
+            : node.ReturnType.ToStructuredString();
 
-        var leadingModifiersText = node.LeadingModifiers.Count > 0
-            ? string.Join(' ', node.LeadingModifiers.Select(m => m.Text))
-            : string.Empty;
         var methodName = node.Identifier.Text;
 
-        var parameters = node.ParameterList.Parameters
-            .Select((p, i) =>
-            {
-                var element = p.Element;
-                var typeName = GeneratorFacts.GetTypeName(element.Type);
-                var paramName = element.Unnamed ? $"unname{i}" : element.Identifier.Text;
+        var parameters = new List<(string Type, string Name)>();
 
-                return (TypeName: typeName, ParameterName: paramName);
-            })
-            .ToImmutableArray();
-
-        var parametersWithThisText = string.Join(", ",
-            parameters
-                .Select(p => $"{p.TypeName} {p.ParameterName}")
-                .Prepend($"{className} {GeneratorFacts.ThisVarName}"));
-        var argumentsText = string.Join(", ", parameters.Select(p => p.ParameterName));
-
-        // TODO Find a better way to fix TXT_REF_CANT_BE_RETURNED_DEFERRED_PARAM
-        if (className == "Config" && methodName == "Get")
+        for (var i = 0; i < node.ParameterList.Parameters.Count; i++)
         {
-            returnTypeName = "string";
+            var parameter = node.ParameterList.Parameters[i];
+            var element = parameter.Element;
+
+            var typeName = element.Type.Identifier.Kind == SyntaxKind.String
+                ? "const char"
+                :element.Type.ToStructuredString();
+
+            var paramName = element.Unnamed ? $"unname{i}" : element.Identifier.Text;
+
+            parameters.Add((typeName, paramName));
         }
 
-        writer.WriteLine($"{leadingModifiersText}{returnTypeName} {methodName}({parametersWithThisText})");
+        var parametersWithThisText = string.Join(
+            ", ",
+            parameters
+                .Select(p => $"{p.Type} {p.Name}")
+                .Prepend($"{className} {GeneratorFacts.ThisVarName}"));
+
+        var argumentsText = string.Join(", ", parameters.Select(p => p.Name));
+
+        writer.WriteLine($"{returnTypeName} {methodName}({parametersWithThisText})");
         writer.WriteLine("{");
 
         using (writer.Indent())
@@ -122,7 +188,10 @@ internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
-        var typeName = GeneratorFacts.GetReturnTypeName(node);
+        var fieldName = node.Identifier.Text;
+        var isString = node.Type.Identifier.Kind == SyntaxKind.String;
+        var returnTypeName = isString ? "char" : node.ToStructuredString();
+        var valueTypeName = isString ? "const char" : returnTypeName;
 
         GenerateGet();
 
@@ -138,12 +207,12 @@ internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
 
         void GenerateGet()
         {
-            writer.WriteLine($"{typeName} Get{node.Identifier.Text}({className} {GeneratorFacts.ThisVarName})");
+            writer.WriteLine($"{returnTypeName} Get{fieldName}({className} {GeneratorFacts.ThisVarName})");
             writer.WriteLine("{");
 
             using (writer.Indent())
             {
-                writer.WriteLine($"return {GeneratorFacts.ThisVarName}.{node.Identifier.Text};");
+                writer.WriteLine($"return {GeneratorFacts.ThisVarName}.{fieldName};");
             }
 
             writer.WriteLine("}");
@@ -151,12 +220,24 @@ internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
 
         void GenerateSet()
         {
-            writer.WriteLine($"void Set{node.Identifier.Text}({className} {GeneratorFacts.ThisVarName}, {typeName} value)");
+            writer.WriteLine($"void Set{fieldName}({className} {GeneratorFacts.ThisVarName}, {valueTypeName} value)");
             writer.WriteLine("{");
 
             using (writer.Indent())
             {
-                writer.WriteLine($"{GeneratorFacts.ThisVarName}.{node.Identifier.Text} = value;");
+                string targetVar;
+
+                if (isString)
+                {
+                    targetVar = "strValue";
+                    writer.WriteLine("string strValue = string(value);");
+                }
+                else
+                {
+                    targetVar = "value";
+                }
+
+                writer.WriteLine($"{GeneratorFacts.ThisVarName}.{fieldName} = {targetVar};");
             }
 
             writer.WriteLine("}");
