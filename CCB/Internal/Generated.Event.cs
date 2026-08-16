@@ -179,11 +179,11 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerDialogActionInternal(ObjectHandle player, int index, bool response, IntPtr input, int selecteditem)
+    private static void OnPlayerDialogActionInternal(ObjectHandle player, int index, int response, IntPtr input, int selecteditem)
     {
         try
         {
-            var args = new PlayerDialogActionEventArg(new Player(player), index, response, Marshal.PtrToStringUTF8(input)!, selecteditem);
+            var args = new PlayerDialogActionEventArg(new Player(player), index, response != 0, Marshal.PtrToStringUTF8(input)!, selecteditem);
             PlayerDialogAction?.Invoke(args);
         }
         catch(Exception e)
@@ -193,11 +193,11 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerShootPlayerInternal(ObjectHandle shooter, ObjectHandle dest, float x, float y, float z, float damage, bool headshot)
+    private static int OnPlayerShootPlayerInternal(ObjectHandle shooter, ObjectHandle dest, float x, float y, float z, float damage, int headshot)
     {
         try
         {
-            var args = new PlayerShootPlayerEventArg(new Player(shooter), new Player(dest), x, y, z, damage, headshot);
+            var args = new PlayerShootPlayerEventArg(new Player(shooter), new Player(dest), x, y, z, damage, headshot != 0);
             PlayerShootPlayer?.Invoke(args); return args.EventResult ? 1 : 0;
         }
         catch(Exception e)
@@ -410,11 +410,11 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerVoiceInternal(ObjectHandle player, int bank, bool radio)
+    private static int OnPlayerVoiceInternal(ObjectHandle player, int bank, int radio)
     {
         try
         {
-            var args = new PlayerVoiceEventArg(new Player(player), bank, radio);
+            var args = new PlayerVoiceEventArg(new Player(player), bank, radio != 0);
             PlayerVoice?.Invoke(args); return args.EventResult ? 1 : 0;
         }
         catch(Exception e)
@@ -805,9 +805,9 @@ public static class EventRegistry
 
         NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerDropItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int>)(&OnPlayerDropItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDialogAction(Player, int, bool, const char, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool, IntPtr, int, void>)(&OnPlayerDialogActionInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDialogAction(Player, int, bool, const char, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, IntPtr, int, void>)(&OnPlayerDialogActionInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShootPlayer(Player, Player, float, float, float, float, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, float, float, float, bool, int>)(&OnPlayerShootPlayerInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShootPlayer(Player, Player, float, float, float, float, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, float, float, float, int, int>)(&OnPlayerShootPlayerInternal));
 
         NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShoot(Player, Items, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, int>)(&OnPlayerShootInternal));
 
@@ -837,7 +837,7 @@ public static class EventRegistry
 
         NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerClickGui(Player, GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerClickGuiInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerVoice(Player, int, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, bool, int>)(&OnPlayerVoiceInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerVoice(Player, int, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, int>)(&OnPlayerVoiceInternal));
 
         NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerTeleportElevator(Player, Room, Entity, Entity, float, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, ObjectHandle, float, float, void>)(&OnPlayerTeleportElevatorInternal));
 

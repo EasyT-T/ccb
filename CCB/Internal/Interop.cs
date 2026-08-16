@@ -42,6 +42,22 @@ internal static class Interop
                 return File.Exists(dependenciesPath) ? context.LoadFromAssemblyPath(dependenciesPath) : null;
             };
 
+            AssemblyLoadContext.Default.ResolvingUnmanagedDll += (_, assemblyName) =>
+            {
+                if (!Path.HasExtension(assemblyName))
+                {
+                    assemblyName += ".dll";
+                }
+
+                var dependenciesPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "ccb",
+                    "dependencies",
+                    assemblyName);
+
+                return File.Exists(dependenciesPath) ? NativeLibrary.Load(assemblyName) : IntPtr.Zero;
+            };
+
             loader = new Loader();
 
             loader.LoadAllPlugins();

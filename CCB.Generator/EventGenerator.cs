@@ -239,6 +239,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
             {
                 SyntaxKind.Identifier => "ObjectHandle",
                 SyntaxKind.String => "IntPtr",
+                SyntaxKind.Bool => "int",
                 _ => type,
             };
             var declarationType = element.Type.Identifier.Kind == SyntaxKind.String ? "const char" : type;
@@ -247,6 +248,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
             {
                 SyntaxKind.Identifier => $"new {element.Type.Identifier.Text}({name})",
                 SyntaxKind.String => $"Marshal.PtrToStringUTF8({name})!",
+                SyntaxKind.Bool => $"{name} != 0",
                 _ => name,
             };
 
