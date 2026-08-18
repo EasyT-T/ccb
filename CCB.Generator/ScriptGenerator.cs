@@ -19,7 +19,7 @@ public class ScriptGenerator : SimpleVisitor
 
         var context = new GeneratorContext(config);
 
-        this._angelScriptGenerator = new AngelScriptGenerator(scriptIndentedWriter);
+        this._angelScriptGenerator = new AngelScriptGenerator(scriptIndentedWriter, context);
         this._csharpScriptGenerator = new CSharpScriptGenerator(csharpIndentedWriter, context);
     }
 

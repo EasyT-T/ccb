@@ -4,7 +4,7 @@ using CCB.Extensions;
 using CCB.Syntax;
 using CCB.Syntax.Visitor;
 
-internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
+internal class AngelScriptGenerator(IndentedTextWriter writer, GeneratorContext context) : SimpleVisitor
 {
     public override void VisitRoot(RootSyntax root)
     {
@@ -133,9 +133,73 @@ internal class AngelScriptGenerator(IndentedTextWriter writer) : SimpleVisitor
                 var member = node.Members[i];
                 member.Accept(this);
             }
+
+            WriteIterator();
         }
 
         writer.WriteLine("}");
+
+        return;
+
+        void WriteIterator()
+        {
+            var iterables = context.Config.Iterables;
+
+            if (!iterables.Contains(className))
+            {
+                return;
+            }
+
+            var iteratorName = $"{className}Iterator";
+
+            writer.WriteLine();
+
+            writer.WriteLine($"{iteratorName} create_iterator()");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine($"return {className}::Iterator();");
+            }
+
+            writer.WriteLine("}");
+
+            writer.WriteLine();
+
+            writer.WriteLine($"void iterator_advance({iteratorName} iterator)");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("iterator++;");
+            }
+
+            writer.WriteLine("}");
+
+            writer.WriteLine();
+
+            writer.WriteLine($"{className} iterator_get({iteratorName} iterator)");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("return iterator.Get();");
+            }
+
+            writer.WriteLine("}");
+
+            writer.WriteLine();
+
+            writer.WriteLine($"bool iterator_is_null({iteratorName} iterator)");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("return iterator == NULL;");
+            }
+
+            writer.WriteLine("}");
+        }
     }
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)

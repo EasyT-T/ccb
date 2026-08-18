@@ -18,6 +18,24 @@ var config = new GenerateConfigBuilder()
     .AddFuncDef("void", "DIALOGCALLBACK", [("Player", string.Empty), ("bool", string.Empty), ("string", string.Empty), ("int", string.Empty)])
     .AddFuncDef("void", "GUICALLBACK", [("Player", "p"), ("GUIElement", "gui")])
     .AddFuncDef("void", "OBJECTCALLBACK", [("Player", string.Empty), ("Object", string.Empty)])
+    .WithIterables([
+        "Room",
+        "Items",
+        "Player",
+        "GUIElement",
+        "Corpse",
+        "Door",
+        "Event",
+        "Object",
+        "NPC",
+        "Config",
+        "ModelPreset",
+        "Connection",
+        "Shell",
+        "Sound",
+        "Light",
+        "Waypoint",
+    ])
     .Build();
 
 var pluginGenerator = new PluginGenerator(scriptRoot, pluginOutput, config);

@@ -9,7 +9,7 @@ internal ref struct StringHandle(ObjectHandle handle)
 
     public static unsafe implicit operator string(StringHandle handle)
     {
-        var pointerToStr = (char**)handle._handle.Handle.ToPointer();
+        var pointerToStr = (char**)handle._handle.Pointer.ToPointer();
         var str = Marshal.PtrToStringUTF8((IntPtr)(*pointerToStr));
 
         return str ?? throw new ArgumentNullException(nameof(handle));

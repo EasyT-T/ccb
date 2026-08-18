@@ -2,8 +2,8 @@ namespace CCB.Internal;
 
 using System.Runtime.InteropServices;
 
-[StructLayout(LayoutKind.Sequential, Size = 4)]
-public readonly struct ObjectHandle(IntPtr handle)
+[StructLayout(LayoutKind.Sequential)]
+public readonly struct ObjectHandle(IntPtr pointer)
 {
-    public IntPtr Handle { get; } = handle;
+    public IntPtr Pointer { get; } = pointer;
 }
