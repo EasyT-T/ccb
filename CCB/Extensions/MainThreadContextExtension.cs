@@ -7,6 +7,19 @@ public static class MainThreadContextExtension
     extension(MainThreadContext)
     {
         public static void RunOnMainThread(
+            Action func)
+        {
+            if (MainThreadContext.Instance.IsMainThread)
+            {
+                func();
+
+                return;
+            }
+
+            MainThreadContext.Instance.Send(_ => func(), null);
+        }
+
+        public static void RunOnMainThread(
             Action<CancellationToken> func,
             CancellationToken cancellationToken = default)
         {
