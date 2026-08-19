@@ -21,9 +21,9 @@ internal class JsonObjectSerializer : IObjectSerializer
         JsonSerializer.Serialize(output, config, this._options);
     }
 
-    public Task SerializeAsync<T>(Stream output, T config)
+    public Task SerializeAsync<T>(Stream output, T config, CancellationToken cancellationToken = default)
     {
-        return JsonSerializer.SerializeAsync(output, config, this._options);
+        return JsonSerializer.SerializeAsync(output, config, this._options, cancellationToken);
     }
 
     public T Deserialize<T>(Stream input)
@@ -35,9 +35,9 @@ internal class JsonObjectSerializer : IObjectSerializer
         return result;
     }
 
-    public async Task<T> DeserializeAsync<T>(Stream input)
+    public async Task<T> DeserializeAsync<T>(Stream input, CancellationToken cancellationToken = default)
     {
-        var result = await JsonSerializer.DeserializeAsync<T>(input, this._options);
+        var result = await JsonSerializer.DeserializeAsync<T>(input, this._options, cancellationToken);
 
         Guard.IsNotNull(result);
 

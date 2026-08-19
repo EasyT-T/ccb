@@ -48,14 +48,14 @@ internal class FileConfigLoader(IPathProvider pathProvider, IEnumerable<IObjectS
         static async Task<T> GetConfigFromExistedFileAsync(string configPath, IObjectSerializer serializer, CancellationToken cancellationToken = default)
         {
             await using var stream = File.OpenRead(configPath);
-            return await serializer.DeserializeAsync<T>(stream);
+            return await serializer.DeserializeAsync<T>(stream, cancellationToken);
         }
 
         static async Task<T> CreateDefaultConfigAsync(string configPath, Func<T> defaultValueFactory, IObjectSerializer serializer, CancellationToken cancellationToken = default)
         {
             await using var stream = File.OpenWrite(configPath);
             var config = defaultValueFactory();
-            await serializer.SerializeAsync(stream, config);
+            await serializer.SerializeAsync(stream, config, cancellationToken);
 
             return config;
         }
