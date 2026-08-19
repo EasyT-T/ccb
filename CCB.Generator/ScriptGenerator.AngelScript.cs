@@ -166,7 +166,7 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GeneratorContext 
 
             writer.WriteLine();
 
-            writer.WriteLine($"void iterator_advance({iteratorName} iterator)");
+            writer.WriteLine($"void iterator_advance({iteratorName}& in iterator)");
             writer.WriteLine("{");
 
             using (writer.Indent())
@@ -178,7 +178,7 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GeneratorContext 
 
             writer.WriteLine();
 
-            writer.WriteLine($"{className} iterator_get({iteratorName} iterator)");
+            writer.WriteLine($"{className} iterator_get({iteratorName}& in iterator)");
             writer.WriteLine("{");
 
             using (writer.Indent())
@@ -190,7 +190,7 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GeneratorContext 
 
             writer.WriteLine();
 
-            writer.WriteLine($"bool iterator_is_null({iteratorName} iterator)");
+            writer.WriteLine($"bool iterator_is_null({iteratorName}& in iterator)");
             writer.WriteLine("{");
 
             using (writer.Indent())

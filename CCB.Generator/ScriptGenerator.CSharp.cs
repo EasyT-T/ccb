@@ -140,7 +140,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
             {
                 writer.WriteLine("private IteratorOpaque _opaque = opaque;");
                 writer.WriteLine($"private {className}? _current;");
-                writer.WriteLine($"{className} IEnumerator<{className}>.Current => this._current!.Value;");
+                writer.WriteLine($"public {className} Current => this._current!.Value;");
                 writer.WriteLine("object IEnumerator.Current => this._current!.Value;");
 
                 writer.WriteLine();
@@ -214,14 +214,14 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
 
                     using (writer.Indent())
                     {
-                        writer.WriteLine("var nPtr = new ObjectHandle((IntPtr)ptr);");
+                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
 
                         GeneratorFacts.GenerateInvokeCode(writer,
-                            [("nPtr", string.Empty, SyntaxKind.Identifier)],
-                            $"{className} iterator_get({iteratorName})",
+                            [("nPtr", string.Empty, SyntaxKind.Ref)],
+                            $"{className} ccb::_{className}::iterator_get({iteratorName}& in)",
                             SyntaxKind.Identifier,
                             className,
-                            true);
+                            false);
                     }
 
                     writer.WriteLine("}");
@@ -241,11 +241,11 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
 
                     using (writer.Indent())
                     {
-                        writer.WriteLine("var nPtr = new ObjectHandle((IntPtr)ptr);");
+                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
 
                         GeneratorFacts.GenerateInvokeCode(writer,
-                            [("nPtr", string.Empty, SyntaxKind.Identifier)],
-                            $"void iterator_advance({iteratorName})");
+                            [("nPtr", string.Empty, SyntaxKind.Ref)],
+                            $"void ccb::_{className}::iterator_advance({iteratorName}& in)");
                     }
 
                     writer.WriteLine("}");
@@ -265,11 +265,11 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
 
                     using (writer.Indent())
                     {
-                        writer.WriteLine("var nPtr = new ObjectHandle((IntPtr)ptr);");
+                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
 
                         GeneratorFacts.GenerateInvokeCode(writer,
-                            [("nPtr", string.Empty, SyntaxKind.Identifier)],
-                            $"bool iterator_is_null({iteratorName} iterator)",
+                            [("nPtr", string.Empty, SyntaxKind.Ref)],
+                            $"bool ccb::_{className}::iterator_is_null({iteratorName}& in)",
                             SyntaxKind.Bool,
                             string.Empty,
                             false);
@@ -285,12 +285,28 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
 
             writer.WriteLine();
 
-            writer.WriteLine("public Iterator List()");
+            writer.WriteLine($"public class IteratorEnumerable : IEnumerable<{className}>");
             writer.WriteLine("{");
 
             using (writer.Indent())
             {
-                writer.WriteLine("return Iterator.Create();");
+                writer.WriteLine("public Iterator GetEnumerator() => Iterator.Create();");
+                writer.WriteLine();
+                writer.WriteLine($"IEnumerator<{className}> IEnumerable<{className}>.GetEnumerator() => this.GetEnumerator();");
+                writer.WriteLine();
+                writer.WriteLine("IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();");
+            }
+
+            writer.WriteLine("}");
+
+            writer.WriteLine();
+
+            writer.WriteLine("public static IteratorEnumerable List()");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("return new IteratorEnumerable();");
             }
 
             writer.WriteLine("}");

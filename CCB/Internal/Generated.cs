@@ -10841,7 +10841,7 @@ public struct Config(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Config? _current;
-        Config IEnumerator<Config>.Current => this._current!.Value;
+        public Config Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -10886,19 +10886,19 @@ public struct Config(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Config iterator_get(ConfigIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Config ccb::_Config::iterator_get(ConfigIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Config>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Config>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -10906,14 +10906,14 @@ public struct Config(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(ConfigIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Config::iterator_advance(ConfigIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -10924,14 +10924,14 @@ public struct Config(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(ConfigIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Config::iterator_is_null(ConfigIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -10941,9 +10941,18 @@ public struct Config(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Config>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Config> IEnumerable<Config>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public bool Exist(in string key, int index)
@@ -10975,7 +10984,7 @@ public struct Connection(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Connection? _current;
-        Connection IEnumerator<Connection>.Current => this._current!.Value;
+        public Connection Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -11020,19 +11029,19 @@ public struct Connection(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Connection iterator_get(ConnectionIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Connection ccb::_Connection::iterator_get(ConnectionIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Connection>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Connection>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -11040,14 +11049,14 @@ public struct Connection(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(ConnectionIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Connection::iterator_advance(ConnectionIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11058,14 +11067,14 @@ public struct Connection(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(ConnectionIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Connection::iterator_is_null(ConnectionIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11075,9 +11084,18 @@ public struct Connection(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Connection>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Connection> IEnumerable<Connection>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public int GetPort()
@@ -11154,7 +11172,7 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Corpse? _current;
-        Corpse IEnumerator<Corpse>.Current => this._current!.Value;
+        public Corpse Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -11199,19 +11217,19 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Corpse iterator_get(CorpseIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Corpse ccb::_Corpse::iterator_get(CorpseIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Corpse>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Corpse>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -11219,14 +11237,14 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(CorpseIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Corpse::iterator_advance(CorpseIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11237,14 +11255,14 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(CorpseIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Corpse::iterator_is_null(CorpseIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11254,9 +11272,18 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Corpse>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Corpse> IEnumerable<Corpse>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public int GetIndex()
@@ -11353,7 +11380,7 @@ public struct Door(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Door? _current;
-        Door IEnumerator<Door>.Current => this._current!.Value;
+        public Door Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -11398,19 +11425,19 @@ public struct Door(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door iterator_get(DoorIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door ccb::_Door::iterator_get(DoorIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Door>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Door>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -11418,14 +11445,14 @@ public struct Door(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(DoorIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::iterator_advance(DoorIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11436,14 +11463,14 @@ public struct Door(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(DoorIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Door::iterator_is_null(DoorIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11453,9 +11480,18 @@ public struct Door(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Door>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Door> IEnumerable<Door>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public void Use()
@@ -11957,7 +11993,7 @@ public struct Event(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Event? _current;
-        Event IEnumerator<Event>.Current => this._current!.Value;
+        public Event Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -12002,19 +12038,19 @@ public struct Event(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Event iterator_get(EventIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Event ccb::_Event::iterator_get(EventIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Event>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Event>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -12022,14 +12058,14 @@ public struct Event(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(EventIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Event::iterator_advance(EventIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12040,14 +12076,14 @@ public struct Event(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(EventIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Event::iterator_is_null(EventIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12057,9 +12093,18 @@ public struct Event(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Event>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Event> IEnumerable<Event>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public Room GetRoom()
@@ -12136,7 +12181,7 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private GUIElement? _current;
-        GUIElement IEnumerator<GUIElement>.Current => this._current!.Value;
+        public GUIElement Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -12181,19 +12226,19 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement iterator_get(GUIElementIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_GUIElement::iterator_get(GUIElementIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<GUIElement>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<GUIElement>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -12201,14 +12246,14 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(GUIElementIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::iterator_advance(GUIElementIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12219,14 +12264,14 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(GUIElementIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_GUIElement::iterator_is_null(GUIElementIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12236,9 +12281,18 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<GUIElement>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<GUIElement> IEnumerable<GUIElement>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public void GetPosition(out float x, out float y)
@@ -12451,7 +12505,7 @@ public struct Items(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Items? _current;
-        Items IEnumerator<Items>.Current => this._current!.Value;
+        public Items Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -12496,19 +12550,19 @@ public struct Items(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items iterator_get(ItemsIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Items::iterator_get(ItemsIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Items>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Items>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -12516,14 +12570,14 @@ public struct Items(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(ItemsIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Items::iterator_advance(ItemsIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12534,14 +12588,14 @@ public struct Items(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(ItemsIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::iterator_is_null(ItemsIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12551,9 +12605,18 @@ public struct Items(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Items>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Items> IEnumerable<Items>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public bool IsPicked()
@@ -12680,7 +12743,7 @@ public struct Light(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Light? _current;
-        Light IEnumerator<Light>.Current => this._current!.Value;
+        public Light Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -12725,19 +12788,19 @@ public struct Light(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Light iterator_get(LightIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Light ccb::_Light::iterator_get(LightIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Light>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Light>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -12745,14 +12808,14 @@ public struct Light(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(LightIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::iterator_advance(LightIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12763,14 +12826,14 @@ public struct Light(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(LightIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Light::iterator_is_null(LightIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12780,9 +12843,18 @@ public struct Light(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Light>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Light> IEnumerable<Light>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public int GetIndex()
@@ -12914,7 +12986,7 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private ModelPreset? _current;
-        ModelPreset IEnumerator<ModelPreset>.Current => this._current!.Value;
+        public ModelPreset Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -12959,19 +13031,19 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ModelPreset iterator_get(ModelPresetIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ModelPreset ccb::_ModelPreset::iterator_get(ModelPresetIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<ModelPreset>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<ModelPreset>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -12979,14 +13051,14 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(ModelPresetIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_ModelPreset::iterator_advance(ModelPresetIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12997,14 +13069,14 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(ModelPresetIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_ModelPreset::iterator_is_null(ModelPresetIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13014,9 +13086,18 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<ModelPreset>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<ModelPreset> IEnumerable<ModelPreset>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public string headbone
@@ -13273,7 +13354,7 @@ public struct NPC(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private NPC? _current;
-        NPC IEnumerator<NPC>.Current => this._current!.Value;
+        public NPC Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -13318,19 +13399,19 @@ public struct NPC(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "NPC iterator_get(NPCIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "NPC ccb::_NPC::iterator_get(NPCIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<NPC>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<NPC>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -13338,14 +13419,14 @@ public struct NPC(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(NPCIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::iterator_advance(NPCIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13356,14 +13437,14 @@ public struct NPC(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(NPCIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_NPC::iterator_is_null(NPCIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13373,9 +13454,18 @@ public struct NPC(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<NPC>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<NPC> IEnumerable<NPC>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public Entity GetEntity()
@@ -13472,7 +13562,7 @@ public struct Object(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Object? _current;
-        Object IEnumerator<Object>.Current => this._current!.Value;
+        public Object Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -13517,19 +13607,19 @@ public struct Object(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Object iterator_get(ObjectIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Object ccb::_Object::iterator_get(ObjectIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Object>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Object>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -13537,14 +13627,14 @@ public struct Object(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(ObjectIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::iterator_advance(ObjectIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13555,14 +13645,14 @@ public struct Object(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(ObjectIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Object::iterator_is_null(ObjectIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13572,9 +13662,18 @@ public struct Object(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Object>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Object> IEnumerable<Object>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public void SetAttach(Player player)
@@ -13647,7 +13746,7 @@ public struct Player(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Player? _current;
-        Player IEnumerator<Player>.Current => this._current!.Value;
+        public Player Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -13692,19 +13791,19 @@ public struct Player(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player iterator_get(PlayerIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Player::iterator_get(PlayerIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Player>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Player>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -13712,14 +13811,14 @@ public struct Player(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(PlayerIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::iterator_advance(PlayerIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13730,14 +13829,14 @@ public struct Player(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(PlayerIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::iterator_is_null(PlayerIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13747,9 +13846,18 @@ public struct Player(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Player>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Player> IEnumerable<Player>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public Entity GetHitbox()
@@ -14337,7 +14445,7 @@ public struct Room(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Room? _current;
-        Room IEnumerator<Room>.Current => this._current!.Value;
+        public Room Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -14382,19 +14490,19 @@ public struct Room(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room iterator_get(RoomIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Room::iterator_get(RoomIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Room>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Room>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -14402,14 +14510,14 @@ public struct Room(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(RoomIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Room::iterator_advance(RoomIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -14420,14 +14528,14 @@ public struct Room(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(RoomIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Room::iterator_is_null(RoomIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -14437,9 +14545,18 @@ public struct Room(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Room>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Room> IEnumerable<Room>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public string GetName()
@@ -14772,7 +14889,7 @@ public struct Shell(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Shell? _current;
-        Shell IEnumerator<Shell>.Current => this._current!.Value;
+        public Shell Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -14817,19 +14934,19 @@ public struct Shell(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Shell iterator_get(ShellIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Shell ccb::_Shell::iterator_get(ShellIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Shell>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Shell>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -14837,14 +14954,14 @@ public struct Shell(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(ShellIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::iterator_advance(ShellIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -14855,14 +14972,14 @@ public struct Shell(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(ShellIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Shell::iterator_is_null(ShellIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -14872,9 +14989,18 @@ public struct Shell(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Shell>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Shell> IEnumerable<Shell>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public Entity GetEntity()
@@ -15106,7 +15232,7 @@ public struct Sound(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Sound? _current;
-        Sound IEnumerator<Sound>.Current => this._current!.Value;
+        public Sound Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -15151,19 +15277,19 @@ public struct Sound(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound iterator_get(SoundIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Sound::iterator_get(SoundIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Sound>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Sound>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -15171,14 +15297,14 @@ public struct Sound(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(SoundIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Sound::iterator_advance(SoundIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -15189,14 +15315,14 @@ public struct Sound(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(SoundIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Sound::iterator_is_null(SoundIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -15206,9 +15332,18 @@ public struct Sound(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Sound>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Sound> IEnumerable<Sound>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public void SetVolume(float vol)
@@ -15240,7 +15375,7 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
     {
         private IteratorOpaque _opaque = opaque;
         private Waypoint? _current;
-        Waypoint IEnumerator<Waypoint>.Current => this._current!.Value;
+        public Waypoint Current => this._current!.Value;
         object IEnumerator.Current => this._current!.Value;
 
         public static Iterator Create()
@@ -15285,19 +15420,19 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Waypoint iterator_get(WaypointIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Waypoint ccb::_Waypoint::iterator_get(WaypointIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
 
-                return NativeBindings.GetModuleReturnObject<Waypoint>(ScriptFunctions.ModuleHandle, true);
+                return NativeBindings.GetModuleReturnObject<Waypoint>(ScriptFunctions.ModuleHandle, false);
             }
         }
 
@@ -15305,14 +15440,14 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void iterator_advance(WaypointIterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Waypoint::iterator_advance(WaypointIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -15323,14 +15458,14 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
         {
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
-                var nPtr = new ObjectHandle((IntPtr)ptr);
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool iterator_is_null(WaypointIterator iterator)", true);
+                var nPtr = (IntPtr)ptr;
+                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Waypoint::iterator_is_null(WaypointIterator& in)", true);
 
                 Debug.Assert(functionIndex > 0);
 
                 NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
 
-                NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, nPtr);
+                NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -15340,9 +15475,18 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
         }
     }
 
-    public Iterator List()
+    public class IteratorEnumerable : IEnumerable<Waypoint>
     {
-        return Iterator.Create();
+        public Iterator GetEnumerator() => Iterator.Create();
+
+        IEnumerator<Waypoint> IEnumerable<Waypoint>.GetEnumerator() => this.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+    }
+
+    public static IteratorEnumerable List()
+    {
+        return new IteratorEnumerable();
     }
 
     public Entity GetEntity()

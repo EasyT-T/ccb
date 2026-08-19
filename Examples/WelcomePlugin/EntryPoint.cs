@@ -1,5 +1,6 @@
 ﻿namespace WelcomePlugin;
 
+using System.Diagnostics;
 using CCB.Abstractions;
 using CCB.Attributes;
 using CCB.Internal;
@@ -32,7 +33,12 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
 
         var c = GlobalProperties.Chat;
 
-        c.Send($"Hello {player.GetName()}!");
+        //c.Send($"Hello {player.GetName()}!");
+
+        foreach (var p in Player.List())
+        {
+            c.SendPlayer(p, $"{player} Joined the game!");
+        }
     }
 
     [LoggerMessage(LogLevel.Information, "{player} Joined the server.")]
