@@ -70,31 +70,31 @@ internal static class GeneratorFacts
         switch (kind)
         {
             case SyntaxKind.Int8:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgByte({ModuleHandleName}, {index}, (int){value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgByte({ScriptFunctionsName}.{ModuleHandleName}, {index}, (int){value});");
                 break;
             case SyntaxKind.Int16:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgShort({ModuleHandleName}, {index}, (int){value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgShort({ScriptFunctionsName}.{ModuleHandleName}, {index}, (int){value});");
                 break;
             case SyntaxKind.Int:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgInt({ModuleHandleName}, {index}, {value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgInt({ScriptFunctionsName}.{ModuleHandleName}, {index}, {value});");
                 break;
             case SyntaxKind.UInt:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgUInt({ModuleHandleName}, {index}, {value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgUInt({ScriptFunctionsName}.{ModuleHandleName}, {index}, {value});");
                 break;
             case SyntaxKind.Bool:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgBoolean({ModuleHandleName}, {index}, {value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgBoolean({ScriptFunctionsName}.{ModuleHandleName}, {index}, {value});");
                 break;
             case SyntaxKind.Float:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgFloat({ModuleHandleName}, {index}, {value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgFloat({ScriptFunctionsName}.{ModuleHandleName}, {index}, {value});");
                 break;
             case SyntaxKind.String:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgObject({ModuleHandleName}, {index}, new ObjectHandle((IntPtr){value}));");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgObject({ScriptFunctionsName}.{ModuleHandleName}, {index}, new ObjectHandle((IntPtr){value}));");
                 break;
             case SyntaxKind.Ref or SyntaxKind.QuestionMark:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgAddress({ModuleHandleName}, {index}, {value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgAddress({ScriptFunctionsName}.{ModuleHandleName}, {index}, {value});");
                 break;
             default:
-                writer.WriteLine($"{NativeBindingsName}.SetModuleArgObject({ModuleHandleName}, {index}, {value});");
+                writer.WriteLine($"{NativeBindingsName}.SetModuleArgObject({ScriptFunctionsName}.{ModuleHandleName}, {index}, {value});");
                 break;
         }
     }
@@ -104,29 +104,29 @@ internal static class GeneratorFacts
         switch (kind)
         {
             case SyntaxKind.Int8:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnByte({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnByte({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             case SyntaxKind.Int16:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnShort({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnShort({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             case SyntaxKind.Int:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnInt({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnInt({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             case SyntaxKind.UInt:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnUInt({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnUInt({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             case SyntaxKind.Bool:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnBoolean({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnBoolean({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             case SyntaxKind.Float:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnFloat({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnFloat({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             case SyntaxKind.String:
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnCString({ModuleHandleName});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnCString({ScriptFunctionsName}.{ModuleHandleName});");
                 break;
             default:
                 Debug.Assert(objectName is not null);
-                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnObject<{objectName}>({ModuleHandleName}, {(returnHandle ? "true" : "false")});");
+                writer.WriteLine($"return {NativeBindingsName}.GetModuleReturnObject<{objectName}>({ScriptFunctionsName}.{ModuleHandleName}, {(returnHandle ? "true" : "false")});");
                 break;
         }
     }
@@ -176,16 +176,14 @@ internal static class GeneratorFacts
     {
         const string functionIndexVar = "functionIndex";
 
-        writer.WriteLine($"var {functionIndexVar} = {NativeBindingsName}.FindModuleFunction({ModuleHandleName}, \"{declaration}\", true);");
-#if DEBUG
+        writer.WriteLine($"var {functionIndexVar} = {NativeBindingsName}.FindModuleFunction({ScriptFunctionsName}.{ModuleHandleName}, \"{declaration}\", true);");
         writer.WriteLine();
         writer.WriteLine("Debug.Assert(functionIndex > 0);");
         writer.WriteLine();
-#endif
-        writer.WriteLine($"{NativeBindingsName}.PrepareModuleFunction({ModuleHandleName}, {functionIndexVar});");
+        writer.WriteLine($"{NativeBindingsName}.PrepareModuleFunction({ScriptFunctionsName}.{ModuleHandleName}, {functionIndexVar});");
         writer.WriteLine();
 
-        var freeCodeBuilder = new StringBuilder();
+        StringBuilder? freeCodeBuilder = null;
 
         for (var i = 0; i < parameters.Count; i++)
         {
@@ -195,6 +193,8 @@ internal static class GeneratorFacts
 
             if (parameter.TypeKind == SyntaxKind.String && string.IsNullOrEmpty(parameter.InOut))
             {
+                freeCodeBuilder ??= new StringBuilder();
+
                 value = $"unmanagedStr{i}";
                 writer.WriteLine($"var {value} = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged({parameter.Name});");
                 freeCodeBuilder.AppendLine(
@@ -205,7 +205,7 @@ internal static class GeneratorFacts
         }
 
         writer.WriteLine();
-        writer.WriteLine($"{NativeBindingsName}.ExecuteModuleFunction({ModuleHandleName});");
+        writer.WriteLine($"{NativeBindingsName}.ExecuteModuleFunction({ScriptFunctionsName}.{ModuleHandleName});");
         writer.WriteLine();
 
         writer.Write(freeCodeBuilder);
@@ -239,5 +239,10 @@ internal static class GeneratorFacts
     public static string GetHandlerName(string handlerName)
     {
         return $"On{handlerName}";
+    }
+
+    public static string CommaJoin(params string[] parts)
+    {
+        return string.Join(", ", parts);
     }
 }

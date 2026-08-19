@@ -241,7 +241,7 @@ internal static partial class NativeBindings
 
     [LibraryImport(DllName, EntryPoint = "_GetModuleReturnByte@4")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    [return: MarshalAs(UnmanagedType.Bool)]
+    [return: MarshalAs(UnmanagedType.I1)]
     public static partial bool GetModuleReturnBoolean(ModuleHandle module);
 
     [LibraryImport(DllName, EntryPoint = "_GetModuleReturnInt64@12")]

@@ -1,5 +1,6 @@
 namespace CCB.Generator;
 
+using System.Collections;
 using System.Collections.Immutable;
 using CCB.Extensions;
 using CCB.Generator.Extensions;
@@ -18,6 +19,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
         writer.WriteLine();
         writer.WriteLine("using System.Diagnostics;");
         writer.WriteLine("using System.Runtime.InteropServices;");
+        writer.WriteLine("using System.Collections;");
         writer.WriteLine();
 
         root.Accept(this._scriptFunctionsGenerator);
@@ -63,7 +65,10 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
     {
         var className = node.Identifier.Text;
 
+        var isIterable = context.Config.Iterables.Contains(className);
+
         writer.WriteLine($"public struct {className}(ObjectHandle handle) : IScriptObject");
+
         writer.WriteLine("{");
 
         using (writer.Indent())
@@ -96,6 +101,8 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
 
             writer.WriteLine("}");
 
+            WriteIterator();
+
             writer.WriteLine();
 
             for (var i = 0; i < node.Members.Count; i++)
@@ -111,6 +118,199 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
         }
 
         writer.WriteLine("}");
+
+        return;
+
+        void WriteIterator()
+        {
+            var iterables = context.Config.Iterables;
+
+            if (!iterables.Contains(className))
+            {
+                return;
+            }
+
+            var iteratorName = $"{className}Iterator";
+
+            writer.WriteLine();
+            writer.WriteLine($"public struct Iterator(IteratorOpaque opaque) : IEnumerator<{className}>");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("private IteratorOpaque _opaque = opaque;");
+                writer.WriteLine($"private {className}? _current;");
+                writer.WriteLine($"public {className} Current => this._current!.Value;");
+                writer.WriteLine("object IEnumerator.Current => this._current!.Value;");
+
+                writer.WriteLine();
+
+                writer.WriteLine("public static Iterator Create()");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    GeneratorFacts.GenerateInvokeCode(writer, [], $"{iteratorName} ccb::_{className}::create_iterator()");
+                    writer.WriteLine($"var handle = {GeneratorFacts.NativeBindingsName}.GetModuleReturnObject({GeneratorFacts.ScriptFunctionsName}.{GeneratorFacts.ModuleHandleName});");
+                    writer.WriteLine("var opaque = IteratorOpaque.Create(handle);");
+                    writer.WriteLine("return new Iterator(opaque);");
+                }
+
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+
+                writer.WriteLine("public bool MoveNext()");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    writer.WriteLine("if (this.IsNull())");
+                    writer.WriteLine("{");
+
+                    using (writer.Indent())
+                    {
+                        writer.WriteLine("this._current = null;");
+                        writer.WriteLine("return false;");
+                    }
+
+                    writer.WriteLine("}");
+
+                    writer.WriteLine("this._current = this.Get();");
+                    writer.WriteLine("this.Advance();");
+                    writer.WriteLine();
+                    writer.WriteLine("return true;");
+                }
+
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+
+                writer.WriteLine("public void Reset()");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    writer.WriteLine("throw new NotSupportedException();");
+                }
+
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+
+                writer.WriteLine("public void Dispose()");
+                writer.WriteLine("{");
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+
+                writer.WriteLine($"public unsafe {className} Get()");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    writer.WriteLine("fixed (IteratorOpaque* ptr = &this._opaque)");
+                    writer.WriteLine("{");
+
+                    using (writer.Indent())
+                    {
+                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
+
+                        GeneratorFacts.GenerateInvokeCode(writer,
+                            [("nPtr", string.Empty, SyntaxKind.Ref)],
+                            $"{className} ccb::_{className}::iterator_get({iteratorName}& in)",
+                            SyntaxKind.Identifier,
+                            className,
+                            false);
+                    }
+
+                    writer.WriteLine("}");
+                }
+
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+
+                writer.WriteLine("public unsafe void Advance()");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    writer.WriteLine("fixed (IteratorOpaque* ptr = &this._opaque)");
+                    writer.WriteLine("{");
+
+                    using (writer.Indent())
+                    {
+                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
+
+                        GeneratorFacts.GenerateInvokeCode(writer,
+                            [("nPtr", string.Empty, SyntaxKind.Ref)],
+                            $"void ccb::_{className}::iterator_advance({iteratorName}& in)");
+                    }
+
+                    writer.WriteLine("}");
+                }
+
+                writer.WriteLine("}");
+
+                writer.WriteLine();
+
+                writer.WriteLine("public unsafe bool IsNull()");
+                writer.WriteLine("{");
+
+                using (writer.Indent())
+                {
+                    writer.WriteLine("fixed (IteratorOpaque* ptr = &this._opaque)");
+                    writer.WriteLine("{");
+
+                    using (writer.Indent())
+                    {
+                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
+
+                        GeneratorFacts.GenerateInvokeCode(writer,
+                            [("nPtr", string.Empty, SyntaxKind.Ref)],
+                            $"bool ccb::_{className}::iterator_is_null({iteratorName}& in)",
+                            SyntaxKind.Bool,
+                            string.Empty,
+                            false);
+                    }
+
+                    writer.WriteLine("}");
+                }
+
+                writer.WriteLine("}");
+            }
+
+            writer.WriteLine("}");
+
+            writer.WriteLine();
+
+            writer.WriteLine($"public class IteratorEnumerable : IEnumerable<{className}>");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("public Iterator GetEnumerator() => Iterator.Create();");
+                writer.WriteLine();
+                writer.WriteLine($"IEnumerator<{className}> IEnumerable<{className}>.GetEnumerator() => this.GetEnumerator();");
+                writer.WriteLine();
+                writer.WriteLine("IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();");
+            }
+
+            writer.WriteLine("}");
+
+            writer.WriteLine();
+
+            writer.WriteLine("public static IteratorEnumerable List()");
+            writer.WriteLine("{");
+
+            using (writer.Indent())
+            {
+                writer.WriteLine("return new IteratorEnumerable();");
+            }
+
+            writer.WriteLine("}");
+        }
     }
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)

@@ -10,6 +10,8 @@ public class GenerateConfigBuilder
 
     private List<(string ReturnType, string DefName, (string, string)[] Parameters)> _funDefs = [];
 
+    private List<string> _iterables = [];
+
     public GenerateConfigBuilder WithExternalAssembly(string externalAssemblyPath)
     {
         this._externalAssemblyPath = externalAssemblyPath;
@@ -52,8 +54,29 @@ public class GenerateConfigBuilder
         return this;
     }
 
+    public GenerateConfigBuilder AddIterable(string className)
+    {
+        this._iterables.Add(className);
+
+        return this;
+    }
+
+    public GenerateConfigBuilder WithIterables(IEnumerable<string> classes)
+    {
+        this._iterables = [..classes];
+
+        return this;
+    }
+
     public GenerateConfig Build()
     {
-        return new GenerateConfig(this._externalAssemblyPath, this._convType, [..this._internalClasses], [..this._funDefs]);
+        return new GenerateConfig
+        (
+            ExternalAssemblyPath: this._externalAssemblyPath,
+            ConvType: this._convType,
+            InternalClasses: [.. this._internalClasses],
+            FuncDefs: [.. this._funDefs],
+            Iterables: [.. this._iterables]
+        );
     }
 }
