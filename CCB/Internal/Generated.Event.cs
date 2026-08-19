@@ -11,8 +11,7 @@ public static class EventRegistry
     {
         try
         {
-            var args = new ServerUpdateEventArg();
-            ServerUpdate?.Invoke(args);
+            ServerUpdate?.Invoke();
         }
         catch(Exception e)
         {
@@ -40,8 +39,7 @@ public static class EventRegistry
     {
         try
         {
-            var args = new ServerRestartEventArg();
-            ServerRestart?.Invoke(args);
+            ServerRestart?.Invoke();
         }
         catch(Exception e)
         {
@@ -54,8 +52,7 @@ public static class EventRegistry
     {
         try
         {
-            var args = new WorldLoadedEventArg();
-            WorldLoaded?.Invoke(args);
+            WorldLoaded?.Invoke();
         }
         catch(Exception e)
         {
@@ -68,8 +65,7 @@ public static class EventRegistry
     {
         try
         {
-            var args = new WorldUpdateEventArg();
-            WorldUpdate?.Invoke(args);
+            WorldUpdate?.Invoke();
         }
         catch(Exception e)
         {
@@ -889,11 +885,7 @@ public static class EventRegistry
 
         NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveShellInternal));
     }
-    public class ServerUpdateEventArg()
-    {
-    }
-
-    public delegate void OnServerUpdate(ServerUpdateEventArg args);
+    public delegate void OnServerUpdate();
 
     public static event OnServerUpdate? ServerUpdate;
 
@@ -908,27 +900,15 @@ public static class EventRegistry
 
     public static event OnServerConsole? ServerConsole;
 
-    public class ServerRestartEventArg()
-    {
-    }
-
-    public delegate void OnServerRestart(ServerRestartEventArg args);
+    public delegate void OnServerRestart();
 
     public static event OnServerRestart? ServerRestart;
 
-    public class WorldLoadedEventArg()
-    {
-    }
-
-    public delegate void OnWorldLoaded(WorldLoadedEventArg args);
+    public delegate void OnWorldLoaded();
 
     public static event OnWorldLoaded? WorldLoaded;
 
-    public class WorldUpdateEventArg()
-    {
-    }
-
-    public delegate void OnWorldUpdate(WorldUpdateEventArg args);
+    public delegate void OnWorldUpdate();
 
     public static event OnWorldUpdate? WorldUpdate;
 

@@ -1,5 +1,6 @@
 namespace CCB.Generator;
 
+using System.Collections.Immutable;
 using CCB.Generator.Extensions;
 using CCB.Syntax;
 using CCB.Syntax.Visitor;
@@ -11,15 +12,15 @@ public class EventGenerator : SimpleVisitor
 
     private readonly RootSyntax _rootSyntax;
 
-    public EventGenerator(RootSyntax rootSyntax, TextWriter scriptWriter, TextWriter csharpWriter, GenerateConfig config)
+    public EventGenerator(RootSyntax rootSyntax, TextWriter scriptWriter, TextWriter csharpWriter)
     {
         this._rootSyntax = rootSyntax;
 
         var indentedScriptWriter = new IndentedTextWriter(scriptWriter);
         var indentedCSharpWriter = new IndentedTextWriter(csharpWriter);
 
-        this._scriptEventGenerator = new ScriptEventGenerator(indentedScriptWriter, config);
-        this._csharpEventGenerator = new CSharpEventGenerator(indentedCSharpWriter, config);
+        this._scriptEventGenerator = new ScriptEventGenerator(indentedScriptWriter);
+        this._csharpEventGenerator = new CSharpEventGenerator(indentedCSharpWriter);
     }
 
     public void Generate()
@@ -34,7 +35,7 @@ public class EventGenerator : SimpleVisitor
     }
 }
 
-internal class ScriptEventGenerator(IndentedTextWriter writer, GenerateConfig config) : SimpleVisitor
+internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
 {
     private readonly List<string> _events = [];
 
@@ -121,7 +122,7 @@ internal class ScriptEventGenerator(IndentedTextWriter writer, GenerateConfig co
     }
 }
 
-internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig config) : SimpleVisitor
+internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
 {
     private readonly List<(string Declaration, string EventName, IEnumerable<(string Type, string Name)> Parameters, IEnumerable<(string Type, string Name)> RawParameters, string ReturnType, string HandlerName)> _events = [];
 
@@ -182,29 +183,38 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
 
                 var eventInfo = this._events[i];
                 var handlerName = GeneratorFacts.GetHandlerName(eventInfo.EventName);
-                var parametersText = string.Join(", ", eventInfo.Parameters.Select(p => $"{p.Type} {p.Name}"));
+                var parameters = eventInfo.Parameters.ToImmutableArray();
+                var parametersText = string.Join(", ", parameters.Select(p => $"{p.Type} {p.Name}"));
+                var hasEventArgs = parameters.Length > 0;
 
-                writer.WriteLine($"public class {GeneratorFacts.GetEventArgName(eventInfo.EventName)}({parametersText})");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
+                if (hasEventArgs)
                 {
-                    foreach (var parameter in eventInfo.Parameters)
+                    writer.WriteLine($"public class {GeneratorFacts.GetEventArgName(eventInfo.EventName)}({parametersText})");
+                    writer.WriteLine("{");
+
+                    using (writer.Indent())
                     {
-                        writer.WriteLine($"public {parameter.Type} {parameter.Name.ToUpperCamelCase()} {{ get; }} = {parameter.Name};");
-                        writer.WriteLine();
+                        foreach (var parameter in eventInfo.Parameters)
+                        {
+                            writer.WriteLine($"public {parameter.Type} {parameter.Name.ToUpperCamelCase()} {{ get; }} = {parameter.Name};");
+                            writer.WriteLine();
+                        }
+
+                        if (eventInfo.ReturnType != "void")
+                        {
+                            writer.WriteLine($"public {eventInfo.ReturnType} EventResult {{ get; set; }} = true;");
+                        }
                     }
 
-                    if (eventInfo.ReturnType != "void")
-                    {
-                        writer.WriteLine($"public {eventInfo.ReturnType} EventResult {{ get; set; }} = true;");
-                    }
+                    writer.WriteLine("}");
+                    writer.WriteLine();
+                    writer.WriteLine($"public delegate void {handlerName}({GeneratorFacts.GetEventArgName(eventInfo.EventName)} args);");
+                }
+                else
+                {
+                    writer.WriteLine($"public delegate void {handlerName}();");
                 }
 
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-                writer.WriteLine($"public delegate void {handlerName}({GeneratorFacts.GetEventArgName(eventInfo.EventName)} args);");
                 writer.WriteLine();
                 writer.WriteLine($"public static event {handlerName}? {eventInfo.EventName};");
             }
@@ -261,6 +271,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
         var declarationParametersText = string.Join(", ", declarationParameters);
         var rawParametersText = string.Join(", ", rawParameters.Select(p => $"{p.Type} {p.Name}"));
         var argumentsText = string.Join(", ", arguments);
+        var hasEventArgs = arguments.Count > 0;
 
         var handlerName = GeneratorFacts.GetHandlerName(eventName) + "Internal";
 
@@ -278,14 +289,21 @@ internal class CSharpEventGenerator(IndentedTextWriter writer, GenerateConfig co
 
             using (writer.Indent())
             {
-                writer.WriteLine($"var args = new {GeneratorFacts.GetEventArgName(eventName)}({argumentsText});");
-
-                writer.WriteLine(node.ReturnType.Identifier.Kind switch
+                if (hasEventArgs)
                 {
-                    SyntaxKind.Void => $"{eventName}?.Invoke(args);",
-                    SyntaxKind.Bool => $"{eventName}?.Invoke(args); return args.EventResult ? 1 : 0;",
-                    _ => throw new NotSupportedException(),
-                });
+                    writer.WriteLine($"var args = new {GeneratorFacts.GetEventArgName(eventName)}({argumentsText});");
+
+                    writer.WriteLine(node.ReturnType.Identifier.Kind switch
+                    {
+                        SyntaxKind.Void => $"{eventName}?.Invoke(args);",
+                        SyntaxKind.Bool => $"{eventName}?.Invoke(args); return args.EventResult ? 1 : 0;",
+                        _ => throw new NotSupportedException(),
+                    });
+                }
+                else
+                {
+                    writer.WriteLine($"{eventName}?.Invoke();");
+                }
             }
 
             writer.WriteLine("}");
