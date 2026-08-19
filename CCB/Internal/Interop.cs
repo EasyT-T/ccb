@@ -25,6 +25,7 @@ internal static class Interop
             NativeBindings.ExecuteModuleFunction(eventScript);
 
             var currentAssembly = Assembly.GetExecutingAssembly();
+            SynchronizationContext.SetSynchronizationContext(MainThreadContext.Instance);
 
             AssemblyLoadContext.Default.Resolving += (context, assemblyName) =>
             {
@@ -57,6 +58,8 @@ internal static class Interop
 
                 return File.Exists(dependenciesPath) ? NativeLibrary.Load(assemblyName) : IntPtr.Zero;
             };
+
+            EventRegistry.ServerUpdate += MainThreadContext.Instance.Update;
 
             loader = new Loader();
 

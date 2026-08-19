@@ -47,7 +47,7 @@ scriptGenerator.Generate();
 var eventCompilation = new Compilation("event.h");
 var eventRoot = eventCompilation.Parse();
 
-var eventGenerator = new EventGenerator(eventRoot, eventScriptOutput, eventCSharpOutput, config);
+var eventGenerator = new EventGenerator(eventRoot, eventScriptOutput, eventCSharpOutput);
 
 eventGenerator.Generate();
 
