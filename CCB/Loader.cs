@@ -1,6 +1,5 @@
 ﻿namespace CCB;
 
-using System.Collections.Immutable;
 using System.Reflection;
 using System.Runtime.Loader;
 using CCB.Abstractions;

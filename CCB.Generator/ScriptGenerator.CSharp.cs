@@ -65,8 +65,6 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext
     {
         var className = node.Identifier.Text;
 
-        var isIterable = context.Config.Iterables.Contains(className);
-
         writer.WriteLine($"public struct {className}(ObjectHandle handle) : IScriptObject");
 
         writer.WriteLine("{");

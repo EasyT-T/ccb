@@ -125,7 +125,7 @@ internal static partial class NativeBindings
 
     [LibraryImport(DllName, EntryPoint = "_FindModuleFunction@12", StringMarshalling = StringMarshalling.Utf8)]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int FindModuleFunction(ModuleHandle module, string declaration, [MarshalAs(UnmanagedType.Bool)] bool arguments);
+    public static partial int FindModuleFunction(ModuleHandle module, string declaration, [MarshalAs(UnmanagedType.Bool)] bool isDecl);
 
     [LibraryImport(DllName, EntryPoint = "_PrepareModuleFunction@8")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

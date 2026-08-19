@@ -12,12 +12,7 @@ public static class ScriptFunctions
 
     public static unsafe Chat Getchat()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Chat ccb::Getchat()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("Chat ccb::Getchat()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -27,12 +22,7 @@ public static class ScriptFunctions
 
     public static unsafe Audio Getaudio()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Audio ccb::Getaudio()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("Audio ccb::Getaudio()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -42,12 +32,7 @@ public static class ScriptFunctions
 
     public static unsafe Graphics Getgraphics()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Graphics ccb::Getgraphics()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("Graphics ccb::Getgraphics()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -57,12 +42,7 @@ public static class ScriptFunctions
 
     public static unsafe World Getworld()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "World ccb::Getworld()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("World ccb::Getworld()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -72,12 +52,7 @@ public static class ScriptFunctions
 
     public static unsafe Entity CreatePivot(int parent)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::CreatePivot(int parent)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::CreatePivot(int parent)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, parent);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -88,12 +63,7 @@ public static class ScriptFunctions
 
     public static unsafe Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::LinePick(float x, float y, float z, float dx, float dy, float dz, float radius)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::LinePick(float x, float y, float z, float dx, float dy, float dz, float radius)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, x);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, y);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, z);
@@ -110,12 +80,7 @@ public static class ScriptFunctions
 
     public static unsafe Player GetPlayer(int index)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::GetPlayer(int index)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("Player ccb::GetPlayer(int index)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, index);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -126,12 +91,7 @@ public static class ScriptFunctions
 
     public static unsafe float PeekFloat(int bank, int offset)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PeekFloat(int bank, int offset)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PeekFloat(int bank, int offset)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
 
@@ -143,12 +103,7 @@ public static class ScriptFunctions
 
     public static unsafe float PickedNX()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PickedNX()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PickedNX()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -158,12 +113,7 @@ public static class ScriptFunctions
 
     public static unsafe float PickedNY()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PickedNY()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PickedNY()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -173,12 +123,7 @@ public static class ScriptFunctions
 
     public static unsafe float PickedNZ()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PickedNZ()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PickedNZ()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -188,12 +133,7 @@ public static class ScriptFunctions
 
     public static unsafe float PickedX()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PickedX()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PickedX()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -203,12 +143,7 @@ public static class ScriptFunctions
 
     public static unsafe float PickedY()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PickedY()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PickedY()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -218,12 +153,7 @@ public static class ScriptFunctions
 
     public static unsafe float PickedZ()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::PickedZ()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::PickedZ()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -233,12 +163,7 @@ public static class ScriptFunctions
 
     public static unsafe float TFormedX()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::TFormedX()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::TFormedX()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -248,12 +173,7 @@ public static class ScriptFunctions
 
     public static unsafe float TFormedY()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::TFormedY()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::TFormedY()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -263,12 +183,7 @@ public static class ScriptFunctions
 
     public static unsafe float TFormedZ()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::TFormedZ()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::TFormedZ()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -278,12 +193,7 @@ public static class ScriptFunctions
 
     public static unsafe float clamp(float val, float minimal, float maximum)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::clamp(float val, float minimal, float maximum)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::clamp(float val, float minimal, float maximum)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, val);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, minimal);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, maximum);
@@ -296,12 +206,7 @@ public static class ScriptFunctions
 
     public static unsafe float frand(float from, float to)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::frand(float from, float to)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::frand(float from, float to)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, from);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, to);
 
@@ -313,12 +218,7 @@ public static class ScriptFunctions
 
     public static unsafe float max(float val, float val2)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::max(float val, float val2)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::max(float val, float val2)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, val);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, val2);
 
@@ -330,12 +230,7 @@ public static class ScriptFunctions
 
     public static unsafe float min(float val, float val2)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::min(float val, float val2)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("float ccb::min(float val, float val2)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, val);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, val2);
 
@@ -347,12 +242,7 @@ public static class ScriptFunctions
 
     public static unsafe int BankSize(int bank)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::BankSize(int bank)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::BankSize(int bank)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -363,12 +253,7 @@ public static class ScriptFunctions
 
     public static unsafe int BankStringSize(in string unnamed0)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::BankStringSize(const char )", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::BankStringSize(const char )", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed0);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
 
@@ -381,12 +266,7 @@ public static class ScriptFunctions
 
     public static unsafe int CreateBank(int size)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::CreateBank(int size)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::CreateBank(int size)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, size);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -397,12 +277,7 @@ public static class ScriptFunctions
 
     public static unsafe int CreateTimer(nint callback, int time, bool repeat, int timerdata)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::CreateTimer(ref&in callback, int time, bool repeat, int timerdata)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::CreateTimer(ref&in callback, int time, bool repeat, int timerdata)", true);
         NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, callback);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, time);
         NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, repeat);
@@ -416,12 +291,7 @@ public static class ScriptFunctions
 
     public static unsafe int CreateTimer(in string funcdecl, int time, bool repeat, int timerdata)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::CreateTimer(const char funcdecl, int time, bool repeat, int timerdata)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::CreateTimer(const char funcdecl, int time, bool repeat, int timerdata)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(funcdecl);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, time);
@@ -437,12 +307,7 @@ public static class ScriptFunctions
 
     public static unsafe int CreateTimerData()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::CreateTimerData()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::CreateTimerData()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -452,12 +317,7 @@ public static class ScriptFunctions
 
     public static unsafe int GetActiveContext()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::GetActiveContext()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::GetActiveContext()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -467,12 +327,7 @@ public static class ScriptFunctions
 
     public static unsafe int GetPlayersCount()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::GetPlayersCount()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::GetPlayersCount()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -482,12 +337,7 @@ public static class ScriptFunctions
 
     public static unsafe int GetProcAddress(int unnamed0, in string unnamed1)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::GetProcAddress(int , const char )", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::GetProcAddress(int , const char )", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, unnamed0);
         var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed1);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -501,12 +351,7 @@ public static class ScriptFunctions
 
     public static unsafe int LoadLibrary(in string unnamed0)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::LoadLibrary(const char )", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::LoadLibrary(const char )", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed0);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
 
@@ -519,12 +364,7 @@ public static class ScriptFunctions
 
     public static unsafe int PeekInt(int bank, int offset)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::PeekInt(int bank, int offset)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::PeekInt(int bank, int offset)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
 
@@ -536,12 +376,7 @@ public static class ScriptFunctions
 
     public static unsafe int rand(int from, int to)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::rand(int from, int to)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::rand(int from, int to)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, from);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, to);
 
@@ -553,12 +388,7 @@ public static class ScriptFunctions
 
     public static unsafe int rndseed()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::rndseed()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::rndseed()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -568,12 +398,7 @@ public static class ScriptFunctions
 
     public static unsafe int round(bool val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::round(bool val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::round(bool val)", true);
         NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 0, val);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -584,12 +409,7 @@ public static class ScriptFunctions
 
     public static unsafe int round(float val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::round(float val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::round(float val)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, val);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -600,12 +420,7 @@ public static class ScriptFunctions
 
     public static unsafe int srand(int val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::srand(int val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int ccb::srand(int val)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, val);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -616,12 +431,7 @@ public static class ScriptFunctions
 
     public static unsafe short PeekShort(int bank, int offset)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int16 ccb::PeekShort(int bank, int offset)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int16 ccb::PeekShort(int bank, int offset)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
 
@@ -633,12 +443,7 @@ public static class ScriptFunctions
 
     public static unsafe byte PeekByte(int bank, int offset)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int8 ccb::PeekByte(int bank, int offset)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("int8 ccb::PeekByte(int bank, int offset)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
 
@@ -650,12 +455,7 @@ public static class ScriptFunctions
 
     public static unsafe string PeekString(int bank, int offset)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::PeekString(int bank, int offset)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("char ccb::PeekString(int bank, int offset)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
 
@@ -667,12 +467,7 @@ public static class ScriptFunctions
 
     public static unsafe string StripFormatting(in string txt)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::StripFormatting(const char txt)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("char ccb::StripFormatting(const char txt)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(txt);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
 
@@ -685,12 +480,7 @@ public static class ScriptFunctions
 
     public static unsafe void Collisions(int src_type, int dest_type, int method, int response)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::Collisions(int src_type, int dest_type, int method, int response)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::Collisions(int src_type, int dest_type, int method, int response)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, src_type);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, dest_type);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, method);
@@ -702,12 +492,7 @@ public static class ScriptFunctions
 
     public static unsafe void FreeBank(int bank)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::FreeBank(int bank)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::FreeBank(int bank)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -716,12 +501,7 @@ public static class ScriptFunctions
 
     public static unsafe void PokeByte(int bank, int offset, int value)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::PokeByte(int bank, int offset, int value)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::PokeByte(int bank, int offset, int value)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, value);
@@ -732,12 +512,7 @@ public static class ScriptFunctions
 
     public static unsafe void PokeFloat(int bank, int offset, float value)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::PokeFloat(int bank, int offset, float value)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::PokeFloat(int bank, int offset, float value)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, value);
@@ -748,12 +523,7 @@ public static class ScriptFunctions
 
     public static unsafe void PokeInt(int bank, int offset, int value)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::PokeInt(int bank, int offset, int value)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::PokeInt(int bank, int offset, int value)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, value);
@@ -764,12 +534,7 @@ public static class ScriptFunctions
 
     public static unsafe void PokeShort(int bank, int offset, int value)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::PokeShort(int bank, int offset, int value)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::PokeShort(int bank, int offset, int value)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, value);
@@ -780,12 +545,7 @@ public static class ScriptFunctions
 
     public static unsafe void PokeString(int bank, int offset, in string value)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::PokeString(int bank, int offset, const char value)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::PokeString(int bank, int offset, const char value)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, bank);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, offset);
         var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
@@ -798,12 +558,7 @@ public static class ScriptFunctions
 
     public static unsafe void RegisterFuncdef(in string declaration)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RegisterFuncdef(const char declaration)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RegisterFuncdef(const char declaration)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(declaration);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
 
@@ -814,12 +569,7 @@ public static class ScriptFunctions
 
     public static unsafe void RegisterLibraryFunction(in string decl, int procaddress, int convtype)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RegisterLibraryFunction(const char decl, int procaddress, int convtype)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RegisterLibraryFunction(const char decl, int procaddress, int convtype)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(decl);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, procaddress);
@@ -832,12 +582,7 @@ public static class ScriptFunctions
 
     public static unsafe void RegisterLibraryMethod(in string classname, in string decl, int procaddress, int convtype)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RegisterLibraryMethod(const char classname, const char decl, int procaddress, int convtype)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RegisterLibraryMethod(const char classname, const char decl, int procaddress, int convtype)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(classname);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
         var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(decl);
@@ -853,12 +598,7 @@ public static class ScriptFunctions
 
     public static unsafe void RegisterLibraryObject(in string classname)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RegisterLibraryObject(const char classname)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RegisterLibraryObject(const char classname)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(classname);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
 
@@ -869,12 +609,7 @@ public static class ScriptFunctions
 
     public static unsafe void RemoveTimer()
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RemoveTimer()", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RemoveTimer()", true);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -882,12 +617,7 @@ public static class ScriptFunctions
 
     public static unsafe void RemoveTimer(int timer)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RemoveTimer(int timer)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RemoveTimer(int timer)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, timer);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -896,12 +626,7 @@ public static class ScriptFunctions
 
     public static unsafe void RemoveTimer(nint callback)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::RemoveTimer(ref&in callback)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::RemoveTimer(ref&in callback)", true);
         NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, callback);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -910,12 +635,7 @@ public static class ScriptFunctions
 
     public static unsafe void SetTimerBool(int timerdata, bool val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::SetTimerBool(int timerdata, bool val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::SetTimerBool(int timerdata, bool val)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, timerdata);
         NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -925,12 +645,7 @@ public static class ScriptFunctions
 
     public static unsafe void SetTimerFloat(int timerdata, float val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::SetTimerFloat(int timerdata, float val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::SetTimerFloat(int timerdata, float val)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, timerdata);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -940,12 +655,7 @@ public static class ScriptFunctions
 
     public static unsafe void SetTimerHandle(int timerdata, int handle)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::SetTimerHandle(int timerdata, int handle)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::SetTimerHandle(int timerdata, int handle)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, timerdata);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, handle);
 
@@ -955,12 +665,7 @@ public static class ScriptFunctions
 
     public static unsafe void SetTimerInt(int timerdata, int val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::SetTimerInt(int timerdata, int val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::SetTimerInt(int timerdata, int val)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, timerdata);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -970,12 +675,7 @@ public static class ScriptFunctions
 
     public static unsafe void SetTimerString(int timerdata, in string val)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::SetTimerString(int timerdata, const char val)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::SetTimerString(int timerdata, const char val)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, timerdata);
         var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(val);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -987,12 +687,7 @@ public static class ScriptFunctions
 
     public static unsafe void TFormNormal(float x, float y, float z, Entity src, Entity dest)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::TFormNormal(float x, float y, float z, Entity src, Entity dest)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::TFormNormal(float x, float y, float z, Entity src, Entity dest)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, x);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, y);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, z);
@@ -1005,12 +700,7 @@ public static class ScriptFunctions
 
     public static unsafe void TFormPoint(float x, float y, float z, Entity src, Entity dest)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::TFormPoint(float x, float y, float z, Entity src, Entity dest)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::TFormPoint(float x, float y, float z, Entity src, Entity dest)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, x);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, y);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, z);
@@ -1023,12 +713,7 @@ public static class ScriptFunctions
 
     public static unsafe void TFormVector(float x, float y, float z, Entity src, Entity dest)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::TFormVector(float x, float y, float z, Entity src, Entity dest)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::TFormVector(float x, float y, float z, Entity src, Entity dest)", true);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 0, x);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, y);
         NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, z);
@@ -1041,12 +726,7 @@ public static class ScriptFunctions
 
     public static unsafe void print(in string message)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::print(const char message)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::print(const char message)", true);
         var unmanagedStr0 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(message);
         NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, new ObjectHandle((IntPtr)unmanagedStr0));
 
@@ -1057,12 +737,7 @@ public static class ScriptFunctions
 
     public static unsafe void sleep(int milliseconds)
     {
-        var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::sleep(int milliseconds)", true);
-
-        Debug.Assert(functionIndex > 0);
-
-        NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+        var functionIndex = InvokeHelper.PrepareFunction("void ccb::sleep(int milliseconds)", true);
         NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 0, milliseconds);
 
         NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1073,12 +748,7 @@ public static class ScriptFunctions
     {
         public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, Player player, float range, float volume, bool norange)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::Play3DSound(Audio _this, const char filenameorurl, Player player, float range, float volume, bool norange)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::Play3DSound(Audio _this, const char filenameorurl, Player player, float range, float volume, bool norange)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1096,12 +766,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, Entity entity, float range, float volume, bool norange)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::Play3DSound(Audio _this, const char filenameorurl, Entity entity, float range, float volume, bool norange)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::Play3DSound(Audio _this, const char filenameorurl, Entity entity, float range, float volume, bool norange)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1119,12 +784,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::Play3DSound(Audio _this, const char filenameorurl, float x, float y, float z, float range, float volume, bool norange)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::Play3DSound(Audio _this, const char filenameorurl, float x, float y, float z, float range, float volume, bool norange)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1144,12 +804,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound PlaySound(Audio @this, in string filenameorurl)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::PlaySound(Audio _this, const char filenameorurl)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::PlaySound(Audio _this, const char filenameorurl)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1163,12 +818,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound PlaySoundForPlayer(Audio @this, Player player, in string filenameorurl)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::PlaySoundForPlayer(Audio _this, Player player, const char filenameorurl)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::PlaySoundForPlayer(Audio _this, Player player, const char filenameorurl)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
@@ -1183,12 +833,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player, in string filenameorurl, Entity entity, float range, float volume, bool norange)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::Play3DSoundForPlayer(Audio _this, Player player, const char filenameorurl, Entity entity, float range, float volume, bool norange)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::Play3DSoundForPlayer(Audio _this, Player player, const char filenameorurl, Entity entity, float range, float volume, bool norange)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
@@ -1207,12 +852,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::Play3DSoundForPlayer(Audio _this, Player player, const char filenameorurl, float x, float y, float z, float range, float volume, bool norange)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::Play3DSoundForPlayer(Audio _this, Player player, const char filenameorurl, float x, float y, float z, float range, float volume, bool norange)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
@@ -1233,12 +873,7 @@ public static class ScriptFunctions
 
         public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player_to, in string filenameorurl, Player player, float range, float volume, bool norange)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Audio::Play3DSoundForPlayer(Audio _this, Player player_to, const char filenameorurl, Player player, float range, float volume, bool norange)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Audio::Play3DSoundForPlayer(Audio _this, Player player_to, const char filenameorurl, Player player, float range, float volume, bool norange)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player_to);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filenameorurl);
@@ -1260,12 +895,7 @@ public static class ScriptFunctions
     {
         public static unsafe void Send(Chat @this, in string message)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Chat::Send(Chat _this, const char message)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Chat::Send(Chat _this, const char message)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(message);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1277,12 +907,7 @@ public static class ScriptFunctions
 
         public static unsafe void SendPlayer(Chat @this, Player player, in string message)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Chat::SendPlayer(Chat _this, Player player, const char message)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Chat::SendPlayer(Chat _this, Player player, const char message)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(message);
@@ -1298,12 +923,7 @@ public static class ScriptFunctions
     {
         public static unsafe bool Exist(Config @this, in string key, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Config::Exist(Config _this, const char key, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Config::Exist(Config _this, const char key, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(key);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1318,12 +938,7 @@ public static class ScriptFunctions
 
         public static unsafe string Get(Config @this, in string key, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Config::Get(Config _this, const char key, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Config::Get(Config _this, const char key, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(key);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1338,12 +953,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Config @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Config::Remove(Config _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Config::Remove(Config _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1355,12 +965,7 @@ public static class ScriptFunctions
     {
         public static unsafe int GetPort(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Connection::GetPort(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Connection::GetPort(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1371,12 +976,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetName(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Connection::GetName(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Connection::GetName(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1387,12 +987,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetLanguage(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Connection::GetLanguage(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Connection::GetLanguage(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1403,12 +998,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetHWID(Connection @this, int wmid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Connection::GetHWID(Connection _this, int wmid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Connection::GetHWID(Connection _this, int wmid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, wmid);
 
@@ -1420,12 +1010,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetIP(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Connection::GetIP(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Connection::GetIP(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1436,12 +1021,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetSteamID(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Connection::GetSteamID(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Connection::GetSteamID(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1452,12 +1032,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetQueue(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Connection::GetQueue(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Connection::GetQueue(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1468,12 +1043,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Join(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Connection::Join(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Connection::Join(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1484,12 +1054,7 @@ public static class ScriptFunctions
 
         public static unsafe void Accept(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Connection::Accept(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Connection::Accept(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1498,12 +1063,7 @@ public static class ScriptFunctions
 
         public static unsafe void Cancel(Connection @this, int code)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Connection::Cancel(Connection _this, int code)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Connection::Cancel(Connection _this, int code)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, code);
 
@@ -1513,12 +1073,7 @@ public static class ScriptFunctions
 
         public static unsafe void Cancel(Connection @this, in string custom)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Connection::Cancel(Connection _this, const char custom)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Connection::Cancel(Connection _this, const char custom)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(custom);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1530,12 +1085,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Connection @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Connection::Remove(Connection _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Connection::Remove(Connection _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1547,12 +1097,7 @@ public static class ScriptFunctions
     {
         public static unsafe int GetIndex(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Corpse::GetIndex(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Corpse::GetIndex(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1563,12 +1108,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetPlayer(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Corpse::GetPlayer(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Corpse::GetPlayer(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1579,12 +1119,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Corpse::GetEntity(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Corpse::GetEntity(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1595,12 +1130,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetTimeout(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Corpse::GetTimeout(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Corpse::GetTimeout(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1611,12 +1141,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTimeout(Corpse @this, float unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Corpse::SetTimeout(Corpse _this, float )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Corpse::SetTimeout(Corpse _this, float )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -1626,12 +1151,7 @@ public static class ScriptFunctions
 
         public static unsafe bool PushItem(Corpse @this, Items unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Corpse::PushItem(Corpse _this, Items )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Corpse::PushItem(Corpse _this, Items )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -1643,12 +1163,7 @@ public static class ScriptFunctions
 
         public static unsafe bool ExploreItem(Corpse @this, int slot)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Corpse::ExploreItem(Corpse _this, int slot)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Corpse::ExploreItem(Corpse _this, int slot)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, slot);
 
@@ -1660,12 +1175,7 @@ public static class ScriptFunctions
 
         public static unsafe Items GetItem(Corpse @this, int slot)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Corpse::GetItem(Corpse _this, int slot)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Corpse::GetItem(Corpse _this, int slot)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, slot);
 
@@ -1677,12 +1187,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetModel(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Corpse::GetModel(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Corpse::GetModel(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1693,12 +1198,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetItemsCount(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Corpse::GetItemsCount(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Corpse::GetItemsCount(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1709,12 +1209,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsExplored(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Corpse::IsExplored(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Corpse::IsExplored(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1725,12 +1220,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetExplore(Corpse @this, bool explore)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Corpse::SetExplore(Corpse _this, bool explore)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Corpse::SetExplore(Corpse _this, bool explore)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, explore);
 
@@ -1740,12 +1230,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Explore(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Corpse::Explore(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Corpse::Explore(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1756,12 +1241,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetData(Corpse @this, in string data)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Corpse::SetData(Corpse _this, const char data)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Corpse::SetData(Corpse _this, const char data)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(data);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -1773,12 +1253,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetData(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Corpse::GetData(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Corpse::GetData(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1789,12 +1264,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Corpse @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Corpse::Remove(Corpse _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Corpse::Remove(Corpse _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1806,12 +1276,7 @@ public static class ScriptFunctions
     {
         public static unsafe void Use(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::Use(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Door::Use(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1820,12 +1285,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetOpen(Door @this, bool unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::SetOpen(Door _this, bool )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Door::SetOpen(Door _this, bool )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -1835,12 +1295,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsOpened(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Door::IsOpened(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Door::IsOpened(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1851,12 +1306,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsBreak(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Door::IsBreak(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Door::IsBreak(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1867,12 +1317,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLockState(Door @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::SetLockState(Door _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Door::SetLockState(Door _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -1882,12 +1327,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetLockState(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Door::GetLockState(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Door::GetLockState(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1898,12 +1338,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetOpenState(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Door::GetOpenState(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Door::GetOpenState(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1914,12 +1349,7 @@ public static class ScriptFunctions
 
         public static unsafe bool BreakDoor(Door @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Door::BreakDoor(Door _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Door::BreakDoor(Door _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -1933,12 +1363,7 @@ public static class ScriptFunctions
 
         public static unsafe void Decompose(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::Decompose(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Door::Decompose(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1947,12 +1372,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetDoorAccess(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Door::GetDoorAccess(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Door::GetDoorAccess(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1963,12 +1383,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetDoorType(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Door::GetDoorType(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Door::GetDoorType(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -1979,12 +1394,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetKeycard(Door @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::SetKeycard(Door _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Door::SetKeycard(Door _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -1994,12 +1404,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetKeycard(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Door::GetKeycard(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Door::GetKeycard(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2010,12 +1415,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Door::GetEntity(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Door::GetEntity(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2026,12 +1426,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetButton(Door @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Door::GetButton(Door _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Door::GetButton(Door _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2043,12 +1438,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Door @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Door::GetIndex(Door _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Door::GetIndex(Door _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2062,12 +1452,7 @@ public static class ScriptFunctions
     {
         public static unsafe void SetPosition(Entity @this, float x, float y, float z, bool global)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetPosition(Entity _this, float x, float y, float z, bool global)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetPosition(Entity _this, float x, float y, float z, bool global)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -2080,12 +1465,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRotation(Entity @this, float pitch, float yaw, float roll, bool global)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetRotation(Entity _this, float pitch, float yaw, float roll, bool global)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetRotation(Entity _this, float pitch, float yaw, float roll, bool global)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, pitch);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, yaw);
@@ -2098,12 +1478,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetScale(Entity @this, float x, float y, float z, bool global)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetScale(Entity _this, float x, float y, float z, bool global)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetScale(Entity _this, float x, float y, float z, bool global)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -2116,12 +1491,7 @@ public static class ScriptFunctions
 
         public static unsafe float PositionX(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::PositionX(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::PositionX(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2134,12 +1504,7 @@ public static class ScriptFunctions
 
         public static unsafe float PositionY(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::PositionY(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::PositionY(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2152,12 +1517,7 @@ public static class ScriptFunctions
 
         public static unsafe float PositionZ(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::PositionZ(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::PositionZ(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2170,12 +1530,7 @@ public static class ScriptFunctions
 
         public static unsafe void Translate(Entity @this, float x, float y, float z, bool global)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Translate(Entity _this, float x, float y, float z, bool global)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Translate(Entity _this, float x, float y, float z, bool global)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -2188,12 +1543,7 @@ public static class ScriptFunctions
 
         public static unsafe void Move(Entity @this, float x, float y, float z, bool global)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Move(Entity _this, float x, float y, float z, bool global)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Move(Entity _this, float x, float y, float z, bool global)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -2206,12 +1556,7 @@ public static class ScriptFunctions
 
         public static unsafe float Pitch(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::Pitch(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::Pitch(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2224,12 +1569,7 @@ public static class ScriptFunctions
 
         public static unsafe float Yaw(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::Yaw(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::Yaw(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2242,12 +1582,7 @@ public static class ScriptFunctions
 
         public static unsafe float Roll(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::Roll(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::Roll(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2260,12 +1595,7 @@ public static class ScriptFunctions
 
         public static unsafe float Turn(Entity @this, float pitch, float yaw, float roll, bool global)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::Turn(Entity _this, float pitch, float yaw, float roll, bool global)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::Turn(Entity _this, float pitch, float yaw, float roll, bool global)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, pitch);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, yaw);
@@ -2280,12 +1610,7 @@ public static class ScriptFunctions
 
         public static unsafe float ScaleX(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::ScaleX(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::ScaleX(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2298,12 +1623,7 @@ public static class ScriptFunctions
 
         public static unsafe float ScaleY(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::ScaleY(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::ScaleY(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2316,12 +1636,7 @@ public static class ScriptFunctions
 
         public static unsafe float ScaleZ(Entity @this, bool global, float tween)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::ScaleZ(Entity _this, bool global, float tween)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::ScaleZ(Entity _this, bool global, float tween)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, global);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, tween);
@@ -2334,12 +1649,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAnimTime(Entity @this, float time, int sequence)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetAnimTime(Entity _this, float time, int sequence)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetAnimTime(Entity _this, float time, int sequence)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, time);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, sequence);
@@ -2350,12 +1660,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetAnimTime(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::GetAnimTime(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::GetAnimTime(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2366,12 +1671,7 @@ public static class ScriptFunctions
 
         public static unsafe float Point(Entity @this, Entity target, float roll)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::Point(Entity _this, Entity target, float roll)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::Point(Entity _this, Entity target, float roll)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, roll);
@@ -2384,12 +1684,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity Pick(Entity @this, float distance)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Entity::Pick(Entity _this, float distance)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Entity::Pick(Entity _this, float distance)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, distance);
 
@@ -2401,12 +1696,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetPickMode(Entity @this, int pickmode, bool obscurer)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetPickMode(Entity _this, int pickmode, bool obscurer)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetPickMode(Entity _this, int pickmode, bool obscurer)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, pickmode);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, obscurer);
@@ -2417,12 +1707,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Visible(Entity @this, Entity target, float radius)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Entity::Visible(Entity _this, Entity target, float radius)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Entity::Visible(Entity _this, Entity target, float radius)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, radius);
@@ -2435,12 +1720,7 @@ public static class ScriptFunctions
 
         public static unsafe float Distance(Entity @this, Entity target)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::Distance(Entity _this, Entity target)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::Distance(Entity _this, Entity target)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
 
@@ -2452,12 +1732,7 @@ public static class ScriptFunctions
 
         public static unsafe float DistanceSquared(Entity @this, Entity target)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::DistanceSquared(Entity _this, Entity target)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::DistanceSquared(Entity _this, Entity target)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
 
@@ -2469,12 +1744,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetParent(Entity @this, Entity target, bool retain)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetParent(Entity _this, Entity target, bool retain)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetParent(Entity _this, Entity target, bool retain)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, retain);
@@ -2485,12 +1755,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetParent(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Entity::GetParent(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Entity::GetParent(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2501,12 +1766,7 @@ public static class ScriptFunctions
 
         public static unsafe int CountChildren(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Entity::CountChildren(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Entity::CountChildren(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2517,12 +1777,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetChild(Entity @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Entity::GetChild(Entity _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Entity::GetChild(Entity _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -2534,12 +1789,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetName(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Entity::GetName(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Entity::GetName(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2550,12 +1800,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetName(Entity @this, in string name)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetName(Entity _this, const char name)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetName(Entity _this, const char name)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(name);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -2567,12 +1812,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Collided(Entity @this, int colltype)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Entity::Collided(Entity _this, int colltype)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Entity::Collided(Entity _this, int colltype)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, colltype);
 
@@ -2584,12 +1824,7 @@ public static class ScriptFunctions
 
         public static unsafe int CountCollisions(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Entity::CountCollisions(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Entity::CountCollisions(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2600,12 +1835,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionX(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionX(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionX(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2617,12 +1847,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionY(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionY(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionY(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2634,12 +1859,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionZ(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionZ(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionZ(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2651,12 +1871,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionNX(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionNX(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionNX(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2668,12 +1883,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionNY(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionNY(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionNY(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2685,12 +1895,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionNZ(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionNZ(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionNZ(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2702,12 +1907,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionImpulse(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionImpulse(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionImpulse(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2719,12 +1919,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionDistance(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionDistance(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionDistance(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2736,12 +1931,7 @@ public static class ScriptFunctions
 
         public static unsafe float CollisionTime(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Entity::CollisionTime(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Entity::CollisionTime(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2753,12 +1943,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity CollisionEntity(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Entity::CollisionEntity(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Entity::CollisionEntity(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2770,12 +1955,7 @@ public static class ScriptFunctions
 
         public static unsafe int CollisionTriangle(Entity @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Entity::CollisionTriangle(Entity _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Entity::CollisionTriangle(Entity _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -2787,12 +1967,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetType(Entity @this, int colltype, bool recursive)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetType(Entity _this, int colltype, bool recursive)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetType(Entity _this, int colltype, bool recursive)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, colltype);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, recursive);
@@ -2803,12 +1978,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRadius(Entity @this, float x, float y)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetRadius(Entity _this, float x, float y)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetRadius(Entity _this, float x, float y)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -2819,12 +1989,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCylinder(Entity @this, float x_radius, float y_radius)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetCylinder(Entity _this, float x_radius, float y_radius)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetCylinder(Entity _this, float x_radius, float y_radius)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x_radius);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y_radius);
@@ -2835,12 +2000,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetBox(Entity @this, float x, float y, float z, float w, float h, float d)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetBox(Entity _this, float x, float y, float z, float w, float h, float d)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetBox(Entity _this, float x, float y, float z, float w, float h, float d)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -2855,12 +2015,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetType(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Entity::GetType(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Entity::GetType(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2871,12 +2026,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetShape(Entity @this, out float x, out float y, out float z, out float width, out float height, out float depth)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Entity::GetShape(Entity _this, float&out x, float&out y, float&out z, float&out width, float&out height, float&out depth)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Entity::GetShape(Entity _this, float&out x, float&out y, float&out z, float&out width, float&out height, float&out depth)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -2893,12 +2043,7 @@ public static class ScriptFunctions
 
         public static unsafe void Reset(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Reset(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Reset(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2907,12 +2052,7 @@ public static class ScriptFunctions
 
         public static unsafe bool InView(Entity @this, Entity target)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Entity::InView(Entity _this, Entity target)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Entity::InView(Entity _this, Entity target)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
 
@@ -2924,12 +2064,7 @@ public static class ScriptFunctions
 
         public static unsafe void Show(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Show(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Show(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2938,12 +2073,7 @@ public static class ScriptFunctions
 
         public static unsafe void Hide(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Hide(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Hide(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2952,12 +2082,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Remove(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Remove(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -2966,12 +2091,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetMass(Entity @this, float mass)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetMass(Entity _this, float mass)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetMass(Entity _this, float mass)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, mass);
 
@@ -2981,12 +2101,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetPhysics(Entity @this, bool enable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetPhysics(Entity _this, bool enable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetPhysics(Entity _this, bool enable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
 
@@ -2996,12 +2111,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetKinematic(Entity @this, bool enable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetKinematic(Entity _this, bool enable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetKinematic(Entity _this, bool enable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
 
@@ -3011,12 +2121,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCenter(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetCenter(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetCenter(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3028,12 +2133,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLinearCast(Entity @this, bool enable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetLinearCast(Entity _this, bool enable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetLinearCast(Entity _this, bool enable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
 
@@ -3043,12 +2143,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetFriction(Entity @this, float friction)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetFriction(Entity _this, float friction)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetFriction(Entity _this, float friction)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, friction);
 
@@ -3058,12 +2153,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRollFriction(Entity @this, float friction)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetRollFriction(Entity _this, float friction)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetRollFriction(Entity _this, float friction)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, friction);
 
@@ -3073,12 +2163,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRestitution(Entity @this, float res)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetRestitution(Entity _this, float res)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetRestitution(Entity _this, float res)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, res);
 
@@ -3088,12 +2173,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetGravity(Entity @this, float factor)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetGravity(Entity _this, float factor)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetGravity(Entity _this, float factor)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, factor);
 
@@ -3103,12 +2183,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLinearFactor(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetLinearFactor(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetLinearFactor(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3120,12 +2195,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAngularFactor(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetAngularFactor(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetAngularFactor(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3137,12 +2207,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLinearDamping(Entity @this, float damping)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetLinearDamping(Entity _this, float damping)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetLinearDamping(Entity _this, float damping)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, damping);
 
@@ -3152,12 +2217,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAngularDamping(Entity @this, float damping)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetAngularDamping(Entity _this, float damping)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetAngularDamping(Entity _this, float damping)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, damping);
 
@@ -3167,12 +2227,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetConstraint(Entity @this, float normalAngle, float planeAngle, float twistMinAngle, float twistMaxAngle, float torqueFriction)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetConstraint(Entity _this, float normalAngle, float planeAngle, float twistMinAngle, float twistMaxAngle, float torqueFriction)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetConstraint(Entity _this, float normalAngle, float planeAngle, float twistMinAngle, float twistMaxAngle, float torqueFriction)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, normalAngle);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, planeAngle);
@@ -3186,12 +2241,7 @@ public static class ScriptFunctions
 
         public static unsafe void Activate(Entity @this, bool enable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Activate(Entity _this, bool enable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Activate(Entity _this, bool enable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
 
@@ -3201,12 +2251,7 @@ public static class ScriptFunctions
 
         public static unsafe void Sleep(Entity @this, bool enable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Sleep(Entity _this, bool enable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Sleep(Entity _this, bool enable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
 
@@ -3216,12 +2261,7 @@ public static class ScriptFunctions
 
         public static unsafe void Freeze(Entity @this, bool enable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Freeze(Entity _this, bool enable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Freeze(Entity _this, bool enable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
 
@@ -3231,12 +2271,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsFreezed(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Entity::IsFreezed(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Entity::IsFreezed(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3247,12 +2282,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsActive(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Entity::IsActive(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Entity::IsActive(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3263,12 +2293,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLinearVelocity(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetLinearVelocity(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetLinearVelocity(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3280,12 +2305,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAngularVelocity(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::SetAngularVelocity(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::SetAngularVelocity(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3297,12 +2317,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetLinearVelocity(Entity @this, out float x, out float y, out float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::GetLinearVelocity(Entity _this, float&out x, float&out y, float&out z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::GetLinearVelocity(Entity _this, float&out x, float&out y, float&out z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -3314,12 +2329,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetAngularVelocity(Entity @this, out float x, out float y, out float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::GetAngularVelocity(Entity _this, float&out x, float&out y, float&out z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::GetAngularVelocity(Entity _this, float&out x, float&out y, float&out z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -3331,12 +2341,7 @@ public static class ScriptFunctions
 
         public static unsafe void Impulse(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Impulse(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Impulse(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3348,12 +2353,7 @@ public static class ScriptFunctions
 
         public static unsafe void Torque(Entity @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::Torque(Entity _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::Torque(Entity _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3365,12 +2365,7 @@ public static class ScriptFunctions
 
         public static unsafe void ClearForces(Entity @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Entity::ClearForces(Entity _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Entity::ClearForces(Entity _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3382,12 +2377,7 @@ public static class ScriptFunctions
     {
         public static unsafe Room GetRoom(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Event::GetRoom(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Event::GetRoom(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3398,12 +2388,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Event::GetIndex(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Event::GetIndex(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3414,12 +2399,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIdentifier(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Event::GetIdentifier(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Event::GetIdentifier(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3430,12 +2410,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::GetState(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::GetState(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3446,12 +2421,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState2(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::GetState2(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::GetState2(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3462,12 +2432,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState3(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::GetState3(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::GetState3(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3478,12 +2443,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState4(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::GetState4(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::GetState4(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3494,12 +2454,7 @@ public static class ScriptFunctions
 
         public static unsafe float SetState(Event @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::SetState(Event _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::SetState(Event _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -3511,12 +2466,7 @@ public static class ScriptFunctions
 
         public static unsafe float SetState2(Event @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::SetState2(Event _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::SetState2(Event _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -3528,12 +2478,7 @@ public static class ScriptFunctions
 
         public static unsafe float SetState3(Event @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::SetState3(Event _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::SetState3(Event _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -3545,12 +2490,7 @@ public static class ScriptFunctions
 
         public static unsafe float SetState4(Event @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Event::SetState4(Event _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Event::SetState4(Event _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -3562,12 +2502,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Event @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Event::Remove(Event _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Event::Remove(Event _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3579,12 +2514,7 @@ public static class ScriptFunctions
     {
         public static unsafe void GetPosition(GUIElement @this, out float x, out float y)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::GetPosition(GUIElement _this, float&out x, float&out y)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::GetPosition(GUIElement _this, float&out x, float&out y)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -3595,12 +2525,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetPosition(GUIElement @this, float x, float y)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetPosition(GUIElement _this, float x, float y)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetPosition(GUIElement _this, float x, float y)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -3611,12 +2536,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetScale(GUIElement @this, float width, float height)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetScale(GUIElement _this, float width, float height)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetScale(GUIElement _this, float width, float height)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, width);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, height);
@@ -3627,12 +2547,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetScale(GUIElement @this, out float width, out float height)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::GetScale(GUIElement _this, float&out width, float&out height)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::GetScale(GUIElement _this, float&out width, float&out height)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out width);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out height);
@@ -3643,12 +2558,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRotation(GUIElement @this, int degrees)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetRotation(GUIElement _this, int degrees)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetRotation(GUIElement _this, int degrees)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, degrees);
 
@@ -3658,12 +2568,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetRotation(GUIElement @this, out int degrees)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::GetRotation(GUIElement _this, int&out degrees)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::GetRotation(GUIElement _this, int&out degrees)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, out degrees);
 
@@ -3673,12 +2578,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetData(GUIElement @this, in string data)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetData(GUIElement _this, const char data)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetData(GUIElement _this, const char data)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(data);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -3690,12 +2590,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetText(GUIElement @this, in string text)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetText(GUIElement _this, const char text)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetText(GUIElement _this, const char text)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(text);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -3707,12 +2602,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetFont(GUIElement @this, int fontid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetFont(GUIElement _this, int fontid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetFont(GUIElement _this, int fontid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, fontid);
 
@@ -3722,12 +2612,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSelectable(GUIElement @this, bool selectable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetSelectable(GUIElement _this, bool selectable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetSelectable(GUIElement _this, bool selectable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, selectable);
 
@@ -3737,12 +2622,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetShadow(GUIElement @this, bool shadowed)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetShadow(GUIElement _this, bool shadowed)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetShadow(GUIElement _this, bool shadowed)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, shadowed);
 
@@ -3752,12 +2632,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAspect(GUIElement @this, bool keep)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetAspect(GUIElement _this, bool keep)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetAspect(GUIElement _this, bool keep)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, keep);
 
@@ -3767,12 +2642,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetOpacity(GUIElement @this, float target, float lerp)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetOpacity(GUIElement _this, float target, float lerp)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetOpacity(GUIElement _this, float target, float lerp)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, lerp);
@@ -3783,12 +2653,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetColor(GUIElement @this, int r, int g, int b)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetColor(GUIElement _this, int r, int g, int b)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetColor(GUIElement _this, int r, int g, int b)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, r);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, g);
@@ -3800,12 +2665,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTechnique(GUIElement @this, in string technique)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetTechnique(GUIElement _this, const char technique)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetTechnique(GUIElement _this, const char technique)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(technique);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -3817,12 +2677,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetPlayer(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_GUIElement::GetPlayer(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_GUIElement::GetPlayer(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3833,12 +2688,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAttach(GUIElement @this, Player player)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetAttach(GUIElement _this, Player player)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetAttach(GUIElement _this, Player player)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
 
@@ -3848,12 +2698,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAttach(GUIElement @this, bool enable, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetAttach(GUIElement _this, bool enable, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetAttach(GUIElement _this, bool enable, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, enable);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -3866,12 +2711,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetAttach(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_GUIElement::GetAttach(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_GUIElement::GetAttach(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3882,12 +2722,7 @@ public static class ScriptFunctions
 
         public static unsafe bool GetAttach(GUIElement @this, out float x, out float y, out float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_GUIElement::GetAttach(GUIElement _this, float&out x, float&out y, float&out z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_GUIElement::GetAttach(GUIElement _this, float&out x, float&out y, float&out z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -3901,12 +2736,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetFont(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_GUIElement::GetFont(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_GUIElement::GetFont(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3917,12 +2747,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetText(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_GUIElement::GetText(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_GUIElement::GetText(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3933,12 +2758,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetData(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_GUIElement::GetData(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_GUIElement::GetData(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3949,12 +2769,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsSelectable(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_GUIElement::IsSelectable(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_GUIElement::IsSelectable(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3965,12 +2780,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsHidden(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_GUIElement::IsHidden(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_GUIElement::IsHidden(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -3981,12 +2791,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCallback(GUIElement @this, in string funcname)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::SetCallback(GUIElement _this, const char funcname)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::SetCallback(GUIElement _this, const char funcname)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(funcname);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -3999,12 +2804,7 @@ public static class ScriptFunctions
 
         public static unsafe void Hide(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::Hide(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::Hide(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4013,12 +2813,7 @@ public static class ScriptFunctions
 
         public static unsafe void Show(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::Show(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::Show(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4027,12 +2822,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(GUIElement @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::Remove(GUIElement _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::Remove(GUIElement _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4044,12 +2834,7 @@ public static class ScriptFunctions
     {
         public static unsafe GUIElement CreateOval(Graphics @this, Player player, float x, float y, float width, float height, bool align)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateOval(Graphics _this, Player player, float x, float y, float width, float height, bool align)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateOval(Graphics _this, Player player, float x, float y, float width, float height, bool align)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -4066,12 +2851,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreateRect(Graphics @this, Player player, float x, float y, float width, float height, bool align)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateRect(Graphics _this, Player player, float x, float y, float width, float height, bool align)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateRect(Graphics _this, Player player, float x, float y, float width, float height, bool align)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -4088,12 +2868,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreateProgressBar(Graphics @this, Player player, float time, float x, float y, float width, float height, bool align)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateProgressBar(Graphics _this, Player player, float time, float x, float y, float width, float height, bool align)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateProgressBar(Graphics _this, Player player, float time, float x, float y, float width, float height, bool align)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, time);
@@ -4111,12 +2886,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreateProgressBar(Graphics @this, Player player, float time, float x, float y, float width, float height, bool align, in string callback)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateProgressBar(Graphics _this, Player player, float time, float x, float y, float width, float height, bool align, const char callback)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateProgressBar(Graphics _this, Player player, float time, float x, float y, float width, float height, bool align, const char callback)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, time);
@@ -4137,12 +2907,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreateProgressBar(Graphics @this, Player player, float time, float x, float y, float width, float height, bool align, nint callback)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateProgressBar(Graphics _this, Player player, float time, float x, float y, float width, float height, bool align, ref&in callback)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateProgressBar(Graphics _this, Player player, float time, float x, float y, float width, float height, bool align, ref&in callback)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, time);
@@ -4161,12 +2926,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreateText(Graphics @this, Player player, int fontid, in string text, float x, float y, bool align)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateText(Graphics _this, Player player, int fontid, const char text, float x, float y, bool align)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateText(Graphics _this, Player player, int fontid, const char text, float x, float y, bool align)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, fontid);
@@ -4185,12 +2945,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreateImage(Graphics @this, Player player, in string filename, float x, float y, float width, float height, bool align)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreateImage(Graphics _this, Player player, const char filename, float x, float y, float width, float height, bool align)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreateImage(Graphics _this, Player player, const char filename, float x, float y, float width, float height, bool align)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filename);
@@ -4210,12 +2965,7 @@ public static class ScriptFunctions
 
         public static unsafe GUIElement CreatePostEffect(Graphics @this, Player player, in string filename, in string defines)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_Graphics::CreatePostEffect(Graphics _this, Player player, const char filename, const char defines)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_Graphics::CreatePostEffect(Graphics _this, Player player, const char filename, const char defines)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filename);
@@ -4236,12 +2986,7 @@ public static class ScriptFunctions
     {
         public static unsafe bool IsPicked(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::IsPicked(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Items::IsPicked(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4252,12 +2997,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetPicker(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Items::GetPicker(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Items::GetPicker(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4268,12 +3008,7 @@ public static class ScriptFunctions
 
         public static unsafe bool SetPicker(Items @this, Player player, float throwforce)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::SetPicker(Items _this, Player player, float throwforce)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Items::SetPicker(Items _this, Player player, float throwforce)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, throwforce);
@@ -4286,12 +3021,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Items::GetEntity(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Items::GetEntity(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4302,12 +3032,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Items::GetIndex(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Items::GetIndex(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4318,12 +3043,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetName(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Items::GetName(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Items::GetName(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4334,12 +3054,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetTemplateName(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Items::GetTemplateName(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Items::GetTemplateName(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4350,12 +3065,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetTemplateIndex(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Items::GetTemplateIndex(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Items::GetTemplateIndex(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4366,12 +3076,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsWeapon(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::IsWeapon(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Items::IsWeapon(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4382,12 +3087,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetState(Items @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Items::SetState(Items _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Items::SetState(Items _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -4397,12 +3097,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetState2(Items @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Items::SetState2(Items _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Items::SetState2(Items _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -4412,12 +3107,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetState3(Items @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Items::SetState3(Items _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Items::SetState3(Items _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -4427,12 +3117,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Items::GetState(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Items::GetState(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4443,12 +3128,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState2(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Items::GetState2(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Items::GetState2(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4459,12 +3139,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState3(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Items::GetState3(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Items::GetState3(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4475,12 +3150,7 @@ public static class ScriptFunctions
 
         public static unsafe Items Fine(Items @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Items::Fine(Items _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Items::Fine(Items _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -4492,12 +3162,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetSlots(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Items::GetSlots(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Items::GetSlots(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4508,12 +3173,7 @@ public static class ScriptFunctions
 
         public static unsafe Items GetParentItem(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Items::GetParentItem(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Items::GetParentItem(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4524,12 +3184,7 @@ public static class ScriptFunctions
 
         public static unsafe Items GetSlotItem(Items @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Items::GetSlotItem(Items _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Items::GetSlotItem(Items _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -4541,12 +3196,7 @@ public static class ScriptFunctions
 
         public static unsafe bool PushItem(Items @this, Items unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::PushItem(Items _this, Items )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Items::PushItem(Items _this, Items )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -4558,12 +3208,7 @@ public static class ScriptFunctions
 
         public static unsafe bool RemoveSlotItem(Items @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::RemoveSlotItem(Items _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Items::RemoveSlotItem(Items _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -4575,12 +3220,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Items @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Items::Remove(Items _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Items::Remove(Items _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4592,12 +3232,7 @@ public static class ScriptFunctions
     {
         public static unsafe int GetIndex(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Light::GetIndex(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Light::GetIndex(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4608,12 +3243,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetFOV(Light @this, float fov)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetFOV(Light _this, float fov)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetFOV(Light _this, float fov)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, fov);
 
@@ -4623,12 +3253,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRange(Light @this, float range)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetRange(Light _this, float range)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetRange(Light _this, float range)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, range);
 
@@ -4638,12 +3263,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetScattering(Light @this, float scattering)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetScattering(Light _this, float scattering)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetScattering(Light _this, float scattering)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, scattering);
 
@@ -4653,12 +3273,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetColor(Light @this, int r, int g, int b)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetColor(Light _this, int r, int g, int b)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetColor(Light _this, int r, int g, int b)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, r);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, g);
@@ -4670,12 +3285,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCastShadows(Light @this, bool shadows)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetCastShadows(Light _this, bool shadows)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetCastShadows(Light _this, bool shadows)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, shadows);
 
@@ -4685,12 +3295,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetIntensity(Light @this, float intensity)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetIntensity(Light _this, float intensity)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetIntensity(Light _this, float intensity)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, intensity);
 
@@ -4700,12 +3305,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLength(Light @this, float length)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetLength(Light _this, float length)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetLength(Light _this, float length)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, length);
 
@@ -4715,12 +3315,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetFOV(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Light::GetFOV(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Light::GetFOV(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4731,12 +3326,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetRange(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Light::GetRange(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Light::GetRange(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4747,12 +3337,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetScattering(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Light::GetScattering(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Light::GetScattering(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4763,12 +3348,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetColor(Light @this, out int r, out int g, out int b)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::GetColor(Light _this, int&out r, int&out g, int&out b)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::GetColor(Light _this, int&out r, int&out g, int&out b)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, out r);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, out g);
@@ -4780,12 +3360,7 @@ public static class ScriptFunctions
 
         public static unsafe bool GetCastShadows(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Light::GetCastShadows(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Light::GetCastShadows(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4796,12 +3371,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetIntensity(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Light::GetIntensity(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Light::GetIntensity(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4812,12 +3382,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetLength(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Light::GetLength(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Light::GetLength(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4828,12 +3393,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAttach(Light @this, Player player)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetAttach(Light _this, Player player)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetAttach(Light _this, Player player)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
 
@@ -4843,12 +3403,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetAttach(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Light::GetAttach(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Light::GetAttach(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4859,12 +3414,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRoom(Light @this, Room unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetRoom(Light _this, Room )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetRoom(Light _this, Room )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -4874,12 +3424,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoom(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Light::GetRoom(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Light::GetRoom(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4890,12 +3435,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Light::GetEntity(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Light::GetEntity(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4906,12 +3446,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetLight(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Light::GetLight(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Light::GetLight(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4922,12 +3457,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetMovement(Light @this, float speed, float maxdistance)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::SetMovement(Light _this, float speed, float maxdistance)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::SetMovement(Light _this, float speed, float maxdistance)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, speed);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, maxdistance);
@@ -4938,12 +3468,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Light @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::Remove(Light _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::Remove(Light _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4955,12 +3480,7 @@ public static class ScriptFunctions
     {
         public static unsafe string Getheadbone(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getheadbone(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getheadbone(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4971,12 +3491,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getspinebone(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getspinebone(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getspinebone(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -4987,12 +3502,7 @@ public static class ScriptFunctions
 
         public static unsafe string Gethandbone(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Gethandbone(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Gethandbone(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5003,12 +3513,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getforearmbone(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getforearmbone(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getforearmbone(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5019,12 +3524,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmaximumspinepitch(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getmaximumspinepitch(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getmaximumspinepitch(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5035,12 +3535,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmaximumspinepitchdist(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getmaximumspinepitchdist(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getmaximumspinepitchdist(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5051,12 +3546,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmaximumheadpitch(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getmaximumheadpitch(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getmaximumheadpitch(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5067,12 +3557,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getfixedspinerotation(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getfixedspinerotation(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getfixedspinerotation(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5083,12 +3568,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getusedefaultrolls(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getusedefaultrolls(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getusedefaultrolls(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5099,12 +3579,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getoffsetyaw(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getoffsetyaw(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getoffsetyaw(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5115,12 +3590,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getoffsety(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getoffsety(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getoffsety(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5131,12 +3601,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getcollisionradius(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getcollisionradius(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getcollisionradius(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5147,12 +3612,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getscale(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getscale(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getscale(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5163,12 +3623,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getstepsound(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getstepsound(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getstepsound(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5179,12 +3634,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getblobshadowsize(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getblobshadowsize(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getblobshadowsize(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5195,12 +3645,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getforearmholdingpitch(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getforearmholdingpitch(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getforearmholdingpitch(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5211,12 +3656,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getforearmholdingyaw(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getforearmholdingyaw(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getforearmholdingyaw(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5227,12 +3667,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getforearmholdingroll(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getforearmholdingroll(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getforearmholdingroll(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5243,12 +3678,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getholdingitemoffsetx(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getholdingitemoffsetx(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getholdingitemoffsetx(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5259,12 +3689,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getholdingitemoffsety(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getholdingitemoffsety(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getholdingitemoffsety(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5275,12 +3700,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getholdingitemoffsetz(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getholdingitemoffsetz(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getholdingitemoffsetz(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5291,12 +3711,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getholdingitemoffsetpitch(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getholdingitemoffsetpitch(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getholdingitemoffsetpitch(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5307,12 +3722,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getholdingitemoffsetyaw(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getholdingitemoffsetyaw(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getholdingitemoffsetyaw(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5323,12 +3733,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getholdingitemoffsetroll(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getholdingitemoffsetroll(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getholdingitemoffsetroll(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5339,12 +3744,7 @@ public static class ScriptFunctions
 
         public static unsafe float Gethitboxwidth(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Gethitboxwidth(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Gethitboxwidth(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5355,12 +3755,7 @@ public static class ScriptFunctions
 
         public static unsafe float Gethitboxheight(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Gethitboxheight(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Gethitboxheight(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5371,12 +3766,7 @@ public static class ScriptFunctions
 
         public static unsafe float Gethitboxdepth(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Gethitboxdepth(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Gethitboxdepth(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5387,12 +3777,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getspeed(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getspeed(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getspeed(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5403,12 +3788,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getstamina(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getstamina(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getstamina(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5419,12 +3799,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getmovesound(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getmovesound(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getmovesound(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5435,12 +3810,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getdisablejump(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getdisablejump(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getdisablejump(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5451,12 +3821,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getcollisiontype(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getcollisiontype(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getcollisiontype(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5467,12 +3832,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getviewoffsety(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getviewoffsety(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getviewoffsety(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5483,12 +3843,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getdisableroll(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getdisableroll(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getdisableroll(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5499,12 +3854,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getdisablebloodloss(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getdisablebloodloss(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getdisablebloodloss(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5515,12 +3865,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getdisableinjuries(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getdisableinjuries(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getdisableinjuries(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5531,12 +3876,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getflippitch(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getflippitch(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getflippitch(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5547,12 +3887,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getdisableinteractitems(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getdisableinteractitems(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getdisableinteractitems(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5563,12 +3898,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getrotationmode(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getrotationmode(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getrotationmode(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5579,12 +3909,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getcomparedspinerotation(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getcomparedspinerotation(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getcomparedspinerotation(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5595,12 +3920,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmaterial(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getmaterial(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getmaterial(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5611,12 +3931,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getconstantinvisibility(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getconstantinvisibility(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getconstantinvisibility(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5627,12 +3942,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getlightradius(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getlightradius(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getlightradius(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5643,12 +3953,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getlightshadows(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getlightshadows(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getlightshadows(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5659,12 +3964,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getlightr(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getlightr(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getlightr(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5675,12 +3975,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getlightg(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getlightg(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getlightg(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5691,12 +3986,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getlightb(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getlightb(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getlightb(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5707,12 +3997,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getlightscattering(ModelPreset @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_ModelPreset::Getlightscattering(ModelPreset)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_ModelPreset::Getlightscattering(ModelPreset)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5726,12 +4011,7 @@ public static class ScriptFunctions
     {
         public static unsafe Entity GetEntity(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_NPC::GetEntity(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_NPC::GetEntity(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5742,12 +4022,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetModel(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_NPC::GetModel(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_NPC::GetModel(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5758,12 +4033,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetPickable(NPC @this, bool pickable)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetPickable(NPC _this, bool pickable)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetPickable(NPC _this, bool pickable)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, pickable);
 
@@ -5773,12 +4043,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetDead(NPC @this, bool state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetDead(NPC _this, bool state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetDead(NPC _this, bool state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -5788,12 +4053,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsDead(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_NPC::IsDead(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_NPC::IsDead(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5804,12 +4064,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetHealth(NPC @this, int health)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetHealth(NPC _this, int health)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetHealth(NPC _this, int health)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, health);
 
@@ -5819,12 +4074,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetHealth(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_NPC::GetHealth(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_NPC::GetHealth(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5835,12 +4085,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetIdle(NPC @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetIdle(NPC _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetIdle(NPC _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -5850,12 +4095,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetState1(NPC @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetState1(NPC _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetState1(NPC _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -5865,12 +4105,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetState2(NPC @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetState2(NPC _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetState2(NPC _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -5880,12 +4115,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetState3(NPC @this, float state)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::SetState3(NPC _this, float state)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::SetState3(NPC _this, float state)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, state);
 
@@ -5895,12 +4125,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetIdle(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_NPC::GetIdle(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_NPC::GetIdle(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5911,12 +4136,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState1(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_NPC::GetState1(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_NPC::GetState1(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5927,12 +4147,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState2(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_NPC::GetState2(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_NPC::GetState2(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5943,12 +4158,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetState3(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_NPC::GetState3(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_NPC::GetState3(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5959,12 +4169,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(NPC @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::Remove(NPC _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::Remove(NPC _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -5976,12 +4181,7 @@ public static class ScriptFunctions
     {
         public static unsafe void SetAttach(Object @this, Player player)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::SetAttach(Object _this, Player player)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::SetAttach(Object _this, Player player)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
 
@@ -5991,12 +4191,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetAttach(Object @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Object::GetAttach(Object _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Object::GetAttach(Object _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6007,12 +4202,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRoom(Object @this, Room unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::SetRoom(Object _this, Room )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::SetRoom(Object _this, Room )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -6022,12 +4212,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoom(Object @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Object::GetRoom(Object _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Object::GetRoom(Object _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6038,12 +4223,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Object @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Object::GetIndex(Object _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Object::GetIndex(Object _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6054,12 +4234,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Object @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Object::GetEntity(Object _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Object::GetEntity(Object _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6070,12 +4245,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetModel(Object @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Object::GetModel(Object _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Object::GetModel(Object _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6086,12 +4256,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetMovement(Object @this, float speed, float maxdistance)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::SetMovement(Object _this, float speed, float maxdistance)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::SetMovement(Object _this, float speed, float maxdistance)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, speed);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, maxdistance);
@@ -6102,12 +4267,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTexture(Object @this, int textureid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::SetTexture(Object _this, int textureid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::SetTexture(Object _this, int textureid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, textureid);
 
@@ -6117,12 +4277,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTouchable(Object @this, bool val)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::SetTouchable(Object _this, bool val)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::SetTouchable(Object _this, bool val)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -6133,12 +4288,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Object @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::Remove(Object _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::Remove(Object _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6150,12 +4300,7 @@ public static class ScriptFunctions
     {
         public static unsafe Entity GetHitbox(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Player::GetHitbox(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Player::GetHitbox(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6166,12 +4311,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetHead(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Player::GetHead(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Player::GetHead(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6182,12 +4322,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Player::GetEntity(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Player::GetEntity(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6198,12 +4333,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetScreenSize(Player @this, out int width, out int height)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetScreenSize(Player _this, int&out width, int&out height)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetScreenSize(Player _this, int&out width, int&out height)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, out width);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, out height);
@@ -6214,12 +4344,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetLanguage(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetLanguage(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetLanguage(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6230,12 +4355,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetIP(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetIP(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetIP(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6246,12 +4366,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetSteamID(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetSteamID(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetSteamID(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6262,12 +4377,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetHWID(Player @this, int wmid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetHWID(Player _this, int wmid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetHWID(Player _this, int wmid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, wmid);
 
@@ -6279,12 +4389,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetName(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetName(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetName(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6295,12 +4400,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSteamID(Player @this, in string steamid64)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetSteamID(Player _this, const char steamid64)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetSteamID(Player _this, const char steamid64)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(steamid64);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -6312,12 +4412,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetName(Player @this, in string name)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetName(Player _this, const char name)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetName(Player _this, const char name)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(name);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -6329,12 +4424,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetPing(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetPing(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetPing(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6345,12 +4435,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetTime(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetTime(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetTime(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6361,12 +4446,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetIndex(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetIndex(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6377,12 +4457,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetVersion(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetVersion(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetVersion(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6393,12 +4468,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsInvisible(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsInvisible(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsInvisible(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6409,12 +4479,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsInvisibleForPlayer(Player @this, Player player)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsInvisibleForPlayer(Player _this, Player player)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsInvisibleForPlayer(Player _this, Player player)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
 
@@ -6426,12 +4491,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetInvisible(Player @this, bool inv)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetInvisible(Player _this, bool inv)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetInvisible(Player _this, bool inv)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, inv);
 
@@ -6441,12 +4501,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetLocalInvisible(Player @this, Player player, bool inv)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetLocalInvisible(Player _this, Player player, bool inv)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetLocalInvisible(Player _this, Player player, bool inv)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, inv);
@@ -6457,12 +4512,7 @@ public static class ScriptFunctions
 
         public static unsafe void Kick(Player @this, int code, in string custom)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::Kick(Player _this, int code, const char custom)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::Kick(Player _this, int code, const char custom)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, code);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(custom);
@@ -6475,12 +4525,7 @@ public static class ScriptFunctions
 
         public static unsafe void ShowDialog(Player @this, int type, int index, in string header, in string message, in string leftbutton, in string rightbutton, bool align)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::ShowDialog(Player _this, int type, int index, const char header, const char message, const char leftbutton, const char rightbutton, bool align)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::ShowDialog(Player _this, int type, int index, const char header, const char message, const char leftbutton, const char rightbutton, bool align)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, type);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, index);
@@ -6505,12 +4550,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetDialogData(Player @this, in string data)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetDialogData(Player _this, const char data)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetDialogData(Player _this, const char data)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(data);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -6522,12 +4562,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetDialogData(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetDialogData(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetDialogData(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6538,12 +4573,7 @@ public static class ScriptFunctions
 
         public static unsafe void HideDialog(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::HideDialog(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::HideDialog(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6552,12 +4582,7 @@ public static class ScriptFunctions
 
         public static unsafe void SendMessage(Player @this, in string message, float time, bool localized)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SendMessage(Player _this, const char message, float time, bool localized)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SendMessage(Player _this, const char message, float time, bool localized)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(message);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -6571,12 +4596,7 @@ public static class ScriptFunctions
 
         public static unsafe void Desync(Player @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::Desync(Player _this, bool value)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::Desync(Player _this, bool value)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -6586,12 +4606,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsDesync(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsDesync(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsDesync(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6602,12 +4617,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSpectatePlayer(Player @this, Player target)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetSpectatePlayer(Player _this, Player target)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetSpectatePlayer(Player _this, Player target)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
 
@@ -6617,12 +4627,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSpectateMode(Player @this, int mode)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetSpectateMode(Player _this, int mode)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetSpectateMode(Player _this, int mode)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, mode);
 
@@ -6632,12 +4637,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetSpectatePlayer(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Player::GetSpectatePlayer(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Player::GetSpectatePlayer(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6648,12 +4648,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetSpectateMode(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetSpectateMode(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetSpectateMode(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6664,12 +4659,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Kill(Player @this, bool bloody, bool createcorpse)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::Kill(Player _this, bool bloody, bool createcorpse)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::Kill(Player _this, bool bloody, bool createcorpse)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, bloody);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, createcorpse);
@@ -6682,12 +4672,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Respawn(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::Respawn(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::Respawn(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6698,12 +4683,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsDead(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsDead(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsDead(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6714,12 +4694,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetInjuries(Player @this, float val)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetInjuries(Player _this, float val)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetInjuries(Player _this, float val)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -6729,12 +4704,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetInjuries(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetInjuries(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetInjuries(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6745,12 +4715,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetBloodloss(Player @this, float val)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetBloodloss(Player _this, float val)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetBloodloss(Player _this, float val)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -6760,12 +4725,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetBloodloss(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetBloodloss(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetBloodloss(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6776,12 +4736,7 @@ public static class ScriptFunctions
 
         public static unsafe bool GetGodmode(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::GetGodmode(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::GetGodmode(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6792,12 +4747,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetGodmode(Player @this, bool val)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetGodmode(Player _this, bool val)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetGodmode(Player _this, bool val)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -6807,12 +4757,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetColor(Player @this, uint hx)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetColor(Player _this, uint hx)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetColor(Player _this, uint hx)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgUInt(ScriptFunctions.ModuleHandle, 1, hx);
 
@@ -6822,12 +4767,7 @@ public static class ScriptFunctions
 
         public static unsafe uint GetColor(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "uint ccb::_Player::GetColor(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("uint ccb::_Player::GetColor(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6838,12 +4778,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetNetworkPosition(Player @this, out float x, out float y, out float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetNetworkPosition(Player _this, float&out x, float&out y, float&out z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetNetworkPosition(Player _this, float&out x, float&out y, float&out z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -6855,12 +4790,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetNetworkRotation(Player @this, out float pitch, out float yaw)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetNetworkRotation(Player _this, float&out pitch, float&out yaw)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetNetworkRotation(Player _this, float&out pitch, float&out yaw)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out pitch);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out yaw);
@@ -6871,12 +4801,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetNetworkPosition(Player @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetNetworkPosition(Player _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetNetworkPosition(Player _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -6888,12 +4813,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetNetworkRotation(Player @this, float pitch, float yaw)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetNetworkRotation(Player _this, float pitch, float yaw)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetNetworkRotation(Player _this, float pitch, float yaw)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, pitch);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, yaw);
@@ -6904,12 +4824,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetPosition(Player @this, float x, float y, float z, Room room, bool updatepivot)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetPosition(Player _this, float x, float y, float z, Room room, bool updatepivot)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetPosition(Player _this, float x, float y, float z, Room room, bool updatepivot)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -6923,12 +4838,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRotation(Player @this, float pitch, float yaw)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetRotation(Player _this, float pitch, float yaw)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetRotation(Player _this, float pitch, float yaw)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, pitch);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, yaw);
@@ -6939,12 +4849,7 @@ public static class ScriptFunctions
 
         public static unsafe void Teleport(Player @this, Room room, float x, float y, float z, bool updatepivot)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::Teleport(Player _this, Room room, float x, float y, float z, bool updatepivot)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::Teleport(Player _this, Room room, float x, float y, float z, bool updatepivot)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, room);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -6958,12 +4863,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRoom(Player @this, Room room)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetRoom(Player _this, Room room)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetRoom(Player _this, Room room)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, room);
 
@@ -6973,12 +4873,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoom(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Player::GetRoom(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Player::GetRoom(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -6989,12 +4884,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetPositionBounds(Player @this, Room room, float x, float y, float z, float distance)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetPositionBounds(Player _this, Room room, float x, float y, float z, float distance)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetPositionBounds(Player _this, Room room, float x, float y, float z, float distance)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, room);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -7008,12 +4898,7 @@ public static class ScriptFunctions
 
         public static unsafe void Explode(Player @this, bool thrust)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::Explode(Player _this, bool thrust)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::Explode(Player _this, bool thrust)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, thrust);
 
@@ -7023,12 +4908,7 @@ public static class ScriptFunctions
 
         public static unsafe void MovePlayer(Player @this, float speedmult, float angle)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::MovePlayer(Player _this, float speedmult, float angle)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::MovePlayer(Player _this, float speedmult, float angle)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, speedmult);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, angle);
@@ -7039,12 +4919,7 @@ public static class ScriptFunctions
 
         public static unsafe void IgnoreProximity(Player @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::IgnoreProximity(Player _this, bool value)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::IgnoreProximity(Player _this, bool value)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -7054,12 +4929,7 @@ public static class ScriptFunctions
 
         public static unsafe void SendDamage(Player @this, Player player, float force, bool headshot, float offsetx, float offsety, float offsetz)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SendDamage(Player _this, Player player, float force, bool headshot, float offsetx, float offsety, float offsetz)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SendDamage(Player _this, Player player, float force, bool headshot, float offsetx, float offsety, float offsetz)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, force);
@@ -7074,12 +4944,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAdmin(Player @this, bool val)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetAdmin(Player _this, bool val)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetAdmin(Player _this, bool val)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -7089,12 +4954,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsAdmin(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsAdmin(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsAdmin(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7105,12 +4965,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetGlobalTransmission(Player @this, bool val)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetGlobalTransmission(Player _this, bool val)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetGlobalTransmission(Player _this, bool val)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, val);
 
@@ -7120,12 +4975,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsGlobalTransmission(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsGlobalTransmission(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsGlobalTransmission(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7136,12 +4986,7 @@ public static class ScriptFunctions
 
         public static unsafe bool SendVoice(Player @this, int bank, int radio, bool global, Player target)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::SendVoice(Player _this, int bank, int radio, bool global, Player target)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::SendVoice(Player _this, int bank, int radio, bool global, Player target)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, bank);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, radio);
@@ -7156,12 +5001,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetItemsCount(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetItemsCount(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetItemsCount(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7172,12 +5012,7 @@ public static class ScriptFunctions
 
         public static unsafe Items GetInventory(Player @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Player::GetInventory(Player _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Player::GetInventory(Player _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -7189,12 +5024,7 @@ public static class ScriptFunctions
 
         public static unsafe Items GetSelectedItem(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Player::GetSelectedItem(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Player::GetSelectedItem(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7205,12 +5035,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetBlinkTimer(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetBlinkTimer(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetBlinkTimer(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7221,12 +5046,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetBlinkTimer(Player @this, float time)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetBlinkTimer(Player _this, float time)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetBlinkTimer(Player _this, float time)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, time);
 
@@ -7236,12 +5056,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsBlinking(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsBlinking(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsBlinking(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7252,12 +5067,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetBlinkEffect(Player @this, float effectvalue, float time)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetBlinkEffect(Player _this, float effectvalue, float time)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetBlinkEffect(Player _this, float effectvalue, float time)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, effectvalue);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, time);
@@ -7268,12 +5078,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetBlinkEffect(Player @this, out float effectvalue, out float time)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetBlinkEffect(Player _this, float&out effectvalue, float&out time)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetBlinkEffect(Player _this, float&out effectvalue, float&out time)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out effectvalue);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out time);
@@ -7284,12 +5089,7 @@ public static class ScriptFunctions
 
         public static unsafe void EnableBlinking(Player @this, bool blink)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::EnableBlinking(Player _this, bool blink)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::EnableBlinking(Player _this, bool blink)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, blink);
 
@@ -7299,12 +5099,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsBlinkingEnabled(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsBlinkingEnabled(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsBlinkingEnabled(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7315,12 +5110,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetRadio(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetRadio(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetRadio(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7331,12 +5121,7 @@ public static class ScriptFunctions
 
         public static unsafe void PlayAnimation(Player @this, int animid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::PlayAnimation(Player _this, int animid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::PlayAnimation(Player _this, int animid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, animid);
 
@@ -7346,12 +5131,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetNetworkAnimation(Player @this, int animid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetNetworkAnimation(Player _this, int animid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetNetworkAnimation(Player _this, int animid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, animid);
 
@@ -7361,12 +5141,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAnimation(Player @this, int animid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetAnimation(Player _this, int animid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetAnimation(Player _this, int animid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, animid);
 
@@ -7376,12 +5151,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetAnimation(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetAnimation(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetAnimation(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7392,12 +5162,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSpeedMultiplier(Player @this, float multiplier)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetSpeedMultiplier(Player _this, float multiplier)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetSpeedMultiplier(Player _this, float multiplier)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, multiplier);
 
@@ -7407,12 +5172,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetStaminaMultiplier(Player @this, float multiplier)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetStaminaMultiplier(Player _this, float multiplier)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetStaminaMultiplier(Player _this, float multiplier)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, multiplier);
 
@@ -7422,12 +5182,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetSpeedMultiplier(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetSpeedMultiplier(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetSpeedMultiplier(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7438,12 +5193,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetStaminaMultiplier(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetStaminaMultiplier(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetStaminaMultiplier(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7454,12 +5204,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAttach(Player @this, int bodyindex, int attachmodelindex, Items item)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetAttach(Player _this, int bodyindex, int attachmodelindex, Items item)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetAttach(Player _this, int bodyindex, int attachmodelindex, Items item)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, bodyindex);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, attachmodelindex);
@@ -7471,12 +5216,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetAttach(Player @this, int bodyindex)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetAttach(Player _this, int bodyindex)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetAttach(Player _this, int bodyindex)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, bodyindex);
 
@@ -7488,12 +5228,7 @@ public static class ScriptFunctions
 
         public static unsafe Items GetAttachItem(Player @this, int bodyindex)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Player::GetAttachItem(Player _this, int bodyindex)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Player::GetAttachItem(Player _this, int bodyindex)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, bodyindex);
 
@@ -7505,12 +5240,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetModel(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetModel(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetModel(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7521,12 +5251,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetModel(Player @this, int modelid, int textureid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetModel(Player _this, int modelid, int textureid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetModel(Player _this, int modelid, int textureid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, modelid);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, textureid);
@@ -7537,12 +5262,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetModelSize(Player @this, float unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetModelSize(Player _this, float )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetModelSize(Player _this, float )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -7552,12 +5272,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetModelSize(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetModelSize(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetModelSize(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7568,12 +5283,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetModelTexture(Player @this, int textureid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetModelTexture(Player _this, int textureid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetModelTexture(Player _this, int textureid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, textureid);
 
@@ -7583,12 +5293,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetModelTexture(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetModelTexture(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetModelTexture(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7599,12 +5304,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCollisionRadius(Player @this, float unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetCollisionRadius(Player _this, float )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetCollisionRadius(Player _this, float )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -7614,12 +5314,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetCollisionRadius(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetCollisionRadius(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetCollisionRadius(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7630,12 +5325,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetVolume(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetVolume(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetVolume(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7646,12 +5336,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsCrouch(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsCrouch(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsCrouch(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7662,12 +5347,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetGravity(Player @this, float multiplier)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetGravity(Player _this, float multiplier)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetGravity(Player _this, float multiplier)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, multiplier);
 
@@ -7677,12 +5357,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetGravity(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetGravity(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetGravity(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7693,12 +5368,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTagText(Player @this, int index, in string unnamed1)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetTagText(Player _this, int index, const char )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetTagText(Player _this, int index, const char )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed1);
@@ -7711,12 +5381,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTagScales(Player @this, int index, float unnamed1, float unnamed2)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetTagScales(Player _this, int index, float , float )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetTagScales(Player _this, int index, float , float )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, unnamed1);
@@ -7728,12 +5393,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTagOffset(Player @this, int index, float unnamed1)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetTagOffset(Player _this, int index, float )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetTagOffset(Player _this, int index, float )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, unnamed1);
@@ -7744,12 +5404,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTagColors(Player @this, int index, int unnamed1, int unnamed2)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetTagColors(Player _this, int index, int , int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetTagColors(Player _this, int index, int , int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, unnamed1);
@@ -7761,12 +5416,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTagFont(Player @this, int index, in string unnamed1)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetTagFont(Player _this, int index, const char )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetTagFont(Player _this, int index, const char )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             var unmanagedStr2 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed1);
@@ -7779,12 +5429,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetTagText(Player @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetTagText(Player _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetTagText(Player _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -7796,12 +5441,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetTagScales(Player @this, int index, out float scalex, out float scaley)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetTagScales(Player _this, int index, float&out scalex, float&out scaley)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetTagScales(Player _this, int index, float&out scalex, float&out scaley)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out scalex);
@@ -7813,12 +5453,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetTagOffset(Player @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Player::GetTagOffset(Player _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Player::GetTagOffset(Player _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -7830,12 +5465,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetTagColors(Player @this, int index, out uint start, out uint end)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetTagColors(Player _this, int index, uint&out start, uint&out end)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetTagColors(Player _this, int index, uint&out start, uint&out end)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
             NativeBindings.SetModuleArgUInt(ScriptFunctions.ModuleHandle, 2, out start);
@@ -7847,12 +5477,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetTagFont(Player @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Player::GetTagFont(Player _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Player::GetTagFont(Player _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -7864,12 +5489,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetShootsCount(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Player::GetShootsCount(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Player::GetShootsCount(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7880,12 +5500,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetShootsCount(Player @this, int count)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetShootsCount(Player _this, int count)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetShootsCount(Player _this, int count)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, count);
 
@@ -7895,12 +5510,7 @@ public static class ScriptFunctions
 
         public static unsafe void RedirectMove(Player @this, bool move)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::RedirectMove(Player _this, bool move)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::RedirectMove(Player _this, bool move)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, move);
 
@@ -7910,12 +5520,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsBot(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsBot(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsBot(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7926,12 +5531,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsAiming(Player @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::IsAiming(Player _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::IsAiming(Player _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -7942,12 +5542,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetWearData(Player @this, int bodyindex, Items item)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::SetWearData(Player _this, int bodyindex, Items item)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::SetWearData(Player _this, int bodyindex, Items item)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, bodyindex);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 2, item);
@@ -7958,12 +5553,7 @@ public static class ScriptFunctions
 
         public static unsafe void Console(Player @this, in string message)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::Console(Player _this, const char message)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::Console(Player _this, const char message)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(message);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -7975,12 +5565,7 @@ public static class ScriptFunctions
 
         public static unsafe bool GetKeyState(Player @this, int keytype)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::GetKeyState(Player _this, int keytype)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::GetKeyState(Player _this, int keytype)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, keytype);
 
@@ -7992,12 +5577,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetTeleportData(Player @this, out float x, out float y, out float z, out Room room, out int tick)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::GetTeleportData(Player _this, float&out x, float&out y, float&out z, Room&out room, int&out tick)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::GetTeleportData(Player _this, float&out x, float&out y, float&out z, Room&out room, int&out tick)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -8014,12 +5594,7 @@ public static class ScriptFunctions
     {
         public static unsafe string GetName(Room @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Room::GetName(Room _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Room::GetName(Room _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8030,12 +5605,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Room @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Room::GetIndex(Room _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Room::GetIndex(Room _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8046,12 +5616,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIdentifier(Room @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Room::GetIdentifier(Room _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Room::GetIdentifier(Room _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8062,12 +5627,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetEntity(Room @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Room::GetEntity(Room _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Room::GetEntity(Room _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8078,12 +5638,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetObject(Room @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Room::GetObject(Room _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Room::GetObject(Room _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -8095,12 +5650,7 @@ public static class ScriptFunctions
 
         public static unsafe Entity GetLever(Room @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Room::GetLever(Room _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Room::GetLever(Room _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -8112,12 +5662,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsAdjacent(Room @this, Room unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Room::IsAdjacent(Room _this, Room )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Room::IsAdjacent(Room _this, Room )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -8129,12 +5674,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetAdjacentRoom(Room @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Room::GetAdjacentRoom(Room _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Room::GetAdjacentRoom(Room _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -8146,12 +5686,7 @@ public static class ScriptFunctions
 
         public static unsafe Door GetAdjacentDoor(Room @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door ccb::_Room::GetAdjacentDoor(Room _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Door ccb::_Room::GetAdjacentDoor(Room _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -8163,12 +5698,7 @@ public static class ScriptFunctions
 
         public static unsafe Door GetDoor(Room @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door ccb::_Room::GetDoor(Room _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Door ccb::_Room::GetDoor(Room _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -8180,12 +5710,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsInside(Room @this, Entity unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Room::IsInside(Room _this, Entity )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Room::IsInside(Room _this, Entity )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -8200,12 +5725,7 @@ public static class ScriptFunctions
     {
         public static unsafe void Restart(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Server::Restart(Server _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Server::Restart(Server _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8214,12 +5734,7 @@ public static class ScriptFunctions
 
         public static unsafe void Console(Server @this, in string unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Server::Console(Server _this, const char )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Server::Console(Server _this, const char )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed0);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8231,12 +5746,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetVersion(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Server::GetVersion(Server _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Server::GetVersion(Server _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8247,12 +5757,7 @@ public static class ScriptFunctions
 
         public static unsafe void AddVersion(Server @this, in string version)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Server::AddVersion(Server _this, const char version)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Server::AddVersion(Server _this, const char version)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(version);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8264,12 +5769,7 @@ public static class ScriptFunctions
 
         public static unsafe void RemoveVersion(Server @this, in string version)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Server::RemoveVersion(Server _this, const char version)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Server::RemoveVersion(Server _this, const char version)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(version);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8281,12 +5781,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetUPS(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Server::GetUPS(Server _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Server::GetUPS(Server _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8297,12 +5792,7 @@ public static class ScriptFunctions
 
         public static unsafe Config ParseConfig(Server @this, in string filename)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Config ccb::_Server::ParseConfig(Server _this, const char filename)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Config ccb::_Server::ParseConfig(Server _this, const char filename)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(filename);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8316,12 +5806,7 @@ public static class ScriptFunctions
 
         public static unsafe string Gethostname(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Gethostname(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Gethostname(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8331,12 +5816,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Sethostname(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Sethostname(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Sethostname(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8348,12 +5828,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getport(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getport(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getport(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8363,12 +5838,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setport(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setport(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setport(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8378,12 +5848,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getcorpsealivetime(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getcorpsealivetime(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getcorpsealivetime(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8393,12 +5858,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setcorpsealivetime(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setcorpsealivetime(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setcorpsealivetime(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8408,12 +5868,7 @@ public static class ScriptFunctions
 
         public static unsafe int Gettimeout(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Gettimeout(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Gettimeout(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8423,12 +5878,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Settimeout(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Settimeout(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Settimeout(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8438,12 +5888,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getchat(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getchat(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getchat(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8453,12 +5898,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setchat(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setchat(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setchat(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8468,12 +5908,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getconsole(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getconsole(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getconsole(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8483,12 +5918,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setconsole(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setconsole(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setconsole(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8498,12 +5928,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getvoicebitrate(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getvoicebitrate(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getvoicebitrate(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8513,12 +5938,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setvoicebitrate(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setvoicebitrate(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setvoicebitrate(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8528,12 +5948,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmaxplayers(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmaxplayers(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmaxplayers(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8543,12 +5958,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmaxplayers(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmaxplayers(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmaxplayers(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8558,12 +5968,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getmapseed(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmapseed(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmapseed(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8573,12 +5978,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmapseed(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmapseed(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmapseed(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8590,12 +5990,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getadminpassword(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getadminpassword(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getadminpassword(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8605,12 +6000,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setadminpassword(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setadminpassword(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setadminpassword(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8622,12 +6012,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getdifficulty(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getdifficulty(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getdifficulty(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8637,12 +6022,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setdifficulty(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setdifficulty(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setdifficulty(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8652,12 +6032,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getgamemode(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getgamemode(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getgamemode(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8667,12 +6042,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setgamemode(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setgamemode(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setgamemode(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8684,12 +6054,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getemptybehaviour(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getemptybehaviour(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getemptybehaviour(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8699,12 +6064,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setemptybehaviour(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setemptybehaviour(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setemptybehaviour(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8714,12 +6074,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getscriptsautoload(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getscriptsautoload(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getscriptsautoload(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8729,12 +6084,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setscriptsautoload(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setscriptsautoload(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setscriptsautoload(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8744,12 +6094,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getdisablenpcs(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getdisablenpcs(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getdisablenpcs(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8759,12 +6104,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setdisablenpcs(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setdisablenpcs(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setdisablenpcs(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8774,12 +6114,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getproximityplayers(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getproximityplayers(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getproximityplayers(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8789,12 +6124,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setproximityplayers(Server @this, float value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setproximityplayers(Server, float)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setproximityplayers(Server, float)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8804,12 +6134,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getmapbounds(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmapbounds(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmapbounds(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8819,12 +6144,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmapbounds(Server @this, float value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmapbounds(Server, float)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmapbounds(Server, float)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8834,12 +6154,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getrespawntime(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getrespawntime(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getrespawntime(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8849,12 +6164,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setrespawntime(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setrespawntime(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setrespawntime(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8864,12 +6174,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getcontenturl(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getcontenturl(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getcontenturl(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8879,12 +6184,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setcontenturl(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setcontenturl(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setcontenturl(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8896,12 +6196,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getpassword(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getpassword(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getpassword(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8911,12 +6206,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setpassword(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setpassword(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setpassword(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -8928,12 +6218,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getimprovedgates(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getimprovedgates(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getimprovedgates(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8943,12 +6228,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setimprovedgates(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setimprovedgates(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setimprovedgates(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8958,12 +6238,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmapsize(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmapsize(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmapsize(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -8973,12 +6248,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmapsize(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmapsize(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmapsize(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -8988,12 +6258,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getallowjump(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getallowjump(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getallowjump(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9003,12 +6268,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setallowjump(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setallowjump(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setallowjump(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9018,12 +6278,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getdescription(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getdescription(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getdescription(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9033,12 +6288,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setdescription(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setdescription(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setdescription(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -9050,12 +6300,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getfastslots(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getfastslots(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getfastslots(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9065,12 +6310,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setfastslots(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setfastslots(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setfastslots(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9080,12 +6320,7 @@ public static class ScriptFunctions
 
         public static unsafe float Getgravity(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getgravity(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getgravity(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9095,12 +6330,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setgravity(Server @this, float value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setgravity(Server, float)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setgravity(Server, float)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9110,12 +6340,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getholiday(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getholiday(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getholiday(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9125,12 +6350,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setholiday(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setholiday(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setholiday(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9140,12 +6360,7 @@ public static class ScriptFunctions
 
         public static unsafe string Getaddonsfile(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getaddonsfile(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getaddonsfile(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9155,12 +6370,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setaddonsfile(Server @this, string value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setaddonsfile(Server, string)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setaddonsfile(Server, string)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(value);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -9172,12 +6382,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getenablehud(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getenablehud(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getenablehud(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9187,12 +6392,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setenablehud(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setenablehud(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setenablehud(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9202,12 +6402,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmax_items(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmax_items(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmax_items(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9217,12 +6412,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmax_items(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmax_items(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmax_items(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9232,12 +6422,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmax_objects(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmax_objects(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmax_objects(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9247,12 +6432,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmax_objects(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmax_objects(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmax_objects(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9262,12 +6442,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmax_corpses(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmax_corpses(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmax_corpses(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9277,12 +6452,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmax_corpses(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmax_corpses(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmax_corpses(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9292,12 +6462,7 @@ public static class ScriptFunctions
 
         public static unsafe int Getmax_lights(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getmax_lights(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getmax_lights(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9307,12 +6472,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setmax_lights(Server @this, int value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setmax_lights(Server, int)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setmax_lights(Server, int)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9322,12 +6482,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getplayer_culling(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getplayer_culling(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getplayer_culling(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9337,12 +6492,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setplayer_culling(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setplayer_culling(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setplayer_culling(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9352,12 +6502,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getsteam_auth(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getsteam_auth(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getsteam_auth(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9367,12 +6512,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setsteam_auth(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setsteam_auth(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setsteam_auth(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9382,12 +6522,7 @@ public static class ScriptFunctions
 
         public static unsafe bool Getfall_damage(Server @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Getfall_damage(Server)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Getfall_damage(Server)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9397,12 +6532,7 @@ public static class ScriptFunctions
         }
         public static unsafe void Setfall_damage(Server @this, bool value)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ccb::_Server::Setfall_damage(Server, bool)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ccb::_Server::Setfall_damage(Server, bool)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, value);
 
@@ -9415,12 +6545,7 @@ public static class ScriptFunctions
     {
         public static unsafe Entity GetEntity(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Shell::GetEntity(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Shell::GetEntity(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9431,12 +6556,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetIndex(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Shell::GetIndex(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Shell::GetIndex(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9447,12 +6567,7 @@ public static class ScriptFunctions
 
         public static unsafe void GetVelocity(Shell @this, out float x, out float y, out float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::GetVelocity(Shell _this, float&out x, float&out y, float&out z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::GetVelocity(Shell _this, float&out x, float&out y, float&out z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, out x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, out y);
@@ -9464,12 +6579,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetActionEmitter(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Shell::GetActionEmitter(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Shell::GetActionEmitter(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9480,12 +6590,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetEmitter(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Shell::GetEmitter(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Shell::GetEmitter(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9496,12 +6601,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetActionSound(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Shell::GetActionSound(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Shell::GetActionSound(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9512,12 +6612,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetCollisionSound(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Shell::GetCollisionSound(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Shell::GetCollisionSound(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9528,12 +6623,7 @@ public static class ScriptFunctions
 
         public static unsafe string GetSound(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "char ccb::_Shell::GetSound(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("char ccb::_Shell::GetSound(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9544,12 +6634,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetSpeed(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetSpeed(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetSpeed(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9560,12 +6645,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetForce(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetForce(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetForce(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9576,12 +6656,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetRestitution(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetRestitution(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetRestitution(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9592,12 +6667,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetGravity(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetGravity(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetGravity(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9608,12 +6678,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetCollisionRadius(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetCollisionRadius(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetCollisionRadius(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9624,12 +6689,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetDamage(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetDamage(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetDamage(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9640,12 +6700,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetTimeout(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetTimeout(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetTimeout(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9656,12 +6711,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetImpactTime(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetImpactTime(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetImpactTime(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9672,12 +6722,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetAction(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Shell::GetAction(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Shell::GetAction(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9688,12 +6733,7 @@ public static class ScriptFunctions
 
         public static unsafe float GetActionRadius(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "float ccb::_Shell::GetActionRadius(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("float ccb::_Shell::GetActionRadius(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9704,12 +6744,7 @@ public static class ScriptFunctions
 
         public static unsafe bool IsSticky(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Shell::IsSticky(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Shell::IsSticky(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9720,12 +6755,7 @@ public static class ScriptFunctions
 
         public static unsafe uint GetStickFlags(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "uint ccb::_Shell::GetStickFlags(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("uint ccb::_Shell::GetStickFlags(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9736,12 +6766,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetStickIndex(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Shell::GetStickIndex(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Shell::GetStickIndex(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9752,12 +6777,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetWeapon(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_Shell::GetWeapon(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_Shell::GetWeapon(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9768,12 +6788,7 @@ public static class ScriptFunctions
 
         public static unsafe Player GetShooter(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Shell::GetShooter(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Shell::GetShooter(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9784,12 +6799,7 @@ public static class ScriptFunctions
 
         public static unsafe void Unstick(Shell @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::Unstick(Shell _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::Unstick(Shell _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -9798,12 +6808,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSticky(Shell @this, bool sticky)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetSticky(Shell _this, bool sticky)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetSticky(Shell _this, bool sticky)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, sticky);
 
@@ -9813,12 +6818,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetVelocity(Shell @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetVelocity(Shell _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetVelocity(Shell _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -9830,12 +6830,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetActionEmitter(Shell @this, in string emitters)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetActionEmitter(Shell _this, const char emitters)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetActionEmitter(Shell _this, const char emitters)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(emitters);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -9847,12 +6842,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetEmitter(Shell @this, int id)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetEmitter(Shell _this, int id)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetEmitter(Shell _this, int id)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, id);
 
@@ -9862,12 +6852,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetActionSound(Shell @this, in string sound)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetActionSound(Shell _this, const char sound)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetActionSound(Shell _this, const char sound)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(sound);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -9879,12 +6864,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCollisionSound(Shell @this, in string sound)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetCollisionSound(Shell _this, const char sound)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetCollisionSound(Shell _this, const char sound)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(sound);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -9896,12 +6876,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSound(Shell @this, in string sound)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetSound(Shell _this, const char sound)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetSound(Shell _this, const char sound)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(sound);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -9913,12 +6888,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetSpeed(Shell @this, float speed)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetSpeed(Shell _this, float speed)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetSpeed(Shell _this, float speed)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, speed);
 
@@ -9928,12 +6898,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetForce(Shell @this, float force)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetForce(Shell _this, float force)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetForce(Shell _this, float force)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, force);
 
@@ -9943,12 +6908,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetRestitution(Shell @this, float restitution)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetRestitution(Shell _this, float restitution)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetRestitution(Shell _this, float restitution)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, restitution);
 
@@ -9958,12 +6918,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetGravity(Shell @this, float gravity)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetGravity(Shell _this, float gravity)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetGravity(Shell _this, float gravity)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, gravity);
 
@@ -9973,12 +6928,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetCollisionRadius(Shell @this, float radius)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetCollisionRadius(Shell _this, float radius)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetCollisionRadius(Shell _this, float radius)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, radius);
 
@@ -9988,12 +6938,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetTimeout(Shell @this, float time)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetTimeout(Shell _this, float time)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetTimeout(Shell _this, float time)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, time);
 
@@ -10003,12 +6948,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetImpactTime(Shell @this, float time)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetImpactTime(Shell _this, float time)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetImpactTime(Shell _this, float time)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, time);
 
@@ -10018,12 +6958,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetDamage(Shell @this, float damage)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetDamage(Shell _this, float damage)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetDamage(Shell _this, float damage)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, damage);
 
@@ -10033,12 +6968,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetAction(Shell @this, int action)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetAction(Shell _this, int action)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetAction(Shell _this, int action)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, action);
 
@@ -10048,12 +6978,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetActionRadius(Shell @this, float radius)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetActionRadius(Shell _this, float radius)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetActionRadius(Shell _this, float radius)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, radius);
 
@@ -10063,12 +6988,7 @@ public static class ScriptFunctions
 
         public static unsafe void SetShooter(Shell @this, Player player)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::SetShooter(Shell _this, Player player)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::SetShooter(Shell _this, Player player)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, player);
 
@@ -10078,12 +6998,7 @@ public static class ScriptFunctions
 
         public static unsafe void Remove(Shell @this, bool action)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::Remove(Shell _this, bool action)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::Remove(Shell _this, bool action)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 1, action);
 
@@ -10096,12 +7011,7 @@ public static class ScriptFunctions
     {
         public static unsafe void SetVolume(Sound @this, float vol)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Sound::SetVolume(Sound _this, float vol)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Sound::SetVolume(Sound _this, float vol)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, vol);
 
@@ -10111,12 +7021,7 @@ public static class ScriptFunctions
 
         public static unsafe void Seek(Sound @this, float time)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Sound::Seek(Sound _this, float time)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Sound::Seek(Sound _this, float time)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, time);
 
@@ -10126,12 +7031,7 @@ public static class ScriptFunctions
 
         public static unsafe void Stop(Sound @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Sound::Stop(Sound _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Sound::Stop(Sound _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10143,12 +7043,7 @@ public static class ScriptFunctions
     {
         public static unsafe Entity GetEntity(Waypoint @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Entity ccb::_Waypoint::GetEntity(Waypoint _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Entity ccb::_Waypoint::GetEntity(Waypoint _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10159,12 +7054,7 @@ public static class ScriptFunctions
 
         public static unsafe Door GetDoor(Waypoint @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door ccb::_Waypoint::GetDoor(Waypoint _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Door ccb::_Waypoint::GetDoor(Waypoint _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10175,12 +7065,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoom(Waypoint @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Waypoint::GetRoom(Waypoint _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Waypoint::GetRoom(Waypoint _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10194,12 +7079,7 @@ public static class ScriptFunctions
     {
         public static unsafe void CreateDecal(World @this, int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_World::CreateDecal(World _this, int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_World::CreateDecal(World _this, int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, decalid);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -10226,12 +7106,7 @@ public static class ScriptFunctions
 
         public static unsafe void CreateEmitter(World @this, Player target, int id, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_World::CreateEmitter(World _this, Player target, int id, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_World::CreateEmitter(World _this, Player target, int id, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, id);
@@ -10245,12 +7120,7 @@ public static class ScriptFunctions
 
         public static unsafe void CreateEmitter(World @this, Player target, int id, float x, float y, float z, Player attachPlayer)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_World::CreateEmitter(World _this, Player target, int id, float x, float y, float z, Player attachPlayer)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_World::CreateEmitter(World _this, Player target, int id, float x, float y, float z, Player attachPlayer)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, id);
@@ -10265,12 +7135,7 @@ public static class ScriptFunctions
 
         public static unsafe void CreateEmitter(World @this, Player target, int id, float x, float y, float z, Object attachObject)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_World::CreateEmitter(World _this, Player target, int id, float x, float y, float z, Object attachObject)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_World::CreateEmitter(World _this, Player target, int id, float x, float y, float z, Object attachObject)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, target);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 2, id);
@@ -10285,12 +7150,7 @@ public static class ScriptFunctions
 
         public static unsafe Waypoint FindWaypoint(World @this, float fromx, float fromy, float fromz, float targetX, float targetY, float targetZ)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Waypoint ccb::_World::FindWaypoint(World _this, float fromx, float fromy, float fromz, float targetX, float targetY, float targetZ)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Waypoint ccb::_World::FindWaypoint(World _this, float fromx, float fromy, float fromz, float targetX, float targetY, float targetZ)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, fromx);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, fromy);
@@ -10307,12 +7167,7 @@ public static class ScriptFunctions
 
         public static unsafe Waypoint FindWaypoint(World @this, Entity from, Entity to)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Waypoint ccb::_World::FindWaypoint(World _this, Entity from, Entity to)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Waypoint ccb::_World::FindWaypoint(World _this, Entity from, Entity to)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, from);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 2, to);
@@ -10325,12 +7180,7 @@ public static class ScriptFunctions
 
         public static unsafe int GetZone(World @this, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "int ccb::_World::GetZone(World _this, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("int ccb::_World::GetZone(World _this, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 1, x);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, y);
@@ -10344,12 +7194,7 @@ public static class ScriptFunctions
 
         public static unsafe Player CreateBot(World @this, in string unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_World::CreateBot(World _this, const char )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_World::CreateBot(World _this, const char )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed0);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -10363,12 +7208,7 @@ public static class ScriptFunctions
 
         public static unsafe void RaycastItems(World @this)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_World::RaycastItems(World _this)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("void ccb::_World::RaycastItems(World _this)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10377,12 +7217,7 @@ public static class ScriptFunctions
 
         public static unsafe Items FindItem(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_World::FindItem(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_World::FindItem(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10394,12 +7229,7 @@ public static class ScriptFunctions
 
         public static unsafe Items CreateItem(World @this, in string templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_World::CreateItem(World _this, const char templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_World::CreateItem(World _this, const char templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(templatename);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -10422,12 +7252,7 @@ public static class ScriptFunctions
 
         public static unsafe Items CreateItem(World @this, int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_World::CreateItem(World _this, int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_World::CreateItem(World _this, int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, templateindex);
             NativeBindings.SetModuleArgBoolean(ScriptFunctions.ModuleHandle, 2, collision);
@@ -10448,12 +7273,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoomByName(World @this, in string unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_World::GetRoomByName(World _this, const char )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_World::GetRoomByName(World _this, const char )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             var unmanagedStr1 = System.Runtime.InteropServices.Marshalling.Utf8StringMarshaller.ConvertToUnmanaged(unnamed0);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 1, new ObjectHandle((IntPtr)unmanagedStr1));
@@ -10467,12 +7287,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoomByIndex(World @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_World::GetRoomByIndex(World _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_World::GetRoomByIndex(World _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -10484,12 +7299,7 @@ public static class ScriptFunctions
 
         public static unsafe Room GetRoomByIdentifier(World @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_World::GetRoomByIdentifier(World _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_World::GetRoomByIdentifier(World _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -10501,12 +7311,7 @@ public static class ScriptFunctions
 
         public static unsafe Corpse FindCorpse(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Corpse ccb::_World::FindCorpse(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Corpse ccb::_World::FindCorpse(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10518,12 +7323,7 @@ public static class ScriptFunctions
 
         public static unsafe Door GetDoor(World @this, int unnamed0)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door ccb::_World::GetDoor(World _this, int )", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Door ccb::_World::GetDoor(World _this, int )", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, unnamed0);
 
@@ -10535,12 +7335,7 @@ public static class ScriptFunctions
 
         public static unsafe Event GetEvent(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Event ccb::_World::GetEvent(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Event ccb::_World::GetEvent(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10552,12 +7347,7 @@ public static class ScriptFunctions
 
         public static unsafe Event GetEventByIdentifier(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Event ccb::_World::GetEventByIdentifier(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Event ccb::_World::GetEventByIdentifier(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10569,12 +7359,7 @@ public static class ScriptFunctions
 
         public static unsafe Object CreateObject(World @this, int objectid, Room room, bool animated)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Object ccb::_World::CreateObject(World _this, int objectid, Room room, bool animated)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Object ccb::_World::CreateObject(World _this, int objectid, Room room, bool animated)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, objectid);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 2, room);
@@ -10588,12 +7373,7 @@ public static class ScriptFunctions
 
         public static unsafe Object FindObject(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Object ccb::_World::FindObject(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Object ccb::_World::FindObject(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10605,12 +7385,7 @@ public static class ScriptFunctions
 
         public static unsafe Light CreateLight(World @this, int type, float range, Room room)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Light ccb::_World::CreateLight(World _this, int type, float range, Room room)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Light ccb::_World::CreateLight(World _this, int type, float range, Room room)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, type);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, range);
@@ -10624,12 +7399,7 @@ public static class ScriptFunctions
 
         public static unsafe Light FindLight(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Light ccb::_World::FindLight(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Light ccb::_World::FindLight(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10641,12 +7411,7 @@ public static class ScriptFunctions
 
         public static unsafe NPC CreateNPC(World @this, int npctype, float x, float y, float z)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "NPC ccb::_World::CreateNPC(World _this, int npctype, float x, float y, float z)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("NPC ccb::_World::CreateNPC(World _this, int npctype, float x, float y, float z)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, npctype);
             NativeBindings.SetModuleArgFloat(ScriptFunctions.ModuleHandle, 2, x);
@@ -10661,12 +7426,7 @@ public static class ScriptFunctions
 
         public static unsafe NPC GetNPC(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "NPC ccb::_World::GetNPC(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("NPC ccb::_World::GetNPC(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10678,12 +7438,7 @@ public static class ScriptFunctions
 
         public static unsafe ModelPreset GetModelPreset(World @this, int modelid)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ModelPreset ccb::_World::GetModelPreset(World _this, int modelid)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ModelPreset ccb::_World::GetModelPreset(World _this, int modelid)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, modelid);
 
@@ -10695,12 +7450,7 @@ public static class ScriptFunctions
 
         public static unsafe Shell CreateShell(World @this, int weaponid, Player shooter)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Shell ccb::_World::CreateShell(World _this, int weaponid, Player shooter)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Shell ccb::_World::CreateShell(World _this, int weaponid, Player shooter)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, weaponid);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 2, shooter);
@@ -10713,12 +7463,7 @@ public static class ScriptFunctions
 
         public static unsafe Shell FindShell(World @this, int index)
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Shell ccb::_World::FindShell(World _this, int index)", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("Shell ccb::_World::FindShell(World _this, int index)", true);
             NativeBindings.SetModuleArgObject(ScriptFunctions.ModuleHandle, 0, @this);
             NativeBindings.SetModuleArgInt(ScriptFunctions.ModuleHandle, 1, index);
 
@@ -10846,12 +7591,7 @@ public struct Config(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ConfigIterator ccb::_Config::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ConfigIterator ccb::_Config::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -10887,12 +7627,7 @@ public struct Config(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Config ccb::_Config::iterator_get(ConfigIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Config ccb::_Config::iterator_get(ConfigIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10907,12 +7642,7 @@ public struct Config(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Config::iterator_advance(ConfigIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Config::iterator_advance(ConfigIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10925,12 +7655,7 @@ public struct Config(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Config::iterator_is_null(ConfigIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Config::iterator_is_null(ConfigIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -10989,12 +7714,7 @@ public struct Connection(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ConnectionIterator ccb::_Connection::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ConnectionIterator ccb::_Connection::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11030,12 +7750,7 @@ public struct Connection(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Connection ccb::_Connection::iterator_get(ConnectionIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Connection ccb::_Connection::iterator_get(ConnectionIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11050,12 +7765,7 @@ public struct Connection(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Connection::iterator_advance(ConnectionIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Connection::iterator_advance(ConnectionIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11068,12 +7778,7 @@ public struct Connection(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Connection::iterator_is_null(ConnectionIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Connection::iterator_is_null(ConnectionIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11177,12 +7882,7 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "CorpseIterator ccb::_Corpse::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("CorpseIterator ccb::_Corpse::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11218,12 +7918,7 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Corpse ccb::_Corpse::iterator_get(CorpseIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Corpse ccb::_Corpse::iterator_get(CorpseIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11238,12 +7933,7 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Corpse::iterator_advance(CorpseIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Corpse::iterator_advance(CorpseIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11256,12 +7946,7 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Corpse::iterator_is_null(CorpseIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Corpse::iterator_is_null(CorpseIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11385,12 +8070,7 @@ public struct Door(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "DoorIterator ccb::_Door::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("DoorIterator ccb::_Door::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -11426,12 +8106,7 @@ public struct Door(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Door ccb::_Door::iterator_get(DoorIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Door ccb::_Door::iterator_get(DoorIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11446,12 +8121,7 @@ public struct Door(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Door::iterator_advance(DoorIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Door::iterator_advance(DoorIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11464,12 +8134,7 @@ public struct Door(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Door::iterator_is_null(DoorIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Door::iterator_is_null(DoorIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -11998,12 +8663,7 @@ public struct Event(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "EventIterator ccb::_Event::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("EventIterator ccb::_Event::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12039,12 +8699,7 @@ public struct Event(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Event ccb::_Event::iterator_get(EventIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Event ccb::_Event::iterator_get(EventIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12059,12 +8714,7 @@ public struct Event(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Event::iterator_advance(EventIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Event::iterator_advance(EventIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12077,12 +8727,7 @@ public struct Event(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Event::iterator_is_null(EventIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Event::iterator_is_null(EventIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12186,12 +8831,7 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElementIterator ccb::_GUIElement::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("GUIElementIterator ccb::_GUIElement::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12227,12 +8867,7 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "GUIElement ccb::_GUIElement::iterator_get(GUIElementIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("GUIElement ccb::_GUIElement::iterator_get(GUIElementIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12247,12 +8882,7 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_GUIElement::iterator_advance(GUIElementIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_GUIElement::iterator_advance(GUIElementIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12265,12 +8895,7 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_GUIElement::iterator_is_null(GUIElementIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_GUIElement::iterator_is_null(GUIElementIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12510,12 +9135,7 @@ public struct Items(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ItemsIterator ccb::_Items::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ItemsIterator ccb::_Items::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12551,12 +9171,7 @@ public struct Items(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Items ccb::_Items::iterator_get(ItemsIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Items ccb::_Items::iterator_get(ItemsIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12571,12 +9186,7 @@ public struct Items(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Items::iterator_advance(ItemsIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Items::iterator_advance(ItemsIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12589,12 +9199,7 @@ public struct Items(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Items::iterator_is_null(ItemsIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Items::iterator_is_null(ItemsIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12748,12 +9353,7 @@ public struct Light(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "LightIterator ccb::_Light::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("LightIterator ccb::_Light::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -12789,12 +9389,7 @@ public struct Light(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Light ccb::_Light::iterator_get(LightIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Light ccb::_Light::iterator_get(LightIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12809,12 +9404,7 @@ public struct Light(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Light::iterator_advance(LightIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Light::iterator_advance(LightIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12827,12 +9417,7 @@ public struct Light(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Light::iterator_is_null(LightIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Light::iterator_is_null(LightIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -12991,12 +9576,7 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ModelPresetIterator ccb::_ModelPreset::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ModelPresetIterator ccb::_ModelPreset::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13032,12 +9612,7 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ModelPreset ccb::_ModelPreset::iterator_get(ModelPresetIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("ModelPreset ccb::_ModelPreset::iterator_get(ModelPresetIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13052,12 +9627,7 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_ModelPreset::iterator_advance(ModelPresetIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_ModelPreset::iterator_advance(ModelPresetIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13070,12 +9640,7 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_ModelPreset::iterator_is_null(ModelPresetIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_ModelPreset::iterator_is_null(ModelPresetIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13359,12 +9924,7 @@ public struct NPC(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "NPCIterator ccb::_NPC::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("NPCIterator ccb::_NPC::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13400,12 +9960,7 @@ public struct NPC(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "NPC ccb::_NPC::iterator_get(NPCIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("NPC ccb::_NPC::iterator_get(NPCIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13420,12 +9975,7 @@ public struct NPC(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_NPC::iterator_advance(NPCIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_NPC::iterator_advance(NPCIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13438,12 +9988,7 @@ public struct NPC(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_NPC::iterator_is_null(NPCIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_NPC::iterator_is_null(NPCIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13567,12 +10112,7 @@ public struct Object(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ObjectIterator ccb::_Object::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ObjectIterator ccb::_Object::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13608,12 +10148,7 @@ public struct Object(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Object ccb::_Object::iterator_get(ObjectIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Object ccb::_Object::iterator_get(ObjectIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13628,12 +10163,7 @@ public struct Object(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Object::iterator_advance(ObjectIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Object::iterator_advance(ObjectIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13646,12 +10176,7 @@ public struct Object(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Object::iterator_is_null(ObjectIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Object::iterator_is_null(ObjectIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13751,12 +10276,7 @@ public struct Player(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "PlayerIterator ccb::_Player::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("PlayerIterator ccb::_Player::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -13792,12 +10312,7 @@ public struct Player(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Player ccb::_Player::iterator_get(PlayerIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Player ccb::_Player::iterator_get(PlayerIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13812,12 +10327,7 @@ public struct Player(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Player::iterator_advance(PlayerIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Player::iterator_advance(PlayerIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -13830,12 +10340,7 @@ public struct Player(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Player::iterator_is_null(PlayerIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Player::iterator_is_null(PlayerIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -14450,12 +10955,7 @@ public struct Room(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "RoomIterator ccb::_Room::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("RoomIterator ccb::_Room::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -14491,12 +10991,7 @@ public struct Room(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Room ccb::_Room::iterator_get(RoomIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Room ccb::_Room::iterator_get(RoomIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -14511,12 +11006,7 @@ public struct Room(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Room::iterator_advance(RoomIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Room::iterator_advance(RoomIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -14529,12 +11019,7 @@ public struct Room(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Room::iterator_is_null(RoomIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Room::iterator_is_null(RoomIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -14894,12 +11379,7 @@ public struct Shell(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "ShellIterator ccb::_Shell::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("ShellIterator ccb::_Shell::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -14935,12 +11415,7 @@ public struct Shell(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Shell ccb::_Shell::iterator_get(ShellIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Shell ccb::_Shell::iterator_get(ShellIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -14955,12 +11430,7 @@ public struct Shell(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Shell::iterator_advance(ShellIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Shell::iterator_advance(ShellIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -14973,12 +11443,7 @@ public struct Shell(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Shell::iterator_is_null(ShellIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Shell::iterator_is_null(ShellIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -15237,12 +11702,7 @@ public struct Sound(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "SoundIterator ccb::_Sound::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("SoundIterator ccb::_Sound::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -15278,12 +11738,7 @@ public struct Sound(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Sound ccb::_Sound::iterator_get(SoundIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Sound ccb::_Sound::iterator_get(SoundIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -15298,12 +11753,7 @@ public struct Sound(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Sound::iterator_advance(SoundIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Sound::iterator_advance(SoundIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -15316,12 +11766,7 @@ public struct Sound(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Sound::iterator_is_null(SoundIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Sound::iterator_is_null(SoundIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -15380,12 +11825,7 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
 
         public static Iterator Create()
         {
-            var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "WaypointIterator ccb::_Waypoint::create_iterator()", true);
-
-            Debug.Assert(functionIndex > 0);
-
-            NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+            var functionIndex = InvokeHelper.PrepareFunction("WaypointIterator ccb::_Waypoint::create_iterator()", true);
 
             NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
 
@@ -15421,12 +11861,7 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "Waypoint ccb::_Waypoint::iterator_get(WaypointIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("Waypoint ccb::_Waypoint::iterator_get(WaypointIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -15441,12 +11876,7 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "void ccb::_Waypoint::iterator_advance(WaypointIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("void ccb::_Waypoint::iterator_advance(WaypointIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);
@@ -15459,12 +11889,7 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
             fixed (IteratorOpaque* ptr = &this._opaque)
             {
                 var nPtr = (IntPtr)ptr;
-                var functionIndex = NativeBindings.FindModuleFunction(ScriptFunctions.ModuleHandle, "bool ccb::_Waypoint::iterator_is_null(WaypointIterator& in)", true);
-
-                Debug.Assert(functionIndex > 0);
-
-                NativeBindings.PrepareModuleFunction(ScriptFunctions.ModuleHandle, functionIndex);
-
+                var functionIndex = InvokeHelper.PrepareFunction("bool ccb::_Waypoint::iterator_is_null(WaypointIterator& in)", true);
                 NativeBindings.SetModuleArgAddress(ScriptFunctions.ModuleHandle, 0, nPtr);
 
                 NativeBindings.ExecuteModuleFunction(ScriptFunctions.ModuleHandle);

@@ -176,12 +176,7 @@ internal static class GeneratorFacts
     {
         const string functionIndexVar = "functionIndex";
 
-        writer.WriteLine($"var {functionIndexVar} = {NativeBindingsName}.FindModuleFunction({ScriptFunctionsName}.{ModuleHandleName}, \"{declaration}\", true);");
-        writer.WriteLine();
-        writer.WriteLine("Debug.Assert(functionIndex > 0);");
-        writer.WriteLine();
-        writer.WriteLine($"{NativeBindingsName}.PrepareModuleFunction({ScriptFunctionsName}.{ModuleHandleName}, {functionIndexVar});");
-        writer.WriteLine();
+        writer.WriteLine($"var {functionIndexVar} = InvokeHelper.PrepareFunction(\"{declaration}\", true);");
 
         StringBuilder? freeCodeBuilder = null;
 
