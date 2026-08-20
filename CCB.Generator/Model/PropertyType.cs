@@ -1,10 +1,10 @@
 namespace CCB.Generator.Model;
 
-internal sealed class PropertyType(string? className, string name, string type)
+internal sealed record PropertyType(string Name, ValueType Type, bool IsConst)
 {
-    public string? ClassName { get; } = className;
+    public string Name { get; } = Name;
 
-    public string Name { get; } = name;
+    public ValueType Type { get; } = Type;
 
-    public string Type { get; } = type;
+    public bool IsConst { get; } = IsConst;
 }

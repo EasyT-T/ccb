@@ -2,7 +2,7 @@
 
 using CommunityToolkit.Diagnostics;
 
-internal static class InvokeGuard
+internal static class ExecuteGuard
 {
     public static void IsOnMainThread()
     {
@@ -22,5 +22,15 @@ internal static class InvokeGuard
     public static void IsSuccess(int errorCode)
     {
         Guard.IsGreaterThanOrEqualTo(errorCode, 0, "Error Code");
+    }
+
+    public static void IsNotNullptr(IntPtr pointer)
+    {
+        Guard.IsTrue(pointer != IntPtr.Zero);
+    }
+
+    public static void IsNotNullptr(ObjectHandle handle)
+    {
+        Guard.IsTrue(handle.Pointer != IntPtr.Zero);
     }
 }

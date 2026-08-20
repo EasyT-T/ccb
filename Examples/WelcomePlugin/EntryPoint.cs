@@ -1,6 +1,5 @@
 ﻿namespace WelcomePlugin;
 
-using System.Diagnostics;
 using CCB.Abstractions;
 using CCB.Attributes;
 using CCB.Internal;

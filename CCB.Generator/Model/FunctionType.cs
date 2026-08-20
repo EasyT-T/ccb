@@ -2,11 +2,11 @@ namespace CCB.Generator.Model;
 
 using System.Collections.Immutable;
 
-internal sealed class FunctionType(string? className, string name, ImmutableArray<ParameterType> parameters)
+internal sealed record FunctionType(ValueType ReturnType, string Name, ImmutableArray<ParameterType> Parameters)
 {
-    public string? ClassName { get; } = className;
+    public string Name { get; } = Name;
 
-    public string Name { get; } = name;
+    public ValueType ReturnType { get; } = ReturnType;
 
-    public ImmutableArray<ParameterType> Parameters { get; } = parameters;
+    public ImmutableArray<ParameterType> Parameters { get; } = Parameters;
 }

@@ -6,6 +6,11 @@ internal static partial class SyntaxFactory
 {
     public static SyntaxList EmptyList { get; } = List([]);
 
+    public static SyntaxToken Token(SyntaxKind kind)
+    {
+        return new SyntaxToken(kind);
+    }
+
     public static SyntaxList List(IEnumerable<GreenNode> nodes)
     {
         return new SyntaxList([..nodes]);

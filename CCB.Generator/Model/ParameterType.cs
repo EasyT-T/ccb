@@ -1,18 +1,10 @@
 namespace CCB.Generator.Model;
 
-internal sealed class ParameterType(string name, string type, object? defaultValue, bool isHandle, bool isRef, bool isIn, bool isOut)
+internal sealed record ParameterType(string Name, ValueType Type, object? DefaultValue)
 {
-    public string Name { get; } = name;
+    public string Name { get; } = Name;
 
-    public string Type { get; } = type;
+    public ValueType Type { get; } = Type;
 
-    public object? DefaultValue { get; } = defaultValue;
-
-    public bool IsHandle { get; } = isHandle;
-
-    public bool IsRef { get; } = isRef;
-
-    public bool IsIn { get; } = isIn;
-
-    public bool IsOut { get; } = isOut;
+    public object? DefaultValue { get; } = DefaultValue;
 }

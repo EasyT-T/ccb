@@ -15,7 +15,7 @@ internal static class Interop
         {
             var moduleHandle = NativeBindings.GetExecutedModule();
 
-            ScriptFunctions.ModuleHandle = moduleHandle;
+            ExecuteHelper.ModuleHandle = moduleHandle;
 
             EventRegistry.RegisterEventFunctions();
 

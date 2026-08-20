@@ -13,6 +13,12 @@ internal class TreeParser : SimpleVisitor
 
     private readonly List<PropertyType> _properties = [];
 
+    private readonly List<ClassType> _classes = [];
+
+    private readonly List<PropertyType> _classProperties = [];
+
+    private readonly List<FunctionType> _classMethods = [];
+
     public Tree Parse(RootSyntax root)
     {
         if (this._tree is not null)
@@ -22,9 +28,16 @@ internal class TreeParser : SimpleVisitor
 
         root.Accept(this);
 
-        return this._tree = new Tree(
-            functions: [..this._functions],
-            properties: [..this._properties]);
+        this._tree = new Tree(
+            Functions: [..this._functions],
+            Properties: [..this._properties],
+            Classes: [..this._classes]);
+
+        this._functions.Clear();
+        this._properties.Clear();
+        this._classes.Clear();
+
+        return this._tree;
     }
 
     public override void VisitRoot(RootSyntax root)
@@ -37,26 +50,14 @@ internal class TreeParser : SimpleVisitor
 
     public override void VisitGlobalProperty(GlobalPropertySyntax node)
     {
-        var name = node.Identifier.Text;
-        var type = node.Type.Identifier.Text;
-
-        var property = new PropertyType(
-            className: null,
-            name: name,
-            type: type);
+        var property = ParseCommonProperty(node.Type, node.Identifier, node.Modifiers);
 
         this._properties.Add(property);
     }
 
     public override void VisitFunctionDeclaration(FunctionDeclarationSyntax node)
     {
-        var name = node.Identifier.Text;
-        var parameters = ParseParameters(node.ParameterList);
-
-        var function = new FunctionType(
-            className: null,
-            name: name,
-            parameters: [..parameters]);
+        var function = ParseCommonFunction(node.ReturnType, node.Identifier, node.ParameterList);
 
         this._functions.Add(function);
     }
@@ -67,74 +68,89 @@ internal class TreeParser : SimpleVisitor
         {
             member.Accept(this);
         }
+
+        var className = node.Identifier.Text;
+        var classType = new ClassType(
+            ClassName: className,
+            PropertyTypes: [..this._classProperties],
+            Methods: [..this._classMethods]);
+
+        this._classes.Add(classType);
+        this._classMethods.Clear();
+        this._classProperties.Clear();
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
-        var classNode = (ClassDeclarationSyntax)node.Parent!;
-        var className = classNode.Identifier.Text;
+        var property = ParseCommonProperty(node.Type, node.Identifier, node.Modifiers);
 
-        var name = node.Identifier.Text;
-        var type = node.Type.Identifier.Text;
-
-        var property = new PropertyType(
-            className: className,
-            name: name,
-            type: type);
-
-        this._properties.Add(property);
+        this._classProperties.Add(property);
     }
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        var classNode = (ClassDeclarationSyntax)node.Parent!;
-        var className = classNode.Identifier.Text;
+        var function = ParseCommonFunction(node.ReturnType, node.Identifier, node.ParameterList);
 
-        var name = node.Identifier.Text;
-        var parameters = ParseParameters(node.ParameterList);
-        parameters.Insert(0, new ParameterType(
-            name: GeneratorFacts.ThisVarName,
-            type: className,
-            defaultValue: null,
-            isHandle: false,
-            isRef: false,
-            isIn: false,
-            isOut: false));
+        this._classMethods.Add(function);
+    }
+
+    private static PropertyType ParseCommonProperty(TypeSyntax typeSyntax, SyntaxToken identifier, SyntaxTokenList modifiers)
+    {
+        var name = identifier.Text;
+        var type = ParseValueType(typeSyntax);
+        var isConst = modifiers.Any(SyntaxKind.Const);
+
+        return new PropertyType(
+            Name: name,
+            Type: type,
+            IsConst: isConst);
+    }
+
+    private static FunctionType ParseCommonFunction(TypeSyntax returnType, SyntaxToken identifier, ParameterListSyntax parameterList)
+    {
+        var name = identifier.Text;
+        var type = ParseValueType(returnType);
+        var parameters = ParseParameters(parameterList);
 
         var function = new FunctionType(
-            className: className,
-            name: name,
-            parameters: [.. parameters]);
+            Name: name,
+            ReturnType: type,
+            Parameters: [..parameters]);
 
-        this._functions.Add(function);
+        return function;
     }
 
     private static List<ParameterType> ParseParameters(ParameterListSyntax node)
     {
-        return [..node.Parameters.Select(parameterSyntax => ParseParameter(parameterSyntax.Element))];
+        return [..node.Parameters.Select((parameterSyntax, i) => ParseParameter(parameterSyntax.Element, i))];
     }
 
-    private static ParameterType ParseParameter(ParameterSyntax node)
+    private static ParameterType ParseParameter(ParameterSyntax node, int index)
     {
-        var name = node.Identifier.Text;
-        var typeSyntax = node.Type;
+        var name = string.IsNullOrEmpty(node.Identifier.Text) ? $"unnamed{index}" : node.Identifier.Text;
 
-        var type = typeSyntax.Identifier.Text;
-        var isHandle = typeSyntax.IsHandle;
-        var isRef = typeSyntax.IsRef;
-        var isOut = typeSyntax.IsOut;
-        var isIn = typeSyntax.IsIn;
+        var type = ParseValueType(node.Type);
 
         var defaultValue = GetDefaultValue(node.DefaultValue);
 
         return new ParameterType(
-            name: name,
-            type: type,
-            defaultValue: defaultValue,
-            isHandle: isHandle,
-            isRef: isRef,
-            isOut: isOut,
-            isIn: isIn);
+            Name: name,
+            Type: type,
+            DefaultValue: defaultValue);
+    }
+
+    private static ValueType ParseValueType(TypeSyntax typeSyntax)
+    {
+        var type = typeSyntax.Identifier.Text;
+        var kind = typeSyntax.Identifier.Kind;
+        var refHandleToken = typeSyntax.RefHandle;
+        var inoutToken = typeSyntax.Inout;
+
+        return new ValueType(
+            Name: type,
+            Kind: kind,
+            RefHandleToken: refHandleToken,
+            InoutToken: inoutToken);
     }
 
     private static object? GetDefaultValue(SyntaxToken token)

@@ -4,6 +4,11 @@ using CCB.Syntax;
 
 public static partial class SyntaxFactory
 {
+    public static SyntaxToken Token(SyntaxKind kind)
+    {
+        return new SyntaxToken(Internal.SyntaxFactory.Token(kind), null, 0, 0);
+    }
+
     internal static SyntaxList List(IEnumerable<Syntax.Internal.GreenNode> nodes)
     {
         return (SyntaxList)Internal.SyntaxFactory.List(nodes).CreateRed();

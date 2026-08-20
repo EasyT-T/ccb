@@ -9,10 +9,32 @@ internal class IndentedTextWriter(TextWriter innerWriter, string indentString = 
 
     public override Encoding Encoding { get; } = innerWriter.Encoding;
 
-    public IndentScope Indent()
+    public IndentScope Scope()
+    {
+        this.Indent();
+        return new IndentScope(this);
+    }
+
+    public void Indent()
     {
         this._indentLevel++;
-        return new IndentScope(this);
+    }
+
+    public void Unindent()
+    {
+        this._indentLevel--;
+    }
+
+    public void OpenBlock()
+    {
+        this.WriteLine("{");
+        this.Indent();
+    }
+
+    public void CloseBlock()
+    {
+        this.Unindent();
+        this.WriteLine("}");
     }
 
     public override void Write(char value)
@@ -43,7 +65,14 @@ internal class IndentedTextWriter(TextWriter innerWriter, string indentString = 
     {
         public void Dispose()
         {
-            writer._indentLevel--;
+            writer.Unindent();
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        innerWriter.Dispose();
     }
 }

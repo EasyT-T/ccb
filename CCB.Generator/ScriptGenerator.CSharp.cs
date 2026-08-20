@@ -1,661 +1,504 @@
 namespace CCB.Generator;
 
-using System.Collections;
 using System.Collections.Immutable;
-using CCB.Extensions;
 using CCB.Generator.Extensions;
+using CCB.Generator.Model;
+using CCB.Generator.Model.Bounded;
 using CCB.Syntax;
-using CCB.Syntax.Visitor;
+using CCB.Syntax.Factory;
 
-internal class CSharpScriptGenerator(IndentedTextWriter writer, GeneratorContext context) : SimpleVisitor
+internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig config) : IDisposable
 {
-    private readonly ScriptFunctionsGenerator _scriptFunctionsGenerator = new ScriptFunctionsGenerator(writer, context);
+    public void WriteTree(BoundTree tree)
+    {
+        this.WriteFileHeaders();
+        this.WriteGlobalProperties(tree.Properties);
+        writer.WriteLine();
+        this.WriteScriptFunctions(tree);
+    }
 
-    public override void VisitRoot(RootSyntax root)
+    private void WriteGlobalProperties(ImmutableArray<BoundPropertyType> properties)
+    {
+        writer.WriteLine("public static class GlobalProperties");
+        writer.OpenBlock();
+
+        foreach (var property in properties)
+        {
+            writer.WriteLine();
+            writer.WriteLine($"public static {property.Model.Type.Name} {property.Model.Name.ToUpperCamelCase()}");
+            writer.OpenBlock();
+            writer.WriteLine($"get => ScriptFunctions.{property.Getter.Model.Name}();");
+
+            if (property.Setter is not null)
+            {
+                writer.WriteLine($"set => ScriptFunctions.{property.Setter.Model.Name}(value);");
+            }
+            writer.CloseBlock();
+        }
+
+        writer.CloseBlock();
+    }
+
+    private void WriteScriptFunctions(BoundTree tree)
+    {
+        var globalContext = new GlobalContext(NamespaceType.Global);
+
+        writer.WriteLine("public static class ScriptFunctions");
+        writer.OpenBlock();
+        this.WriteProperties(tree.Properties, globalContext);
+        this.WriteFunctions(tree.Functions, globalContext);
+        this.WriteClasses(tree.Classes, globalContext);
+        writer.CloseBlock();
+    }
+
+    private void WriteClasses(IEnumerable<BoundClassType> classes, TypeContext context)
+    {
+        foreach (var classType in classes)
+        {
+            writer.WriteLine();
+            this.WriteClass(classType, context);
+        }
+    }
+
+    private void WriteClass(BoundClassType classType, TypeContext context)
+    {
+        context = new ClassContext(classType.Model, context.Namespace);
+
+        writer.WriteLine($"public static class {classType.Model.ClassName}Functions");
+        writer.OpenBlock();
+
+        this.WriteProperties(classType.Properties, context);
+        this.WriteFunctions(classType.Methods, context);
+        writer.CloseBlock();
+    }
+
+    private void WriteProperties(IEnumerable<BoundPropertyType> properties, TypeContext context)
+    {
+        foreach (var property in properties)
+        {
+            writer.WriteLine();
+            this.WriteProperty(property, context);
+        }
+    }
+
+    private void WriteProperty(BoundPropertyType property, TypeContext context)
+    {
+        this.WriteFunction(property.Getter, context);
+
+        if (property.Setter is null)
+        {
+            return;
+        }
+
+        writer.WriteLine();
+        this.WriteFunction(property.Setter, context);
+    }
+
+    private void WriteFunctions(IEnumerable<BoundFunctionType> functions, TypeContext context)
+    {
+        foreach (var function in functions)
+        {
+            writer.WriteLine();
+            this.WriteFunction(function, context);
+        }
+    }
+
+    private void WriteFunction(BoundFunctionType function, TypeContext context)
+    {
+        writer.WriteLine(BuildFunctionDeclaration(function.Model, context, isStatic: true, isUnsafe: true));
+        writer.OpenBlock();
+
+        var outs = function.Model.Parameters.Where(parameter => parameter.Type.IsOut).ToList();
+
+        foreach (var outParameter in outs)
+        {
+            writer.WriteLine($"{outParameter.Name} = default;");
+        }
+
+        foreach (var outParameter in outs)
+        {
+            writer.WriteLine($"fixed ({outParameter.Type.Name}* {outParameter.Name}Ptr = &{outParameter.Name})");
+        }
+
+        writer.OpenBlock();
+        writer.WriteLine("var result = ExecuteContext");
+        writer.Indent();
+        writer.WriteLine($".FromDeclaration(\"{function.Declaration}\")");
+
+        var parameters = GetParametersWithThis(function.Model.Parameters, context);
+        var i = 0;
+
+        foreach (var parameter in parameters)
+        {
+            var name = parameter.Type.IsOut ? $"(IntPtr){parameter.Name}Ptr" : parameter.Name;
+
+            writer.WriteLine($".WithArgument({i}, {name})");
+
+            i++;
+        }
+
+        writer.WriteLine(".Execute();");
+        writer.Unindent();
+
+        if (function.Model.ReturnType.Kind != SyntaxKind.Void)
+        {
+            writer.WriteLine($"return result.{GetReturnMethod(function.Model.ReturnType, isHandle: true)}();");
+        }
+
+        writer.CloseBlock();
+
+        writer.CloseBlock();
+    }
+
+    private void WriteFileHeaders()
     {
         writer.WriteLine("// <auto-generated/>");
-        writer.WriteLine();
         writer.WriteLine("namespace CCB.Internal;");
         writer.WriteLine();
-        writer.WriteLine("using System.Diagnostics;");
+        writer.WriteLine("using System;");
         writer.WriteLine("using System.Runtime.InteropServices;");
         writer.WriteLine("using System.Collections;");
         writer.WriteLine();
-
-        root.Accept(this._scriptFunctionsGenerator);
-
-        for (var i = 0; i < root.Members.Count; i++)
-        {
-            var member = root.Members[i];
-
-            if (i > 0 && member is ClassDeclarationSyntax)
-            {
-                writer.WriteLine();
-            }
-
-            member.Accept(this);
-        }
     }
 
-    public override void VisitGlobalProperty(GlobalPropertySyntax node)
+    private static string BuildFunctionDeclaration(FunctionType function, TypeContext context, bool isStatic, bool isUnsafe)
     {
-        var propertyName = node.Identifier.Text;
-        var propertyType = node.Type.Identifier.Text;
-
-        writer.WriteLine("public static partial class GlobalProperties");
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
-            writer.WriteLine($"public static {propertyType} {propertyName.ToUpperCamelCase()}");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                writer.WriteLine($"get => {GeneratorFacts.ScriptFunctionsName}.Get{propertyName}();");
-            }
-
-            writer.WriteLine("}");
-        }
-
-        writer.WriteLine("}");
+        var parameters = BuildDeclarationParameterList(function, context);
+        var staticModifier = isStatic ? "static " : string.Empty;
+        var unsafeModifier = isUnsafe ? "unsafe " : string.Empty;
+        return $"public {staticModifier}{unsafeModifier}{GetReturnTypeText(function.ReturnType)} {function.Name}({parameters})";
     }
 
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    private static string BuildDeclarationParameterList(FunctionType function, TypeContext context)
     {
-        var className = node.Identifier.Text;
-
-        writer.WriteLine($"public struct {className}(ObjectHandle handle) : IScriptObject");
-
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
-            //writer.WriteLine(context.Config.InternalClasses.Contains(className)
-            //    ? "[StructLayout(LayoutKind.Sequential, Size = 4)]"
-            //    : "[StructLayout(LayoutKind.Sequential)]");
-
-            //writer.WriteLine("private readonly struct Opaque");
-            //writer.WriteLine("{");
-
-            //using (writer.Indent())
-            //{
-            //    // TODO Fields
-            //}
-
-            //writer.WriteLine("}");
-
-            //writer.WriteLine();
-
-            writer.WriteLine("public ObjectHandle Handle { get; } = handle;");
-            writer.WriteLine();
-            writer.WriteLine("public static IScriptObject Create(ObjectHandle handle)");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                writer.WriteLine($"return new {className}(handle);");
-            }
-
-            writer.WriteLine("}");
-
-            WriteIterator();
-
-            writer.WriteLine();
-
-            for (var i = 0; i < node.Members.Count; i++)
-            {
-                if (i > 0)
-                {
-                    writer.WriteLine();
-                }
-
-                var member = node.Members[i];
-                member.Accept(this);
-            }
-        }
-
-        writer.WriteLine("}");
-
-        return;
-
-        void WriteIterator()
-        {
-            var iterables = context.Config.Iterables;
-
-            if (!iterables.Contains(className))
-            {
-                return;
-            }
-
-            var iteratorName = $"{className}Iterator";
-
-            writer.WriteLine();
-            writer.WriteLine($"public struct Iterator(IteratorOpaque opaque) : IEnumerator<{className}>");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                writer.WriteLine("private IteratorOpaque _opaque = opaque;");
-                writer.WriteLine($"private {className}? _current;");
-                writer.WriteLine($"public {className} Current => this._current!.Value;");
-                writer.WriteLine("object IEnumerator.Current => this._current!.Value;");
-
-                writer.WriteLine();
-
-                writer.WriteLine("public static Iterator Create()");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
-                {
-                    GeneratorFacts.GenerateInvokeCode(writer, [], $"{iteratorName} ccb::_{className}::create_iterator()");
-                    writer.WriteLine($"var handle = {GeneratorFacts.NativeBindingsName}.GetModuleReturnObject({GeneratorFacts.ScriptFunctionsName}.{GeneratorFacts.ModuleHandleName});");
-                    writer.WriteLine("var opaque = IteratorOpaque.Create(handle);");
-                    writer.WriteLine("return new Iterator(opaque);");
-                }
-
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-
-                writer.WriteLine("public bool MoveNext()");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
-                {
-                    writer.WriteLine("if (this.IsNull())");
-                    writer.WriteLine("{");
-
-                    using (writer.Indent())
-                    {
-                        writer.WriteLine("this._current = null;");
-                        writer.WriteLine("return false;");
-                    }
-
-                    writer.WriteLine("}");
-
-                    writer.WriteLine("this._current = this.Get();");
-                    writer.WriteLine("this.Advance();");
-                    writer.WriteLine();
-                    writer.WriteLine("return true;");
-                }
-
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-
-                writer.WriteLine("public void Reset()");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
-                {
-                    writer.WriteLine("throw new NotSupportedException();");
-                }
-
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-
-                writer.WriteLine("public void Dispose()");
-                writer.WriteLine("{");
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-
-                writer.WriteLine($"public unsafe {className} Get()");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
-                {
-                    writer.WriteLine("fixed (IteratorOpaque* ptr = &this._opaque)");
-                    writer.WriteLine("{");
-
-                    using (writer.Indent())
-                    {
-                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
-
-                        GeneratorFacts.GenerateInvokeCode(writer,
-                            [("nPtr", string.Empty, SyntaxKind.Ref)],
-                            $"{className} ccb::_{className}::iterator_get({iteratorName}& in)",
-                            SyntaxKind.Identifier,
-                            className,
-                            false);
-                    }
-
-                    writer.WriteLine("}");
-                }
-
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-
-                writer.WriteLine("public unsafe void Advance()");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
-                {
-                    writer.WriteLine("fixed (IteratorOpaque* ptr = &this._opaque)");
-                    writer.WriteLine("{");
-
-                    using (writer.Indent())
-                    {
-                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
-
-                        GeneratorFacts.GenerateInvokeCode(writer,
-                            [("nPtr", string.Empty, SyntaxKind.Ref)],
-                            $"void ccb::_{className}::iterator_advance({iteratorName}& in)");
-                    }
-
-                    writer.WriteLine("}");
-                }
-
-                writer.WriteLine("}");
-
-                writer.WriteLine();
-
-                writer.WriteLine("public unsafe bool IsNull()");
-                writer.WriteLine("{");
-
-                using (writer.Indent())
-                {
-                    writer.WriteLine("fixed (IteratorOpaque* ptr = &this._opaque)");
-                    writer.WriteLine("{");
-
-                    using (writer.Indent())
-                    {
-                        writer.WriteLine("var nPtr = (IntPtr)ptr;");
-
-                        GeneratorFacts.GenerateInvokeCode(writer,
-                            [("nPtr", string.Empty, SyntaxKind.Ref)],
-                            $"bool ccb::_{className}::iterator_is_null({iteratorName}& in)",
-                            SyntaxKind.Bool,
-                            string.Empty,
-                            false);
-                    }
-
-                    writer.WriteLine("}");
-                }
-
-                writer.WriteLine("}");
-            }
-
-            writer.WriteLine("}");
-
-            writer.WriteLine();
-
-            writer.WriteLine($"public class IteratorEnumerable : IEnumerable<{className}>");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                writer.WriteLine("public Iterator GetEnumerator() => Iterator.Create();");
-                writer.WriteLine();
-                writer.WriteLine($"IEnumerator<{className}> IEnumerable<{className}>.GetEnumerator() => this.GetEnumerator();");
-                writer.WriteLine();
-                writer.WriteLine("IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();");
-            }
-
-            writer.WriteLine("}");
-
-            writer.WriteLine();
-
-            writer.WriteLine("public static IteratorEnumerable List()");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                writer.WriteLine("return new IteratorEnumerable();");
-            }
-
-            writer.WriteLine("}");
-        }
+        var parameterTexts = function.Parameters.Select(GetParameterText);
+        return JoinWithThis(parameterTexts, context, GetThisParameterText);
     }
 
-    public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+    private static IEnumerable<ParameterType> GetParametersWithThis(IEnumerable<ParameterType> parameters, TypeContext context) => context switch
     {
-        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
+        GlobalContext => parameters,
+        ClassContext classContext => parameters.Prepend(new ParameterType("@this",
+            new ValueType(
+                classContext.Type.ClassName,
+                SyntaxKind.Identifier,
+                SyntaxToken.None,
+                SyntaxFactory.Token(SyntaxKind.In)),
+            null)),
+        _ => throw new ArgumentOutOfRangeException(nameof(context)),
+    };
 
-        var methodName = node.Identifier.Text;
-
-        if (node.ParameterList.Parameters.Any(parameter => context.Config.FuncDefs.Any(d => d.DefName == parameter.Element.Type.Identifier.Text)))
+    private static string JoinWithThis(IEnumerable<string> texts, TypeContext context, Func<ClassType, string> thisTextProvider)
+    {
+        var allTexts = context switch
         {
-            // TODO FuncDef fix
-            return;
-        }
-
-        var parameters = node.ParameterList.Parameters
-            .Select((p, i) =>
-            {
-                var element = p.Element;
-                var typeName = GeneratorFacts.GetCSharpTypeName(element.Type);
-                var identifierName = element.Identifier.Kind == SyntaxKind.None
-                    ? $"unnamed{i}"
-                    : element.Identifier.Text;
-
-                return $"{typeName} {identifierName}";
-            });
-
-        var parametersText = string.Join(", ", parameters);
-
-        var argumentsWithThis = node.ParameterList.Parameters
-            .Select((p, i) =>
-            {
-                var element = p.Element;
-                var outText = element.Type.Inout.Kind == SyntaxKind.Out ? "out " : string.Empty;
-                var identifier = element.Identifier.Kind == SyntaxKind.None ? $"unnamed{i}" : element.Identifier.Text;
-
-                return $"{outText}{identifier}";
-            })
-            .Prepend("this");
-
-        var argumentsWithThisText = string.Join(", ", argumentsWithThis);
-
-        writer.WriteLine($"public {node.ReturnType.Identifier.Text} {methodName}({parametersText})");
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
-            writer.WriteLine(node.ReturnType.IsVoid
-                ? $"{GeneratorFacts.ScriptFunctionsName}.As{className}.{methodName}({argumentsWithThisText});"
-                : $"return {GeneratorFacts.ScriptFunctionsName}.As{className}.{methodName}({argumentsWithThisText});");
-        }
-
-        writer.WriteLine("}");
+            GlobalContext => texts,
+            ClassContext classContext => texts.Prepend(thisTextProvider(classContext.Type)),
+            _ => throw new ArgumentOutOfRangeException(nameof(context)),
+        };
+        return CommaJoin(allTexts);
     }
 
-    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    private static string CommaJoin(IEnumerable<string?> values)
     {
-        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
-        var propertyName = node.Identifier.Text;
-        var propertyType = node.Type.Identifier.Text;
+        return string.Join(", ", values);
+    }
 
-        writer.WriteLine($"public {propertyType} {propertyName}");
-        writer.WriteLine("{");
+    private static string GetParameterText(ParameterType parameter) =>
+        $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name}";
 
-        using (writer.Indent())
-        {
-            writer.WriteLine($"get => {GeneratorFacts.ScriptFunctionsName}.As{className}.Get{propertyName}(this);");
+    private static string GetThisParameterText(ClassType classType) => $"{classType.ClassName} @this";
 
-            if (!node.Modifiers.Any(SyntaxKind.Const))
-            {
-                writer.WriteLine($"set => {GeneratorFacts.ScriptFunctionsName}.As{className}.Set{propertyName}(this, value);");
-            }
-        }
+    private static string GetReturnMethod(ValueType type, bool isHandle) => type.Kind switch
+    {
+        SyntaxKind.QuestionMark => "GetPointer",
+        SyntaxKind.Ref => "GetPointer",
+        SyntaxKind.Bool => "GetBool",
+        SyntaxKind.Int8 => "GetByte",
+        SyntaxKind.Int16 => "GetShort",
+        SyntaxKind.Int => "GetInt",
+        SyntaxKind.UInt => "GetUInt",
+        SyntaxKind.Int64 => "GetLong",
+        SyntaxKind.Float => "GetFloat",
+        SyntaxKind.String => "GetString",
+        _ => isHandle ? $"GetRefObject<{type.Name}>" : $"GetObject<{type.Name}>",
+    };
 
-        writer.WriteLine("}");
+    private static string GetReturnTypeText(ValueType type) => type.Kind switch
+    {
+        SyntaxKind.QuestionMark => "IntPtr",
+        SyntaxKind.Ref => "in IntPtr",
+        SyntaxKind.Int8 => "byte",
+        SyntaxKind.Int16 => "short",
+        SyntaxKind.UInt => "uint",
+        SyntaxKind.Int64 => "long",
+        _ => GetTypeText(type),
+    };
+
+    private static string GetParameterTypeText(ValueType type) => type.Kind switch
+    {
+        SyntaxKind.QuestionMark => "IntPtr",
+        SyntaxKind.Ref => "IntPtr",
+        SyntaxKind.Int8 => "byte",
+        SyntaxKind.Int16 => "short",
+        SyntaxKind.UInt => "uint",
+        SyntaxKind.Int64 => "long",
+        _ => GetTypeText(type),
+    };
+
+    private static string GetTypeText(ValueType type)
+    {
+        return type.IsHandle ? "IntPtr" : type.Name;
+    }
+
+    private static string GetTypeModifiersText(ValueType type)
+    {
+        var tokens = new[] { type.RefHandleToken, type.InoutToken };
+        var modifierTexts = tokens
+            .Where(token => token.Kind is not SyntaxKind.None and not SyntaxKind.Ampersand)
+            .Select(GetModifierText)
+            .ToList();
+
+        return modifierTexts.Count > 0
+            ? string.Join(' ', modifierTexts) + " "
+            : string.Empty;
+    }
+
+    private static string GetModifierText(SyntaxToken token) => token.Kind switch
+    {
+        SyntaxKind.In => "in",
+        SyntaxKind.Out => "out",
+        SyntaxKind.Handle => string.Empty,
+        _ => throw new ArgumentOutOfRangeException(nameof(token)),
+    };
+
+    public void Dispose()
+    {
+        writer.Dispose();
     }
 }
 
-internal class ScriptFunctionsGenerator(IndentedTextWriter writer, GeneratorContext context) : SimpleVisitor
+internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig config) : IDisposable
 {
-    public override void VisitRoot(RootSyntax root)
+    public void WriteClass(BoundClassType classType)
     {
-        writer.WriteLine("public static class ScriptFunctions");
-        writer.WriteLine("{");
+        this.WriteFileHeaders();
 
-        using (writer.Indent())
+        writer.WriteLine($"public struct {classType.Model.ClassName}(ObjectHandle handle) : IScriptObject");
+        writer.OpenBlock();
+        writer.WriteLine("public ObjectHandle Handle { get; } = handle;");
+        this.WriteIterator(classType);
+
+        writer.WriteLine();
+        writer.WriteLine("public static IScriptObject Create(ObjectHandle handle)");
+        writer.OpenBlock();
+        writer.WriteLine($"return new {classType.Model.ClassName}(handle);");
+        writer.CloseBlock();
+
+        foreach (var property in classType.Properties)
         {
-            writer.WriteLine($"public static ModuleHandle {GeneratorFacts.ModuleHandleName} {{ get; internal set; }}");
+            writer.WriteLine();
+            writer.WriteLine($"public {property.Model.Type.Name} {property.Model.Name}");
+            writer.OpenBlock();
+            writer.WriteLine($"get => ScriptFunctions.{classType.Model.ClassName}Functions.{property.Getter.Model.Name}(this);");
 
-            foreach (var member in root.Members)
+            if (property.Setter is not null)
             {
-                writer.WriteLine();
-
-                member.Accept(this);
-            }
-        }
-
-        writer.WriteLine("}");
-    }
-
-    public override void VisitGlobalProperty(GlobalPropertySyntax node)
-    {
-        var propertyName = node.Identifier.Text;
-        var propertyType = node.Type.Identifier.Text;
-
-        GenerateGet();
-
-        return;
-
-        void GenerateGet()
-        {
-            writer.WriteLine($"public static unsafe {propertyType} Get{propertyName}()");
-            writer.WriteLine("{");
-
-            using (writer.Indent())
-            {
-                GeneratorFacts.GenerateInvokeCode(writer,
-                    [],
-                    $"{propertyType} ccb::Get{propertyName}()",
-                    node.Type.Kind,
-                    node.Type.Identifier.Text,
-                    false);
+                writer.WriteLine($"set => ScriptFunctions.{classType.Model.ClassName}Functions.{property.Setter.Model.Name}(this, value);");
             }
 
-            writer.WriteLine("}");
+            writer.CloseBlock();
         }
+
+        foreach (var function in classType.Methods)
+        {
+            writer.WriteLine();
+            writer.WriteLine(BuildFunctionDeclaration(function.Model));
+            writer.OpenBlock();
+            writer.WriteLine(BuildFunctionBody(classType.Model, function.Model));
+            writer.CloseBlock();
+        }
+
+        writer.CloseBlock();
     }
 
-    public override void VisitFunctionDeclaration(FunctionDeclarationSyntax node)
+    private void WriteIterator(BoundClassType classType)
     {
-        var methodName = node.Identifier.Text;
+        var iteratorType = classType.Iterator;
 
-        var parameters = node.ParameterList.Parameters
-            .Select((p, i) =>
-            {
-                var element = p.Element;
-                var typeName = GeneratorFacts.GetCSharpTypeName(element.Type);
-                var identifierName = element.Identifier.Kind == SyntaxKind.None
-                    ? $"unnamed{i}"
-                    : element.Identifier.Text;
-
-                var hasFuncDef = context.Config.FuncDefs.Any(d => d.DefName == element.Type.Identifier.Text);
-
-                return (
-                    TypeKind: element.Type.Kind,
-                    TypeName: typeName,
-                    Out: element.Type.Inout.Kind == SyntaxKind.Out ? "out " : string.Empty,
-                    IdentifierName: identifierName,
-                    HasFuncDef: hasFuncDef
-                );
-            }).ToImmutableArray();
-
-        if (parameters.Any(p => p.HasFuncDef))
+        if (iteratorType is null)
         {
-            // TODO FuncDef fix
             return;
         }
 
-        var parametersText = string.Join(", ", parameters.Select(p => $"{p.TypeName} {p.IdentifierName}"));
+        var className = classType.Model.ClassName;
 
-        var declarationReturnTypeName = node.ReturnType.Identifier.Kind == SyntaxKind.String
-            ? "char"
-            : node.ReturnType.ToStructuredString();
+        writer.WriteLine();
+        writer.WriteLine($"public struct Iterator(IteratorOpaque opaque) : IEnumerator<{className}>");
+        writer.OpenBlock();
 
-        var declarationParameters = node.ParameterList.Parameters
-            .Select(p =>
-            {
-                var element = p.Element;
+        writer.WriteLine("private IteratorOpaque _opaque = opaque;");
+        writer.WriteLine($"private {className}? _current;");
+        writer.WriteLine($"public {className} Current => this._current!.Value;");
+        writer.WriteLine("object IEnumerator.Current => this._current!.Value;");
+        writer.WriteLine();
+        writer.WriteLine("public static Iterator Create()");
+        writer.OpenBlock();
+        writer.WriteLine($"return new Iterator(IteratorOpaque.Create(\"{iteratorType.CreateIteratorFunction.Declaration}\"));");
+        writer.CloseBlock();
 
-                var typeName = element.Type.Identifier.Kind == SyntaxKind.String
-                    ? "const char"
-                    :element.Type.ToStructuredString();
+        writer.WriteLine();
 
-                var identifierName = element.Identifier.Text;
+        writer.WriteLine("public bool MoveNext()");
+        writer.OpenBlock();
+        writer.WriteLine($"if (this._opaque.IsNull(\"{iteratorType.IteratorIsNullFunction.Declaration}\"))");
+        writer.OpenBlock();
+        writer.WriteLine("this._current = null;");
+        writer.WriteLine("return false;");
+        writer.CloseBlock();
+        writer.WriteLine();
+        writer.WriteLine($"this._current = this._opaque.Get<{className}>(\"{iteratorType.IteratorGetFunction.Declaration}\");");
+        writer.WriteLine($"this._opaque.Advance(\"{iteratorType.IteratorAdvanceFunction.Declaration}\");");
+        writer.WriteLine();
+        writer.WriteLine("return true;");
+        writer.CloseBlock();
 
-                return $"{typeName} {identifierName}";
-            });
+        writer.WriteLine();
 
-        var declarationParametersText = string.Join(", ", declarationParameters);
+        writer.WriteLine("public void Reset()");
+        writer.OpenBlock();
+        writer.WriteLine("throw new NotSupportedException();");
+        writer.CloseBlock();
 
-        var declaration = $"{declarationReturnTypeName} ccb::{methodName}({declarationParametersText})";
+        writer.WriteLine();
 
-        writer.WriteLine($"public static unsafe {GeneratorFacts.GetCSharpTypeName(node.ReturnType, false)} {methodName}({parametersText})");
-        writer.WriteLine("{");
+        writer.WriteLine("public void Dispose()");
+        writer.OpenBlock();
+        writer.CloseBlock();
 
-        using (writer.Indent())
-        {
-            GeneratorFacts.GenerateInvokeCode(writer,
-                [.. parameters.Select(p => (p.IdentifierName, p.Out, p.TypeKind))],
-                declaration,
-                node.ReturnType.Kind,
-                node.ReturnType.Identifier.Text,
-                true);
-        }
+        writer.CloseBlock();
 
-        writer.WriteLine("}");
+        writer.WriteLine();
+
+        writer.WriteLine($"public class IteratorEnumerable : IEnumerable<{className}>");
+        writer.OpenBlock();
+        writer.WriteLine("public Iterator GetEnumerator() => Iterator.Create();");
+        writer.WriteLine();
+        writer.WriteLine($"IEnumerator<{className}> IEnumerable<{className}>.GetEnumerator() => this.GetEnumerator();");
+        writer.WriteLine();
+        writer.WriteLine("IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();");
+        writer.CloseBlock();
+
+        writer.WriteLine();
+
+        writer.WriteLine("public static IteratorEnumerable List()");
+        writer.OpenBlock();
+        writer.WriteLine("return new IteratorEnumerable();");
+        writer.CloseBlock();
     }
 
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    private void WriteFileHeaders()
     {
-        var className = node.Identifier.Text;
-
-        writer.WriteLine($"public static class As{className}");
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
-            for (var i = 0; i < node.Members.Count; i++)
-            {
-                if (i > 0)
-                {
-                    writer.WriteLine();
-                }
-
-                var member = node.Members[i];
-                member.Accept(this);
-            }
-        }
-
-        writer.WriteLine("}");
+        writer.WriteLine("// <auto-generated/>");
+        writer.WriteLine("namespace CCB.Internal;");
+        writer.WriteLine();
+        writer.WriteLine("using System;");
+        writer.WriteLine("using System.Runtime.InteropServices;");
+        writer.WriteLine("using System.Collections;");
+        writer.WriteLine();
     }
 
-    public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+    private static string BuildFunctionDeclaration(FunctionType function)
     {
-        var className = ((ClassDeclarationSyntax)node.Parent!).Identifier.Text;
-
-        var methodName = node.Identifier.Text;
-
-        var parametersWithThis = node.ParameterList.Parameters
-            .Select((p, i) =>
-            {
-                var element = p.Element;
-                var typeName = GeneratorFacts.GetCSharpTypeName(element.Type);
-                var identifierName = element.Identifier.Kind == SyntaxKind.None
-                    ? $"unnamed{i}"
-                    : element.Identifier.Text;
-
-                var hasFuncDef = context.Config.FuncDefs.Any(d => d.DefName == element.Type.Identifier.Text);
-
-                return (
-                    TypeKind: element.Type.Kind,
-                    TypeName: typeName,
-                    Out: element.Type.Inout.Kind == SyntaxKind.Out ? "out " : string.Empty,
-                    IdentifierName: identifierName,
-                    HasFuncDef: hasFuncDef
-                );
-            })
-            .Prepend((
-                TypeKind: SyntaxKind.Identifier,
-                TypeName: className,
-                Out: string.Empty,
-                IdentifierName: "@this",
-                HasFuncDef: false)).ToImmutableArray();
-
-        if (parametersWithThis.Any(p => p.HasFuncDef))
-        {
-            // TODO FuncDef fix
-            return;
-        }
-
-        var parametersWithThisText = string.Join(", ", parametersWithThis.Select(p => $"{p.TypeName} {p.IdentifierName}"));
-
-        var declarationReturnTypeName = node.ReturnType.Identifier.Kind == SyntaxKind.String
-            ? "char"
-            : node.ReturnType.ToStructuredString();
-
-        var declarationParametersWithThis = node.ParameterList.Parameters
-                .Select(p =>
-                {
-                    var element = p.Element;
-
-                    var typeName = element.Type.Identifier.Kind == SyntaxKind.String
-                        ? "const char"
-                        :element.Type.ToStructuredString();
-
-                    var identifierName = element.Identifier.Text;
-
-                    return $"{typeName} {identifierName}";
-                })
-            .Prepend($"{className} {GeneratorFacts.ThisVarName}");
-
-        var declarationParametersWithThisText = string.Join(", ", declarationParametersWithThis);
-
-        var declaration = $"{declarationReturnTypeName} ccb::_{className}::{methodName}({declarationParametersWithThisText})";
-
-        writer.WriteLine($"public static unsafe {node.ReturnType.Identifier.Text} {methodName}({parametersWithThisText})");
-        writer.WriteLine("{");
-
-        using (writer.Indent())
-        {
-            GeneratorFacts.GenerateInvokeCode(writer,
-                [.. parametersWithThis.Select(p => (p.IdentifierName, p.Out, p.TypeKind))],
-                declaration,
-                node.ReturnType.Kind,
-                node.ReturnType.Identifier.Text,
-                true);
-        }
-
-        writer.WriteLine("}");
+        var parameters = BuildDeclarationParameterList(function);
+        return $"public {GetReturnTypeText(function.ReturnType)} {function.Name}({parameters})";
     }
 
-    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    private static string BuildDeclarationParameterList(FunctionType function)
     {
-        var classNode = (ClassDeclarationSyntax)node.Parent!;
-        var className = classNode.Identifier.Text;
-        var propertyName = node.Identifier.Text;
-        var propertyType = node.Type.Identifier.Text;
+        var parameterTexts = function.Parameters.Select(GetParameterText);
+        return CommaJoin(parameterTexts);
+    }
 
-        GenerateGet();
+    private static string BuildFunctionBody(ClassType classType, FunctionType function)
+    {
+        var call = $"ScriptFunctions.{classType.ClassName}Functions.{function.Name}({BuildArgumentList(function)})";
 
-        if (!node.Modifiers.Any(SyntaxKind.Const))
-        {
-            GenerateSet();
-        }
+        return function.ReturnType.Kind is SyntaxKind.Void ? $"{call};" : $"return {call};";
+    }
 
-        return;
+    private static string BuildArgumentList(FunctionType function)
+    {
+        var argumentTexts = function.Parameters.Select(GetArgumentText);
+        return JoinWithThis(argumentTexts);
+    }
 
-        void GenerateGet()
-        {
-            writer.WriteLine($"public static unsafe {propertyType} Get{propertyName}({className} @this)");
-            writer.WriteLine("{");
+    private static string JoinWithThis(IEnumerable<string> texts)
+    {
+        return CommaJoin(texts.Prepend("this"));
+    }
 
-            using (writer.Indent())
-            {
-                GeneratorFacts.GenerateInvokeCode(writer,
-                    [("@this", string.Empty, SyntaxKind.Identifier)],
-                    $"ccb::_{className}::Get{propertyName}({className})",
-                    node.Type.Kind,
-                    node.Type.Identifier.Text,
-                    true);
-            }
+    private static string CommaJoin(IEnumerable<string?> values)
+    {
+        return string.Join(", ", values);
+    }
 
-            writer.WriteLine("}");
-        }
+    private static string GetArgumentText(ParameterType parameter) =>
+        parameter.Type.IsHandle ? parameter.Name : $"{GetTypeModifiersText(parameter.Type)}{parameter.Name}";
 
-        void GenerateSet()
-        {
-            writer.WriteLine($"public static unsafe void Set{propertyName}({className} @this, {node.Type.Identifier.Text} value)");
-            writer.WriteLine("{");
+    private static string GetParameterText(ParameterType parameter) =>
+        $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name}";
 
-            using (writer.Indent())
-            {
-                GeneratorFacts.GenerateInvokeCode(writer,
-                    [("@this", string.Empty, SyntaxKind.Identifier), ("value", string.Empty, node.Type.Identifier.Kind)],
-                    $"ccb::_{className}::Set{propertyName}({className}, {node.Type.Identifier.Text})");
-            }
+    private static string GetReturnTypeText(ValueType type) => type.Kind switch
+    {
+        SyntaxKind.QuestionMark => "IntPtr",
+        SyntaxKind.Ref => "IntPtr",
+        SyntaxKind.Int8 => "byte",
+        SyntaxKind.Int16 => "short",
+        SyntaxKind.UInt => "uint",
+        SyntaxKind.Int64 => "long",
+        _ => GetTypeText(type),
+    };
 
-            writer.WriteLine("}");
-        }
+    private static string GetParameterTypeText(ValueType type) => type.Kind switch
+    {
+        SyntaxKind.QuestionMark => "IntPtr",
+        SyntaxKind.Ref => "IntPtr",
+        SyntaxKind.Int8 => "byte",
+        SyntaxKind.Int16 => "short",
+        SyntaxKind.UInt => "uint",
+        SyntaxKind.Int64 => "long",
+        _ => GetTypeText(type),
+    };
+
+    private static string GetTypeText(ValueType type)
+    {
+        return type.IsHandle ? "IntPtr" : type.Name;
+    }
+
+    private static string GetTypeModifiersText(ValueType type)
+    {
+        var tokens = new[] { type.RefHandleToken, type.InoutToken };
+        var modifierTexts = tokens
+            .Where(token => token.Kind is not SyntaxKind.None and not SyntaxKind.Ampersand)
+            .Select(GetModifierText)
+            .ToList();
+
+        return modifierTexts.Count > 0
+            ? string.Join(' ', modifierTexts) + " "
+            : string.Empty;
+    }
+
+    private static string GetModifierText(SyntaxToken token) => token.Kind switch
+    {
+        SyntaxKind.In => "in",
+        SyntaxKind.Out => "out",
+        SyntaxKind.Handle => "ref",
+        _ => throw new ArgumentOutOfRangeException(nameof(token)),
+    };
+
+    public void Dispose()
+    {
+        writer.Dispose();
     }
 }

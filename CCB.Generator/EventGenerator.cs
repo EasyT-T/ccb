@@ -48,12 +48,12 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine("namespace ccb");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             writer.WriteLine("namespace event");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 for (var i = 0; i < root.Members.Count; i++)
                 {
@@ -83,7 +83,7 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
             writer.WriteLine("void OnInitialize()");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 writer.WriteLine("RegisterAllCallbacks();");
 
@@ -109,7 +109,7 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine($"{returnType} On{eventName}{parametersText}");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             writer.WriteLine(isVoid
                 ? $"{handlerName}({argumentsText});"
@@ -136,7 +136,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine("public static class EventRegistry");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             foreach (var member in root.Members)
             {
@@ -149,7 +149,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
             writer.WriteLine("internal static unsafe void RegisterEventFunctions()");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 for (var i = 0; i < this._events.Count; i++)
                 {
@@ -192,7 +192,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
                     writer.WriteLine($"public class {GeneratorFacts.GetEventArgName(eventInfo.EventName)}({parametersText})");
                     writer.WriteLine("{");
 
-                    using (writer.Indent())
+                    using (writer.Scope())
                     {
                         foreach (var parameter in eventInfo.Parameters)
                         {
@@ -282,12 +282,12 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine($"private static {returnTypeConverted} {handlerName}({rawParametersText})");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             writer.WriteLine("try");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 if (hasEventArgs)
                 {
@@ -310,7 +310,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
             writer.WriteLine("catch(Exception e)");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 writer.WriteLine("ScriptFunctions.print(e.ToString());");
 

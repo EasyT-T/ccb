@@ -2,9 +2,11 @@ namespace CCB.Generator.Model;
 
 using System.Collections.Immutable;
 
-internal sealed class Tree(ImmutableArray<FunctionType> functions, ImmutableArray<PropertyType> properties)
+internal sealed record Tree(ImmutableArray<FunctionType> Functions, ImmutableArray<PropertyType> Properties, ImmutableArray<ClassType> Classes)
 {
-    public ImmutableArray<FunctionType> Functions { get; } = functions;
+    public ImmutableArray<FunctionType> Functions { get; } = Functions;
 
-    public ImmutableArray<PropertyType> Properties { get; } = properties;
+    public ImmutableArray<PropertyType> Properties { get; } = Properties;
+
+    public ImmutableArray<ClassType> Classes { get; } = Classes;
 }

@@ -12,6 +12,7 @@ public enum SyntaxKind
     Int16,
     Int,
     UInt,
+    Int64,
     Float,
     Bool,
     String,
