@@ -15,6 +15,7 @@ A high-performance, modern C# plugin framework for the *SCP: Containment Breach 
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-14.0-239120?logo=csharp&logoColor=white)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+![NuGet Version](https://img.shields.io/nuget/v/ccb.svg)
 
 </div>
 
@@ -78,7 +79,7 @@ Dependencies are installed in `path/to/server/ccb/dependencies`
 
 #### 1. Entry Point & Metadata
 
-Create a new .NET 10 project and reference `CCB.dll`. For logging, you'll also need to reference the `Microsoft.Extensions.Logging.Abstractions` NuGet package.
+Create a new .NET 10 project and reference [ccb](https://www.nuget.org/packages/ccb/0.1.0) NuGet Package.
 
 Create a `PluginMetadata` class, as shown below:
 ```csharp

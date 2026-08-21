@@ -15,6 +15,7 @@
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-14.0-239120?logo=csharp&logoColor=white)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+![NuGet Version](https://img.shields.io/nuget/v/ccb.svg)
 
 </div>
 
@@ -78,7 +79,7 @@ script ccb/script.as
 
 #### 1. 入口点与元数据
 
-新建一个 .NET10 项目，引用 `CCB.dll`；对于日志记录，则需要引用 `Microsoft.Extensions.Logging.Abstractions` nuget 包
+新建一个 .NET10 项目，引用 [ccb](https://www.nuget.org/packages/ccb/0.1.0) NuGet 包
 
 创建 `PluginMetadata` 类，示例如下
 ```csharp
