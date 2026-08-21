@@ -1,13 +1,13 @@
 ﻿namespace CCB.Extensions;
 
+using System.Runtime.ExceptionServices;
 using CCB.Internal;
 
 public static class MainThreadContextExtension
 {
     extension(MainThreadContext)
     {
-        public static void RunOnMainThread(
-            Action func)
+        public static void RunOnMainThread(Action func)
         {
             if (MainThreadContext.Instance.IsMainThread)
             {
@@ -16,21 +16,52 @@ public static class MainThreadContextExtension
                 return;
             }
 
-            MainThreadContext.Instance.Send(_ => func(), null);
+            ExceptionDispatchInfo? capturedException = null;
+
+            MainThreadContext.Instance.Send(
+                _ =>
+                {
+                    try
+                    {
+                        func();
+                    }
+                    catch (Exception e)
+                    {
+                        capturedException = ExceptionDispatchInfo.Capture(e);
+                    }
+                },
+                null);
+
+            capturedException?.Throw();
         }
 
-        public static void RunOnMainThread(
-            Action<CancellationToken> func,
-            CancellationToken cancellationToken = default)
+        public static T RunOnMainThread<T>(Func<T> func)
         {
             if (MainThreadContext.Instance.IsMainThread)
             {
-                func(cancellationToken);
-
-                return;
+                return func();
             }
 
-            MainThreadContext.Instance.Send(_ => func(cancellationToken), null);
+            T result = default!;
+            ExceptionDispatchInfo? capturedException = null;
+
+            MainThreadContext.Instance.Send(
+                _ =>
+                {
+                    try
+                    {
+                        result = func();
+                    }
+                    catch (Exception e)
+                    {
+                        capturedException = ExceptionDispatchInfo.Capture(e);
+                    }
+                },
+                null);
+
+            capturedException?.Throw();
+
+            return result;
         }
 
         public static Task RunOnMainThreadAsync(
