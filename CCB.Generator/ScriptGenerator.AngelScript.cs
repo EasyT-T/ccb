@@ -184,7 +184,7 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GenerateConfig co
     private BoundFunctionType WriteSetter(PropertyType property, TypeContext context)
     {
         var value = new ParameterType("value", property.Type, null);
-        var setter = new FunctionType(property.Type, $"Set{property.Name}", [value]);
+        var setter = new FunctionType(ValueType.Void, $"Set{property.Name}", [value]);
         var body = $"{GetPropertyAccessText(property, context)} = value;";
 
         return this.WriteFunctionCore(setter, context, body);

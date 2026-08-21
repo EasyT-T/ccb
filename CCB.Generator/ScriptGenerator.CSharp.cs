@@ -83,7 +83,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
 
     private void WriteProperty(BoundPropertyType property, TypeContext context)
     {
-        this.WriteFunction(property.Getter, context);
+        this.WriteFunction(property.Getter, context, isHandle: false);
 
         if (property.Setter is null)
         {
@@ -91,7 +91,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
         }
 
         writer.WriteLine();
-        this.WriteFunction(property.Setter, context);
+        this.WriteFunction(property.Setter, context, isHandle: false);
     }
 
     private void WriteFunctions(IEnumerable<BoundFunctionType> functions, TypeContext context)
@@ -99,11 +99,11 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
         foreach (var function in functions)
         {
             writer.WriteLine();
-            this.WriteFunction(function, context);
+            this.WriteFunction(function, context, isHandle: true);
         }
     }
 
-    private void WriteFunction(BoundFunctionType function, TypeContext context)
+    private void WriteFunction(BoundFunctionType function, TypeContext context, bool isHandle)
     {
         writer.WriteLine(BuildFunctionDeclaration(function.Model, context, isStatic: true, isUnsafe: true));
         writer.OpenBlock();
@@ -142,7 +142,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
 
         if (function.Model.ReturnType.Kind != SyntaxKind.Void)
         {
-            writer.WriteLine($"return result.{GetReturnMethod(function.Model.ReturnType, isHandle: true)}();");
+            writer.WriteLine($"return result.{GetReturnMethod(function.Model.ReturnType, isHandle)}();");
         }
 
         writer.CloseBlock();

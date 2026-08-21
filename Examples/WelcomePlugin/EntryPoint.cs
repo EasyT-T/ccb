@@ -2,6 +2,7 @@
 
 using CCB.Abstractions;
 using CCB.Attributes;
+using CCB.Extensions;
 using CCB.Internal;
 using Microsoft.Extensions.Logging;
 
@@ -36,8 +37,18 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
 
         foreach (var p in Player.List())
         {
-            c.SendPlayer(p, $"{player} Joined the game!");
+            c.SendPlayer(p, $"{player.GetName()} Joined the game!");
         }
+
+        Task.Run(async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(5));
+
+            await MainThreadContext.RunOnMainThreadAsync(_ =>
+            {
+                c.SendPlayer(player, "A message after 5 secs!");
+            });
+        });
     }
 
     [LoggerMessage(LogLevel.Information, "{player} Joined the server.")]

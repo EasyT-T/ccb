@@ -42,18 +42,17 @@ public static class ScriptFunctions
             var result = ExecuteContext
                 .FromDeclaration("::Chat ccb::Getchat()")
                 .Execute();
-            return result.GetRefObject<Chat>();
+            return result.GetObject<Chat>();
         }
     }
 
-    public static unsafe Chat Setchat(Chat value)
+    public static unsafe void Setchat(Chat value)
     {
         {
             var result = ExecuteContext
-                .FromDeclaration("::Chat ccb::Setchat(::Chat value)")
+                .FromDeclaration("void ccb::Setchat(::Chat value)")
                 .WithArgument(0, value)
                 .Execute();
-            return result.GetRefObject<Chat>();
         }
     }
 
@@ -63,18 +62,17 @@ public static class ScriptFunctions
             var result = ExecuteContext
                 .FromDeclaration("::Audio ccb::Getaudio()")
                 .Execute();
-            return result.GetRefObject<Audio>();
+            return result.GetObject<Audio>();
         }
     }
 
-    public static unsafe Audio Setaudio(Audio value)
+    public static unsafe void Setaudio(Audio value)
     {
         {
             var result = ExecuteContext
-                .FromDeclaration("::Audio ccb::Setaudio(::Audio value)")
+                .FromDeclaration("void ccb::Setaudio(::Audio value)")
                 .WithArgument(0, value)
                 .Execute();
-            return result.GetRefObject<Audio>();
         }
     }
 
@@ -84,18 +82,17 @@ public static class ScriptFunctions
             var result = ExecuteContext
                 .FromDeclaration("::Graphics ccb::Getgraphics()")
                 .Execute();
-            return result.GetRefObject<Graphics>();
+            return result.GetObject<Graphics>();
         }
     }
 
-    public static unsafe Graphics Setgraphics(Graphics value)
+    public static unsafe void Setgraphics(Graphics value)
     {
         {
             var result = ExecuteContext
-                .FromDeclaration("::Graphics ccb::Setgraphics(::Graphics value)")
+                .FromDeclaration("void ccb::Setgraphics(::Graphics value)")
                 .WithArgument(0, value)
                 .Execute();
-            return result.GetRefObject<Graphics>();
         }
     }
 
@@ -105,18 +102,17 @@ public static class ScriptFunctions
             var result = ExecuteContext
                 .FromDeclaration("::World ccb::Getworld()")
                 .Execute();
-            return result.GetRefObject<World>();
+            return result.GetObject<World>();
         }
     }
 
-    public static unsafe World Setworld(World value)
+    public static unsafe void Setworld(World value)
     {
         {
             var result = ExecuteContext
-                .FromDeclaration("::World ccb::Setworld(::World value)")
+                .FromDeclaration("void ccb::Setworld(::World value)")
                 .WithArgument(0, value)
                 .Execute();
-            return result.GetRefObject<World>();
         }
     }
 
@@ -6034,15 +6030,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Sethostname(Server @this, string value)
+        public static unsafe void Sethostname(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Sethostname(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Sethostname(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6057,15 +6052,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setport(Server @this, int value)
+        public static unsafe void Setport(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setport(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setport(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6080,15 +6074,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setcorpsealivetime(Server @this, int value)
+        public static unsafe void Setcorpsealivetime(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setcorpsealivetime(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setcorpsealivetime(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6103,15 +6096,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Settimeout(Server @this, int value)
+        public static unsafe void Settimeout(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Settimeout(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Settimeout(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6126,15 +6118,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setchat(Server @this, bool value)
+        public static unsafe void Setchat(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setchat(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setchat(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6149,15 +6140,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setconsole(Server @this, bool value)
+        public static unsafe void Setconsole(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setconsole(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setconsole(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6172,15 +6162,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setvoicebitrate(Server @this, int value)
+        public static unsafe void Setvoicebitrate(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setvoicebitrate(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setvoicebitrate(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6195,15 +6184,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setmaxplayers(Server @this, int value)
+        public static unsafe void Setmaxplayers(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setmaxplayers(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setmaxplayers(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6218,15 +6206,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setmapseed(Server @this, string value)
+        public static unsafe void Setmapseed(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setmapseed(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setmapseed(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6241,15 +6228,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setadminpassword(Server @this, string value)
+        public static unsafe void Setadminpassword(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setadminpassword(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setadminpassword(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6264,15 +6250,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setdifficulty(Server @this, int value)
+        public static unsafe void Setdifficulty(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setdifficulty(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setdifficulty(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6287,15 +6272,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setgamemode(Server @this, string value)
+        public static unsafe void Setgamemode(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setgamemode(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setgamemode(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6310,15 +6294,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setemptybehaviour(Server @this, int value)
+        public static unsafe void Setemptybehaviour(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setemptybehaviour(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setemptybehaviour(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6333,15 +6316,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setscriptsautoload(Server @this, bool value)
+        public static unsafe void Setscriptsautoload(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setscriptsautoload(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setscriptsautoload(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6356,15 +6338,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setdisablenpcs(Server @this, bool value)
+        public static unsafe void Setdisablenpcs(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setdisablenpcs(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setdisablenpcs(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6379,15 +6360,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Setproximityplayers(Server @this, float value)
+        public static unsafe void Setproximityplayers(Server @this, float value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("float ccb::Server::Setproximityplayers(Server this, float value)")
+                    .FromDeclaration("void ccb::Server::Setproximityplayers(Server this, float value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetFloat();
             }
         }
 
@@ -6402,15 +6382,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Setmapbounds(Server @this, float value)
+        public static unsafe void Setmapbounds(Server @this, float value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("float ccb::Server::Setmapbounds(Server this, float value)")
+                    .FromDeclaration("void ccb::Server::Setmapbounds(Server this, float value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetFloat();
             }
         }
 
@@ -6425,15 +6404,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setrespawntime(Server @this, int value)
+        public static unsafe void Setrespawntime(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setrespawntime(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setrespawntime(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6448,15 +6426,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setcontenturl(Server @this, string value)
+        public static unsafe void Setcontenturl(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setcontenturl(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setcontenturl(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6471,15 +6448,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setpassword(Server @this, string value)
+        public static unsafe void Setpassword(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setpassword(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setpassword(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6494,15 +6470,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setimprovedgates(Server @this, bool value)
+        public static unsafe void Setimprovedgates(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setimprovedgates(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setimprovedgates(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6517,15 +6492,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setmapsize(Server @this, int value)
+        public static unsafe void Setmapsize(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setmapsize(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setmapsize(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6540,15 +6514,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setallowjump(Server @this, bool value)
+        public static unsafe void Setallowjump(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setallowjump(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setallowjump(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6563,15 +6536,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setdescription(Server @this, string value)
+        public static unsafe void Setdescription(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setdescription(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setdescription(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6586,15 +6558,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setfastslots(Server @this, bool value)
+        public static unsafe void Setfastslots(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setfastslots(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setfastslots(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6609,15 +6580,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Setgravity(Server @this, float value)
+        public static unsafe void Setgravity(Server @this, float value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("float ccb::Server::Setgravity(Server this, float value)")
+                    .FromDeclaration("void ccb::Server::Setgravity(Server this, float value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetFloat();
             }
         }
 
@@ -6632,15 +6602,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setholiday(Server @this, int value)
+        public static unsafe void Setholiday(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setholiday(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setholiday(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6655,15 +6624,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Setaddonsfile(Server @this, string value)
+        public static unsafe void Setaddonsfile(Server @this, string value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("char ccb::Server::Setaddonsfile(Server this, const char value)")
+                    .FromDeclaration("void ccb::Server::Setaddonsfile(Server this, const char value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetString();
             }
         }
 
@@ -6678,15 +6646,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setenablehud(Server @this, bool value)
+        public static unsafe void Setenablehud(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setenablehud(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setenablehud(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6701,15 +6668,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setmax_items(Server @this, int value)
+        public static unsafe void Setmax_items(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setmax_items(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setmax_items(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6724,15 +6690,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setmax_objects(Server @this, int value)
+        public static unsafe void Setmax_objects(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setmax_objects(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setmax_objects(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6747,15 +6712,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setmax_corpses(Server @this, int value)
+        public static unsafe void Setmax_corpses(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setmax_corpses(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setmax_corpses(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6770,15 +6734,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe int Setmax_lights(Server @this, int value)
+        public static unsafe void Setmax_lights(Server @this, int value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("int ccb::Server::Setmax_lights(Server this, int value)")
+                    .FromDeclaration("void ccb::Server::Setmax_lights(Server this, int value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetInt();
             }
         }
 
@@ -6793,15 +6756,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setplayer_culling(Server @this, bool value)
+        public static unsafe void Setplayer_culling(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setplayer_culling(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setplayer_culling(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6816,15 +6778,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setsteam_auth(Server @this, bool value)
+        public static unsafe void Setsteam_auth(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setsteam_auth(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setsteam_auth(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 
@@ -6839,15 +6800,14 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Setfall_damage(Server @this, bool value)
+        public static unsafe void Setfall_damage(Server @this, bool value)
         {
             {
                 var result = ExecuteContext
-                    .FromDeclaration("bool ccb::Server::Setfall_damage(Server this, bool value)")
+                    .FromDeclaration("void ccb::Server::Setfall_damage(Server this, bool value)")
                     .WithArgument(0, @this)
                     .WithArgument(1, value)
                     .Execute();
-                return result.GetBool();
             }
         }
 

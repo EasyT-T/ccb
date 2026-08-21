@@ -30,7 +30,7 @@ public struct IteratorOpaque
                 .WithArgument(0, (IntPtr)ptr)
                 .Execute();
 
-            return result.GetObject<T>();
+            return result.GetRefObject<T>();
         }
     }
 
