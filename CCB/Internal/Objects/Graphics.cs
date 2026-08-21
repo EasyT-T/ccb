@@ -5,9 +5,28 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Graphics(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Graphics(ObjectHandle handle) : IScriptObject, IEquatable<Graphics>
 {
     public ObjectHandle Handle { get; } = handle;
+
+    public bool Equals(Graphics other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Graphics other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Graphics left, Graphics right) => left.Equals(right);
+
+    public static bool operator !=(Graphics left, Graphics right) => !left.Equals(right);
+
+    public static bool operator ==(Graphics left, Graphics? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Graphics left, Graphics? right) => !(left == right);
+
+    public static bool operator ==(Graphics? left, Graphics right) => right == left;
+
+    public static bool operator !=(Graphics? left, Graphics right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

@@ -5,9 +5,28 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Entity(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Entity(ObjectHandle handle) : IScriptObject, IEquatable<Entity>
 {
     public ObjectHandle Handle { get; } = handle;
+
+    public bool Equals(Entity other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Entity other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Entity left, Entity right) => left.Equals(right);
+
+    public static bool operator !=(Entity left, Entity right) => !left.Equals(right);
+
+    public static bool operator ==(Entity left, Entity? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Entity left, Entity? right) => !(left == right);
+
+    public static bool operator ==(Entity? left, Entity right) => right == left;
+
+    public static bool operator !=(Entity? left, Entity right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

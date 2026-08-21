@@ -5,7 +5,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Object(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Object(ObjectHandle handle) : IScriptObject, IEquatable<Object>
 {
     public ObjectHandle Handle { get; } = handle;
 
@@ -58,6 +59,24 @@ public struct Object(ObjectHandle handle) : IScriptObject
     {
         return new IteratorEnumerable();
     }
+
+    public bool Equals(Object other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Object other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Object left, Object right) => left.Equals(right);
+
+    public static bool operator !=(Object left, Object right) => !left.Equals(right);
+
+    public static bool operator ==(Object left, Object? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Object left, Object? right) => !(left == right);
+
+    public static bool operator ==(Object? left, Object right) => right == left;
+
+    public static bool operator !=(Object? left, Object right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

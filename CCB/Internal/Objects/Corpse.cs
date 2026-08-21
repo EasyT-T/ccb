@@ -5,7 +5,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Corpse(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Corpse(ObjectHandle handle) : IScriptObject, IEquatable<Corpse>
 {
     public ObjectHandle Handle { get; } = handle;
 
@@ -58,6 +59,24 @@ public struct Corpse(ObjectHandle handle) : IScriptObject
     {
         return new IteratorEnumerable();
     }
+
+    public bool Equals(Corpse other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Corpse other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Corpse left, Corpse right) => left.Equals(right);
+
+    public static bool operator !=(Corpse left, Corpse right) => !left.Equals(right);
+
+    public static bool operator ==(Corpse left, Corpse? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Corpse left, Corpse? right) => !(left == right);
+
+    public static bool operator ==(Corpse? left, Corpse right) => right == left;
+
+    public static bool operator !=(Corpse? left, Corpse right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

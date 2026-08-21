@@ -5,7 +5,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Waypoint(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Waypoint(ObjectHandle handle) : IScriptObject, IEquatable<Waypoint>
 {
     public ObjectHandle Handle { get; } = handle;
 
@@ -58,6 +59,24 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject
     {
         return new IteratorEnumerable();
     }
+
+    public bool Equals(Waypoint other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Waypoint other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Waypoint left, Waypoint right) => left.Equals(right);
+
+    public static bool operator !=(Waypoint left, Waypoint right) => !left.Equals(right);
+
+    public static bool operator ==(Waypoint left, Waypoint? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Waypoint left, Waypoint? right) => !(left == right);
+
+    public static bool operator ==(Waypoint? left, Waypoint right) => right == left;
+
+    public static bool operator !=(Waypoint? left, Waypoint right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

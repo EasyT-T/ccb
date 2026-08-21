@@ -5,7 +5,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Light(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Light(ObjectHandle handle) : IScriptObject, IEquatable<Light>
 {
     public ObjectHandle Handle { get; } = handle;
 
@@ -58,6 +59,24 @@ public struct Light(ObjectHandle handle) : IScriptObject
     {
         return new IteratorEnumerable();
     }
+
+    public bool Equals(Light other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Light other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Light left, Light right) => left.Equals(right);
+
+    public static bool operator !=(Light left, Light right) => !left.Equals(right);
+
+    public static bool operator ==(Light left, Light? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Light left, Light? right) => !(left == right);
+
+    public static bool operator ==(Light? left, Light right) => right == left;
+
+    public static bool operator !=(Light? left, Light right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

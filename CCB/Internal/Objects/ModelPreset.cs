@@ -5,7 +5,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct ModelPreset(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct ModelPreset(ObjectHandle handle) : IScriptObject, IEquatable<ModelPreset>
 {
     public ObjectHandle Handle { get; } = handle;
 
@@ -58,6 +59,24 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject
     {
         return new IteratorEnumerable();
     }
+
+    public bool Equals(ModelPreset other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is ModelPreset other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(ModelPreset left, ModelPreset right) => left.Equals(right);
+
+    public static bool operator !=(ModelPreset left, ModelPreset right) => !left.Equals(right);
+
+    public static bool operator ==(ModelPreset left, ModelPreset? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(ModelPreset left, ModelPreset? right) => !(left == right);
+
+    public static bool operator ==(ModelPreset? left, ModelPreset right) => right == left;
+
+    public static bool operator !=(ModelPreset? left, ModelPreset right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

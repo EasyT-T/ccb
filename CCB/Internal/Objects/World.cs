@@ -5,9 +5,28 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct World(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct World(ObjectHandle handle) : IScriptObject, IEquatable<World>
 {
     public ObjectHandle Handle { get; } = handle;
+
+    public bool Equals(World other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is World other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(World left, World right) => left.Equals(right);
+
+    public static bool operator !=(World left, World right) => !left.Equals(right);
+
+    public static bool operator ==(World left, World? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(World left, World? right) => !(left == right);
+
+    public static bool operator ==(World? left, World right) => right == left;
+
+    public static bool operator !=(World? left, World right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {

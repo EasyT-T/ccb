@@ -282,17 +282,37 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
 {
     public void WriteClass(BoundClassType classType)
     {
+        var className = classType.Model.ClassName;
+
         this.WriteFileHeaders();
 
-        writer.WriteLine($"public struct {classType.Model.ClassName}(ObjectHandle handle) : IScriptObject");
+        writer.WriteLine($"public struct {className}(ObjectHandle handle) : IScriptObject, IEquatable<{className}>");
         writer.OpenBlock();
         writer.WriteLine("public ObjectHandle Handle { get; } = handle;");
         this.WriteIterator(classType);
+        writer.WriteLine();
+        writer.WriteLine($"public bool Equals({className} other) => this.Handle == other.Handle;");
+        writer.WriteLine();
+        writer.WriteLine($"public override bool Equals(object? obj) => obj is {className} other && this.Equals(other);");
+        writer.WriteLine();
+        writer.WriteLine("public override int GetHashCode() => this.Handle.GetHashCode();");
+        writer.WriteLine();
+        writer.WriteLine($"public static bool operator ==({className} left, {className} right) => left.Equals(right);");
+        writer.WriteLine();
+        writer.WriteLine($"public static bool operator !=({className} left, {className} right) => !left.Equals(right);");
+        writer.WriteLine();
+        writer.WriteLine($"public static bool operator ==({className} left, {className}? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;");
+        writer.WriteLine();
+        writer.WriteLine($"public static bool operator !=({className} left, {className}? right) => !(left == right);");
+        writer.WriteLine();
+        writer.WriteLine($"public static bool operator ==({className}? left, {className} right) => right == left;");
+        writer.WriteLine();
+        writer.WriteLine($"public static bool operator !=({className}? left, {className} right) => !(right == left);");
 
         writer.WriteLine();
         writer.WriteLine("public static IScriptObject Create(ObjectHandle handle)");
         writer.OpenBlock();
-        writer.WriteLine($"return new {classType.Model.ClassName}(handle);");
+        writer.WriteLine($"return new {className}(handle);");
         writer.CloseBlock();
 
         foreach (var property in classType.Properties)
@@ -300,11 +320,11 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
             writer.WriteLine();
             writer.WriteLine($"public {property.Model.Type.Name} {property.Model.Name}");
             writer.OpenBlock();
-            writer.WriteLine($"get => ScriptFunctions.{classType.Model.ClassName}Functions.{property.Getter.Model.Name}(this);");
+            writer.WriteLine($"get => ScriptFunctions.{className}Functions.{property.Getter.Model.Name}(this);");
 
             if (property.Setter is not null)
             {
-                writer.WriteLine($"set => ScriptFunctions.{classType.Model.ClassName}Functions.{property.Setter.Model.Name}(this, value);");
+                writer.WriteLine($"set => ScriptFunctions.{className}Functions.{property.Setter.Model.Name}(this, value);");
             }
 
             writer.CloseBlock();
@@ -406,6 +426,7 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
         writer.WriteLine("using System.Runtime.InteropServices;");
         writer.WriteLine("using System.Collections;");
         writer.WriteLine();
+        writer.WriteLine("#nullable enable");
     }
 
     private static string BuildFunctionDeclaration(FunctionType function)

@@ -5,9 +5,28 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections;
 
-public struct Server(ObjectHandle handle) : IScriptObject
+#nullable enable
+public struct Server(ObjectHandle handle) : IScriptObject, IEquatable<Server>
 {
     public ObjectHandle Handle { get; } = handle;
+
+    public bool Equals(Server other) => this.Handle == other.Handle;
+
+    public override bool Equals(object? obj) => obj is Server other && this.Equals(other);
+
+    public override int GetHashCode() => this.Handle.GetHashCode();
+
+    public static bool operator ==(Server left, Server right) => left.Equals(right);
+
+    public static bool operator !=(Server left, Server right) => !left.Equals(right);
+
+    public static bool operator ==(Server left, Server? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+
+    public static bool operator !=(Server left, Server? right) => !(left == right);
+
+    public static bool operator ==(Server? left, Server right) => right == left;
+
+    public static bool operator !=(Server? left, Server right) => !(right == left);
 
     public static IScriptObject Create(ObjectHandle handle)
     {
