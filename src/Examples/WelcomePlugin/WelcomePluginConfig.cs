@@ -2,7 +2,7 @@
 
 using CCB;
 
-public record class WelcomePluginConfig(string WelcomeMessage, float Duration)
+public record WelcomePluginConfig(string WelcomeMessage, float Duration)
 {
     public const string Name = "welcome.json";
 

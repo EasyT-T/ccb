@@ -108,6 +108,8 @@ public partial class Loader
         }
 
         this._serviceProvider = provider;
+
+        LogPluginsLoaded(logger);
     }
 
     internal void UnloadAllPlugins()
@@ -131,9 +133,9 @@ public partial class Loader
     [LoggerMessage(LogLevel.Debug, "Could not find plugin metadata in {assembly}, it's may a dependency.")]
     static partial void LogPluginMetadataNotFound(ILogger<Loader> logger, Assembly assembly);
 
-    [LoggerMessage(LogLevel.Information, "Preloading {pluginName}({pluginDescription}) code by {pluginAuthor}")]
-    static partial void LogPreloadingPlugin(ILogger<Loader> logger, string pluginName, string pluginDescription, string pluginAuthor);
-
     [LoggerMessage(LogLevel.Information, "{pluginName}({pluginDescription}) code by {pluginAuthor} is successfully registered.")]
     static partial void LogPluginRegistered(ILogger<Loader> logger, string pluginName, string pluginDescription, string pluginAuthor);
+
+    [LoggerMessage(LogLevel.Information, "All plugins loaded successfully")]
+    static partial void LogPluginsLoaded(ILogger<Loader> logger);
 }

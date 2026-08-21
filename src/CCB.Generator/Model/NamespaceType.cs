@@ -4,7 +4,7 @@ using System.Text;
 
 public record NamespaceType(string Name, NamespaceType? Parent = null)
 {
-    public static NamespaceType Global { get; } = new NamespaceType(string.Empty, null);
+    public static NamespaceType Global { get; } = new NamespaceType(string.Empty);
 
     private static readonly Stack<string> Stack = new Stack<string>();
     private static readonly StringBuilder StringBuilder = new StringBuilder();
