@@ -125,6 +125,8 @@ public partial class Loader
         {
             unload.Unload();
         }
+
+        this._serviceProvider = null;
     }
 
     [LoggerMessage(LogLevel.Debug, "Start loading plugins from directory {pluginsDirectory}")]

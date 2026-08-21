@@ -72,9 +72,4 @@ internal static class Interop
             Console.Error.WriteLine(e);
         }
     }
-
-    [UnmanagedCallersOnly]
-    public static void RegisterMethod(int index, nint classNamePtr, nint methodNamePtr, nint functionPtr)
-    {
-    }
 }
