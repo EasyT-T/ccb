@@ -2,27 +2,36 @@
 
 public static class ExecuteHelper
 {
-    public static ModuleHandle ModuleHandle { get; internal set; }
+    private record struct FunctionMetadata(ModuleHandle Handle, string DeclarationOrName);
 
-    private static readonly Dictionary<string, int> FunctionCache = [];
+    public static ModuleHandle ScriptHandle { get; internal set; }
 
-    public static int PrepareFunction(string declarationOrName, bool isDecl = true)
+    private static readonly Dictionary<FunctionMetadata, int> FunctionCache = [];
+
+    public static int PrepareFunction(string declarationOrName, ModuleHandle handle, bool isDecl = true)
     {
         ExecuteGuard.IsOnMainThread(); // TODO Add an option to force invoke
 
-        if (!FunctionCache.TryGetValue(declarationOrName, out var functionIndex))
+        var metadata = new FunctionMetadata(handle, declarationOrName);
+
+        if (!FunctionCache.TryGetValue(metadata, out var functionIndex))
         {
-            functionIndex = NativeBindings.FindModuleFunction(ModuleHandle, declarationOrName, isDecl);
+            functionIndex = NativeBindings.FindModuleFunction(handle, declarationOrName, isDecl);
 
             ExecuteGuard.IsFunctionExists(functionIndex);
 
-            FunctionCache.Add(declarationOrName, functionIndex);
+            FunctionCache.Add(metadata, functionIndex);
         }
 
-        var errCode = NativeBindings.PrepareModuleFunction(ModuleHandle, functionIndex);
+        var errCode = NativeBindings.PrepareModuleFunction(handle, functionIndex);
 
         ExecuteGuard.IsSuccess(errCode);
 
         return functionIndex;
+    }
+
+    public static int PrepareFunction(string declarationOrName, bool isDecl = true)
+    {
+        return PrepareFunction(declarationOrName, ScriptHandle, isDecl);
     }
 }

@@ -16,17 +16,7 @@ internal static class Interop
     {
         try
         {
-            var moduleHandle = NativeBindings.GetExecutedModule();
-
-            ExecuteHelper.ModuleHandle = moduleHandle;
-
-            EventRegistry.RegisterEventFunctions();
-
-            eventHandle = ModuleHandle.FromScript("event.as", "./ccb/event.as");
-            ExecuteContext.FromDeclaration("void OnInitialize()", eventHandle).Execute();
-
             var currentAssembly = Assembly.GetExecutingAssembly();
-            SynchronizationContext.SetSynchronizationContext(MainThreadContext.Instance);
 
             AssemblyLoadContext.Default.Resolving += (context, assemblyName) =>
             {
@@ -59,6 +49,17 @@ internal static class Interop
 
                 return File.Exists(dependenciesPath) ? NativeLibrary.Load(assemblyName) : IntPtr.Zero;
             };
+
+            var moduleHandle = NativeBindings.GetExecutedModule();
+
+            ExecuteHelper.ScriptHandle = moduleHandle;
+
+            EventRegistry.RegisterEventFunctions();
+
+            eventHandle = ModuleHandle.FromScript("event.as", "./ccb/event.as");
+            ExecuteContext.FromDeclaration("void OnInitialize()", eventHandle).Execute();
+
+            SynchronizationContext.SetSynchronizationContext(MainThreadContext.Instance);
 
             EventRegistry.ServerUpdate += MainThreadContext.Instance.Update;
 

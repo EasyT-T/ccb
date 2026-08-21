@@ -18,12 +18,12 @@ public readonly ref struct ExecuteContext : IDisposable
 
     public static ExecuteContext FromDeclaration(string declaration)
     {
-        return FromDeclaration(declaration, ExecuteHelper.ModuleHandle);
+        return FromDeclaration(declaration, ExecuteHelper.ScriptHandle);
     }
 
     public static ExecuteContext FromDeclaration(string declaration, ModuleHandle handle)
     {
-        ExecuteHelper.PrepareFunction(declaration);
+        ExecuteHelper.PrepareFunction(declaration, handle, isDecl: true);
 
         return new ExecuteContext(handle);
     }
