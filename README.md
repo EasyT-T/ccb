@@ -70,6 +70,10 @@ script ccb/script.as
 ```
 3. Launch `server-launcher.exe` and verify that CCB has been installed correctly.
 
+Plugins are installed in `path/to/server/ccb/plugins`
+
+Dependencies are installed in `path/to/server/ccb/dependencies`
+
 ### Plugin Development
 
 #### 1. Entry Point & Metadata

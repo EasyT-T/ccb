@@ -70,6 +70,10 @@ script ccb/script.as
 ```
 3. 启动 `server-launcher.exe`，检查 CCB 是否正确安装
 
+插件安装于 `path/to/server/ccb/plugins` 中
+
+依赖安装于 `path/to/server/ccb/dependencies` 中
+
 ### 插件开发
 
 #### 1. 入口点与元数据

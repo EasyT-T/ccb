@@ -6,6 +6,15 @@
         <Nullable>enable</Nullable>
         <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
         <EnableHotReload>true</EnableHotReload>
+        <PackageId>ccb</PackageId>
+        <Version>0.1.0</Version>
+        <Title>CCB</Title>
+        <Authors>EasyT-T</Authors>
+        <Description>CB2 CSharp Binding</Description>
+        <PackageProjectUrl>https://github.com/EasyT-T/ccb</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/EasyT-T/ccb</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -19,6 +28,7 @@
 
     <ItemGroup>
       <Content Include="CCB.csproj.user" />
+      <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
     <ItemGroup>
