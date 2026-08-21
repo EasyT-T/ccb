@@ -4,5 +4,5 @@ public interface IScriptObject
 {
     ObjectHandle Handle { get; }
 
-    static abstract IScriptObject Create(ObjectHandle handle);
+    abstract static IScriptObject Create(ObjectHandle handle);
 }

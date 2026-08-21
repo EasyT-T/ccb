@@ -155,17 +155,9 @@ internal static partial class NativeBindings
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial int SetModuleArgByte(ModuleHandle module, int arg, int value);
 
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgByte(ModuleHandle module, int arg, out byte value);
-
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgShort@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial int SetModuleArgShort(ModuleHandle module, int arg, int value);
-
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgShort(ModuleHandle module, int arg, out short value);
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgInt@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
@@ -175,21 +167,9 @@ internal static partial class NativeBindings
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial int SetModuleArgUInt(ModuleHandle module, int arg, uint value);
 
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgInt@12")]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgUInt(ModuleHandle module, int arg, out uint value);
-
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgByte@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial int SetModuleArgBoolean(ModuleHandle module, int arg, [MarshalAs(UnmanagedType.Bool)] bool value);
-
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgBoolean(ModuleHandle module, int arg, [MarshalAs(UnmanagedType.Bool)] out bool value);
-
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgInt(ModuleHandle module, int arg, out int value);
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgInt64@16")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
@@ -201,27 +181,15 @@ internal static partial class NativeBindings
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgFloat(ModuleHandle module, int arg, out float value);
-
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial int SetModuleArgAddress(ModuleHandle module, int arg, IntPtr value);
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgObject@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial int SetModuleArgObject(ModuleHandle module, int arg, ObjectHandle value);
 
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12")]
+    [LibraryImport(DllName, EntryPoint = "_SetModuleArgObject@12", StringMarshalling = StringMarshalling.Utf8)]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgObject(ModuleHandle module, int arg, out ObjectHandle value);
-
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgString@12", StringMarshalling = StringMarshalling.Utf8)]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgString(ModuleHandle module, int arg, string value);
-
-    [LibraryImport(DllName, EntryPoint = "_SetModuleArgAddress@12", StringMarshalling = StringMarshalling.Utf8)]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgString(ModuleHandle module, int arg, out string value);
+    public static partial int SetModuleArgString(ModuleHandle module, int arg, StringHandle value);
 
     [LibraryImport(DllName, EntryPoint = "_GetModuleReturnByte@4")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
@@ -260,11 +228,7 @@ internal static partial class NativeBindings
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     public static partial ObjectHandle GetModuleReturnObject(ModuleHandle module);
 
-    [LibraryImport(DllName, EntryPoint = "_GetModuleReturnString@4", StringMarshalling = StringMarshalling.Utf8)]
-    [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial string GetModuleReturnString(ModuleHandle module);
-
     [LibraryImport(DllName, EntryPoint = "_GetModuleReturnObject@4", StringMarshalling = StringMarshalling.Utf8)]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial StringHandle GetModuleReturnCString(ModuleHandle module);
+    public static unsafe partial StringHandle* GetModuleReturnString(ModuleHandle module);
 }

@@ -5,7 +5,7 @@ using CCB.Generator.Extensions;
 using CCB.Syntax;
 using CCB.Syntax.Visitor;
 
-public class EventGenerator : SimpleVisitor
+public class EventGenerator : SimpleVisitor, IDisposable
 {
     private readonly ScriptEventGenerator _scriptEventGenerator;
     private readonly CSharpEventGenerator _csharpEventGenerator;
@@ -33,9 +33,15 @@ public class EventGenerator : SimpleVisitor
         root.Accept(this._scriptEventGenerator);
         root.Accept(this._csharpEventGenerator);
     }
+
+    public void Dispose()
+    {
+        this._csharpEventGenerator.Dispose();
+        this._scriptEventGenerator.Dispose();
+    }
 }
 
-internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
+internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor, IDisposable
 {
     private readonly List<string> _events = [];
 
@@ -48,12 +54,12 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine("namespace ccb");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             writer.WriteLine("namespace event");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 for (var i = 0; i < root.Members.Count; i++)
                 {
@@ -83,7 +89,7 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
             writer.WriteLine("void OnInitialize()");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 writer.WriteLine("RegisterAllCallbacks();");
 
@@ -109,7 +115,7 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine($"{returnType} On{eventName}{parametersText}");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             writer.WriteLine(isVoid
                 ? $"{handlerName}({argumentsText});"
@@ -120,9 +126,14 @@ internal class ScriptEventGenerator(IndentedTextWriter writer) : SimpleVisitor
 
         this._events.Add(eventName);
     }
+
+    public void Dispose()
+    {
+        writer.Dispose();
+    }
 }
 
-internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
+internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor, IDisposable
 {
     private readonly List<(string Declaration, string EventName, IEnumerable<(string Type, string Name)> Parameters, IEnumerable<(string Type, string Name)> RawParameters, string ReturnType, string HandlerName)> _events = [];
 
@@ -136,7 +147,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine("public static class EventRegistry");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             foreach (var member in root.Members)
             {
@@ -149,7 +160,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
             writer.WriteLine("internal static unsafe void RegisterEventFunctions()");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 for (var i = 0; i < this._events.Count; i++)
                 {
@@ -192,7 +203,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
                     writer.WriteLine($"public class {GeneratorFacts.GetEventArgName(eventInfo.EventName)}({parametersText})");
                     writer.WriteLine("{");
 
-                    using (writer.Indent())
+                    using (writer.Scope())
                     {
                         foreach (var parameter in eventInfo.Parameters)
                         {
@@ -282,12 +293,12 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine($"private static {returnTypeConverted} {handlerName}({rawParametersText})");
         writer.WriteLine("{");
 
-        using (writer.Indent())
+        using (writer.Scope())
         {
             writer.WriteLine("try");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 if (hasEventArgs)
                 {
@@ -310,7 +321,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
             writer.WriteLine("catch(Exception e)");
             writer.WriteLine("{");
 
-            using (writer.Indent())
+            using (writer.Scope())
             {
                 writer.WriteLine("ScriptFunctions.print(e.ToString());");
 
@@ -326,5 +337,10 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor
         writer.WriteLine("}");
 
         this._events.Add(($"{returnTypeName} ccb_internal_invoke_{eventName}({declarationParametersText})", eventName, parameters, rawParameters, returnTypeName, handlerName));
+    }
+
+    public void Dispose()
+    {
+        writer.Dispose();
     }
 }

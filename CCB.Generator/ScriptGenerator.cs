@@ -1,38 +1,37 @@
 namespace CCB.Generator;
 
-using CCB.Syntax;
-using CCB.Syntax.Visitor;
-
-public class ScriptGenerator : SimpleVisitor
+public class ScriptGenerator(string scriptHeader, string outputPath, GenerateConfig config) : IDisposable
 {
-    private readonly RootSyntax _root;
+    private readonly TreeParser _treeParser = new TreeParser();
 
-    private readonly AngelScriptGenerator _angelScriptGenerator;
+    private readonly AngelScriptGenerator _angelScriptGenerator =
+        new AngelScriptGenerator(new IndentedTextWriter(File.CreateText(Path.Combine(outputPath, "script.as"))), config);
 
-    private readonly CSharpScriptGenerator _csharpScriptGenerator;
-
-    public ScriptGenerator(RootSyntax root, TextWriter scriptWriter, TextWriter csharpWriter, GenerateConfig config)
-    {
-        this._root = root;
-        var scriptIndentedWriter = new IndentedTextWriter(scriptWriter);
-        var csharpIndentedWriter = new IndentedTextWriter(csharpWriter);
-
-        var context = new GeneratorContext(config);
-
-        this._angelScriptGenerator = new AngelScriptGenerator(scriptIndentedWriter, context);
-        this._csharpScriptGenerator = new CSharpScriptGenerator(csharpIndentedWriter, context);
-    }
+    private readonly CSharpScriptGenerator _csharpScriptGenerator =
+        new CSharpScriptGenerator(new IndentedTextWriter(File.CreateText(Path.Combine(outputPath, "script.cs"))), config);
 
     public void Generate()
     {
-        this._root.Accept(this);
+        var scriptCompilation = new Compilation(scriptHeader);
+        var scriptRoot = scriptCompilation.Parse();
+        var tree = this._treeParser.Parse(scriptRoot);
+
+        var bondTree = this._angelScriptGenerator.WriteTree(tree);
+        this._csharpScriptGenerator.WriteTree(bondTree);
+
+        foreach (var boundClassType in bondTree.Classes)
+        {
+            using var classGenerator =
+                new CSharpClassGenerator(new IndentedTextWriter(File.CreateText(Path.Combine(outputPath, $"{boundClassType.Model.ClassName}.cs"))),
+                    config);
+
+            classGenerator.WriteClass(boundClassType);
+        }
     }
 
-    public override void VisitRoot(RootSyntax root)
+    public void Dispose()
     {
-        root.Accept(this._angelScriptGenerator);
-        root.Accept(this._csharpScriptGenerator);
+        this._angelScriptGenerator.Dispose();
+        this._csharpScriptGenerator.Dispose();
     }
 }
-
-internal record GeneratorContext(GenerateConfig Config);

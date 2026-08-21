@@ -12,6 +12,8 @@ public readonly struct SyntaxToken
         this.Index = index;
     }
 
+    public static SyntaxToken None { get; } = new SyntaxToken(Internal.SyntaxToken.None, null, 0, 0);
+
     public SyntaxNode? Parent { get; }
 
     public int Position { get; }

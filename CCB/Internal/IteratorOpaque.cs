@@ -8,8 +8,53 @@ using System.Runtime.InteropServices;
 [StructLayout(LayoutKind.Sequential, Size = 12)]
 public struct IteratorOpaque
 {
-    public static IteratorOpaque Create(ObjectHandle handle)
+    public static unsafe IteratorOpaque Create(string declaration)
     {
-        return Marshal.PtrToStructure<IteratorOpaque>(handle.Pointer);
+        var result = ExecuteContext
+            .FromDeclaration(declaration)
+            .Execute();
+
+        var handle = result.GetObject();
+
+        ExecuteGuard.IsNotNullptr(handle);
+
+        return *(IteratorOpaque*)handle.Pointer;
+    }
+
+    public unsafe T Get<T>(string declaration) where T : IScriptObject
+    {
+        fixed (IteratorOpaque* ptr = &this)
+        {
+            var result = ExecuteContext
+                .FromDeclaration(declaration)
+                .WithArgument(0, (IntPtr)ptr)
+                .Execute();
+
+            return result.GetRefObject<T>();
+        }
+    }
+
+    public unsafe void Advance(string declaration)
+    {
+        fixed (IteratorOpaque* ptr = &this)
+        {
+            ExecuteContext
+                .FromDeclaration(declaration)
+                .WithArgument(0, (IntPtr)ptr)
+                .Execute();
+        }
+    }
+
+    public unsafe bool IsNull(string declaration)
+    {
+        fixed (IteratorOpaque* ptr = &this)
+        {
+            var result = ExecuteContext
+                .FromDeclaration(declaration)
+                .WithArgument(0, (IntPtr)ptr)
+                .Execute();
+
+            return result.GetBool();
+        }
     }
 }

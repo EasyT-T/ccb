@@ -71,5 +71,7 @@ public class MainThreadContext : SynchronizationContext
                 Log.Error(e, "Unexpected exception thrown while updating synchronize context.");
             }
         }
+
+        this._tasks.Clear();
     }
 }
