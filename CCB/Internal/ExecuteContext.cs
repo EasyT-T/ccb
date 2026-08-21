@@ -1,23 +1,18 @@
 namespace CCB.Internal;
 
-using System.Collections.Immutable;
-
-public readonly struct ExecuteContext
+public readonly ref struct ExecuteContext : IDisposable
 {
     private readonly ModuleHandle _module;
 
-    private readonly int _functionIndex;
+    private readonly List<StringHandle> _stringHandles;
 
-    private readonly ImmutableArray<StringHandle> _stringHandles = [];
-
-    private ExecuteContext(ModuleHandle moduleModule, int functionIndex, ImmutableArray<StringHandle> stringHandles)
+    private ExecuteContext(ModuleHandle moduleModule, List<StringHandle> stringHandles)
     {
         this._module = moduleModule;
-        this._functionIndex = functionIndex;
         this._stringHandles = stringHandles;
     }
 
-    private ExecuteContext(ModuleHandle moduleModule, int functionIndex) : this(moduleModule, functionIndex, [])
+    private ExecuteContext(ModuleHandle moduleModule) : this(moduleModule, [])
     {
     }
 
@@ -28,9 +23,9 @@ public readonly struct ExecuteContext
 
     public static ExecuteContext FromDeclaration(string declaration, ModuleHandle handle)
     {
-        var functionIndex = ExecuteHelper.PrepareFunction(declaration);
+        ExecuteHelper.PrepareFunction(declaration);
 
-        return new ExecuteContext(handle, functionIndex);
+        return new ExecuteContext(handle);
     }
 
     public ExecuteContext WithArgument(int index, bool value)
@@ -115,7 +110,9 @@ public readonly struct ExecuteContext
             throw;
         }
 
-        return new ExecuteContext(this._module, this._functionIndex, this._stringHandles.Add(handle));
+        this._stringHandles.Add(handle);
+
+        return this;
     }
 
     public ExecuteContext WithArgument<T>(int index, T value) where T : IScriptObject
@@ -138,20 +135,27 @@ public readonly struct ExecuteContext
 
     public ExecuteResult Execute()
     {
-        var errCode = NativeBindings.ExecuteModuleFunction(this._module);
+        try
+        {
+            var errCode = NativeBindings.ExecuteModuleFunction(this._module);
 
-        ExecuteGuard.IsSuccess(errCode);
+            ExecuteGuard.IsSuccess(errCode);
 
-        this.Dispose();
-
-        return new ExecuteResult(this._module);
+            return new ExecuteResult(this._module);
+        }
+        finally
+        {
+            this.Dispose();
+        }
     }
 
-    private void Dispose()
+    public void Dispose()
     {
         foreach (var stringHandle in this._stringHandles)
         {
             stringHandle.Dispose();
         }
+
+        this._stringHandles.Clear();
     }
 }

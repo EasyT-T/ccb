@@ -3,10 +3,13 @@ namespace CCB.Internal;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
+using CCB.Extensions;
 
 internal static class Interop
 {
     private static Loader? loader;
+
+    private static ModuleHandle eventHandle;
 
     [UnmanagedCallersOnly]
     public static void Load()
@@ -19,10 +22,8 @@ internal static class Interop
 
             EventRegistry.RegisterEventFunctions();
 
-            var eventScript = NativeBindings.LoadAngelScriptModule("event.as", "./ccb/event.as", 0);
-            var function = NativeBindings.FindModuleFunction(eventScript, "void OnInitialize()", true);
-            NativeBindings.PrepareModuleFunction(eventScript, function);
-            NativeBindings.ExecuteModuleFunction(eventScript);
+            eventHandle = ModuleHandle.FromScript("event.as", "./ccb/event.as");
+            ExecuteContext.FromDeclaration("void OnInitialize()", eventHandle).Execute();
 
             var currentAssembly = Assembly.GetExecutingAssembly();
             SynchronizationContext.SetSynchronizationContext(MainThreadContext.Instance);
