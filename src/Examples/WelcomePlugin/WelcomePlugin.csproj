@@ -21,11 +21,4 @@
     <ItemGroup>
       <Content Include="WelcomePlugin.csproj.user" />
     </ItemGroup>
-
-    <Target Name="CopyFileAfterBuild" AfterTargets="AfterBuild">
-        <Copy
-                SourceFiles="$(TargetDir)WelcomePlugin.dll"
-                DestinationFolder="$(CopyPath)"
-                SkipUnchangedFiles="false" />
-    </Target>
 </Project>
