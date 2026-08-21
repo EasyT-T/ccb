@@ -12,7 +12,6 @@ public static class MainThreadContextExtension
             if (MainThreadContext.Instance.IsMainThread)
             {
                 func();
-
                 return;
             }
 
@@ -65,16 +64,70 @@ public static class MainThreadContextExtension
         }
 
         public static Task RunOnMainThreadAsync(
+            Action func,
+            CancellationToken cancellationToken = default)
+        {
+            return MainThreadContext.RunOnMainThreadAsyncCore(
+                _ =>
+                {
+                    func();
+                    return Task.CompletedTask;
+                },
+                cancellationToken);
+        }
+
+        public static Task RunOnMainThreadAsync(
             Action<CancellationToken> func,
             CancellationToken cancellationToken = default)
         {
+            return MainThreadContext.RunOnMainThreadAsyncCore(
+                ct =>
+                {
+                    func(ct);
+                    return Task.CompletedTask;
+                },
+                cancellationToken);
+        }
+
+        public static Task RunOnMainThreadAsync(
+            Func<Task> func,
+            CancellationToken cancellationToken = default)
+        {
+            return MainThreadContext.RunOnMainThreadAsyncCore(_ => func(), cancellationToken);
+        }
+
+        public static Task RunOnMainThreadAsync(
+            Func<CancellationToken, Task> func,
+            CancellationToken cancellationToken = default)
+        {
+            return MainThreadContext.RunOnMainThreadAsyncCore(func, cancellationToken);
+        }
+
+        public static Task<T> RunOnMainThreadAsync<T>(
+            Func<Task<T>> func,
+            CancellationToken cancellationToken = default)
+        {
+            return MainThreadContext.RunOnMainThreadAsyncCore(_ => func(), cancellationToken);
+        }
+
+        public static Task<T> RunOnMainThreadAsync<T>(
+            Func<CancellationToken, Task<T>> func,
+            CancellationToken cancellationToken = default)
+        {
+            return MainThreadContext.RunOnMainThreadAsyncCore(func, cancellationToken);
+        }
+
+        private static Task RunOnMainThreadAsyncCore(
+            Func<CancellationToken, Task> func,
+            CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
             if (MainThreadContext.Instance.IsMainThread)
             {
                 try
                 {
-                    func(cancellationToken);
-
-                    return Task.CompletedTask;
+                    return func(cancellationToken);
                 }
                 catch (Exception e)
                 {
@@ -91,55 +144,12 @@ public static class MainThreadContextExtension
             }
 
             MainThreadContext.Instance.Post(
-                void (_) =>
-                {
-                    try
-                    {
-                        func(cancellationToken);
-                        tcs.SetResult();
-                    }
-                    catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-                    {
-                        tcs.TrySetCanceled(cancellationToken);
-                    }
-                    catch (Exception ex)
-                    {
-                        tcs.TrySetException(ex);
-                    }
-                    finally
-                    {
-                        ctr.Dispose();
-                    }
-                },
-                null);
-
-            return tcs.Task;
-        }
-
-        public static Task RunOnMainThreadAsync(
-            Func<CancellationToken, Task> func,
-            CancellationToken cancellationToken = default)
-        {
-            if (MainThreadContext.Instance.IsMainThread)
-            {
-                return func(cancellationToken);
-            }
-
-            var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-
-            CancellationTokenRegistration ctr = default;
-            if (cancellationToken.CanBeCanceled)
-            {
-                ctr = cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken));
-            }
-
-            MainThreadContext.Instance.Post(
                 async void (_) =>
                 {
                     try
                     {
                         await func(cancellationToken).ConfigureAwait(true);
-                        tcs.SetResult();
+                        tcs.TrySetResult();
                     }
                     catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
                     {
@@ -159,13 +169,22 @@ public static class MainThreadContextExtension
             return tcs.Task;
         }
 
-        public static Task<T> RunOnMainThreadAsync<T>(
+        private static Task<T> RunOnMainThreadAsyncCore<T>(
             Func<CancellationToken, Task<T>> func,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             if (MainThreadContext.Instance.IsMainThread)
             {
-                return func(cancellationToken);
+                try
+                {
+                    return func(cancellationToken);
+                }
+                catch (Exception e)
+                {
+                    return Task.FromException<T>(e);
+                }
             }
 
             var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);

@@ -44,7 +44,7 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
         {
             await Task.Delay(TimeSpan.FromSeconds(5));
 
-            await MainThreadContext.RunOnMainThreadAsync(_ =>
+            await MainThreadContext.RunOnMainThreadAsync(() =>
             {
                 c.SendPlayer(player, "A message after 5 secs!");
             });
