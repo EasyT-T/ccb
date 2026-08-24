@@ -84,7 +84,7 @@ public partial class Loader
 
                 foreach (var injectableInterface in injectableInterfaces)
                 {
-                    this._serviceCollection.AddSingleton(injectableInterface, injectableType);
+                    this._serviceCollection.AddSingleton(injectableInterface, provider => provider.GetRequiredService(injectableType));
                 }
             }
 
