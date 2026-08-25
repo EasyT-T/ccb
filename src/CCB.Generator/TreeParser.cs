@@ -131,7 +131,7 @@ internal class TreeParser : SimpleVisitor
 
         var type = ParseValueType(node.Type);
 
-        var defaultValue = GetDefaultValue(node.DefaultValue);
+        var defaultValue = node.DefaultValue.Kind != SyntaxKind.None ? node.DefaultValue.Text : null;
 
         return new ParameterType(
             Name: name,
@@ -151,23 +151,5 @@ internal class TreeParser : SimpleVisitor
             Kind: kind,
             RefHandleToken: refHandleToken,
             InoutToken: inoutToken);
-    }
-
-    private static object? GetDefaultValue(SyntaxToken token)
-    {
-        var rawText = token.Text;
-
-        return token.Kind switch
-        {
-            SyntaxKind.Bool => rawText switch
-            {
-                "true" => Boxed.True,
-                "false" => Boxed.False,
-                _ => throw new UnreachableException(),
-            },
-            SyntaxKind.NumberLiteral => decimal.Parse(rawText),
-            SyntaxKind.StringLiteral => rawText,
-            _ => null,
-        };
     }
 }

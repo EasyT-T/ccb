@@ -142,7 +142,7 @@ public static class ScriptFunctions
         }
     }
 
-    public static unsafe Entity CreatePivot(int parent)
+    public static unsafe Entity CreatePivot(int parent = 0)
     {
         {
             var result = ExecuteContext
@@ -153,7 +153,7 @@ public static class ScriptFunctions
         }
     }
 
-    public static unsafe Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius)
+    public static unsafe Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius = 0.0f)
     {
         {
             var result = ExecuteContext
@@ -296,7 +296,7 @@ public static class ScriptFunctions
         }
     }
 
-    public static unsafe float frand(float from, float to)
+    public static unsafe float frand(float from, float to = 0.0f)
     {
         {
             var result = ExecuteContext
@@ -365,7 +365,7 @@ public static class ScriptFunctions
         }
     }
 
-    public static unsafe int CreateTimer(in IntPtr callback, int time, bool repeat, int timerdata)
+    public static unsafe int CreateTimer(in IntPtr callback, int time, bool repeat, int timerdata = 0)
     {
         {
             var result = ExecuteContext
@@ -379,7 +379,7 @@ public static class ScriptFunctions
         }
     }
 
-    public static unsafe int CreateTimer(in string funcdecl, int time, bool repeat, int timerdata)
+    public static unsafe int CreateTimer(in string funcdecl, int time, bool repeat, int timerdata = 0)
     {
         {
             var result = ExecuteContext
@@ -458,7 +458,7 @@ public static class ScriptFunctions
         }
     }
 
-    public static unsafe int rand(int from, int to)
+    public static unsafe int rand(int from, int to = 0)
     {
         {
             var result = ExecuteContext
@@ -837,7 +837,7 @@ public static class ScriptFunctions
     public static class AudioFunctions
     {
 
-        public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, Player player, float range, float volume, bool norange)
+        public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, Player player, float range, float volume, bool norange = false)
         {
             {
                 var result = ExecuteContext
@@ -853,7 +853,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, Entity entity, float range, float volume, bool norange)
+        public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, Entity entity, float range, float volume, bool norange = false)
         {
             {
                 var result = ExecuteContext
@@ -869,7 +869,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange)
+        public static unsafe Sound Play3DSound(Audio @this, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange = false)
         {
             {
                 var result = ExecuteContext
@@ -912,7 +912,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player, in string filenameorurl, Entity entity, float range, float volume, bool norange)
+        public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player, in string filenameorurl, Entity entity, float range, float volume, bool norange = false)
         {
             {
                 var result = ExecuteContext
@@ -929,7 +929,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange)
+        public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange = false)
         {
             {
                 var result = ExecuteContext
@@ -948,7 +948,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player_to, in string filenameorurl, Player player, float range, float volume, bool norange)
+        public static unsafe Sound Play3DSoundForPlayer(Audio @this, Player player_to, in string filenameorurl, Player player, float range, float volume, bool norange = false)
         {
             {
                 var result = ExecuteContext
@@ -996,7 +996,7 @@ public static class ScriptFunctions
     public static class ConfigFunctions
     {
 
-        public static unsafe bool Exist(Config @this, in string key, int index)
+        public static unsafe bool Exist(Config @this, in string key, int index = 0)
         {
             {
                 var result = ExecuteContext
@@ -1009,7 +1009,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string Get(Config @this, in string key, int index)
+        public static unsafe string Get(Config @this, in string key, int index = 0)
         {
             {
                 var result = ExecuteContext
@@ -1069,7 +1069,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string GetHWID(Connection @this, int wmid)
+        public static unsafe string GetHWID(Connection @this, int wmid = 0)
         {
             {
                 var result = ExecuteContext
@@ -1146,7 +1146,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Cancel(Connection @this, in string custom)
+        public static unsafe void Cancel(Connection @this, in string custom = "")
         {
             {
                 var result = ExecuteContext
@@ -1535,7 +1535,7 @@ public static class ScriptFunctions
     public static class EntityFunctions
     {
 
-        public static unsafe void SetPosition(Entity @this, float x, float y, float z, bool global)
+        public static unsafe void SetPosition(Entity @this, float x, float y, float z, bool global = false)
         {
             {
                 var result = ExecuteContext
@@ -1549,7 +1549,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetRotation(Entity @this, float pitch, float yaw, float roll, bool global)
+        public static unsafe void SetRotation(Entity @this, float pitch, float yaw, float roll, bool global = false)
         {
             {
                 var result = ExecuteContext
@@ -1563,7 +1563,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetScale(Entity @this, float x, float y, float z, bool global)
+        public static unsafe void SetScale(Entity @this, float x, float y, float z, bool global = false)
         {
             {
                 var result = ExecuteContext
@@ -1577,7 +1577,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float PositionX(Entity @this, bool global, float tween)
+        public static unsafe float PositionX(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1590,7 +1590,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float PositionY(Entity @this, bool global, float tween)
+        public static unsafe float PositionY(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1603,7 +1603,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float PositionZ(Entity @this, bool global, float tween)
+        public static unsafe float PositionZ(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1616,7 +1616,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Translate(Entity @this, float x, float y, float z, bool global)
+        public static unsafe void Translate(Entity @this, float x, float y, float z, bool global = false)
         {
             {
                 var result = ExecuteContext
@@ -1630,7 +1630,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Move(Entity @this, float x, float y, float z, bool global)
+        public static unsafe void Move(Entity @this, float x, float y, float z, bool global = false)
         {
             {
                 var result = ExecuteContext
@@ -1644,7 +1644,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Pitch(Entity @this, bool global, float tween)
+        public static unsafe float Pitch(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1657,7 +1657,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Yaw(Entity @this, bool global, float tween)
+        public static unsafe float Yaw(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1670,7 +1670,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Roll(Entity @this, bool global, float tween)
+        public static unsafe float Roll(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1683,7 +1683,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Turn(Entity @this, float pitch, float yaw, float roll, bool global)
+        public static unsafe float Turn(Entity @this, float pitch, float yaw, float roll, bool global = false)
         {
             {
                 var result = ExecuteContext
@@ -1698,7 +1698,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float ScaleX(Entity @this, bool global, float tween)
+        public static unsafe float ScaleX(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1711,7 +1711,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float ScaleY(Entity @this, bool global, float tween)
+        public static unsafe float ScaleY(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1724,7 +1724,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float ScaleZ(Entity @this, bool global, float tween)
+        public static unsafe float ScaleZ(Entity @this, bool global = false, float tween = 1.0f)
         {
             {
                 var result = ExecuteContext
@@ -1737,7 +1737,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetAnimTime(Entity @this, float time, int sequence)
+        public static unsafe void SetAnimTime(Entity @this, float time, int sequence = 0)
         {
             {
                 var result = ExecuteContext
@@ -1760,7 +1760,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe float Point(Entity @this, Entity target, float roll)
+        public static unsafe float Point(Entity @this, Entity target, float roll = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -1785,7 +1785,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetPickMode(Entity @this, int pickmode, bool obscurer)
+        public static unsafe void SetPickMode(Entity @this, int pickmode, bool obscurer = false)
         {
             {
                 var result = ExecuteContext
@@ -1797,7 +1797,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Visible(Entity @this, Entity target, float radius)
+        public static unsafe bool Visible(Entity @this, Entity target, float radius = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -1834,7 +1834,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetParent(Entity @this, Entity target, bool retain)
+        public static unsafe void SetParent(Entity @this, Entity target, bool retain = true)
         {
             {
                 var result = ExecuteContext
@@ -2057,7 +2057,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetType(Entity @this, int colltype, bool recursive)
+        public static unsafe void SetType(Entity @this, int colltype, bool recursive = false)
         {
             {
                 var result = ExecuteContext
@@ -2069,7 +2069,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetRadius(Entity @this, float x, float y)
+        public static unsafe void SetRadius(Entity @this, float x, float y = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -2081,7 +2081,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetCylinder(Entity @this, float x_radius, float y_radius)
+        public static unsafe void SetCylinder(Entity @this, float x_radius, float y_radius = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -2867,7 +2867,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetAttach(GUIElement @this, bool enable, float x, float y, float z)
+        public static unsafe void SetAttach(GUIElement @this, bool enable, float x = 0.0f, float y = 0.0f, float z = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -3023,7 +3023,7 @@ public static class ScriptFunctions
     public static class GraphicsFunctions
     {
 
-        public static unsafe GUIElement CreateOval(Graphics @this, Player player, float x, float y, float width, float height, bool align)
+        public static unsafe GUIElement CreateOval(Graphics @this, Player player, float x, float y, float width, float height, bool align = false)
         {
             {
                 var result = ExecuteContext
@@ -3040,7 +3040,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe GUIElement CreateRect(Graphics @this, Player player, float x, float y, float width, float height, bool align)
+        public static unsafe GUIElement CreateRect(Graphics @this, Player player, float x, float y, float width, float height, bool align = false)
         {
             {
                 var result = ExecuteContext
@@ -3057,7 +3057,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe GUIElement CreateProgressBar(Graphics @this, Player player, float time, float x, float y, float width, float height, bool align)
+        public static unsafe GUIElement CreateProgressBar(Graphics @this, Player player, float time, float x, float y, float width, float height, bool align = false)
         {
             {
                 var result = ExecuteContext
@@ -3113,7 +3113,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe GUIElement CreateText(Graphics @this, Player player, int fontid, in string text, float x, float y, bool align)
+        public static unsafe GUIElement CreateText(Graphics @this, Player player, int fontid, in string text, float x, float y, bool align = false)
         {
             {
                 var result = ExecuteContext
@@ -3130,7 +3130,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe GUIElement CreateImage(Graphics @this, Player player, in string filename, float x, float y, float width, float height, bool align)
+        public static unsafe GUIElement CreateImage(Graphics @this, Player player, in string filename, float x, float y, float width, float height, bool align = false)
         {
             {
                 var result = ExecuteContext
@@ -3148,7 +3148,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe GUIElement CreatePostEffect(Graphics @this, Player player, in string filename, in string defines)
+        public static unsafe GUIElement CreatePostEffect(Graphics @this, Player player, in string filename, in string defines = "")
         {
             {
                 var result = ExecuteContext
@@ -3188,7 +3188,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool SetPicker(Items @this, Player player, float throwforce)
+        public static unsafe bool SetPicker(Items @this, Player player, float throwforce = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -4613,7 +4613,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe string GetHWID(Player @this, int wmid)
+        public static unsafe string GetHWID(Player @this, int wmid = 0)
         {
             {
                 var result = ExecuteContext
@@ -4748,7 +4748,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Kick(Player @this, int code, in string custom)
+        public static unsafe void Kick(Player @this, int code = 0, in string custom = "")
         {
             {
                 var result = ExecuteContext
@@ -4760,7 +4760,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void ShowDialog(Player @this, int type, int index, in string header, in string message, in string leftbutton, in string rightbutton, bool align)
+        public static unsafe void ShowDialog(Player @this, int type, int index, in string header, in string message, in string leftbutton, in string rightbutton = "", bool align = true)
         {
             {
                 var result = ExecuteContext
@@ -4777,7 +4777,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void ShowDialog(Player @this, int type,  IntPtr callback, in string header, in string message, in string leftbutton, in string rightbutton, bool align)
+        public static unsafe void ShowDialog(Player @this, int type,  IntPtr callback, in string header, in string message, in string leftbutton, in string rightbutton = "", bool align = true)
         {
             {
                 var result = ExecuteContext
@@ -4826,7 +4826,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SendMessage(Player @this, in string message, float time, bool localized)
+        public static unsafe void SendMessage(Player @this, in string message, float time = 6.0f, bool localized = false)
         {
             {
                 var result = ExecuteContext
@@ -4905,7 +4905,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool Kill(Player @this, bool bloody, bool createcorpse)
+        public static unsafe bool Kill(Player @this, bool bloody = false, bool createcorpse = true)
         {
             {
                 var result = ExecuteContext
@@ -5088,7 +5088,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetPosition(Player @this, float x, float y, float z, Room room, bool updatepivot)
+        public static unsafe void SetPosition(Player @this, float x, float y, float z, Room room = default, bool updatepivot = true)
         {
             {
                 var result = ExecuteContext
@@ -5115,7 +5115,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Teleport(Player @this, Room room, float x, float y, float z, bool updatepivot)
+        public static unsafe void Teleport(Player @this, Room room, float x, float y, float z, bool updatepivot = true)
         {
             {
                 var result = ExecuteContext
@@ -5152,7 +5152,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetPositionBounds(Player @this, Room room, float x, float y, float z, float distance)
+        public static unsafe void SetPositionBounds(Player @this, Room room, float x = 0.0f, float y = 0.0f, float z = 0.0f, float distance = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -5167,7 +5167,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Explode(Player @this, bool thrust)
+        public static unsafe void Explode(Player @this, bool thrust = false)
         {
             {
                 var result = ExecuteContext
@@ -5261,7 +5261,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe bool SendVoice(Player @this, int bank, int radio, bool global, Player target)
+        public static unsafe bool SendVoice(Player @this, int bank, int radio = 0, bool global = false, Player target = default)
         {
             {
                 var result = ExecuteContext
@@ -5492,7 +5492,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetAttach(Player @this, int bodyindex, int attachmodelindex, Items item)
+        public static unsafe void SetAttach(Player @this, int bodyindex, int attachmodelindex, Items item = default)
         {
             {
                 var result = ExecuteContext
@@ -5540,7 +5540,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void SetModel(Player @this, int modelid, int textureid)
+        public static unsafe void SetModel(Player @this, int modelid, int textureid = -1)
         {
             {
                 var result = ExecuteContext
@@ -7389,7 +7389,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe void Remove(Shell @this, bool action)
+        public static unsafe void Remove(Shell @this, bool action = false)
         {
             {
                 var result = ExecuteContext
@@ -7477,7 +7477,7 @@ public static class ScriptFunctions
     public static class WorldFunctions
     {
 
-        public static unsafe void CreateDecal(World @this, int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer)
+        public static unsafe void CreateDecal(World @this, int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room = default, float lifetime = 1.0f, float alpha = 1.0f, float size = 1.0f, float sizechange = 0.0f, float maxsize = 1.0f, float alphachange = 0.0f, int r = 0, int g = 0, int b = 0, float timer = 0.0f)
         {
             {
                 var result = ExecuteContext
@@ -7630,7 +7630,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Items CreateItem(World @this, in string templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)
+        public static unsafe Items CreateItem(World @this, in string templatename, bool collision = true, float x = 0f, float y = 0f, float z = 0f, int r = 0, int g = 0, int b = 0, float alpha = 1.0f, int invslots = 0)
         {
             {
                 var result = ExecuteContext
@@ -7651,7 +7651,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Items CreateItem(World @this, int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)
+        public static unsafe Items CreateItem(World @this, int templateindex, bool collision = true, float x = 0f, float y = 0f, float z = 0f, int r = 0, int g = 0, int b = 0, float alpha = 1.0f, int invslots = 0)
         {
             {
                 var result = ExecuteContext
@@ -7756,7 +7756,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Object CreateObject(World @this, int objectid, Room room, bool animated)
+        public static unsafe Object CreateObject(World @this, int objectid, Room room = default, bool animated = false)
         {
             {
                 var result = ExecuteContext
@@ -7782,7 +7782,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Light CreateLight(World @this, int type, float range, Room room)
+        public static unsafe Light CreateLight(World @this, int type, float range = 10.0f, Room room = default)
         {
             {
                 var result = ExecuteContext
@@ -7847,7 +7847,7 @@ public static class ScriptFunctions
             }
         }
 
-        public static unsafe Shell CreateShell(World @this, int weaponid, Player shooter)
+        public static unsafe Shell CreateShell(World @this, int weaponid, Player shooter = default)
         {
             {
                 var result = ExecuteContext

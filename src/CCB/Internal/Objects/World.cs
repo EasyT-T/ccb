@@ -35,7 +35,7 @@ public struct World(ObjectOpaque opaque) : IScriptObject, IEquatable<World>
         return new World(opaque);
     }
 
-    public void CreateDecal(int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer) => ScriptFunctions.WorldFunctions.CreateDecal(this, decalid, x, y, z, pitch, yaw, roll, room, lifetime, alpha, size, sizechange, maxsize, alphachange, r, g, b, timer);
+    public void CreateDecal(int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room = default, float lifetime = 1.0f, float alpha = 1.0f, float size = 1.0f, float sizechange = 0.0f, float maxsize = 1.0f, float alphachange = 0.0f, int r = 0, int g = 0, int b = 0, float timer = 0.0f) => ScriptFunctions.WorldFunctions.CreateDecal(this, decalid, x, y, z, pitch, yaw, roll, room, lifetime, alpha, size, sizechange, maxsize, alphachange, r, g, b, timer);
 
     public void CreateEmitter(Player target, int id, float x, float y, float z) => ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z);
 
@@ -55,9 +55,9 @@ public struct World(ObjectOpaque opaque) : IScriptObject, IEquatable<World>
 
     public Items FindItem(int index) => ScriptFunctions.WorldFunctions.FindItem(this, index);
 
-    public Items CreateItem(in string templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots) => ScriptFunctions.WorldFunctions.CreateItem(this, in templatename, collision, x, y, z, r, g, b, alpha, invslots);
+    public Items CreateItem(in string templatename, bool collision = true, float x = 0f, float y = 0f, float z = 0f, int r = 0, int g = 0, int b = 0, float alpha = 1.0f, int invslots = 0) => ScriptFunctions.WorldFunctions.CreateItem(this, in templatename, collision, x, y, z, r, g, b, alpha, invslots);
 
-    public Items CreateItem(int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots) => ScriptFunctions.WorldFunctions.CreateItem(this, templateindex, collision, x, y, z, r, g, b, alpha, invslots);
+    public Items CreateItem(int templateindex, bool collision = true, float x = 0f, float y = 0f, float z = 0f, int r = 0, int g = 0, int b = 0, float alpha = 1.0f, int invslots = 0) => ScriptFunctions.WorldFunctions.CreateItem(this, templateindex, collision, x, y, z, r, g, b, alpha, invslots);
 
     public Room GetRoomByName(in string unnamed0) => ScriptFunctions.WorldFunctions.GetRoomByName(this, in unnamed0);
 
@@ -73,11 +73,11 @@ public struct World(ObjectOpaque opaque) : IScriptObject, IEquatable<World>
 
     public Event GetEventByIdentifier(int index) => ScriptFunctions.WorldFunctions.GetEventByIdentifier(this, index);
 
-    public Object CreateObject(int objectid, Room room, bool animated) => ScriptFunctions.WorldFunctions.CreateObject(this, objectid, room, animated);
+    public Object CreateObject(int objectid, Room room = default, bool animated = false) => ScriptFunctions.WorldFunctions.CreateObject(this, objectid, room, animated);
 
     public Object FindObject(int index) => ScriptFunctions.WorldFunctions.FindObject(this, index);
 
-    public Light CreateLight(int type, float range, Room room) => ScriptFunctions.WorldFunctions.CreateLight(this, type, range, room);
+    public Light CreateLight(int type, float range = 10.0f, Room room = default) => ScriptFunctions.WorldFunctions.CreateLight(this, type, range, room);
 
     public Light FindLight(int index) => ScriptFunctions.WorldFunctions.FindLight(this, index);
 
@@ -87,7 +87,7 @@ public struct World(ObjectOpaque opaque) : IScriptObject, IEquatable<World>
 
     public ModelPreset GetModelPreset(int modelid) => ScriptFunctions.WorldFunctions.GetModelPreset(this, modelid);
 
-    public Shell CreateShell(int weaponid, Player shooter) => ScriptFunctions.WorldFunctions.CreateShell(this, weaponid, shooter);
+    public Shell CreateShell(int weaponid, Player shooter = default) => ScriptFunctions.WorldFunctions.CreateShell(this, weaponid, shooter);
 
     public Shell FindShell(int index) => ScriptFunctions.WorldFunctions.FindShell(this, index);
 }

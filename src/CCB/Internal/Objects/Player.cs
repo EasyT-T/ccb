@@ -99,7 +99,7 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public string GetSteamID() => ScriptFunctions.PlayerFunctions.GetSteamID(this);
 
-    public string GetHWID(int wmid) => ScriptFunctions.PlayerFunctions.GetHWID(this, wmid);
+    public string GetHWID(int wmid = 0) => ScriptFunctions.PlayerFunctions.GetHWID(this, wmid);
 
     public string GetName() => ScriptFunctions.PlayerFunctions.GetName(this);
 
@@ -123,11 +123,11 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public void SetLocalInvisible(Player player, bool inv) => ScriptFunctions.PlayerFunctions.SetLocalInvisible(this, player, inv);
 
-    public void Kick(int code, in string custom) => ScriptFunctions.PlayerFunctions.Kick(this, code, in custom);
+    public void Kick(int code = 0, in string custom = "") => ScriptFunctions.PlayerFunctions.Kick(this, code, in custom);
 
-    public void ShowDialog(int type, int index, in string header, in string message, in string leftbutton, in string rightbutton, bool align) => ScriptFunctions.PlayerFunctions.ShowDialog(this, type, index, in header, in message, in leftbutton, in rightbutton, align);
+    public void ShowDialog(int type, int index, in string header, in string message, in string leftbutton, in string rightbutton = "", bool align = true) => ScriptFunctions.PlayerFunctions.ShowDialog(this, type, index, in header, in message, in leftbutton, in rightbutton, align);
 
-    public void ShowDialog(int type, ref IntPtr callback, in string header, in string message, in string leftbutton, in string rightbutton, bool align) => ScriptFunctions.PlayerFunctions.ShowDialog(this, type, callback, in header, in message, in leftbutton, in rightbutton, align);
+    public void ShowDialog(int type, ref IntPtr callback, in string header, in string message, in string leftbutton, in string rightbutton = "", bool align = true) => ScriptFunctions.PlayerFunctions.ShowDialog(this, type, callback, in header, in message, in leftbutton, in rightbutton, align);
 
     public void SetDialogData(in string data) => ScriptFunctions.PlayerFunctions.SetDialogData(this, in data);
 
@@ -135,7 +135,7 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public void HideDialog() => ScriptFunctions.PlayerFunctions.HideDialog(this);
 
-    public void SendMessage(in string message, float time, bool localized) => ScriptFunctions.PlayerFunctions.SendMessage(this, in message, time, localized);
+    public void SendMessage(in string message, float time = 6.0f, bool localized = false) => ScriptFunctions.PlayerFunctions.SendMessage(this, in message, time, localized);
 
     public void Desync(bool value) => ScriptFunctions.PlayerFunctions.Desync(this, value);
 
@@ -149,7 +149,7 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public int GetSpectateMode() => ScriptFunctions.PlayerFunctions.GetSpectateMode(this);
 
-    public bool Kill(bool bloody, bool createcorpse) => ScriptFunctions.PlayerFunctions.Kill(this, bloody, createcorpse);
+    public bool Kill(bool bloody = false, bool createcorpse = true) => ScriptFunctions.PlayerFunctions.Kill(this, bloody, createcorpse);
 
     public bool Respawn() => ScriptFunctions.PlayerFunctions.Respawn(this);
 
@@ -179,19 +179,19 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public void SetNetworkRotation(float pitch, float yaw) => ScriptFunctions.PlayerFunctions.SetNetworkRotation(this, pitch, yaw);
 
-    public void SetPosition(float x, float y, float z, Room room, bool updatepivot) => ScriptFunctions.PlayerFunctions.SetPosition(this, x, y, z, room, updatepivot);
+    public void SetPosition(float x, float y, float z, Room room = default, bool updatepivot = true) => ScriptFunctions.PlayerFunctions.SetPosition(this, x, y, z, room, updatepivot);
 
     public void SetRotation(float pitch, float yaw) => ScriptFunctions.PlayerFunctions.SetRotation(this, pitch, yaw);
 
-    public void Teleport(Room room, float x, float y, float z, bool updatepivot) => ScriptFunctions.PlayerFunctions.Teleport(this, room, x, y, z, updatepivot);
+    public void Teleport(Room room, float x, float y, float z, bool updatepivot = true) => ScriptFunctions.PlayerFunctions.Teleport(this, room, x, y, z, updatepivot);
 
     public void SetRoom(Room room) => ScriptFunctions.PlayerFunctions.SetRoom(this, room);
 
     public Room GetRoom() => ScriptFunctions.PlayerFunctions.GetRoom(this);
 
-    public void SetPositionBounds(Room room, float x, float y, float z, float distance) => ScriptFunctions.PlayerFunctions.SetPositionBounds(this, room, x, y, z, distance);
+    public void SetPositionBounds(Room room, float x = 0.0f, float y = 0.0f, float z = 0.0f, float distance = 0.0f) => ScriptFunctions.PlayerFunctions.SetPositionBounds(this, room, x, y, z, distance);
 
-    public void Explode(bool thrust) => ScriptFunctions.PlayerFunctions.Explode(this, thrust);
+    public void Explode(bool thrust = false) => ScriptFunctions.PlayerFunctions.Explode(this, thrust);
 
     public void MovePlayer(float speedmult, float angle) => ScriptFunctions.PlayerFunctions.MovePlayer(this, speedmult, angle);
 
@@ -207,7 +207,7 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public bool IsGlobalTransmission() => ScriptFunctions.PlayerFunctions.IsGlobalTransmission(this);
 
-    public bool SendVoice(int bank, int radio, bool global, Player target) => ScriptFunctions.PlayerFunctions.SendVoice(this, bank, radio, global, target);
+    public bool SendVoice(int bank, int radio = 0, bool global = false, Player target = default) => ScriptFunctions.PlayerFunctions.SendVoice(this, bank, radio, global, target);
 
     public int GetItemsCount() => ScriptFunctions.PlayerFunctions.GetItemsCount(this);
 
@@ -247,7 +247,7 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public float GetStaminaMultiplier() => ScriptFunctions.PlayerFunctions.GetStaminaMultiplier(this);
 
-    public void SetAttach(int bodyindex, int attachmodelindex, Items item) => ScriptFunctions.PlayerFunctions.SetAttach(this, bodyindex, attachmodelindex, item);
+    public void SetAttach(int bodyindex, int attachmodelindex, Items item = default) => ScriptFunctions.PlayerFunctions.SetAttach(this, bodyindex, attachmodelindex, item);
 
     public int GetAttach(int bodyindex) => ScriptFunctions.PlayerFunctions.GetAttach(this, bodyindex);
 
@@ -255,7 +255,7 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 
     public int GetModel() => ScriptFunctions.PlayerFunctions.GetModel(this);
 
-    public void SetModel(int modelid, int textureid) => ScriptFunctions.PlayerFunctions.SetModel(this, modelid, textureid);
+    public void SetModel(int modelid, int textureid = -1) => ScriptFunctions.PlayerFunctions.SetModel(this, modelid, textureid);
 
     public void SetModelSize(float unnamed0) => ScriptFunctions.PlayerFunctions.SetModelSize(this, unnamed0);
 

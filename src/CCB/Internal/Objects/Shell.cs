@@ -169,5 +169,5 @@ public struct Shell(ObjectOpaque opaque) : IScriptObject, IEquatable<Shell>
 
     public void SetShooter(Player player) => ScriptFunctions.ShellFunctions.SetShooter(this, player);
 
-    public void Remove(bool action) => ScriptFunctions.ShellFunctions.Remove(this, action);
+    public void Remove(bool action = false) => ScriptFunctions.ShellFunctions.Remove(this, action);
 }

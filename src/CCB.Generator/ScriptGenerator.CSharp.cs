@@ -204,8 +204,19 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
         return string.Join(", ", values);
     }
 
-    private static string GetParameterText(ParameterType parameter) =>
-        $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name}";
+    private static string GetParameterText(ParameterType parameter) => parameter.DefaultValue is not null
+        ? $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name} = {GetDefaultValue(parameter.Type, parameter.DefaultValue)}"
+        : $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name}";
+
+    private static string GetDefaultValue(ValueType type, string defaultValue)
+    {
+        return type.Kind switch
+        {
+            SyntaxKind.Float => defaultValue.EndsWith('f') ? defaultValue : defaultValue + 'f',
+            SyntaxKind.Identifier => defaultValue == "NULL" ? "default" : defaultValue,
+            _ => defaultValue,
+        };
+    }
 
     private static string GetThisParameterText(ClassType classType) => $"{classType.ClassName} @this";
 
@@ -335,10 +346,8 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
         foreach (var function in classType.Methods)
         {
             writer.WriteLine();
-            writer.WriteLine(BuildFunctionDeclaration(function.Model));
-            writer.OpenBlock();
+            writer.Write(BuildFunctionDeclaration(function.Model));
             writer.WriteLine(BuildFunctionBody(classType.Model, function.Model));
-            writer.CloseBlock();
         }
 
         writer.CloseBlock();
@@ -445,9 +454,9 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
 
     private static string BuildFunctionBody(ClassType classType, FunctionType function)
     {
-        var call = $"ScriptFunctions.{classType.ClassName}Functions.{function.Name}({BuildArgumentList(function)})";
+        var call = $" => ScriptFunctions.{classType.ClassName}Functions.{function.Name}({BuildArgumentList(function)});";
 
-        return function.ReturnType.Kind is SyntaxKind.Void ? $"{call};" : $"return {call};";
+        return call;
     }
 
     private static string BuildArgumentList(FunctionType function)
@@ -469,8 +478,19 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
     private static string GetArgumentText(ParameterType parameter) =>
         parameter.Type.IsHandle ? parameter.Name : $"{GetTypeModifiersText(parameter.Type)}{parameter.Name}";
 
-    private static string GetParameterText(ParameterType parameter) =>
-        $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name}";
+    private static string GetParameterText(ParameterType parameter) => parameter.DefaultValue is not null
+        ? $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name} = {GetDefaultValue(parameter.Type, parameter.DefaultValue)}"
+        : $"{GetTypeModifiersText(parameter.Type)}{GetParameterTypeText(parameter.Type)} {parameter.Name}";
+
+    private static string GetDefaultValue(ValueType type, string defaultValue)
+    {
+        return type.Kind switch
+        {
+            SyntaxKind.Float => defaultValue.EndsWith('f') ? defaultValue : defaultValue + 'f',
+            SyntaxKind.Identifier => defaultValue == "NULL" ? "default" : defaultValue,
+            _ => defaultValue,
+        };
+    }
 
     private static string GetReturnTypeText(ValueType type) => type.Kind switch
     {

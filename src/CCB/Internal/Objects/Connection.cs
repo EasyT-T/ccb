@@ -91,7 +91,7 @@ public struct Connection(ObjectOpaque opaque) : IScriptObject, IEquatable<Connec
 
     public string GetLanguage() => ScriptFunctions.ConnectionFunctions.GetLanguage(this);
 
-    public string GetHWID(int wmid) => ScriptFunctions.ConnectionFunctions.GetHWID(this, wmid);
+    public string GetHWID(int wmid = 0) => ScriptFunctions.ConnectionFunctions.GetHWID(this, wmid);
 
     public string GetIP() => ScriptFunctions.ConnectionFunctions.GetIP(this);
 
@@ -105,7 +105,7 @@ public struct Connection(ObjectOpaque opaque) : IScriptObject, IEquatable<Connec
 
     public void Cancel(int code) => ScriptFunctions.ConnectionFunctions.Cancel(this, code);
 
-    public void Cancel(in string custom) => ScriptFunctions.ConnectionFunctions.Cancel(this, in custom);
+    public void Cancel(in string custom = "") => ScriptFunctions.ConnectionFunctions.Cancel(this, in custom);
 
     public void Remove() => ScriptFunctions.ConnectionFunctions.Remove(this);
 }

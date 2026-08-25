@@ -119,7 +119,7 @@ public struct GUIElement(ObjectOpaque opaque) : IScriptObject, IEquatable<GUIEle
 
     public void SetAttach(Player player) => ScriptFunctions.GUIElementFunctions.SetAttach(this, player);
 
-    public void SetAttach(bool enable, float x, float y, float z) => ScriptFunctions.GUIElementFunctions.SetAttach(this, enable, x, y, z);
+    public void SetAttach(bool enable, float x = 0.0f, float y = 0.0f, float z = 0.0f) => ScriptFunctions.GUIElementFunctions.SetAttach(this, enable, x, y, z);
 
     public Player GetAttach() => ScriptFunctions.GUIElementFunctions.GetAttach(this);
 

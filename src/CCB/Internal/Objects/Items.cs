@@ -89,7 +89,7 @@ public struct Items(ObjectOpaque opaque) : IScriptObject, IEquatable<Items>
 
     public Player GetPicker() => ScriptFunctions.ItemsFunctions.GetPicker(this);
 
-    public bool SetPicker(Player player, float throwforce) => ScriptFunctions.ItemsFunctions.SetPicker(this, player, throwforce);
+    public bool SetPicker(Player player, float throwforce = 0.0f) => ScriptFunctions.ItemsFunctions.SetPicker(this, player, throwforce);
 
     public Entity GetEntity() => ScriptFunctions.ItemsFunctions.GetEntity(this);
 

@@ -85,9 +85,9 @@ public struct Config(ObjectOpaque opaque) : IScriptObject, IEquatable<Config>
         return new Config(opaque);
     }
 
-    public bool Exist(in string key, int index) => ScriptFunctions.ConfigFunctions.Exist(this, in key, index);
+    public bool Exist(in string key, int index = 0) => ScriptFunctions.ConfigFunctions.Exist(this, in key, index);
 
-    public string Get(in string key, int index) => ScriptFunctions.ConfigFunctions.Get(this, in key, index);
+    public string Get(in string key, int index = 0) => ScriptFunctions.ConfigFunctions.Get(this, in key, index);
 
     public void Remove() => ScriptFunctions.ConfigFunctions.Remove(this);
 }
