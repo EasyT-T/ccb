@@ -31,6 +31,12 @@ public static class GlobalProperties
         get => ScriptFunctions.Getworld();
         set => ScriptFunctions.Setworld(value);
     }
+
+    public static Server Server
+    {
+        get => ScriptFunctions.Getserver();
+        set => ScriptFunctions.Setserver(value);
+    }
 }
 
 public static class ScriptFunctions
@@ -111,6 +117,26 @@ public static class ScriptFunctions
         {
             var result = ExecuteContext
                 .FromDeclaration("void ccb::Setworld(::World value)")
+                .WithArgument(0, value)
+                .Execute();
+        }
+    }
+
+    public static unsafe Server Getserver()
+    {
+        {
+            var result = ExecuteContext
+                .FromDeclaration("::Server ccb::Getserver()")
+                .Execute();
+            return result.GetObject<Server>();
+        }
+    }
+
+    public static unsafe void Setserver(Server value)
+    {
+        {
+            var result = ExecuteContext
+                .FromDeclaration("void ccb::Setserver(::Server value)")
                 .WithArgument(0, value)
                 .Execute();
         }

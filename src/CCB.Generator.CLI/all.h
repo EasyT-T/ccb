@@ -2,6 +2,7 @@ Chat chat;
 Audio audio;
 Graphics graphics;
 World world;
+Server server;
 
 Entity CreatePivot(int parent=0);
 Entity LinePick(float x, float y, float z, float dx, float dy, float dz, float radius=0.0);
