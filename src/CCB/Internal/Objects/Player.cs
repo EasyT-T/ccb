@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Player(ObjectHandle handle) : IScriptObject, IEquatable<Player>
+public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Player Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Player>
     {
@@ -60,17 +62,17 @@ public struct Player(ObjectHandle handle) : IScriptObject, IEquatable<Player>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Player other) => this.Handle == other.Handle;
+    public bool Equals(Player other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Player other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Player left, Player right) => left.Equals(right);
 
     public static bool operator !=(Player left, Player right) => !left.Equals(right);
 
-    public static bool operator ==(Player left, Player? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Player left, Player? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Player left, Player? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Player(ObjectHandle handle) : IScriptObject, IEquatable<Player>
 
     public static bool operator !=(Player? left, Player right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Player(handle);
+        return new Player(opaque);
     }
 
     public Entity GetHitbox()

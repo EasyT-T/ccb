@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Waypoint(ObjectHandle handle) : IScriptObject, IEquatable<Waypoint>
+public struct Waypoint(ObjectOpaque opaque) : IScriptObject, IEquatable<Waypoint>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Waypoint Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Waypoint>
     {
@@ -60,17 +62,17 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject, IEquatable<Waypoint
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Waypoint other) => this.Handle == other.Handle;
+    public bool Equals(Waypoint other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Waypoint other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Waypoint left, Waypoint right) => left.Equals(right);
 
     public static bool operator !=(Waypoint left, Waypoint right) => !left.Equals(right);
 
-    public static bool operator ==(Waypoint left, Waypoint? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Waypoint left, Waypoint? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Waypoint left, Waypoint? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Waypoint(ObjectHandle handle) : IScriptObject, IEquatable<Waypoint
 
     public static bool operator !=(Waypoint? left, Waypoint right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Waypoint(handle);
+        return new Waypoint(opaque);
     }
 
     public Entity GetEntity()

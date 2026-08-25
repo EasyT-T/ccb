@@ -6,21 +6,23 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Entity(ObjectHandle handle) : IScriptObject, IEquatable<Entity>
+public struct Entity(ObjectOpaque opaque) : IScriptObject, IEquatable<Entity>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Entity Null { get; } = default;
 
-    public bool Equals(Entity other) => this.Handle == other.Handle;
+    public ObjectOpaque Opaque { get; } = opaque;
+
+    public bool Equals(Entity other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Entity other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Entity left, Entity right) => left.Equals(right);
 
     public static bool operator !=(Entity left, Entity right) => !left.Equals(right);
 
-    public static bool operator ==(Entity left, Entity? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Entity left, Entity? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Entity left, Entity? right) => !(left == right);
 
@@ -28,9 +30,9 @@ public struct Entity(ObjectHandle handle) : IScriptObject, IEquatable<Entity>
 
     public static bool operator !=(Entity? left, Entity right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Entity(handle);
+        return new Entity(opaque);
     }
 
     public void SetPosition(float x, float y, float z, bool global)

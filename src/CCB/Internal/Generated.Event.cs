@@ -74,7 +74,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerUpdateInternal(ObjectHandle player)
+    private static void OnPlayerUpdateInternal(ObjectOpaque player)
     {
         try
         {
@@ -88,7 +88,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerConnectInternal(ObjectHandle player)
+    private static void OnPlayerConnectInternal(ObjectOpaque player)
     {
         try
         {
@@ -102,7 +102,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerDisconnectInternal(ObjectHandle player)
+    private static void OnPlayerDisconnectInternal(ObjectOpaque player)
     {
         try
         {
@@ -116,7 +116,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerChatInternal(ObjectHandle player, IntPtr text)
+    private static int OnPlayerChatInternal(ObjectOpaque player, IntPtr text)
     {
         try
         {
@@ -131,7 +131,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerAttachesUpdateInternal(ObjectHandle player)
+    private static void OnPlayerAttachesUpdateInternal(ObjectOpaque player)
     {
         try
         {
@@ -145,7 +145,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerTakeItemInternal(ObjectHandle player, ObjectHandle item)
+    private static int OnPlayerTakeItemInternal(ObjectOpaque player, ObjectOpaque item)
     {
         try
         {
@@ -160,7 +160,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerDropItemInternal(ObjectHandle player, ObjectHandle item)
+    private static int OnPlayerDropItemInternal(ObjectOpaque player, ObjectOpaque item)
     {
         try
         {
@@ -175,7 +175,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerDialogActionInternal(ObjectHandle player, int index, int response, IntPtr input, int selecteditem)
+    private static void OnPlayerDialogActionInternal(ObjectOpaque player, int index, int response, IntPtr input, int selecteditem)
     {
         try
         {
@@ -189,7 +189,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerShootPlayerInternal(ObjectHandle shooter, ObjectHandle dest, float x, float y, float z, float damage, int headshot)
+    private static int OnPlayerShootPlayerInternal(ObjectOpaque shooter, ObjectOpaque dest, float x, float y, float z, float damage, int headshot)
     {
         try
         {
@@ -204,7 +204,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerShootInternal(ObjectHandle player, ObjectHandle item, int weaponattach)
+    private static int OnPlayerShootInternal(ObjectOpaque player, ObjectOpaque item, int weaponattach)
     {
         try
         {
@@ -219,7 +219,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerPressPlayerInternal(ObjectHandle src, ObjectHandle dest)
+    private static void OnPlayerPressPlayerInternal(ObjectOpaque src, ObjectOpaque dest)
     {
         try
         {
@@ -233,7 +233,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerConsoleInternal(ObjectHandle player, IntPtr input)
+    private static int OnPlayerConsoleInternal(ObjectOpaque player, IntPtr input)
     {
         try
         {
@@ -248,7 +248,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerDeathInternal(ObjectHandle player, ObjectHandle corpse)
+    private static void OnPlayerDeathInternal(ObjectOpaque player, ObjectOpaque corpse)
     {
         try
         {
@@ -262,7 +262,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerRespawnInternal(ObjectHandle player)
+    private static void OnPlayerRespawnInternal(ObjectOpaque player)
     {
         try
         {
@@ -276,7 +276,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerHitPlayerInternal(ObjectHandle src, ObjectHandle dest, int mousedata, float distance)
+    private static void OnPlayerHitPlayerInternal(ObjectOpaque src, ObjectOpaque dest, int mousedata, float distance)
     {
         try
         {
@@ -290,7 +290,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerExploreCorpseInternal(ObjectHandle player, ObjectHandle corpse)
+    private static int OnPlayerExploreCorpseInternal(ObjectOpaque player, ObjectOpaque corpse)
     {
         try
         {
@@ -305,7 +305,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerClickObjectInternal(ObjectHandle player, ObjectHandle @object)
+    private static void OnPlayerClickObjectInternal(ObjectOpaque player, ObjectOpaque @object)
     {
         try
         {
@@ -319,7 +319,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerShootObjectInternal(ObjectHandle player, ObjectHandle @object)
+    private static void OnPlayerShootObjectInternal(ObjectOpaque player, ObjectOpaque @object)
     {
         try
         {
@@ -333,7 +333,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerUseDoorButtonInternal(ObjectHandle player, ObjectHandle door, ObjectHandle useditem)
+    private static int OnPlayerUseDoorButtonInternal(ObjectOpaque player, ObjectOpaque door, ObjectOpaque useditem)
     {
         try
         {
@@ -348,7 +348,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerUseItemInternal(ObjectHandle player, ObjectHandle item)
+    private static int OnPlayerUseItemInternal(ObjectOpaque player, ObjectOpaque item)
     {
         try
         {
@@ -363,7 +363,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerSelectItemInternal(ObjectHandle player, ObjectHandle item)
+    private static int OnPlayerSelectItemInternal(ObjectOpaque player, ObjectOpaque item)
     {
         try
         {
@@ -378,7 +378,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerUse914Internal(ObjectHandle player, int fineid)
+    private static void OnPlayerUse914Internal(ObjectOpaque player, int fineid)
     {
         try
         {
@@ -392,7 +392,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerClickGuiInternal(ObjectHandle player, ObjectHandle element)
+    private static void OnPlayerClickGuiInternal(ObjectOpaque player, ObjectOpaque element)
     {
         try
         {
@@ -406,7 +406,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerVoiceInternal(ObjectHandle player, int bank, int radio)
+    private static int OnPlayerVoiceInternal(ObjectOpaque player, int bank, int radio)
     {
         try
         {
@@ -421,7 +421,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerTeleportElevatorInternal(ObjectHandle player, ObjectHandle room, ObjectHandle firstentity, ObjectHandle secondentity, float offsetx, float offsety)
+    private static void OnPlayerTeleportElevatorInternal(ObjectOpaque player, ObjectOpaque room, ObjectOpaque firstentity, ObjectOpaque secondentity, float offsetx, float offsety)
     {
         try
         {
@@ -435,7 +435,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerShootNPCInternal(ObjectHandle player, ObjectHandle npc)
+    private static void OnPlayerShootNPCInternal(ObjectOpaque player, ObjectOpaque npc)
     {
         try
         {
@@ -449,7 +449,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnPlayerKeyActionInternal(ObjectHandle player, int newmask, int prevmask)
+    private static void OnPlayerKeyActionInternal(ObjectOpaque player, int newmask, int prevmask)
     {
         try
         {
@@ -463,7 +463,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnPlayerSpectateActionInternal(ObjectHandle player, ObjectHandle target, int mode)
+    private static int OnPlayerSpectateActionInternal(ObjectOpaque player, ObjectOpaque target, int mode)
     {
         try
         {
@@ -478,7 +478,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnIncomingConnectionInternal(ObjectHandle conn)
+    private static void OnIncomingConnectionInternal(ObjectOpaque conn)
     {
         try
         {
@@ -492,7 +492,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnConnectionLoadedInternal(ObjectHandle conn)
+    private static int OnConnectionLoadedInternal(ObjectOpaque conn)
     {
         try
         {
@@ -507,7 +507,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnConnectionClosedInternal(ObjectHandle conn)
+    private static void OnConnectionClosedInternal(ObjectOpaque conn)
     {
         try
         {
@@ -521,7 +521,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnShellDamagePlayerInternal(ObjectHandle shell, ObjectHandle player, float damage)
+    private static int OnShellDamagePlayerInternal(ObjectOpaque shell, ObjectOpaque player, float damage)
     {
         try
         {
@@ -536,7 +536,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnShellExplodeInternal(ObjectHandle shell)
+    private static int OnShellExplodeInternal(ObjectOpaque shell)
     {
         try
         {
@@ -565,7 +565,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static int OnFineItemInternal(ObjectHandle item, int settings, float x, float y, float z)
+    private static int OnFineItemInternal(ObjectOpaque item, int settings, float x, float y, float z)
     {
         try
         {
@@ -580,7 +580,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateItemInternal(ObjectHandle item)
+    private static void OnCreateItemInternal(ObjectOpaque item)
     {
         try
         {
@@ -594,7 +594,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveItemInternal(ObjectHandle item)
+    private static void OnRemoveItemInternal(ObjectOpaque item)
     {
         try
         {
@@ -608,7 +608,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateNPCInternal(ObjectHandle npc)
+    private static void OnCreateNPCInternal(ObjectOpaque npc)
     {
         try
         {
@@ -622,7 +622,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveNPCInternal(ObjectHandle npc)
+    private static void OnRemoveNPCInternal(ObjectOpaque npc)
     {
         try
         {
@@ -636,7 +636,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateCorpseInternal(ObjectHandle corpse)
+    private static void OnCreateCorpseInternal(ObjectOpaque corpse)
     {
         try
         {
@@ -650,7 +650,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveCorpseInternal(ObjectHandle corpse)
+    private static void OnRemoveCorpseInternal(ObjectOpaque corpse)
     {
         try
         {
@@ -664,7 +664,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateObjectInternal(ObjectHandle obj)
+    private static void OnCreateObjectInternal(ObjectOpaque obj)
     {
         try
         {
@@ -678,7 +678,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveObjectInternal(ObjectHandle obj)
+    private static void OnRemoveObjectInternal(ObjectOpaque obj)
     {
         try
         {
@@ -692,7 +692,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateLightInternal(ObjectHandle light)
+    private static void OnCreateLightInternal(ObjectOpaque light)
     {
         try
         {
@@ -706,7 +706,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveLightInternal(ObjectHandle light)
+    private static void OnRemoveLightInternal(ObjectOpaque light)
     {
         try
         {
@@ -720,7 +720,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateGUIElementInternal(ObjectHandle element)
+    private static void OnCreateGUIElementInternal(ObjectOpaque element)
     {
         try
         {
@@ -734,7 +734,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveGUIElementInternal(ObjectHandle element)
+    private static void OnRemoveGUIElementInternal(ObjectOpaque element)
     {
         try
         {
@@ -748,7 +748,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnCreateShellInternal(ObjectHandle shell)
+    private static void OnCreateShellInternal(ObjectOpaque shell)
     {
         try
         {
@@ -762,7 +762,7 @@ public static class EventRegistry
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
-    private static void OnRemoveShellInternal(ObjectHandle shell)
+    private static void OnRemoveShellInternal(ObjectOpaque shell)
     {
         try
         {
@@ -787,103 +787,103 @@ public static class EventRegistry
 
         NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_WorldUpdate()", (IntPtr)(delegate* unmanaged[Stdcall]<void>)(&OnWorldUpdateInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerUpdate(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerUpdateInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerUpdate(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnPlayerUpdateInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerConnect(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerConnectInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerConnect(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnPlayerConnectInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDisconnect(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerDisconnectInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDisconnect(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnPlayerDisconnectInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerChat(Player, const char)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, IntPtr, int>)(&OnPlayerChatInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerChat(Player, const char)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, IntPtr, int>)(&OnPlayerChatInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerAttachesUpdate(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerAttachesUpdateInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerAttachesUpdate(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnPlayerAttachesUpdateInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerTakeItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int>)(&OnPlayerTakeItemInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerTakeItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int>)(&OnPlayerTakeItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerDropItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int>)(&OnPlayerDropItemInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerDropItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int>)(&OnPlayerDropItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDialogAction(Player, int, bool, const char, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, IntPtr, int, void>)(&OnPlayerDialogActionInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDialogAction(Player, int, bool, const char, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int, int, IntPtr, int, void>)(&OnPlayerDialogActionInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShootPlayer(Player, Player, float, float, float, float, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, float, float, float, int, int>)(&OnPlayerShootPlayerInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShootPlayer(Player, Player, float, float, float, float, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, float, float, float, float, int, int>)(&OnPlayerShootPlayerInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShoot(Player, Items, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, int>)(&OnPlayerShootInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerShoot(Player, Items, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int, int>)(&OnPlayerShootInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerPressPlayer(Player, Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerPressPlayerInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerPressPlayer(Player, Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, void>)(&OnPlayerPressPlayerInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerConsole(Player, const char)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, IntPtr, int>)(&OnPlayerConsoleInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerConsole(Player, const char)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, IntPtr, int>)(&OnPlayerConsoleInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDeath(Player, Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerDeathInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerDeath(Player, Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, void>)(&OnPlayerDeathInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerRespawn(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnPlayerRespawnInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerRespawn(Player)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnPlayerRespawnInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerHitPlayer(Player, Player, int, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, float, void>)(&OnPlayerHitPlayerInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerHitPlayer(Player, Player, int, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int, float, void>)(&OnPlayerHitPlayerInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerExploreCorpse(Player, Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int>)(&OnPlayerExploreCorpseInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerExploreCorpse(Player, Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int>)(&OnPlayerExploreCorpseInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerClickObject(Player, Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerClickObjectInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerClickObject(Player, Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, void>)(&OnPlayerClickObjectInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerShootObject(Player, Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerShootObjectInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerShootObject(Player, Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, void>)(&OnPlayerShootObjectInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerUseDoorButton(Player, Door, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, int>)(&OnPlayerUseDoorButtonInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerUseDoorButton(Player, Door, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, ObjectOpaque, int>)(&OnPlayerUseDoorButtonInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerUseItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int>)(&OnPlayerUseItemInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerUseItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int>)(&OnPlayerUseItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerSelectItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int>)(&OnPlayerSelectItemInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerSelectItem(Player, Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int>)(&OnPlayerSelectItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerUse914(Player, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, void>)(&OnPlayerUse914Internal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerUse914(Player, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int, void>)(&OnPlayerUse914Internal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerClickGui(Player, GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerClickGuiInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerClickGui(Player, GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, void>)(&OnPlayerClickGuiInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerVoice(Player, int, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, int>)(&OnPlayerVoiceInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerVoice(Player, int, bool)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int, int, int>)(&OnPlayerVoiceInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerTeleportElevator(Player, Room, Entity, Entity, float, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, ObjectHandle, ObjectHandle, float, float, void>)(&OnPlayerTeleportElevatorInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerTeleportElevator(Player, Room, Entity, Entity, float, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, ObjectOpaque, ObjectOpaque, float, float, void>)(&OnPlayerTeleportElevatorInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerShootNPC(Player, NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, void>)(&OnPlayerShootNPCInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerShootNPC(Player, NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, void>)(&OnPlayerShootNPCInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerKeyAction(Player, int, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, int, void>)(&OnPlayerKeyActionInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_PlayerKeyAction(Player, int, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int, int, void>)(&OnPlayerKeyActionInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerSpectateAction(Player, Player, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, int, int>)(&OnPlayerSpectateActionInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_PlayerSpectateAction(Player, Player, int)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, int, int>)(&OnPlayerSpectateActionInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_IncomingConnection(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnIncomingConnectionInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_IncomingConnection(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnIncomingConnectionInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_ConnectionLoaded(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int>)(&OnConnectionLoadedInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_ConnectionLoaded(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int>)(&OnConnectionLoadedInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_ConnectionClosed(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnConnectionClosedInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_ConnectionClosed(Connection)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnConnectionClosedInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_ShellDamagePlayer(Shell, Player, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, ObjectHandle, float, int>)(&OnShellDamagePlayerInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_ShellDamagePlayer(Shell, Player, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, ObjectOpaque, float, int>)(&OnShellDamagePlayerInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_ShellExplode(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int>)(&OnShellExplodeInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_ShellExplode(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int>)(&OnShellExplodeInternal));
 
         NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_OnLog(const char)", (IntPtr)(delegate* unmanaged[Stdcall]<IntPtr, void>)(&OnOnLogInternal));
 
-        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_FineItem(Items, int, float, float, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, int, float, float, float, int>)(&OnFineItemInternal));
+        NativeBindings.RegisterGlobalFunction("bool ccb_internal_invoke_FineItem(Items, int, float, float, float)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, int, float, float, float, int>)(&OnFineItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateItem(Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateItemInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateItem(Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveItem(Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveItemInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveItem(Items)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveItemInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateNPC(NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateNPCInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateNPC(NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateNPCInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveNPC(NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveNPCInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveNPC(NPC)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveNPCInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateCorpse(Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateCorpseInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateCorpse(Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateCorpseInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveCorpse(Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveCorpseInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveCorpse(Corpse)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveCorpseInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateObject(Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateObjectInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateObject(Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateObjectInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveObject(Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveObjectInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveObject(Object)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveObjectInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateLight(Light)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateLightInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateLight(Light)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateLightInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveLight(Light)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveLightInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveLight(Light)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveLightInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateGUIElement(GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateGUIElementInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateGUIElement(GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateGUIElementInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveGUIElement(GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveGUIElementInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveGUIElement(GUIElement)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveGUIElementInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnCreateShellInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_CreateShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnCreateShellInternal));
 
-        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectHandle, void>)(&OnRemoveShellInternal));
+        NativeBindings.RegisterGlobalFunction("void ccb_internal_invoke_RemoveShell(Shell)", (IntPtr)(delegate* unmanaged[Stdcall]<ObjectOpaque, void>)(&OnRemoveShellInternal));
     }
     public delegate void OnServerUpdate();
 

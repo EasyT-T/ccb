@@ -6,21 +6,23 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Server(ObjectHandle handle) : IScriptObject, IEquatable<Server>
+public struct Server(ObjectOpaque opaque) : IScriptObject, IEquatable<Server>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Server Null { get; } = default;
 
-    public bool Equals(Server other) => this.Handle == other.Handle;
+    public ObjectOpaque Opaque { get; } = opaque;
+
+    public bool Equals(Server other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Server other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Server left, Server right) => left.Equals(right);
 
     public static bool operator !=(Server left, Server right) => !left.Equals(right);
 
-    public static bool operator ==(Server left, Server? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Server left, Server? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Server left, Server? right) => !(left == right);
 
@@ -28,9 +30,9 @@ public struct Server(ObjectHandle handle) : IScriptObject, IEquatable<Server>
 
     public static bool operator !=(Server? left, Server right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Server(handle);
+        return new Server(opaque);
     }
 
     public string hostname

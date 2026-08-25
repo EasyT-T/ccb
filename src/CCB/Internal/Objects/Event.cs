@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Event(ObjectHandle handle) : IScriptObject, IEquatable<Event>
+public struct Event(ObjectOpaque opaque) : IScriptObject, IEquatable<Event>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Event Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Event>
     {
@@ -60,17 +62,17 @@ public struct Event(ObjectHandle handle) : IScriptObject, IEquatable<Event>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Event other) => this.Handle == other.Handle;
+    public bool Equals(Event other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Event other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Event left, Event right) => left.Equals(right);
 
     public static bool operator !=(Event left, Event right) => !left.Equals(right);
 
-    public static bool operator ==(Event left, Event? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Event left, Event? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Event left, Event? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Event(ObjectHandle handle) : IScriptObject, IEquatable<Event>
 
     public static bool operator !=(Event? left, Event right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Event(handle);
+        return new Event(opaque);
     }
 
     public Room GetRoom()

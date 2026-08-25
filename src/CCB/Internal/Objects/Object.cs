@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Object(ObjectHandle handle) : IScriptObject, IEquatable<Object>
+public struct Object(ObjectOpaque opaque) : IScriptObject, IEquatable<Object>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Object Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Object>
     {
@@ -60,17 +62,17 @@ public struct Object(ObjectHandle handle) : IScriptObject, IEquatable<Object>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Object other) => this.Handle == other.Handle;
+    public bool Equals(Object other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Object other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Object left, Object right) => left.Equals(right);
 
     public static bool operator !=(Object left, Object right) => !left.Equals(right);
 
-    public static bool operator ==(Object left, Object? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Object left, Object? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Object left, Object? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Object(ObjectHandle handle) : IScriptObject, IEquatable<Object>
 
     public static bool operator !=(Object? left, Object right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Object(handle);
+        return new Object(opaque);
     }
 
     public void SetAttach(Player player)

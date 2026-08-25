@@ -2,7 +2,7 @@ namespace CCB.Internal;
 
 public interface IScriptObject
 {
-    ObjectHandle Handle { get; }
+    ObjectOpaque Opaque { get; }
 
-    abstract static IScriptObject Create(ObjectHandle handle);
+    static abstract IScriptObject Create(ObjectOpaque handle);
 }

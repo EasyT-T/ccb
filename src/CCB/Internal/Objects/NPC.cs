@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct NPC(ObjectHandle handle) : IScriptObject, IEquatable<NPC>
+public struct NPC(ObjectOpaque opaque) : IScriptObject, IEquatable<NPC>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static NPC Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<NPC>
     {
@@ -60,17 +62,17 @@ public struct NPC(ObjectHandle handle) : IScriptObject, IEquatable<NPC>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(NPC other) => this.Handle == other.Handle;
+    public bool Equals(NPC other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is NPC other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(NPC left, NPC right) => left.Equals(right);
 
     public static bool operator !=(NPC left, NPC right) => !left.Equals(right);
 
-    public static bool operator ==(NPC left, NPC? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(NPC left, NPC? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(NPC left, NPC? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct NPC(ObjectHandle handle) : IScriptObject, IEquatable<NPC>
 
     public static bool operator !=(NPC? left, NPC right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new NPC(handle);
+        return new NPC(opaque);
     }
 
     public Entity GetEntity()

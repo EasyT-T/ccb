@@ -6,21 +6,23 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Graphics(ObjectHandle handle) : IScriptObject, IEquatable<Graphics>
+public struct Graphics(ObjectOpaque opaque) : IScriptObject, IEquatable<Graphics>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Graphics Null { get; } = default;
 
-    public bool Equals(Graphics other) => this.Handle == other.Handle;
+    public ObjectOpaque Opaque { get; } = opaque;
+
+    public bool Equals(Graphics other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Graphics other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Graphics left, Graphics right) => left.Equals(right);
 
     public static bool operator !=(Graphics left, Graphics right) => !left.Equals(right);
 
-    public static bool operator ==(Graphics left, Graphics? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Graphics left, Graphics? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Graphics left, Graphics? right) => !(left == right);
 
@@ -28,9 +30,9 @@ public struct Graphics(ObjectHandle handle) : IScriptObject, IEquatable<Graphics
 
     public static bool operator !=(Graphics? left, Graphics right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Graphics(handle);
+        return new Graphics(opaque);
     }
 
     public GUIElement CreateOval(Player player, float x, float y, float width, float height, bool align)

@@ -149,7 +149,7 @@ public static class ScriptFunctions
                 .FromDeclaration("::Entity ccb::CreatePivot(int parent)")
                 .WithArgument(0, parent)
                 .Execute();
-            return result.GetRefObject<Entity>();
+            return result.GetObject<Entity>();
         }
     }
 
@@ -166,7 +166,7 @@ public static class ScriptFunctions
                 .WithArgument(5, dz)
                 .WithArgument(6, radius)
                 .Execute();
-            return result.GetRefObject<Entity>();
+            return result.GetObject<Entity>();
         }
     }
 
@@ -177,7 +177,7 @@ public static class ScriptFunctions
                 .FromDeclaration("::Player ccb::GetPlayer(int index)")
                 .WithArgument(0, index)
                 .Execute();
-            return result.GetRefObject<Player>();
+            return result.GetObject<Player>();
         }
     }
 
@@ -849,7 +849,7 @@ public static class ScriptFunctions
                     .WithArgument(4, volume)
                     .WithArgument(5, norange)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -865,7 +865,7 @@ public static class ScriptFunctions
                     .WithArgument(4, volume)
                     .WithArgument(5, norange)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -883,7 +883,7 @@ public static class ScriptFunctions
                     .WithArgument(6, volume)
                     .WithArgument(7, norange)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -895,7 +895,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, filenameorurl)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -908,7 +908,7 @@ public static class ScriptFunctions
                     .WithArgument(1, player)
                     .WithArgument(2, filenameorurl)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -925,7 +925,7 @@ public static class ScriptFunctions
                     .WithArgument(5, volume)
                     .WithArgument(6, norange)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -944,7 +944,7 @@ public static class ScriptFunctions
                     .WithArgument(7, volume)
                     .WithArgument(8, norange)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
 
@@ -961,7 +961,7 @@ public static class ScriptFunctions
                     .WithArgument(5, volume)
                     .WithArgument(6, norange)
                     .Execute();
-                return result.GetRefObject<Sound>();
+                return result.GetObject<Sound>();
             }
         }
     }
@@ -1189,7 +1189,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::Corpse::GetPlayer(Corpse this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -1200,7 +1200,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Corpse::GetEntity(Corpse this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -1258,7 +1258,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, slot)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -1504,7 +1504,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Door::GetEntity(Door this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -1516,7 +1516,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -1781,7 +1781,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, distance)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -1853,7 +1853,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Entity::GetParent(Entity this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -1876,7 +1876,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -2041,7 +2041,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -2531,7 +2531,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Room ccb::Event::GetRoom(Event this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -2852,7 +2852,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::GUIElement::GetPlayer(GUIElement this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -2888,7 +2888,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::GUIElement::GetAttach(GUIElement this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -3036,7 +3036,7 @@ public static class ScriptFunctions
                     .WithArgument(5, height)
                     .WithArgument(6, align)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3053,7 +3053,7 @@ public static class ScriptFunctions
                     .WithArgument(5, height)
                     .WithArgument(6, align)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3071,7 +3071,7 @@ public static class ScriptFunctions
                     .WithArgument(6, height)
                     .WithArgument(7, align)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3090,7 +3090,7 @@ public static class ScriptFunctions
                     .WithArgument(7, align)
                     .WithArgument(8, callback)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3109,7 +3109,7 @@ public static class ScriptFunctions
                     .WithArgument(7, align)
                     .WithArgument(8, callback)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3126,7 +3126,7 @@ public static class ScriptFunctions
                     .WithArgument(5, y)
                     .WithArgument(6, align)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3144,7 +3144,7 @@ public static class ScriptFunctions
                     .WithArgument(6, height)
                     .WithArgument(7, align)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
 
@@ -3158,7 +3158,7 @@ public static class ScriptFunctions
                     .WithArgument(2, filename)
                     .WithArgument(3, defines)
                     .Execute();
-                return result.GetRefObject<GUIElement>();
+                return result.GetObject<GUIElement>();
             }
         }
     }
@@ -3184,7 +3184,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::Items::GetPicker(Items this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -3208,7 +3208,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Items::GetEntity(Items this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -3341,7 +3341,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -3363,7 +3363,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Items ccb::Items::GetParentItem(Items this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -3375,7 +3375,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -3610,7 +3610,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::Light::GetAttach(Light this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -3632,7 +3632,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Room ccb::Light::GetRoom(Light this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -3643,7 +3643,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Light::GetEntity(Light this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -3654,7 +3654,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Light::GetLight(Light this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4223,7 +4223,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::NPC::GetEntity(NPC this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4234,7 +4234,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::NPC::GetModel(NPC this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4413,7 +4413,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::Object::GetAttach(Object this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -4435,7 +4435,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Room ccb::Object::GetRoom(Object this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -4457,7 +4457,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Object::GetEntity(Object this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4468,7 +4468,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Object::GetModel(Object this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4538,7 +4538,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Player::GetHitbox(Player this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4549,7 +4549,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Player::GetHead(Player this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4560,7 +4560,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Player::GetEntity(Player this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -4890,7 +4890,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::Player::GetSpectatePlayer(Player this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -5148,7 +5148,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Room ccb::Player::GetRoom(Player this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -5295,7 +5295,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -5306,7 +5306,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Items ccb::Player::GetSelectedItem(Player this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -5525,7 +5525,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, bodyindex)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -5953,7 +5953,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Room::GetEntity(Room this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -5965,7 +5965,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -5977,7 +5977,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -6001,7 +6001,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -6013,7 +6013,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Door>();
+                return result.GetObject<Door>();
             }
         }
 
@@ -6025,7 +6025,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Door>();
+                return result.GetObject<Door>();
             }
         }
 
@@ -6910,7 +6910,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, filename)
                     .Execute();
-                return result.GetRefObject<Config>();
+                return result.GetObject<Config>();
             }
         }
     }
@@ -6925,7 +6925,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Shell::GetEntity(Shell this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -7175,7 +7175,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Player ccb::Shell::GetShooter(Shell this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -7447,7 +7447,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Entity ccb::Waypoint::GetEntity(Waypoint this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Entity>();
+                return result.GetObject<Entity>();
             }
         }
 
@@ -7458,7 +7458,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Door ccb::Waypoint::GetDoor(Waypoint this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Door>();
+                return result.GetObject<Door>();
             }
         }
 
@@ -7469,7 +7469,7 @@ public static class ScriptFunctions
                     .FromDeclaration("::Room ccb::Waypoint::GetRoom(Waypoint this)")
                     .WithArgument(0, @this)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
     }
@@ -7565,7 +7565,7 @@ public static class ScriptFunctions
                     .WithArgument(5, targetY)
                     .WithArgument(6, targetZ)
                     .Execute();
-                return result.GetRefObject<Waypoint>();
+                return result.GetObject<Waypoint>();
             }
         }
 
@@ -7578,7 +7578,7 @@ public static class ScriptFunctions
                     .WithArgument(1, from)
                     .WithArgument(2, to)
                     .Execute();
-                return result.GetRefObject<Waypoint>();
+                return result.GetObject<Waypoint>();
             }
         }
 
@@ -7604,7 +7604,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Player>();
+                return result.GetObject<Player>();
             }
         }
 
@@ -7626,7 +7626,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -7647,7 +7647,7 @@ public static class ScriptFunctions
                     .WithArgument(9, alpha)
                     .WithArgument(10, invslots)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -7668,7 +7668,7 @@ public static class ScriptFunctions
                     .WithArgument(9, alpha)
                     .WithArgument(10, invslots)
                     .Execute();
-                return result.GetRefObject<Items>();
+                return result.GetObject<Items>();
             }
         }
 
@@ -7680,7 +7680,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -7692,7 +7692,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -7704,7 +7704,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Room>();
+                return result.GetObject<Room>();
             }
         }
 
@@ -7716,7 +7716,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Corpse>();
+                return result.GetObject<Corpse>();
             }
         }
 
@@ -7728,7 +7728,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, unnamed0)
                     .Execute();
-                return result.GetRefObject<Door>();
+                return result.GetObject<Door>();
             }
         }
 
@@ -7740,7 +7740,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Event>();
+                return result.GetObject<Event>();
             }
         }
 
@@ -7752,7 +7752,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Event>();
+                return result.GetObject<Event>();
             }
         }
 
@@ -7766,7 +7766,7 @@ public static class ScriptFunctions
                     .WithArgument(2, room)
                     .WithArgument(3, animated)
                     .Execute();
-                return result.GetRefObject<Object>();
+                return result.GetObject<Object>();
             }
         }
 
@@ -7778,7 +7778,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Object>();
+                return result.GetObject<Object>();
             }
         }
 
@@ -7792,7 +7792,7 @@ public static class ScriptFunctions
                     .WithArgument(2, range)
                     .WithArgument(3, room)
                     .Execute();
-                return result.GetRefObject<Light>();
+                return result.GetObject<Light>();
             }
         }
 
@@ -7804,7 +7804,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Light>();
+                return result.GetObject<Light>();
             }
         }
 
@@ -7819,7 +7819,7 @@ public static class ScriptFunctions
                     .WithArgument(3, y)
                     .WithArgument(4, z)
                     .Execute();
-                return result.GetRefObject<NPC>();
+                return result.GetObject<NPC>();
             }
         }
 
@@ -7831,7 +7831,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<NPC>();
+                return result.GetObject<NPC>();
             }
         }
 
@@ -7843,7 +7843,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, modelid)
                     .Execute();
-                return result.GetRefObject<ModelPreset>();
+                return result.GetObject<ModelPreset>();
             }
         }
 
@@ -7856,7 +7856,7 @@ public static class ScriptFunctions
                     .WithArgument(1, weaponid)
                     .WithArgument(2, shooter)
                     .Execute();
-                return result.GetRefObject<Shell>();
+                return result.GetObject<Shell>();
             }
         }
 
@@ -7868,7 +7868,7 @@ public static class ScriptFunctions
                     .WithArgument(0, @this)
                     .WithArgument(1, index)
                     .Execute();
-                return result.GetRefObject<Shell>();
+                return result.GetObject<Shell>();
             }
         }
     }

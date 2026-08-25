@@ -258,7 +258,7 @@ internal class CSharpEventGenerator(IndentedTextWriter writer) : SimpleVisitor, 
             var type = element.Type.Identifier.Text;
             var rawType = element.Type.Identifier.Kind switch
             {
-                SyntaxKind.Identifier => "ObjectHandle",
+                SyntaxKind.Identifier => "ObjectOpaque",
                 SyntaxKind.String => "IntPtr",
                 SyntaxKind.Bool => "int",
                 _ => type,

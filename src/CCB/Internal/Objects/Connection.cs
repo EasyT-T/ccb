@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Connection(ObjectHandle handle) : IScriptObject, IEquatable<Connection>
+public struct Connection(ObjectOpaque opaque) : IScriptObject, IEquatable<Connection>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Connection Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Connection>
     {
@@ -60,17 +62,17 @@ public struct Connection(ObjectHandle handle) : IScriptObject, IEquatable<Connec
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Connection other) => this.Handle == other.Handle;
+    public bool Equals(Connection other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Connection other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Connection left, Connection right) => left.Equals(right);
 
     public static bool operator !=(Connection left, Connection right) => !left.Equals(right);
 
-    public static bool operator ==(Connection left, Connection? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Connection left, Connection? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Connection left, Connection? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Connection(ObjectHandle handle) : IScriptObject, IEquatable<Connec
 
     public static bool operator !=(Connection? left, Connection right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Connection(handle);
+        return new Connection(opaque);
     }
 
     public int GetPort()

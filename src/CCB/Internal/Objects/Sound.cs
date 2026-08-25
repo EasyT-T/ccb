@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Sound(ObjectHandle handle) : IScriptObject, IEquatable<Sound>
+public struct Sound(ObjectOpaque opaque) : IScriptObject, IEquatable<Sound>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Sound Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Sound>
     {
@@ -60,17 +62,17 @@ public struct Sound(ObjectHandle handle) : IScriptObject, IEquatable<Sound>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Sound other) => this.Handle == other.Handle;
+    public bool Equals(Sound other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Sound other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Sound left, Sound right) => left.Equals(right);
 
     public static bool operator !=(Sound left, Sound right) => !left.Equals(right);
 
-    public static bool operator ==(Sound left, Sound? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Sound left, Sound? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Sound left, Sound? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Sound(ObjectHandle handle) : IScriptObject, IEquatable<Sound>
 
     public static bool operator !=(Sound? left, Sound right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Sound(handle);
+        return new Sound(opaque);
     }
 
     public void SetVolume(float vol)

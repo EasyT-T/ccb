@@ -8,7 +8,7 @@ public class ScriptGenerator(string scriptHeader, string outputPath, GenerateCon
         new AngelScriptGenerator(new IndentedTextWriter(File.CreateText(Path.Combine(outputPath, "script.as"))), config);
 
     private readonly CSharpScriptGenerator _csharpScriptGenerator =
-        new CSharpScriptGenerator(new IndentedTextWriter(File.CreateText(Path.Combine(outputPath, "script.cs"))), config);
+        new CSharpScriptGenerator(new IndentedTextWriter(File.CreateText(Path.Combine(outputPath, "Generated.cs"))), config);
 
     public void Generate()
     {

@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Light(ObjectHandle handle) : IScriptObject, IEquatable<Light>
+public struct Light(ObjectOpaque opaque) : IScriptObject, IEquatable<Light>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Light Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Light>
     {
@@ -60,17 +62,17 @@ public struct Light(ObjectHandle handle) : IScriptObject, IEquatable<Light>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Light other) => this.Handle == other.Handle;
+    public bool Equals(Light other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Light other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Light left, Light right) => left.Equals(right);
 
     public static bool operator !=(Light left, Light right) => !left.Equals(right);
 
-    public static bool operator ==(Light left, Light? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Light left, Light? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Light left, Light? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Light(ObjectHandle handle) : IScriptObject, IEquatable<Light>
 
     public static bool operator !=(Light? left, Light right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Light(handle);
+        return new Light(opaque);
     }
 
     public int GetIndex()

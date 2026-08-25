@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Corpse(ObjectHandle handle) : IScriptObject, IEquatable<Corpse>
+public struct Corpse(ObjectOpaque opaque) : IScriptObject, IEquatable<Corpse>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Corpse Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Corpse>
     {
@@ -60,17 +62,17 @@ public struct Corpse(ObjectHandle handle) : IScriptObject, IEquatable<Corpse>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Corpse other) => this.Handle == other.Handle;
+    public bool Equals(Corpse other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Corpse other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Corpse left, Corpse right) => left.Equals(right);
 
     public static bool operator !=(Corpse left, Corpse right) => !left.Equals(right);
 
-    public static bool operator ==(Corpse left, Corpse? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Corpse left, Corpse? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Corpse left, Corpse? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Corpse(ObjectHandle handle) : IScriptObject, IEquatable<Corpse>
 
     public static bool operator !=(Corpse? left, Corpse right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Corpse(handle);
+        return new Corpse(opaque);
     }
 
     public int GetIndex()

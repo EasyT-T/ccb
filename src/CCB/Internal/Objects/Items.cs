@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Items(ObjectHandle handle) : IScriptObject, IEquatable<Items>
+public struct Items(ObjectOpaque opaque) : IScriptObject, IEquatable<Items>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Items Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Items>
     {
@@ -60,17 +62,17 @@ public struct Items(ObjectHandle handle) : IScriptObject, IEquatable<Items>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Items other) => this.Handle == other.Handle;
+    public bool Equals(Items other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Items other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Items left, Items right) => left.Equals(right);
 
     public static bool operator !=(Items left, Items right) => !left.Equals(right);
 
-    public static bool operator ==(Items left, Items? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Items left, Items? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Items left, Items? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Items(ObjectHandle handle) : IScriptObject, IEquatable<Items>
 
     public static bool operator !=(Items? left, Items right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Items(handle);
+        return new Items(opaque);
     }
 
     public bool IsPicked()

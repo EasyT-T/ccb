@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct ModelPreset(ObjectHandle handle) : IScriptObject, IEquatable<ModelPreset>
+public struct ModelPreset(ObjectOpaque opaque) : IScriptObject, IEquatable<ModelPreset>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static ModelPreset Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<ModelPreset>
     {
@@ -60,17 +62,17 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject, IEquatable<Model
         return new IteratorEnumerable();
     }
 
-    public bool Equals(ModelPreset other) => this.Handle == other.Handle;
+    public bool Equals(ModelPreset other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is ModelPreset other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(ModelPreset left, ModelPreset right) => left.Equals(right);
 
     public static bool operator !=(ModelPreset left, ModelPreset right) => !left.Equals(right);
 
-    public static bool operator ==(ModelPreset left, ModelPreset? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(ModelPreset left, ModelPreset? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(ModelPreset left, ModelPreset? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct ModelPreset(ObjectHandle handle) : IScriptObject, IEquatable<Model
 
     public static bool operator !=(ModelPreset? left, ModelPreset right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new ModelPreset(handle);
+        return new ModelPreset(opaque);
     }
 
     public string headbone

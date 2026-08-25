@@ -51,24 +51,19 @@ public readonly ref struct ExecuteResult
         return *NativeBindings.GetModuleReturnString(this._module);
     }
 
-    public T GetObject<T>() where T : IScriptObject
+    public unsafe T GetObject<T>() where T : IScriptObject
     {
-        return (T)T.Create(NativeBindings.GetModuleReturnObject(this._module));
-    }
-
-    public unsafe T GetRefObject<T>() where T : IScriptObject
-    {
-        var pointer = (ObjectHandle*)NativeBindings.GetModuleReturnAddress(this._module);
+        var pointer = NativeBindings.GetModuleReturnObject(this._module);
 
         if (pointer == null)
         {
-            return (T)T.Create(ObjectHandle.Null);
+            return (T)T.Create(ObjectOpaque.Null);
         }
 
         return (T)T.Create(*pointer);
     }
 
-    public ObjectHandle GetObject()
+    public unsafe ObjectOpaque* GetObject()
     {
         return NativeBindings.GetModuleReturnObject(this._module);
     }

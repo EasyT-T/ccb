@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Room(ObjectHandle handle) : IScriptObject, IEquatable<Room>
+public struct Room(ObjectOpaque opaque) : IScriptObject, IEquatable<Room>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Room Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Room>
     {
@@ -60,17 +62,17 @@ public struct Room(ObjectHandle handle) : IScriptObject, IEquatable<Room>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Room other) => this.Handle == other.Handle;
+    public bool Equals(Room other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Room other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Room left, Room right) => left.Equals(right);
 
     public static bool operator !=(Room left, Room right) => !left.Equals(right);
 
-    public static bool operator ==(Room left, Room? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Room left, Room? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Room left, Room? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Room(ObjectHandle handle) : IScriptObject, IEquatable<Room>
 
     public static bool operator !=(Room? left, Room right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Room(handle);
+        return new Room(opaque);
     }
 
     public string GetName()

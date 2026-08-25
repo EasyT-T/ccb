@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct GUIElement(ObjectHandle handle) : IScriptObject, IEquatable<GUIElement>
+public struct GUIElement(ObjectOpaque opaque) : IScriptObject, IEquatable<GUIElement>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static GUIElement Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<GUIElement>
     {
@@ -60,17 +62,17 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject, IEquatable<GUIEle
         return new IteratorEnumerable();
     }
 
-    public bool Equals(GUIElement other) => this.Handle == other.Handle;
+    public bool Equals(GUIElement other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is GUIElement other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(GUIElement left, GUIElement right) => left.Equals(right);
 
     public static bool operator !=(GUIElement left, GUIElement right) => !left.Equals(right);
 
-    public static bool operator ==(GUIElement left, GUIElement? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(GUIElement left, GUIElement? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(GUIElement left, GUIElement? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct GUIElement(ObjectHandle handle) : IScriptObject, IEquatable<GUIEle
 
     public static bool operator !=(GUIElement? left, GUIElement right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new GUIElement(handle);
+        return new GUIElement(opaque);
     }
 
     public void GetPosition(out float x, out float y)

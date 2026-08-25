@@ -34,5 +34,5 @@ using var scriptGenerator = new ScriptGenerator("all.h", "./output", config);
 scriptGenerator.Generate();
 
 var eventRoot = new Compilation("event.h").Parse();
-using var eventGenerator = new EventGenerator(eventRoot, File.CreateText("./output/event.as"), File.CreateText("./output/event.cs"));
+using var eventGenerator = new EventGenerator(eventRoot, File.CreateText("./output/event.as"), File.CreateText("./output/Generated.Event.cs"));
 eventGenerator.Generate();

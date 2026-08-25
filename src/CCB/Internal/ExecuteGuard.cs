@@ -24,7 +24,7 @@ internal static class ExecuteGuard
         Guard.IsGreaterThanOrEqualTo(errorCode, 0, "Error Code");
     }
 
-    public static void IsNotNullptr(IntPtr pointer)
+    public static void IsNotNull(IntPtr pointer)
     {
         if (pointer != IntPtr.Zero)
         {
@@ -34,7 +34,7 @@ internal static class ExecuteGuard
         ThrowHelper.ThrowArgumentNullException(nameof(pointer));
     }
 
-    public static void IsNotNullptr(ObjectHandle handle)
+    public static void IsNotNull(ObjectOpaque handle)
     {
         if (handle != null)
         {
@@ -44,8 +44,8 @@ internal static class ExecuteGuard
         ThrowHelper.ThrowArgumentNullException(nameof(handle));
     }
 
-    public static void IsNotNullptr<T>(T value) where T : IScriptObject
+    public static void IsNotNull<T>(T value) where T : IScriptObject
     {
-        IsNotNullptr(value.Handle);
+        IsNotNull(value.Opaque);
     }
 }

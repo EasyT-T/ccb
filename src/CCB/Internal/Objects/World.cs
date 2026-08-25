@@ -6,21 +6,23 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct World(ObjectHandle handle) : IScriptObject, IEquatable<World>
+public struct World(ObjectOpaque opaque) : IScriptObject, IEquatable<World>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static World Null { get; } = default;
 
-    public bool Equals(World other) => this.Handle == other.Handle;
+    public ObjectOpaque Opaque { get; } = opaque;
+
+    public bool Equals(World other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is World other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(World left, World right) => left.Equals(right);
 
     public static bool operator !=(World left, World right) => !left.Equals(right);
 
-    public static bool operator ==(World left, World? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(World left, World? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(World left, World? right) => !(left == right);
 
@@ -28,9 +30,9 @@ public struct World(ObjectHandle handle) : IScriptObject, IEquatable<World>
 
     public static bool operator !=(World? left, World right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new World(handle);
+        return new World(opaque);
     }
 
     public void CreateDecal(int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer)

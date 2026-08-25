@@ -14,11 +14,11 @@ public struct IteratorOpaque
             .FromDeclaration(declaration)
             .Execute();
 
-        var handle = result.GetObject();
+        var handle = result.GetPointer();
 
-        ExecuteGuard.IsNotNullptr(handle);
+        ExecuteGuard.IsNotNull(handle);
 
-        return *(IteratorOpaque*)handle.Pointer;
+        return *(IteratorOpaque*)handle;
     }
 
     public unsafe T Get<T>(string declaration) where T : IScriptObject
@@ -30,7 +30,7 @@ public struct IteratorOpaque
                 .WithArgument(0, (IntPtr)ptr)
                 .Execute();
 
-            return result.GetRefObject<T>();
+            return result.GetObject<T>();
         }
     }
 

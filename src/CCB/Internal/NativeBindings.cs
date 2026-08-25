@@ -185,7 +185,7 @@ internal static partial class NativeBindings
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgObject@12")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial int SetModuleArgObject(ModuleHandle module, int arg, ObjectHandle value);
+    public static partial int SetModuleArgObject(ModuleHandle module, int arg, ObjectOpaque value);
 
     [LibraryImport(DllName, EntryPoint = "_SetModuleArgObject@12", StringMarshalling = StringMarshalling.Utf8)]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
@@ -226,7 +226,7 @@ internal static partial class NativeBindings
 
     [LibraryImport(DllName, EntryPoint = "_GetModuleReturnObject@4")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    public static partial ObjectHandle GetModuleReturnObject(ModuleHandle module);
+    public static unsafe partial ObjectOpaque* GetModuleReturnObject(ModuleHandle module);
 
     [LibraryImport(DllName, EntryPoint = "_GetModuleReturnObject@4", StringMarshalling = StringMarshalling.Utf8)]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

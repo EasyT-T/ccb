@@ -6,9 +6,11 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Door(ObjectHandle handle) : IScriptObject, IEquatable<Door>
+public struct Door(ObjectOpaque opaque) : IScriptObject, IEquatable<Door>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Door Null { get; } = default;
+
+    public ObjectOpaque Opaque { get; } = opaque;
 
     public struct Iterator(IteratorOpaque opaque) : IEnumerator<Door>
     {
@@ -60,17 +62,17 @@ public struct Door(ObjectHandle handle) : IScriptObject, IEquatable<Door>
         return new IteratorEnumerable();
     }
 
-    public bool Equals(Door other) => this.Handle == other.Handle;
+    public bool Equals(Door other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Door other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Door left, Door right) => left.Equals(right);
 
     public static bool operator !=(Door left, Door right) => !left.Equals(right);
 
-    public static bool operator ==(Door left, Door? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Door left, Door? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Door left, Door? right) => !(left == right);
 
@@ -78,9 +80,9 @@ public struct Door(ObjectHandle handle) : IScriptObject, IEquatable<Door>
 
     public static bool operator !=(Door? left, Door right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Door(handle);
+        return new Door(opaque);
     }
 
     public void Use()

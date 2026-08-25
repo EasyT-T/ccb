@@ -83,7 +83,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
 
     private void WriteProperty(BoundPropertyType property, TypeContext context)
     {
-        this.WriteFunction(property.Getter, context, isHandle: false);
+        this.WriteFunction(property.Getter, context);
 
         if (property.Setter is null)
         {
@@ -91,7 +91,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
         }
 
         writer.WriteLine();
-        this.WriteFunction(property.Setter, context, isHandle: false);
+        this.WriteFunction(property.Setter, context);
     }
 
     private void WriteFunctions(IEnumerable<BoundFunctionType> functions, TypeContext context)
@@ -99,11 +99,11 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
         foreach (var function in functions)
         {
             writer.WriteLine();
-            this.WriteFunction(function, context, isHandle: true);
+            this.WriteFunction(function, context);
         }
     }
 
-    private void WriteFunction(BoundFunctionType function, TypeContext context, bool isHandle)
+    private void WriteFunction(BoundFunctionType function, TypeContext context)
     {
         writer.WriteLine(BuildFunctionDeclaration(function.Model, context, isStatic: true, isUnsafe: true));
         writer.OpenBlock();
@@ -142,7 +142,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
 
         if (function.Model.ReturnType.Kind != SyntaxKind.Void)
         {
-            writer.WriteLine($"return result.{GetReturnMethod(function.Model.ReturnType, isHandle)}();");
+            writer.WriteLine($"return result.{GetReturnMethod(function.Model.ReturnType)}();");
         }
 
         writer.CloseBlock();
@@ -209,7 +209,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
 
     private static string GetThisParameterText(ClassType classType) => $"{classType.ClassName} @this";
 
-    private static string GetReturnMethod(ValueType type, bool isHandle) => type.Kind switch
+    private static string GetReturnMethod(ValueType type) => type.Kind switch
     {
         SyntaxKind.QuestionMark => "GetPointer",
         SyntaxKind.Ref => "GetPointer",
@@ -221,7 +221,7 @@ internal class CSharpScriptGenerator(IndentedTextWriter writer, GenerateConfig c
         SyntaxKind.Int64 => "GetLong",
         SyntaxKind.Float => "GetFloat",
         SyntaxKind.String => "GetString",
-        _ => isHandle ? $"GetRefObject<{type.Name}>" : $"GetObject<{type.Name}>",
+        _ => $"GetObject<{type.Name}>",
     };
 
     private static string GetReturnTypeText(ValueType type) => type.Kind switch
@@ -286,22 +286,24 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
 
         this.WriteFileHeaders();
 
-        writer.WriteLine($"public struct {className}(ObjectHandle handle) : IScriptObject, IEquatable<{className}>");
+        writer.WriteLine($"public struct {className}(ObjectOpaque opaque) : IScriptObject, IEquatable<{className}>");
         writer.OpenBlock();
-        writer.WriteLine("public ObjectHandle Handle { get; } = handle;");
+        writer.WriteLine($"public static {className} Null {{ get; }} = default;");
+        writer.WriteLine();
+        writer.WriteLine("public ObjectOpaque Opaque { get; } = opaque;");
         this.WriteIterator(classType);
         writer.WriteLine();
-        writer.WriteLine($"public bool Equals({className} other) => this.Handle == other.Handle;");
+        writer.WriteLine($"public bool Equals({className} other) => this.Opaque == other.Opaque;");
         writer.WriteLine();
         writer.WriteLine($"public override bool Equals(object? obj) => obj is {className} other && this.Equals(other);");
         writer.WriteLine();
-        writer.WriteLine("public override int GetHashCode() => this.Handle.GetHashCode();");
+        writer.WriteLine("public override int GetHashCode() => this.Opaque.GetHashCode();");
         writer.WriteLine();
         writer.WriteLine($"public static bool operator ==({className} left, {className} right) => left.Equals(right);");
         writer.WriteLine();
         writer.WriteLine($"public static bool operator !=({className} left, {className} right) => !left.Equals(right);");
         writer.WriteLine();
-        writer.WriteLine($"public static bool operator ==({className} left, {className}? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;");
+        writer.WriteLine($"public static bool operator ==({className} left, {className}? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;");
         writer.WriteLine();
         writer.WriteLine($"public static bool operator !=({className} left, {className}? right) => !(left == right);");
         writer.WriteLine();
@@ -310,9 +312,9 @@ internal class CSharpClassGenerator(IndentedTextWriter writer, GenerateConfig co
         writer.WriteLine($"public static bool operator !=({className}? left, {className} right) => !(right == left);");
 
         writer.WriteLine();
-        writer.WriteLine("public static IScriptObject Create(ObjectHandle handle)");
+        writer.WriteLine("public static IScriptObject Create(ObjectOpaque opaque)");
         writer.OpenBlock();
-        writer.WriteLine($"return new {className}(handle);");
+        writer.WriteLine($"return new {className}(opaque);");
         writer.CloseBlock();
 
         foreach (var property in classType.Properties)

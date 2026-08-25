@@ -117,7 +117,7 @@ public readonly ref struct ExecuteContext : IDisposable
 
     public ExecuteContext WithArgument<T>(int index, T value) where T : IScriptObject
     {
-        var errCode = NativeBindings.SetModuleArgObject(this._module, index, value.Handle);
+        var errCode = NativeBindings.SetModuleArgObject(this._module, index, value.Opaque);
 
         ExecuteGuard.IsSuccess(errCode);
 

@@ -6,21 +6,23 @@ using System.Runtime.InteropServices;
 using System.Collections;
 
 #nullable enable
-public struct Chat(ObjectHandle handle) : IScriptObject, IEquatable<Chat>
+public struct Chat(ObjectOpaque opaque) : IScriptObject, IEquatable<Chat>
 {
-    public ObjectHandle Handle { get; } = handle;
+    public static Chat Null { get; } = default;
 
-    public bool Equals(Chat other) => this.Handle == other.Handle;
+    public ObjectOpaque Opaque { get; } = opaque;
+
+    public bool Equals(Chat other) => this.Opaque == other.Opaque;
 
     public override bool Equals(object? obj) => obj is Chat other && this.Equals(other);
 
-    public override int GetHashCode() => this.Handle.GetHashCode();
+    public override int GetHashCode() => this.Opaque.GetHashCode();
 
     public static bool operator ==(Chat left, Chat right) => left.Equals(right);
 
     public static bool operator !=(Chat left, Chat right) => !left.Equals(right);
 
-    public static bool operator ==(Chat left, Chat? right) => right.HasValue ? left.Equals(right.Value) : left.Handle == null;
+    public static bool operator ==(Chat left, Chat? right) => right.HasValue ? left.Equals(right.Value) : left.Opaque == null;
 
     public static bool operator !=(Chat left, Chat? right) => !(left == right);
 
@@ -28,9 +30,9 @@ public struct Chat(ObjectHandle handle) : IScriptObject, IEquatable<Chat>
 
     public static bool operator !=(Chat? left, Chat right) => !(right == left);
 
-    public static IScriptObject Create(ObjectHandle handle)
+    public static IScriptObject Create(ObjectOpaque opaque)
     {
-        return new Chat(handle);
+        return new Chat(opaque);
     }
 
     public void Send(in string message)

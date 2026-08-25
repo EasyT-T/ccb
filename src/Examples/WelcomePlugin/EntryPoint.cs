@@ -1,5 +1,6 @@
 ﻿namespace WelcomePlugin;
 
+using System.Runtime.InteropServices;
 using CCB.Abstractions;
 using CCB.Attributes;
 using CCB.Extensions;
@@ -14,6 +15,7 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
     public void Load()
     {
         EventRegistry.PlayerConnect += this.OnPlayerConnect;
+        EventRegistry.WorldLoaded += this.OnWorldLoaded;
 
         logger.LogInformation("Welcome plugin loaded");
     }
@@ -21,6 +23,11 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
     public void Unload()
     {
         EventRegistry.PlayerConnect -= this.OnPlayerConnect;
+    }
+
+    private void OnWorldLoaded()
+    {
+        var server = GlobalProperties.Server;
     }
 
     private void OnPlayerConnect(EventRegistry.PlayerConnectEventArg ev)
@@ -49,6 +56,10 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
                 c.SendPlayer(player, "A message after 5 secs!");
             });
         });
+    }
+
+    private void OnIncomingConnection(EventRegistry.IncomingConnectionEventArg ev)
+    {
     }
 
     [LoggerMessage(LogLevel.Information, "{player} Joined the server.")]
