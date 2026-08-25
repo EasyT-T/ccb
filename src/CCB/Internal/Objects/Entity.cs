@@ -35,398 +35,161 @@ public struct Entity(ObjectOpaque opaque) : IScriptObject, IEquatable<Entity>
         return new Entity(opaque);
     }
 
-    public void SetPosition(float x, float y, float z, bool global)
-    {
-        ScriptFunctions.EntityFunctions.SetPosition(this, x, y, z, global);
-    }
-
-    public void SetRotation(float pitch, float yaw, float roll, bool global)
-    {
-        ScriptFunctions.EntityFunctions.SetRotation(this, pitch, yaw, roll, global);
-    }
-
-    public void SetScale(float x, float y, float z, bool global)
-    {
-        ScriptFunctions.EntityFunctions.SetScale(this, x, y, z, global);
-    }
-
-    public float PositionX(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.PositionX(this, global, tween);
-    }
-
-    public float PositionY(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.PositionY(this, global, tween);
-    }
-
-    public float PositionZ(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.PositionZ(this, global, tween);
-    }
-
-    public void Translate(float x, float y, float z, bool global)
-    {
-        ScriptFunctions.EntityFunctions.Translate(this, x, y, z, global);
-    }
-
-    public void Move(float x, float y, float z, bool global)
-    {
-        ScriptFunctions.EntityFunctions.Move(this, x, y, z, global);
-    }
-
-    public float Pitch(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.Pitch(this, global, tween);
-    }
-
-    public float Yaw(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.Yaw(this, global, tween);
-    }
-
-    public float Roll(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.Roll(this, global, tween);
-    }
-
-    public float Turn(float pitch, float yaw, float roll, bool global)
-    {
-        return ScriptFunctions.EntityFunctions.Turn(this, pitch, yaw, roll, global);
-    }
-
-    public float ScaleX(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.ScaleX(this, global, tween);
-    }
-
-    public float ScaleY(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.ScaleY(this, global, tween);
-    }
-
-    public float ScaleZ(bool global, float tween)
-    {
-        return ScriptFunctions.EntityFunctions.ScaleZ(this, global, tween);
-    }
-
-    public void SetAnimTime(float time, int sequence)
-    {
-        ScriptFunctions.EntityFunctions.SetAnimTime(this, time, sequence);
-    }
-
-    public float GetAnimTime()
-    {
-        return ScriptFunctions.EntityFunctions.GetAnimTime(this);
-    }
-
-    public float Point(Entity target, float roll)
-    {
-        return ScriptFunctions.EntityFunctions.Point(this, target, roll);
-    }
-
-    public Entity Pick(float distance)
-    {
-        return ScriptFunctions.EntityFunctions.Pick(this, distance);
-    }
-
-    public void SetPickMode(int pickmode, bool obscurer)
-    {
-        ScriptFunctions.EntityFunctions.SetPickMode(this, pickmode, obscurer);
-    }
-
-    public bool Visible(Entity target, float radius)
-    {
-        return ScriptFunctions.EntityFunctions.Visible(this, target, radius);
-    }
-
-    public float Distance(Entity target)
-    {
-        return ScriptFunctions.EntityFunctions.Distance(this, target);
-    }
-
-    public float DistanceSquared(Entity target)
-    {
-        return ScriptFunctions.EntityFunctions.DistanceSquared(this, target);
-    }
-
-    public void SetParent(Entity target, bool retain)
-    {
-        ScriptFunctions.EntityFunctions.SetParent(this, target, retain);
-    }
-
-    public Entity GetParent()
-    {
-        return ScriptFunctions.EntityFunctions.GetParent(this);
-    }
-
-    public int CountChildren()
-    {
-        return ScriptFunctions.EntityFunctions.CountChildren(this);
-    }
-
-    public Entity GetChild(int unnamed0)
-    {
-        return ScriptFunctions.EntityFunctions.GetChild(this, unnamed0);
-    }
-
-    public string GetName()
-    {
-        return ScriptFunctions.EntityFunctions.GetName(this);
-    }
-
-    public void SetName(in string name)
-    {
-        ScriptFunctions.EntityFunctions.SetName(this, in name);
-    }
-
-    public bool Collided(int colltype)
-    {
-        return ScriptFunctions.EntityFunctions.Collided(this, colltype);
-    }
-
-    public int CountCollisions()
-    {
-        return ScriptFunctions.EntityFunctions.CountCollisions(this);
-    }
-
-    public float CollisionX(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionX(this, index);
-    }
-
-    public float CollisionY(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionY(this, index);
-    }
-
-    public float CollisionZ(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionZ(this, index);
-    }
-
-    public float CollisionNX(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionNX(this, index);
-    }
-
-    public float CollisionNY(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionNY(this, index);
-    }
-
-    public float CollisionNZ(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionNZ(this, index);
-    }
-
-    public float CollisionImpulse(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionImpulse(this, index);
-    }
-
-    public float CollisionDistance(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionDistance(this, index);
-    }
-
-    public float CollisionTime(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionTime(this, index);
-    }
-
-    public Entity CollisionEntity(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionEntity(this, index);
-    }
-
-    public int CollisionTriangle(int index)
-    {
-        return ScriptFunctions.EntityFunctions.CollisionTriangle(this, index);
-    }
-
-    public void SetType(int colltype, bool recursive)
-    {
-        ScriptFunctions.EntityFunctions.SetType(this, colltype, recursive);
-    }
-
-    public void SetRadius(float x, float y)
-    {
-        ScriptFunctions.EntityFunctions.SetRadius(this, x, y);
-    }
-
-    public void SetCylinder(float x_radius, float y_radius)
-    {
-        ScriptFunctions.EntityFunctions.SetCylinder(this, x_radius, y_radius);
-    }
-
-    public void SetBox(float x, float y, float z, float w, float h, float d)
-    {
-        ScriptFunctions.EntityFunctions.SetBox(this, x, y, z, w, h, d);
-    }
-
-    public int GetType()
-    {
-        return ScriptFunctions.EntityFunctions.GetType(this);
-    }
-
-    public int GetShape(out float x, out float y, out float z, out float width, out float height, out float depth)
-    {
-        return ScriptFunctions.EntityFunctions.GetShape(this, out x, out y, out z, out width, out height, out depth);
-    }
-
-    public void Reset()
-    {
-        ScriptFunctions.EntityFunctions.Reset(this);
-    }
-
-    public bool InView(Entity target)
-    {
-        return ScriptFunctions.EntityFunctions.InView(this, target);
-    }
-
-    public void Show()
-    {
-        ScriptFunctions.EntityFunctions.Show(this);
-    }
-
-    public void Hide()
-    {
-        ScriptFunctions.EntityFunctions.Hide(this);
-    }
-
-    public void Remove()
-    {
-        ScriptFunctions.EntityFunctions.Remove(this);
-    }
-
-    public void SetMass(float mass)
-    {
-        ScriptFunctions.EntityFunctions.SetMass(this, mass);
-    }
-
-    public void SetPhysics(bool enable)
-    {
-        ScriptFunctions.EntityFunctions.SetPhysics(this, enable);
-    }
-
-    public void SetKinematic(bool enable)
-    {
-        ScriptFunctions.EntityFunctions.SetKinematic(this, enable);
-    }
-
-    public void SetCenter(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.SetCenter(this, x, y, z);
-    }
-
-    public void SetLinearCast(bool enable)
-    {
-        ScriptFunctions.EntityFunctions.SetLinearCast(this, enable);
-    }
-
-    public void SetFriction(float friction)
-    {
-        ScriptFunctions.EntityFunctions.SetFriction(this, friction);
-    }
-
-    public void SetRollFriction(float friction)
-    {
-        ScriptFunctions.EntityFunctions.SetRollFriction(this, friction);
-    }
-
-    public void SetRestitution(float res)
-    {
-        ScriptFunctions.EntityFunctions.SetRestitution(this, res);
-    }
-
-    public void SetGravity(float factor)
-    {
-        ScriptFunctions.EntityFunctions.SetGravity(this, factor);
-    }
-
-    public void SetLinearFactor(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.SetLinearFactor(this, x, y, z);
-    }
-
-    public void SetAngularFactor(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.SetAngularFactor(this, x, y, z);
-    }
-
-    public void SetLinearDamping(float damping)
-    {
-        ScriptFunctions.EntityFunctions.SetLinearDamping(this, damping);
-    }
-
-    public void SetAngularDamping(float damping)
-    {
-        ScriptFunctions.EntityFunctions.SetAngularDamping(this, damping);
-    }
-
-    public void SetConstraint(float normalAngle, float planeAngle, float twistMinAngle, float twistMaxAngle, float torqueFriction)
-    {
-        ScriptFunctions.EntityFunctions.SetConstraint(this, normalAngle, planeAngle, twistMinAngle, twistMaxAngle, torqueFriction);
-    }
-
-    public void Activate(bool enable)
-    {
-        ScriptFunctions.EntityFunctions.Activate(this, enable);
-    }
-
-    public void Sleep(bool enable)
-    {
-        ScriptFunctions.EntityFunctions.Sleep(this, enable);
-    }
-
-    public void Freeze(bool enable)
-    {
-        ScriptFunctions.EntityFunctions.Freeze(this, enable);
-    }
-
-    public bool IsFreezed()
-    {
-        return ScriptFunctions.EntityFunctions.IsFreezed(this);
-    }
-
-    public bool IsActive()
-    {
-        return ScriptFunctions.EntityFunctions.IsActive(this);
-    }
-
-    public void SetLinearVelocity(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.SetLinearVelocity(this, x, y, z);
-    }
-
-    public void SetAngularVelocity(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.SetAngularVelocity(this, x, y, z);
-    }
-
-    public void GetLinearVelocity(out float x, out float y, out float z)
-    {
-        ScriptFunctions.EntityFunctions.GetLinearVelocity(this, out x, out y, out z);
-    }
-
-    public void GetAngularVelocity(out float x, out float y, out float z)
-    {
-        ScriptFunctions.EntityFunctions.GetAngularVelocity(this, out x, out y, out z);
-    }
-
-    public void Impulse(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.Impulse(this, x, y, z);
-    }
-
-    public void Torque(float x, float y, float z)
-    {
-        ScriptFunctions.EntityFunctions.Torque(this, x, y, z);
-    }
-
-    public void ClearForces()
-    {
-        ScriptFunctions.EntityFunctions.ClearForces(this);
-    }
+    public void SetPosition(float x, float y, float z, bool global) => ScriptFunctions.EntityFunctions.SetPosition(this, x, y, z, global);
+
+    public void SetRotation(float pitch, float yaw, float roll, bool global) => ScriptFunctions.EntityFunctions.SetRotation(this, pitch, yaw, roll, global);
+
+    public void SetScale(float x, float y, float z, bool global) => ScriptFunctions.EntityFunctions.SetScale(this, x, y, z, global);
+
+    public float PositionX(bool global, float tween) => ScriptFunctions.EntityFunctions.PositionX(this, global, tween);
+
+    public float PositionY(bool global, float tween) => ScriptFunctions.EntityFunctions.PositionY(this, global, tween);
+
+    public float PositionZ(bool global, float tween) => ScriptFunctions.EntityFunctions.PositionZ(this, global, tween);
+
+    public void Translate(float x, float y, float z, bool global) => ScriptFunctions.EntityFunctions.Translate(this, x, y, z, global);
+
+    public void Move(float x, float y, float z, bool global) => ScriptFunctions.EntityFunctions.Move(this, x, y, z, global);
+
+    public float Pitch(bool global, float tween) => ScriptFunctions.EntityFunctions.Pitch(this, global, tween);
+
+    public float Yaw(bool global, float tween) => ScriptFunctions.EntityFunctions.Yaw(this, global, tween);
+
+    public float Roll(bool global, float tween) => ScriptFunctions.EntityFunctions.Roll(this, global, tween);
+
+    public float Turn(float pitch, float yaw, float roll, bool global) => ScriptFunctions.EntityFunctions.Turn(this, pitch, yaw, roll, global);
+
+    public float ScaleX(bool global, float tween) => ScriptFunctions.EntityFunctions.ScaleX(this, global, tween);
+
+    public float ScaleY(bool global, float tween) => ScriptFunctions.EntityFunctions.ScaleY(this, global, tween);
+
+    public float ScaleZ(bool global, float tween) => ScriptFunctions.EntityFunctions.ScaleZ(this, global, tween);
+
+    public void SetAnimTime(float time, int sequence) => ScriptFunctions.EntityFunctions.SetAnimTime(this, time, sequence);
+
+    public float GetAnimTime() => ScriptFunctions.EntityFunctions.GetAnimTime(this);
+
+    public float Point(Entity target, float roll) => ScriptFunctions.EntityFunctions.Point(this, target, roll);
+
+    public Entity Pick(float distance) => ScriptFunctions.EntityFunctions.Pick(this, distance);
+
+    public void SetPickMode(int pickmode, bool obscurer) => ScriptFunctions.EntityFunctions.SetPickMode(this, pickmode, obscurer);
+
+    public bool Visible(Entity target, float radius) => ScriptFunctions.EntityFunctions.Visible(this, target, radius);
+
+    public float Distance(Entity target) => ScriptFunctions.EntityFunctions.Distance(this, target);
+
+    public float DistanceSquared(Entity target) => ScriptFunctions.EntityFunctions.DistanceSquared(this, target);
+
+    public void SetParent(Entity target, bool retain) => ScriptFunctions.EntityFunctions.SetParent(this, target, retain);
+
+    public Entity GetParent() => ScriptFunctions.EntityFunctions.GetParent(this);
+
+    public int CountChildren() => ScriptFunctions.EntityFunctions.CountChildren(this);
+
+    public Entity GetChild(int unnamed0) => ScriptFunctions.EntityFunctions.GetChild(this, unnamed0);
+
+    public string GetName() => ScriptFunctions.EntityFunctions.GetName(this);
+
+    public void SetName(in string name) => ScriptFunctions.EntityFunctions.SetName(this, in name);
+
+    public bool Collided(int colltype) => ScriptFunctions.EntityFunctions.Collided(this, colltype);
+
+    public int CountCollisions() => ScriptFunctions.EntityFunctions.CountCollisions(this);
+
+    public float CollisionX(int index) => ScriptFunctions.EntityFunctions.CollisionX(this, index);
+
+    public float CollisionY(int index) => ScriptFunctions.EntityFunctions.CollisionY(this, index);
+
+    public float CollisionZ(int index) => ScriptFunctions.EntityFunctions.CollisionZ(this, index);
+
+    public float CollisionNX(int index) => ScriptFunctions.EntityFunctions.CollisionNX(this, index);
+
+    public float CollisionNY(int index) => ScriptFunctions.EntityFunctions.CollisionNY(this, index);
+
+    public float CollisionNZ(int index) => ScriptFunctions.EntityFunctions.CollisionNZ(this, index);
+
+    public float CollisionImpulse(int index) => ScriptFunctions.EntityFunctions.CollisionImpulse(this, index);
+
+    public float CollisionDistance(int index) => ScriptFunctions.EntityFunctions.CollisionDistance(this, index);
+
+    public float CollisionTime(int index) => ScriptFunctions.EntityFunctions.CollisionTime(this, index);
+
+    public Entity CollisionEntity(int index) => ScriptFunctions.EntityFunctions.CollisionEntity(this, index);
+
+    public int CollisionTriangle(int index) => ScriptFunctions.EntityFunctions.CollisionTriangle(this, index);
+
+    public void SetType(int colltype, bool recursive) => ScriptFunctions.EntityFunctions.SetType(this, colltype, recursive);
+
+    public void SetRadius(float x, float y) => ScriptFunctions.EntityFunctions.SetRadius(this, x, y);
+
+    public void SetCylinder(float x_radius, float y_radius) => ScriptFunctions.EntityFunctions.SetCylinder(this, x_radius, y_radius);
+
+    public void SetBox(float x, float y, float z, float w, float h, float d) => ScriptFunctions.EntityFunctions.SetBox(this, x, y, z, w, h, d);
+
+    public int GetType() => ScriptFunctions.EntityFunctions.GetType(this);
+
+    public int GetShape(out float x, out float y, out float z, out float width, out float height, out float depth) => ScriptFunctions.EntityFunctions.GetShape(this, out x, out y, out z, out width, out height, out depth);
+
+    public void Reset() => ScriptFunctions.EntityFunctions.Reset(this);
+
+    public bool InView(Entity target) => ScriptFunctions.EntityFunctions.InView(this, target);
+
+    public void Show() => ScriptFunctions.EntityFunctions.Show(this);
+
+    public void Hide() => ScriptFunctions.EntityFunctions.Hide(this);
+
+    public void Remove() => ScriptFunctions.EntityFunctions.Remove(this);
+
+    public void SetMass(float mass) => ScriptFunctions.EntityFunctions.SetMass(this, mass);
+
+    public void SetPhysics(bool enable) => ScriptFunctions.EntityFunctions.SetPhysics(this, enable);
+
+    public void SetKinematic(bool enable) => ScriptFunctions.EntityFunctions.SetKinematic(this, enable);
+
+    public void SetCenter(float x, float y, float z) => ScriptFunctions.EntityFunctions.SetCenter(this, x, y, z);
+
+    public void SetLinearCast(bool enable) => ScriptFunctions.EntityFunctions.SetLinearCast(this, enable);
+
+    public void SetFriction(float friction) => ScriptFunctions.EntityFunctions.SetFriction(this, friction);
+
+    public void SetRollFriction(float friction) => ScriptFunctions.EntityFunctions.SetRollFriction(this, friction);
+
+    public void SetRestitution(float res) => ScriptFunctions.EntityFunctions.SetRestitution(this, res);
+
+    public void SetGravity(float factor) => ScriptFunctions.EntityFunctions.SetGravity(this, factor);
+
+    public void SetLinearFactor(float x, float y, float z) => ScriptFunctions.EntityFunctions.SetLinearFactor(this, x, y, z);
+
+    public void SetAngularFactor(float x, float y, float z) => ScriptFunctions.EntityFunctions.SetAngularFactor(this, x, y, z);
+
+    public void SetLinearDamping(float damping) => ScriptFunctions.EntityFunctions.SetLinearDamping(this, damping);
+
+    public void SetAngularDamping(float damping) => ScriptFunctions.EntityFunctions.SetAngularDamping(this, damping);
+
+    public void SetConstraint(float normalAngle, float planeAngle, float twistMinAngle, float twistMaxAngle, float torqueFriction) => ScriptFunctions.EntityFunctions.SetConstraint(this, normalAngle, planeAngle, twistMinAngle, twistMaxAngle, torqueFriction);
+
+    public void Activate(bool enable) => ScriptFunctions.EntityFunctions.Activate(this, enable);
+
+    public void Sleep(bool enable) => ScriptFunctions.EntityFunctions.Sleep(this, enable);
+
+    public void Freeze(bool enable) => ScriptFunctions.EntityFunctions.Freeze(this, enable);
+
+    public bool IsFreezed() => ScriptFunctions.EntityFunctions.IsFreezed(this);
+
+    public bool IsActive() => ScriptFunctions.EntityFunctions.IsActive(this);
+
+    public void SetLinearVelocity(float x, float y, float z) => ScriptFunctions.EntityFunctions.SetLinearVelocity(this, x, y, z);
+
+    public void SetAngularVelocity(float x, float y, float z) => ScriptFunctions.EntityFunctions.SetAngularVelocity(this, x, y, z);
+
+    public void GetLinearVelocity(out float x, out float y, out float z) => ScriptFunctions.EntityFunctions.GetLinearVelocity(this, out x, out y, out z);
+
+    public void GetAngularVelocity(out float x, out float y, out float z) => ScriptFunctions.EntityFunctions.GetAngularVelocity(this, out x, out y, out z);
+
+    public void Impulse(float x, float y, float z) => ScriptFunctions.EntityFunctions.Impulse(this, x, y, z);
+
+    public void Torque(float x, float y, float z) => ScriptFunctions.EntityFunctions.Torque(this, x, y, z);
+
+    public void ClearForces() => ScriptFunctions.EntityFunctions.ClearForces(this);
 }

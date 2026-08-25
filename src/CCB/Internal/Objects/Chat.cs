@@ -35,13 +35,7 @@ public struct Chat(ObjectOpaque opaque) : IScriptObject, IEquatable<Chat>
         return new Chat(opaque);
     }
 
-    public void Send(in string message)
-    {
-        ScriptFunctions.ChatFunctions.Send(this, in message);
-    }
+    public void Send(in string message) => ScriptFunctions.ChatFunctions.Send(this, in message);
 
-    public void SendPlayer(Player player, in string message)
-    {
-        ScriptFunctions.ChatFunctions.SendPlayer(this, player, in message);
-    }
+    public void SendPlayer(Player player, in string message) => ScriptFunctions.ChatFunctions.SendPlayer(this, player, in message);
 }

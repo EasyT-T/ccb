@@ -35,43 +35,19 @@ public struct Audio(ObjectOpaque opaque) : IScriptObject, IEquatable<Audio>
         return new Audio(opaque);
     }
 
-    public Sound Play3DSound(in string filenameorurl, Player player, float range, float volume, bool norange)
-    {
-        return ScriptFunctions.AudioFunctions.Play3DSound(this, in filenameorurl, player, range, volume, norange);
-    }
+    public Sound Play3DSound(in string filenameorurl, Player player, float range, float volume, bool norange) => ScriptFunctions.AudioFunctions.Play3DSound(this, in filenameorurl, player, range, volume, norange);
 
-    public Sound Play3DSound(in string filenameorurl, Entity entity, float range, float volume, bool norange)
-    {
-        return ScriptFunctions.AudioFunctions.Play3DSound(this, in filenameorurl, entity, range, volume, norange);
-    }
+    public Sound Play3DSound(in string filenameorurl, Entity entity, float range, float volume, bool norange) => ScriptFunctions.AudioFunctions.Play3DSound(this, in filenameorurl, entity, range, volume, norange);
 
-    public Sound Play3DSound(in string filenameorurl, float x, float y, float z, float range, float volume, bool norange)
-    {
-        return ScriptFunctions.AudioFunctions.Play3DSound(this, in filenameorurl, x, y, z, range, volume, norange);
-    }
+    public Sound Play3DSound(in string filenameorurl, float x, float y, float z, float range, float volume, bool norange) => ScriptFunctions.AudioFunctions.Play3DSound(this, in filenameorurl, x, y, z, range, volume, norange);
 
-    public Sound PlaySound(in string filenameorurl)
-    {
-        return ScriptFunctions.AudioFunctions.PlaySound(this, in filenameorurl);
-    }
+    public Sound PlaySound(in string filenameorurl) => ScriptFunctions.AudioFunctions.PlaySound(this, in filenameorurl);
 
-    public Sound PlaySoundForPlayer(Player player, in string filenameorurl)
-    {
-        return ScriptFunctions.AudioFunctions.PlaySoundForPlayer(this, player, in filenameorurl);
-    }
+    public Sound PlaySoundForPlayer(Player player, in string filenameorurl) => ScriptFunctions.AudioFunctions.PlaySoundForPlayer(this, player, in filenameorurl);
 
-    public Sound Play3DSoundForPlayer(Player player, in string filenameorurl, Entity entity, float range, float volume, bool norange)
-    {
-        return ScriptFunctions.AudioFunctions.Play3DSoundForPlayer(this, player, in filenameorurl, entity, range, volume, norange);
-    }
+    public Sound Play3DSoundForPlayer(Player player, in string filenameorurl, Entity entity, float range, float volume, bool norange) => ScriptFunctions.AudioFunctions.Play3DSoundForPlayer(this, player, in filenameorurl, entity, range, volume, norange);
 
-    public Sound Play3DSoundForPlayer(Player player, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange)
-    {
-        return ScriptFunctions.AudioFunctions.Play3DSoundForPlayer(this, player, in filenameorurl, x, y, z, range, volume, norange);
-    }
+    public Sound Play3DSoundForPlayer(Player player, in string filenameorurl, float x, float y, float z, float range, float volume, bool norange) => ScriptFunctions.AudioFunctions.Play3DSoundForPlayer(this, player, in filenameorurl, x, y, z, range, volume, norange);
 
-    public Sound Play3DSoundForPlayer(Player player_to, in string filenameorurl, Player player, float range, float volume, bool norange)
-    {
-        return ScriptFunctions.AudioFunctions.Play3DSoundForPlayer(this, player_to, in filenameorurl, player, range, volume, norange);
-    }
+    public Sound Play3DSoundForPlayer(Player player_to, in string filenameorurl, Player player, float range, float volume, bool norange) => ScriptFunctions.AudioFunctions.Play3DSoundForPlayer(this, player_to, in filenameorurl, player, range, volume, norange);
 }

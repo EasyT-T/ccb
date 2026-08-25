@@ -85,58 +85,25 @@ public struct Room(ObjectOpaque opaque) : IScriptObject, IEquatable<Room>
         return new Room(opaque);
     }
 
-    public string GetName()
-    {
-        return ScriptFunctions.RoomFunctions.GetName(this);
-    }
+    public string GetName() => ScriptFunctions.RoomFunctions.GetName(this);
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.RoomFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.RoomFunctions.GetIndex(this);
 
-    public int GetIdentifier()
-    {
-        return ScriptFunctions.RoomFunctions.GetIdentifier(this);
-    }
+    public int GetIdentifier() => ScriptFunctions.RoomFunctions.GetIdentifier(this);
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.RoomFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.RoomFunctions.GetEntity(this);
 
-    public Entity GetObject(int index)
-    {
-        return ScriptFunctions.RoomFunctions.GetObject(this, index);
-    }
+    public Entity GetObject(int index) => ScriptFunctions.RoomFunctions.GetObject(this, index);
 
-    public Entity GetLever(int index)
-    {
-        return ScriptFunctions.RoomFunctions.GetLever(this, index);
-    }
+    public Entity GetLever(int index) => ScriptFunctions.RoomFunctions.GetLever(this, index);
 
-    public bool IsAdjacent(Room unnamed0)
-    {
-        return ScriptFunctions.RoomFunctions.IsAdjacent(this, unnamed0);
-    }
+    public bool IsAdjacent(Room unnamed0) => ScriptFunctions.RoomFunctions.IsAdjacent(this, unnamed0);
 
-    public Room GetAdjacentRoom(int index)
-    {
-        return ScriptFunctions.RoomFunctions.GetAdjacentRoom(this, index);
-    }
+    public Room GetAdjacentRoom(int index) => ScriptFunctions.RoomFunctions.GetAdjacentRoom(this, index);
 
-    public Door GetAdjacentDoor(int index)
-    {
-        return ScriptFunctions.RoomFunctions.GetAdjacentDoor(this, index);
-    }
+    public Door GetAdjacentDoor(int index) => ScriptFunctions.RoomFunctions.GetAdjacentDoor(this, index);
 
-    public Door GetDoor(int unnamed0)
-    {
-        return ScriptFunctions.RoomFunctions.GetDoor(this, unnamed0);
-    }
+    public Door GetDoor(int unnamed0) => ScriptFunctions.RoomFunctions.GetDoor(this, unnamed0);
 
-    public bool IsInside(Entity unnamed0)
-    {
-        return ScriptFunctions.RoomFunctions.IsInside(this, unnamed0);
-    }
+    public bool IsInside(Entity unnamed0) => ScriptFunctions.RoomFunctions.IsInside(this, unnamed0);
 }

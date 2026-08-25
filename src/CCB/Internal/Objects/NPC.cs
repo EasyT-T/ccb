@@ -85,83 +85,35 @@ public struct NPC(ObjectOpaque opaque) : IScriptObject, IEquatable<NPC>
         return new NPC(opaque);
     }
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.NPCFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.NPCFunctions.GetEntity(this);
 
-    public Entity GetModel()
-    {
-        return ScriptFunctions.NPCFunctions.GetModel(this);
-    }
+    public Entity GetModel() => ScriptFunctions.NPCFunctions.GetModel(this);
 
-    public void SetPickable(bool pickable)
-    {
-        ScriptFunctions.NPCFunctions.SetPickable(this, pickable);
-    }
+    public void SetPickable(bool pickable) => ScriptFunctions.NPCFunctions.SetPickable(this, pickable);
 
-    public void SetDead(bool state)
-    {
-        ScriptFunctions.NPCFunctions.SetDead(this, state);
-    }
+    public void SetDead(bool state) => ScriptFunctions.NPCFunctions.SetDead(this, state);
 
-    public bool IsDead()
-    {
-        return ScriptFunctions.NPCFunctions.IsDead(this);
-    }
+    public bool IsDead() => ScriptFunctions.NPCFunctions.IsDead(this);
 
-    public void SetHealth(int health)
-    {
-        ScriptFunctions.NPCFunctions.SetHealth(this, health);
-    }
+    public void SetHealth(int health) => ScriptFunctions.NPCFunctions.SetHealth(this, health);
 
-    public int GetHealth()
-    {
-        return ScriptFunctions.NPCFunctions.GetHealth(this);
-    }
+    public int GetHealth() => ScriptFunctions.NPCFunctions.GetHealth(this);
 
-    public void SetIdle(float state)
-    {
-        ScriptFunctions.NPCFunctions.SetIdle(this, state);
-    }
+    public void SetIdle(float state) => ScriptFunctions.NPCFunctions.SetIdle(this, state);
 
-    public void SetState1(float state)
-    {
-        ScriptFunctions.NPCFunctions.SetState1(this, state);
-    }
+    public void SetState1(float state) => ScriptFunctions.NPCFunctions.SetState1(this, state);
 
-    public void SetState2(float state)
-    {
-        ScriptFunctions.NPCFunctions.SetState2(this, state);
-    }
+    public void SetState2(float state) => ScriptFunctions.NPCFunctions.SetState2(this, state);
 
-    public void SetState3(float state)
-    {
-        ScriptFunctions.NPCFunctions.SetState3(this, state);
-    }
+    public void SetState3(float state) => ScriptFunctions.NPCFunctions.SetState3(this, state);
 
-    public float GetIdle()
-    {
-        return ScriptFunctions.NPCFunctions.GetIdle(this);
-    }
+    public float GetIdle() => ScriptFunctions.NPCFunctions.GetIdle(this);
 
-    public float GetState1()
-    {
-        return ScriptFunctions.NPCFunctions.GetState1(this);
-    }
+    public float GetState1() => ScriptFunctions.NPCFunctions.GetState1(this);
 
-    public float GetState2()
-    {
-        return ScriptFunctions.NPCFunctions.GetState2(this);
-    }
+    public float GetState2() => ScriptFunctions.NPCFunctions.GetState2(this);
 
-    public float GetState3()
-    {
-        return ScriptFunctions.NPCFunctions.GetState3(this);
-    }
+    public float GetState3() => ScriptFunctions.NPCFunctions.GetState3(this);
 
-    public void Remove()
-    {
-        ScriptFunctions.NPCFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.NPCFunctions.Remove(this);
 }

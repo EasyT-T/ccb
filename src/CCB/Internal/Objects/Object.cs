@@ -85,63 +85,27 @@ public struct Object(ObjectOpaque opaque) : IScriptObject, IEquatable<Object>
         return new Object(opaque);
     }
 
-    public void SetAttach(Player player)
-    {
-        ScriptFunctions.ObjectFunctions.SetAttach(this, player);
-    }
+    public void SetAttach(Player player) => ScriptFunctions.ObjectFunctions.SetAttach(this, player);
 
-    public Player GetAttach()
-    {
-        return ScriptFunctions.ObjectFunctions.GetAttach(this);
-    }
+    public Player GetAttach() => ScriptFunctions.ObjectFunctions.GetAttach(this);
 
-    public void SetRoom(Room unnamed0)
-    {
-        ScriptFunctions.ObjectFunctions.SetRoom(this, unnamed0);
-    }
+    public void SetRoom(Room unnamed0) => ScriptFunctions.ObjectFunctions.SetRoom(this, unnamed0);
 
-    public Room GetRoom()
-    {
-        return ScriptFunctions.ObjectFunctions.GetRoom(this);
-    }
+    public Room GetRoom() => ScriptFunctions.ObjectFunctions.GetRoom(this);
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.ObjectFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.ObjectFunctions.GetIndex(this);
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.ObjectFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.ObjectFunctions.GetEntity(this);
 
-    public Entity GetModel()
-    {
-        return ScriptFunctions.ObjectFunctions.GetModel(this);
-    }
+    public Entity GetModel() => ScriptFunctions.ObjectFunctions.GetModel(this);
 
-    public void SetMovement(float speed, float maxdistance)
-    {
-        ScriptFunctions.ObjectFunctions.SetMovement(this, speed, maxdistance);
-    }
+    public void SetMovement(float speed, float maxdistance) => ScriptFunctions.ObjectFunctions.SetMovement(this, speed, maxdistance);
 
-    public void SetTexture(int textureid)
-    {
-        ScriptFunctions.ObjectFunctions.SetTexture(this, textureid);
-    }
+    public void SetTexture(int textureid) => ScriptFunctions.ObjectFunctions.SetTexture(this, textureid);
 
-    public void SetTouchable(bool val)
-    {
-        ScriptFunctions.ObjectFunctions.SetTouchable(this, val);
-    }
+    public void SetTouchable(bool val) => ScriptFunctions.ObjectFunctions.SetTouchable(this, val);
 
-    public void SetClickCallback(ref IntPtr callback)
-    {
-        ScriptFunctions.ObjectFunctions.SetClickCallback(this, callback);
-    }
+    public void SetClickCallback(ref IntPtr callback) => ScriptFunctions.ObjectFunctions.SetClickCallback(this, callback);
 
-    public void Remove()
-    {
-        ScriptFunctions.ObjectFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.ObjectFunctions.Remove(this);
 }

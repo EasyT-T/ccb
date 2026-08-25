@@ -85,153 +85,63 @@ public struct GUIElement(ObjectOpaque opaque) : IScriptObject, IEquatable<GUIEle
         return new GUIElement(opaque);
     }
 
-    public void GetPosition(out float x, out float y)
-    {
-        ScriptFunctions.GUIElementFunctions.GetPosition(this, out x, out y);
-    }
+    public void GetPosition(out float x, out float y) => ScriptFunctions.GUIElementFunctions.GetPosition(this, out x, out y);
 
-    public void SetPosition(float x, float y)
-    {
-        ScriptFunctions.GUIElementFunctions.SetPosition(this, x, y);
-    }
+    public void SetPosition(float x, float y) => ScriptFunctions.GUIElementFunctions.SetPosition(this, x, y);
 
-    public void SetScale(float width, float height)
-    {
-        ScriptFunctions.GUIElementFunctions.SetScale(this, width, height);
-    }
+    public void SetScale(float width, float height) => ScriptFunctions.GUIElementFunctions.SetScale(this, width, height);
 
-    public void GetScale(out float width, out float height)
-    {
-        ScriptFunctions.GUIElementFunctions.GetScale(this, out width, out height);
-    }
+    public void GetScale(out float width, out float height) => ScriptFunctions.GUIElementFunctions.GetScale(this, out width, out height);
 
-    public void SetRotation(int degrees)
-    {
-        ScriptFunctions.GUIElementFunctions.SetRotation(this, degrees);
-    }
+    public void SetRotation(int degrees) => ScriptFunctions.GUIElementFunctions.SetRotation(this, degrees);
 
-    public void GetRotation(out int degrees)
-    {
-        ScriptFunctions.GUIElementFunctions.GetRotation(this, out degrees);
-    }
+    public void GetRotation(out int degrees) => ScriptFunctions.GUIElementFunctions.GetRotation(this, out degrees);
 
-    public void SetData(in string data)
-    {
-        ScriptFunctions.GUIElementFunctions.SetData(this, in data);
-    }
+    public void SetData(in string data) => ScriptFunctions.GUIElementFunctions.SetData(this, in data);
 
-    public void SetText(in string text)
-    {
-        ScriptFunctions.GUIElementFunctions.SetText(this, in text);
-    }
+    public void SetText(in string text) => ScriptFunctions.GUIElementFunctions.SetText(this, in text);
 
-    public void SetFont(int fontid)
-    {
-        ScriptFunctions.GUIElementFunctions.SetFont(this, fontid);
-    }
+    public void SetFont(int fontid) => ScriptFunctions.GUIElementFunctions.SetFont(this, fontid);
 
-    public void SetSelectable(bool selectable)
-    {
-        ScriptFunctions.GUIElementFunctions.SetSelectable(this, selectable);
-    }
+    public void SetSelectable(bool selectable) => ScriptFunctions.GUIElementFunctions.SetSelectable(this, selectable);
 
-    public void SetShadow(bool shadowed)
-    {
-        ScriptFunctions.GUIElementFunctions.SetShadow(this, shadowed);
-    }
+    public void SetShadow(bool shadowed) => ScriptFunctions.GUIElementFunctions.SetShadow(this, shadowed);
 
-    public void SetAspect(bool keep)
-    {
-        ScriptFunctions.GUIElementFunctions.SetAspect(this, keep);
-    }
+    public void SetAspect(bool keep) => ScriptFunctions.GUIElementFunctions.SetAspect(this, keep);
 
-    public void SetOpacity(float target, float lerp)
-    {
-        ScriptFunctions.GUIElementFunctions.SetOpacity(this, target, lerp);
-    }
+    public void SetOpacity(float target, float lerp) => ScriptFunctions.GUIElementFunctions.SetOpacity(this, target, lerp);
 
-    public void SetColor(int r, int g, int b)
-    {
-        ScriptFunctions.GUIElementFunctions.SetColor(this, r, g, b);
-    }
+    public void SetColor(int r, int g, int b) => ScriptFunctions.GUIElementFunctions.SetColor(this, r, g, b);
 
-    public void SetTechnique(in string technique)
-    {
-        ScriptFunctions.GUIElementFunctions.SetTechnique(this, in technique);
-    }
+    public void SetTechnique(in string technique) => ScriptFunctions.GUIElementFunctions.SetTechnique(this, in technique);
 
-    public Player GetPlayer()
-    {
-        return ScriptFunctions.GUIElementFunctions.GetPlayer(this);
-    }
+    public Player GetPlayer() => ScriptFunctions.GUIElementFunctions.GetPlayer(this);
 
-    public void SetAttach(Player player)
-    {
-        ScriptFunctions.GUIElementFunctions.SetAttach(this, player);
-    }
+    public void SetAttach(Player player) => ScriptFunctions.GUIElementFunctions.SetAttach(this, player);
 
-    public void SetAttach(bool enable, float x, float y, float z)
-    {
-        ScriptFunctions.GUIElementFunctions.SetAttach(this, enable, x, y, z);
-    }
+    public void SetAttach(bool enable, float x, float y, float z) => ScriptFunctions.GUIElementFunctions.SetAttach(this, enable, x, y, z);
 
-    public Player GetAttach()
-    {
-        return ScriptFunctions.GUIElementFunctions.GetAttach(this);
-    }
+    public Player GetAttach() => ScriptFunctions.GUIElementFunctions.GetAttach(this);
 
-    public bool GetAttach(out float x, out float y, out float z)
-    {
-        return ScriptFunctions.GUIElementFunctions.GetAttach(this, out x, out y, out z);
-    }
+    public bool GetAttach(out float x, out float y, out float z) => ScriptFunctions.GUIElementFunctions.GetAttach(this, out x, out y, out z);
 
-    public int GetFont()
-    {
-        return ScriptFunctions.GUIElementFunctions.GetFont(this);
-    }
+    public int GetFont() => ScriptFunctions.GUIElementFunctions.GetFont(this);
 
-    public string GetText()
-    {
-        return ScriptFunctions.GUIElementFunctions.GetText(this);
-    }
+    public string GetText() => ScriptFunctions.GUIElementFunctions.GetText(this);
 
-    public string GetData()
-    {
-        return ScriptFunctions.GUIElementFunctions.GetData(this);
-    }
+    public string GetData() => ScriptFunctions.GUIElementFunctions.GetData(this);
 
-    public bool IsSelectable()
-    {
-        return ScriptFunctions.GUIElementFunctions.IsSelectable(this);
-    }
+    public bool IsSelectable() => ScriptFunctions.GUIElementFunctions.IsSelectable(this);
 
-    public bool IsHidden()
-    {
-        return ScriptFunctions.GUIElementFunctions.IsHidden(this);
-    }
+    public bool IsHidden() => ScriptFunctions.GUIElementFunctions.IsHidden(this);
 
-    public void SetCallback(in string funcname)
-    {
-        ScriptFunctions.GUIElementFunctions.SetCallback(this, in funcname);
-    }
+    public void SetCallback(in string funcname) => ScriptFunctions.GUIElementFunctions.SetCallback(this, in funcname);
 
-    public void SetCallback(ref IntPtr gc)
-    {
-        ScriptFunctions.GUIElementFunctions.SetCallback(this, gc);
-    }
+    public void SetCallback(ref IntPtr gc) => ScriptFunctions.GUIElementFunctions.SetCallback(this, gc);
 
-    public void Hide()
-    {
-        ScriptFunctions.GUIElementFunctions.Hide(this);
-    }
+    public void Hide() => ScriptFunctions.GUIElementFunctions.Hide(this);
 
-    public void Show()
-    {
-        ScriptFunctions.GUIElementFunctions.Show(this);
-    }
+    public void Show() => ScriptFunctions.GUIElementFunctions.Show(this);
 
-    public void Remove()
-    {
-        ScriptFunctions.GUIElementFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.GUIElementFunctions.Remove(this);
 }

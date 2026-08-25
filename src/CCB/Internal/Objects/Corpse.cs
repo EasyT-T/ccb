@@ -85,83 +85,35 @@ public struct Corpse(ObjectOpaque opaque) : IScriptObject, IEquatable<Corpse>
         return new Corpse(opaque);
     }
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.CorpseFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.CorpseFunctions.GetIndex(this);
 
-    public Player GetPlayer()
-    {
-        return ScriptFunctions.CorpseFunctions.GetPlayer(this);
-    }
+    public Player GetPlayer() => ScriptFunctions.CorpseFunctions.GetPlayer(this);
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.CorpseFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.CorpseFunctions.GetEntity(this);
 
-    public float GetTimeout()
-    {
-        return ScriptFunctions.CorpseFunctions.GetTimeout(this);
-    }
+    public float GetTimeout() => ScriptFunctions.CorpseFunctions.GetTimeout(this);
 
-    public void SetTimeout(float unnamed0)
-    {
-        ScriptFunctions.CorpseFunctions.SetTimeout(this, unnamed0);
-    }
+    public void SetTimeout(float unnamed0) => ScriptFunctions.CorpseFunctions.SetTimeout(this, unnamed0);
 
-    public bool PushItem(Items unnamed0)
-    {
-        return ScriptFunctions.CorpseFunctions.PushItem(this, unnamed0);
-    }
+    public bool PushItem(Items unnamed0) => ScriptFunctions.CorpseFunctions.PushItem(this, unnamed0);
 
-    public bool ExploreItem(int slot)
-    {
-        return ScriptFunctions.CorpseFunctions.ExploreItem(this, slot);
-    }
+    public bool ExploreItem(int slot) => ScriptFunctions.CorpseFunctions.ExploreItem(this, slot);
 
-    public Items GetItem(int slot)
-    {
-        return ScriptFunctions.CorpseFunctions.GetItem(this, slot);
-    }
+    public Items GetItem(int slot) => ScriptFunctions.CorpseFunctions.GetItem(this, slot);
 
-    public int GetModel()
-    {
-        return ScriptFunctions.CorpseFunctions.GetModel(this);
-    }
+    public int GetModel() => ScriptFunctions.CorpseFunctions.GetModel(this);
 
-    public int GetItemsCount()
-    {
-        return ScriptFunctions.CorpseFunctions.GetItemsCount(this);
-    }
+    public int GetItemsCount() => ScriptFunctions.CorpseFunctions.GetItemsCount(this);
 
-    public bool IsExplored()
-    {
-        return ScriptFunctions.CorpseFunctions.IsExplored(this);
-    }
+    public bool IsExplored() => ScriptFunctions.CorpseFunctions.IsExplored(this);
 
-    public void SetExplore(bool explore)
-    {
-        ScriptFunctions.CorpseFunctions.SetExplore(this, explore);
-    }
+    public void SetExplore(bool explore) => ScriptFunctions.CorpseFunctions.SetExplore(this, explore);
 
-    public bool Explore()
-    {
-        return ScriptFunctions.CorpseFunctions.Explore(this);
-    }
+    public bool Explore() => ScriptFunctions.CorpseFunctions.Explore(this);
 
-    public void SetData(in string data)
-    {
-        ScriptFunctions.CorpseFunctions.SetData(this, in data);
-    }
+    public void SetData(in string data) => ScriptFunctions.CorpseFunctions.SetData(this, in data);
 
-    public string GetData()
-    {
-        return ScriptFunctions.CorpseFunctions.GetData(this);
-    }
+    public string GetData() => ScriptFunctions.CorpseFunctions.GetData(this);
 
-    public void Remove()
-    {
-        ScriptFunctions.CorpseFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.CorpseFunctions.Remove(this);
 }

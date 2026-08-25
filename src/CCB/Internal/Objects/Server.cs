@@ -251,38 +251,17 @@ public struct Server(ObjectOpaque opaque) : IScriptObject, IEquatable<Server>
         set => ScriptFunctions.ServerFunctions.Setfall_damage(this, value);
     }
 
-    public void Restart()
-    {
-        ScriptFunctions.ServerFunctions.Restart(this);
-    }
+    public void Restart() => ScriptFunctions.ServerFunctions.Restart(this);
 
-    public void Console(in string unnamed0)
-    {
-        ScriptFunctions.ServerFunctions.Console(this, in unnamed0);
-    }
+    public void Console(in string unnamed0) => ScriptFunctions.ServerFunctions.Console(this, in unnamed0);
 
-    public string GetVersion()
-    {
-        return ScriptFunctions.ServerFunctions.GetVersion(this);
-    }
+    public string GetVersion() => ScriptFunctions.ServerFunctions.GetVersion(this);
 
-    public void AddVersion(in string version)
-    {
-        ScriptFunctions.ServerFunctions.AddVersion(this, in version);
-    }
+    public void AddVersion(in string version) => ScriptFunctions.ServerFunctions.AddVersion(this, in version);
 
-    public void RemoveVersion(in string version)
-    {
-        ScriptFunctions.ServerFunctions.RemoveVersion(this, in version);
-    }
+    public void RemoveVersion(in string version) => ScriptFunctions.ServerFunctions.RemoveVersion(this, in version);
 
-    public int GetUPS()
-    {
-        return ScriptFunctions.ServerFunctions.GetUPS(this);
-    }
+    public int GetUPS() => ScriptFunctions.ServerFunctions.GetUPS(this);
 
-    public Config ParseConfig(in string filename)
-    {
-        return ScriptFunctions.ServerFunctions.ParseConfig(this, in filename);
-    }
+    public Config ParseConfig(in string filename) => ScriptFunctions.ServerFunctions.ParseConfig(this, in filename);
 }

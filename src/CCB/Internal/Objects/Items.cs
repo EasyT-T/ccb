@@ -85,113 +85,47 @@ public struct Items(ObjectOpaque opaque) : IScriptObject, IEquatable<Items>
         return new Items(opaque);
     }
 
-    public bool IsPicked()
-    {
-        return ScriptFunctions.ItemsFunctions.IsPicked(this);
-    }
+    public bool IsPicked() => ScriptFunctions.ItemsFunctions.IsPicked(this);
 
-    public Player GetPicker()
-    {
-        return ScriptFunctions.ItemsFunctions.GetPicker(this);
-    }
+    public Player GetPicker() => ScriptFunctions.ItemsFunctions.GetPicker(this);
 
-    public bool SetPicker(Player player, float throwforce)
-    {
-        return ScriptFunctions.ItemsFunctions.SetPicker(this, player, throwforce);
-    }
+    public bool SetPicker(Player player, float throwforce) => ScriptFunctions.ItemsFunctions.SetPicker(this, player, throwforce);
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.ItemsFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.ItemsFunctions.GetEntity(this);
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.ItemsFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.ItemsFunctions.GetIndex(this);
 
-    public string GetName()
-    {
-        return ScriptFunctions.ItemsFunctions.GetName(this);
-    }
+    public string GetName() => ScriptFunctions.ItemsFunctions.GetName(this);
 
-    public string GetTemplateName()
-    {
-        return ScriptFunctions.ItemsFunctions.GetTemplateName(this);
-    }
+    public string GetTemplateName() => ScriptFunctions.ItemsFunctions.GetTemplateName(this);
 
-    public int GetTemplateIndex()
-    {
-        return ScriptFunctions.ItemsFunctions.GetTemplateIndex(this);
-    }
+    public int GetTemplateIndex() => ScriptFunctions.ItemsFunctions.GetTemplateIndex(this);
 
-    public bool IsWeapon()
-    {
-        return ScriptFunctions.ItemsFunctions.IsWeapon(this);
-    }
+    public bool IsWeapon() => ScriptFunctions.ItemsFunctions.IsWeapon(this);
 
-    public void SetState(float state)
-    {
-        ScriptFunctions.ItemsFunctions.SetState(this, state);
-    }
+    public void SetState(float state) => ScriptFunctions.ItemsFunctions.SetState(this, state);
 
-    public void SetState2(float state)
-    {
-        ScriptFunctions.ItemsFunctions.SetState2(this, state);
-    }
+    public void SetState2(float state) => ScriptFunctions.ItemsFunctions.SetState2(this, state);
 
-    public void SetState3(float state)
-    {
-        ScriptFunctions.ItemsFunctions.SetState3(this, state);
-    }
+    public void SetState3(float state) => ScriptFunctions.ItemsFunctions.SetState3(this, state);
 
-    public float GetState()
-    {
-        return ScriptFunctions.ItemsFunctions.GetState(this);
-    }
+    public float GetState() => ScriptFunctions.ItemsFunctions.GetState(this);
 
-    public float GetState2()
-    {
-        return ScriptFunctions.ItemsFunctions.GetState2(this);
-    }
+    public float GetState2() => ScriptFunctions.ItemsFunctions.GetState2(this);
 
-    public float GetState3()
-    {
-        return ScriptFunctions.ItemsFunctions.GetState3(this);
-    }
+    public float GetState3() => ScriptFunctions.ItemsFunctions.GetState3(this);
 
-    public Items Fine(int unnamed0)
-    {
-        return ScriptFunctions.ItemsFunctions.Fine(this, unnamed0);
-    }
+    public Items Fine(int unnamed0) => ScriptFunctions.ItemsFunctions.Fine(this, unnamed0);
 
-    public int GetSlots()
-    {
-        return ScriptFunctions.ItemsFunctions.GetSlots(this);
-    }
+    public int GetSlots() => ScriptFunctions.ItemsFunctions.GetSlots(this);
 
-    public Items GetParentItem()
-    {
-        return ScriptFunctions.ItemsFunctions.GetParentItem(this);
-    }
+    public Items GetParentItem() => ScriptFunctions.ItemsFunctions.GetParentItem(this);
 
-    public Items GetSlotItem(int unnamed0)
-    {
-        return ScriptFunctions.ItemsFunctions.GetSlotItem(this, unnamed0);
-    }
+    public Items GetSlotItem(int unnamed0) => ScriptFunctions.ItemsFunctions.GetSlotItem(this, unnamed0);
 
-    public bool PushItem(Items unnamed0)
-    {
-        return ScriptFunctions.ItemsFunctions.PushItem(this, unnamed0);
-    }
+    public bool PushItem(Items unnamed0) => ScriptFunctions.ItemsFunctions.PushItem(this, unnamed0);
 
-    public bool RemoveSlotItem(int unnamed0)
-    {
-        return ScriptFunctions.ItemsFunctions.RemoveSlotItem(this, unnamed0);
-    }
+    public bool RemoveSlotItem(int unnamed0) => ScriptFunctions.ItemsFunctions.RemoveSlotItem(this, unnamed0);
 
-    public void Remove()
-    {
-        ScriptFunctions.ItemsFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.ItemsFunctions.Remove(this);
 }

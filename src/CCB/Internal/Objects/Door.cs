@@ -85,83 +85,35 @@ public struct Door(ObjectOpaque opaque) : IScriptObject, IEquatable<Door>
         return new Door(opaque);
     }
 
-    public void Use()
-    {
-        ScriptFunctions.DoorFunctions.Use(this);
-    }
+    public void Use() => ScriptFunctions.DoorFunctions.Use(this);
 
-    public void SetOpen(bool unnamed0)
-    {
-        ScriptFunctions.DoorFunctions.SetOpen(this, unnamed0);
-    }
+    public void SetOpen(bool unnamed0) => ScriptFunctions.DoorFunctions.SetOpen(this, unnamed0);
 
-    public bool IsOpened()
-    {
-        return ScriptFunctions.DoorFunctions.IsOpened(this);
-    }
+    public bool IsOpened() => ScriptFunctions.DoorFunctions.IsOpened(this);
 
-    public bool IsBreak()
-    {
-        return ScriptFunctions.DoorFunctions.IsBreak(this);
-    }
+    public bool IsBreak() => ScriptFunctions.DoorFunctions.IsBreak(this);
 
-    public void SetLockState(int unnamed0)
-    {
-        ScriptFunctions.DoorFunctions.SetLockState(this, unnamed0);
-    }
+    public void SetLockState(int unnamed0) => ScriptFunctions.DoorFunctions.SetLockState(this, unnamed0);
 
-    public int GetLockState()
-    {
-        return ScriptFunctions.DoorFunctions.GetLockState(this);
-    }
+    public int GetLockState() => ScriptFunctions.DoorFunctions.GetLockState(this);
 
-    public float GetOpenState()
-    {
-        return ScriptFunctions.DoorFunctions.GetOpenState(this);
-    }
+    public float GetOpenState() => ScriptFunctions.DoorFunctions.GetOpenState(this);
 
-    public bool BreakDoor(float x, float y, float z)
-    {
-        return ScriptFunctions.DoorFunctions.BreakDoor(this, x, y, z);
-    }
+    public bool BreakDoor(float x, float y, float z) => ScriptFunctions.DoorFunctions.BreakDoor(this, x, y, z);
 
-    public void Decompose()
-    {
-        ScriptFunctions.DoorFunctions.Decompose(this);
-    }
+    public void Decompose() => ScriptFunctions.DoorFunctions.Decompose(this);
 
-    public int GetDoorAccess()
-    {
-        return ScriptFunctions.DoorFunctions.GetDoorAccess(this);
-    }
+    public int GetDoorAccess() => ScriptFunctions.DoorFunctions.GetDoorAccess(this);
 
-    public int GetDoorType()
-    {
-        return ScriptFunctions.DoorFunctions.GetDoorType(this);
-    }
+    public int GetDoorType() => ScriptFunctions.DoorFunctions.GetDoorType(this);
 
-    public void SetKeycard(int unnamed0)
-    {
-        ScriptFunctions.DoorFunctions.SetKeycard(this, unnamed0);
-    }
+    public void SetKeycard(int unnamed0) => ScriptFunctions.DoorFunctions.SetKeycard(this, unnamed0);
 
-    public int GetKeycard()
-    {
-        return ScriptFunctions.DoorFunctions.GetKeycard(this);
-    }
+    public int GetKeycard() => ScriptFunctions.DoorFunctions.GetKeycard(this);
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.DoorFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.DoorFunctions.GetEntity(this);
 
-    public Entity GetButton(int index)
-    {
-        return ScriptFunctions.DoorFunctions.GetButton(this, index);
-    }
+    public Entity GetButton(int index) => ScriptFunctions.DoorFunctions.GetButton(this, index);
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.DoorFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.DoorFunctions.GetIndex(this);
 }

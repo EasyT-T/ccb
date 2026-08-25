@@ -85,18 +85,9 @@ public struct Sound(ObjectOpaque opaque) : IScriptObject, IEquatable<Sound>
         return new Sound(opaque);
     }
 
-    public void SetVolume(float vol)
-    {
-        ScriptFunctions.SoundFunctions.SetVolume(this, vol);
-    }
+    public void SetVolume(float vol) => ScriptFunctions.SoundFunctions.SetVolume(this, vol);
 
-    public void Seek(float time)
-    {
-        ScriptFunctions.SoundFunctions.Seek(this, time);
-    }
+    public void Seek(float time) => ScriptFunctions.SoundFunctions.Seek(this, time);
 
-    public void Stop()
-    {
-        ScriptFunctions.SoundFunctions.Stop(this);
-    }
+    public void Stop() => ScriptFunctions.SoundFunctions.Stop(this);
 }

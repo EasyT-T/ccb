@@ -85,118 +85,49 @@ public struct Light(ObjectOpaque opaque) : IScriptObject, IEquatable<Light>
         return new Light(opaque);
     }
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.LightFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.LightFunctions.GetIndex(this);
 
-    public void SetFOV(float fov)
-    {
-        ScriptFunctions.LightFunctions.SetFOV(this, fov);
-    }
+    public void SetFOV(float fov) => ScriptFunctions.LightFunctions.SetFOV(this, fov);
 
-    public void SetRange(float range)
-    {
-        ScriptFunctions.LightFunctions.SetRange(this, range);
-    }
+    public void SetRange(float range) => ScriptFunctions.LightFunctions.SetRange(this, range);
 
-    public void SetScattering(float scattering)
-    {
-        ScriptFunctions.LightFunctions.SetScattering(this, scattering);
-    }
+    public void SetScattering(float scattering) => ScriptFunctions.LightFunctions.SetScattering(this, scattering);
 
-    public void SetColor(int r, int g, int b)
-    {
-        ScriptFunctions.LightFunctions.SetColor(this, r, g, b);
-    }
+    public void SetColor(int r, int g, int b) => ScriptFunctions.LightFunctions.SetColor(this, r, g, b);
 
-    public void SetCastShadows(bool shadows)
-    {
-        ScriptFunctions.LightFunctions.SetCastShadows(this, shadows);
-    }
+    public void SetCastShadows(bool shadows) => ScriptFunctions.LightFunctions.SetCastShadows(this, shadows);
 
-    public void SetIntensity(float intensity)
-    {
-        ScriptFunctions.LightFunctions.SetIntensity(this, intensity);
-    }
+    public void SetIntensity(float intensity) => ScriptFunctions.LightFunctions.SetIntensity(this, intensity);
 
-    public void SetLength(float length)
-    {
-        ScriptFunctions.LightFunctions.SetLength(this, length);
-    }
+    public void SetLength(float length) => ScriptFunctions.LightFunctions.SetLength(this, length);
 
-    public float GetFOV()
-    {
-        return ScriptFunctions.LightFunctions.GetFOV(this);
-    }
+    public float GetFOV() => ScriptFunctions.LightFunctions.GetFOV(this);
 
-    public float GetRange()
-    {
-        return ScriptFunctions.LightFunctions.GetRange(this);
-    }
+    public float GetRange() => ScriptFunctions.LightFunctions.GetRange(this);
 
-    public float GetScattering()
-    {
-        return ScriptFunctions.LightFunctions.GetScattering(this);
-    }
+    public float GetScattering() => ScriptFunctions.LightFunctions.GetScattering(this);
 
-    public void GetColor(out int r, out int g, out int b)
-    {
-        ScriptFunctions.LightFunctions.GetColor(this, out r, out g, out b);
-    }
+    public void GetColor(out int r, out int g, out int b) => ScriptFunctions.LightFunctions.GetColor(this, out r, out g, out b);
 
-    public bool GetCastShadows()
-    {
-        return ScriptFunctions.LightFunctions.GetCastShadows(this);
-    }
+    public bool GetCastShadows() => ScriptFunctions.LightFunctions.GetCastShadows(this);
 
-    public float GetIntensity()
-    {
-        return ScriptFunctions.LightFunctions.GetIntensity(this);
-    }
+    public float GetIntensity() => ScriptFunctions.LightFunctions.GetIntensity(this);
 
-    public float GetLength()
-    {
-        return ScriptFunctions.LightFunctions.GetLength(this);
-    }
+    public float GetLength() => ScriptFunctions.LightFunctions.GetLength(this);
 
-    public void SetAttach(Player player)
-    {
-        ScriptFunctions.LightFunctions.SetAttach(this, player);
-    }
+    public void SetAttach(Player player) => ScriptFunctions.LightFunctions.SetAttach(this, player);
 
-    public Player GetAttach()
-    {
-        return ScriptFunctions.LightFunctions.GetAttach(this);
-    }
+    public Player GetAttach() => ScriptFunctions.LightFunctions.GetAttach(this);
 
-    public void SetRoom(Room unnamed0)
-    {
-        ScriptFunctions.LightFunctions.SetRoom(this, unnamed0);
-    }
+    public void SetRoom(Room unnamed0) => ScriptFunctions.LightFunctions.SetRoom(this, unnamed0);
 
-    public Room GetRoom()
-    {
-        return ScriptFunctions.LightFunctions.GetRoom(this);
-    }
+    public Room GetRoom() => ScriptFunctions.LightFunctions.GetRoom(this);
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.LightFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.LightFunctions.GetEntity(this);
 
-    public Entity GetLight()
-    {
-        return ScriptFunctions.LightFunctions.GetLight(this);
-    }
+    public Entity GetLight() => ScriptFunctions.LightFunctions.GetLight(this);
 
-    public void SetMovement(float speed, float maxdistance)
-    {
-        ScriptFunctions.LightFunctions.SetMovement(this, speed, maxdistance);
-    }
+    public void SetMovement(float speed, float maxdistance) => ScriptFunctions.LightFunctions.SetMovement(this, speed, maxdistance);
 
-    public void Remove()
-    {
-        ScriptFunctions.LightFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.LightFunctions.Remove(this);
 }

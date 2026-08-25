@@ -85,63 +85,27 @@ public struct Event(ObjectOpaque opaque) : IScriptObject, IEquatable<Event>
         return new Event(opaque);
     }
 
-    public Room GetRoom()
-    {
-        return ScriptFunctions.EventFunctions.GetRoom(this);
-    }
+    public Room GetRoom() => ScriptFunctions.EventFunctions.GetRoom(this);
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.EventFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.EventFunctions.GetIndex(this);
 
-    public int GetIdentifier()
-    {
-        return ScriptFunctions.EventFunctions.GetIdentifier(this);
-    }
+    public int GetIdentifier() => ScriptFunctions.EventFunctions.GetIdentifier(this);
 
-    public float GetState()
-    {
-        return ScriptFunctions.EventFunctions.GetState(this);
-    }
+    public float GetState() => ScriptFunctions.EventFunctions.GetState(this);
 
-    public float GetState2()
-    {
-        return ScriptFunctions.EventFunctions.GetState2(this);
-    }
+    public float GetState2() => ScriptFunctions.EventFunctions.GetState2(this);
 
-    public float GetState3()
-    {
-        return ScriptFunctions.EventFunctions.GetState3(this);
-    }
+    public float GetState3() => ScriptFunctions.EventFunctions.GetState3(this);
 
-    public float GetState4()
-    {
-        return ScriptFunctions.EventFunctions.GetState4(this);
-    }
+    public float GetState4() => ScriptFunctions.EventFunctions.GetState4(this);
 
-    public float SetState(float state)
-    {
-        return ScriptFunctions.EventFunctions.SetState(this, state);
-    }
+    public float SetState(float state) => ScriptFunctions.EventFunctions.SetState(this, state);
 
-    public float SetState2(float state)
-    {
-        return ScriptFunctions.EventFunctions.SetState2(this, state);
-    }
+    public float SetState2(float state) => ScriptFunctions.EventFunctions.SetState2(this, state);
 
-    public float SetState3(float state)
-    {
-        return ScriptFunctions.EventFunctions.SetState3(this, state);
-    }
+    public float SetState3(float state) => ScriptFunctions.EventFunctions.SetState3(this, state);
 
-    public float SetState4(float state)
-    {
-        return ScriptFunctions.EventFunctions.SetState4(this, state);
-    }
+    public float SetState4(float state) => ScriptFunctions.EventFunctions.SetState4(this, state);
 
-    public void Remove()
-    {
-        ScriptFunctions.EventFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.EventFunctions.Remove(this);
 }

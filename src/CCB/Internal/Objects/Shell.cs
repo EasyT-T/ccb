@@ -85,218 +85,89 @@ public struct Shell(ObjectOpaque opaque) : IScriptObject, IEquatable<Shell>
         return new Shell(opaque);
     }
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.ShellFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.ShellFunctions.GetEntity(this);
 
-    public int GetIndex()
-    {
-        return ScriptFunctions.ShellFunctions.GetIndex(this);
-    }
+    public int GetIndex() => ScriptFunctions.ShellFunctions.GetIndex(this);
 
-    public void GetVelocity(out float x, out float y, out float z)
-    {
-        ScriptFunctions.ShellFunctions.GetVelocity(this, out x, out y, out z);
-    }
+    public void GetVelocity(out float x, out float y, out float z) => ScriptFunctions.ShellFunctions.GetVelocity(this, out x, out y, out z);
 
-    public string GetActionEmitter()
-    {
-        return ScriptFunctions.ShellFunctions.GetActionEmitter(this);
-    }
+    public string GetActionEmitter() => ScriptFunctions.ShellFunctions.GetActionEmitter(this);
 
-    public int GetEmitter()
-    {
-        return ScriptFunctions.ShellFunctions.GetEmitter(this);
-    }
+    public int GetEmitter() => ScriptFunctions.ShellFunctions.GetEmitter(this);
 
-    public string GetActionSound()
-    {
-        return ScriptFunctions.ShellFunctions.GetActionSound(this);
-    }
+    public string GetActionSound() => ScriptFunctions.ShellFunctions.GetActionSound(this);
 
-    public string GetCollisionSound()
-    {
-        return ScriptFunctions.ShellFunctions.GetCollisionSound(this);
-    }
+    public string GetCollisionSound() => ScriptFunctions.ShellFunctions.GetCollisionSound(this);
 
-    public string GetSound()
-    {
-        return ScriptFunctions.ShellFunctions.GetSound(this);
-    }
+    public string GetSound() => ScriptFunctions.ShellFunctions.GetSound(this);
 
-    public float GetSpeed()
-    {
-        return ScriptFunctions.ShellFunctions.GetSpeed(this);
-    }
+    public float GetSpeed() => ScriptFunctions.ShellFunctions.GetSpeed(this);
 
-    public float GetForce()
-    {
-        return ScriptFunctions.ShellFunctions.GetForce(this);
-    }
+    public float GetForce() => ScriptFunctions.ShellFunctions.GetForce(this);
 
-    public float GetRestitution()
-    {
-        return ScriptFunctions.ShellFunctions.GetRestitution(this);
-    }
+    public float GetRestitution() => ScriptFunctions.ShellFunctions.GetRestitution(this);
 
-    public float GetGravity()
-    {
-        return ScriptFunctions.ShellFunctions.GetGravity(this);
-    }
+    public float GetGravity() => ScriptFunctions.ShellFunctions.GetGravity(this);
 
-    public float GetCollisionRadius()
-    {
-        return ScriptFunctions.ShellFunctions.GetCollisionRadius(this);
-    }
+    public float GetCollisionRadius() => ScriptFunctions.ShellFunctions.GetCollisionRadius(this);
 
-    public float GetDamage()
-    {
-        return ScriptFunctions.ShellFunctions.GetDamage(this);
-    }
+    public float GetDamage() => ScriptFunctions.ShellFunctions.GetDamage(this);
 
-    public float GetTimeout()
-    {
-        return ScriptFunctions.ShellFunctions.GetTimeout(this);
-    }
+    public float GetTimeout() => ScriptFunctions.ShellFunctions.GetTimeout(this);
 
-    public float GetImpactTime()
-    {
-        return ScriptFunctions.ShellFunctions.GetImpactTime(this);
-    }
+    public float GetImpactTime() => ScriptFunctions.ShellFunctions.GetImpactTime(this);
 
-    public int GetAction()
-    {
-        return ScriptFunctions.ShellFunctions.GetAction(this);
-    }
+    public int GetAction() => ScriptFunctions.ShellFunctions.GetAction(this);
 
-    public float GetActionRadius()
-    {
-        return ScriptFunctions.ShellFunctions.GetActionRadius(this);
-    }
+    public float GetActionRadius() => ScriptFunctions.ShellFunctions.GetActionRadius(this);
 
-    public bool IsSticky()
-    {
-        return ScriptFunctions.ShellFunctions.IsSticky(this);
-    }
+    public bool IsSticky() => ScriptFunctions.ShellFunctions.IsSticky(this);
 
-    public uint GetStickFlags()
-    {
-        return ScriptFunctions.ShellFunctions.GetStickFlags(this);
-    }
+    public uint GetStickFlags() => ScriptFunctions.ShellFunctions.GetStickFlags(this);
 
-    public int GetStickIndex()
-    {
-        return ScriptFunctions.ShellFunctions.GetStickIndex(this);
-    }
+    public int GetStickIndex() => ScriptFunctions.ShellFunctions.GetStickIndex(this);
 
-    public int GetWeapon()
-    {
-        return ScriptFunctions.ShellFunctions.GetWeapon(this);
-    }
+    public int GetWeapon() => ScriptFunctions.ShellFunctions.GetWeapon(this);
 
-    public Player GetShooter()
-    {
-        return ScriptFunctions.ShellFunctions.GetShooter(this);
-    }
+    public Player GetShooter() => ScriptFunctions.ShellFunctions.GetShooter(this);
 
-    public void Unstick()
-    {
-        ScriptFunctions.ShellFunctions.Unstick(this);
-    }
+    public void Unstick() => ScriptFunctions.ShellFunctions.Unstick(this);
 
-    public void SetSticky(bool sticky)
-    {
-        ScriptFunctions.ShellFunctions.SetSticky(this, sticky);
-    }
+    public void SetSticky(bool sticky) => ScriptFunctions.ShellFunctions.SetSticky(this, sticky);
 
-    public void SetVelocity(float x, float y, float z)
-    {
-        ScriptFunctions.ShellFunctions.SetVelocity(this, x, y, z);
-    }
+    public void SetVelocity(float x, float y, float z) => ScriptFunctions.ShellFunctions.SetVelocity(this, x, y, z);
 
-    public void SetActionEmitter(in string emitters)
-    {
-        ScriptFunctions.ShellFunctions.SetActionEmitter(this, in emitters);
-    }
+    public void SetActionEmitter(in string emitters) => ScriptFunctions.ShellFunctions.SetActionEmitter(this, in emitters);
 
-    public void SetEmitter(int id)
-    {
-        ScriptFunctions.ShellFunctions.SetEmitter(this, id);
-    }
+    public void SetEmitter(int id) => ScriptFunctions.ShellFunctions.SetEmitter(this, id);
 
-    public void SetActionSound(in string sound)
-    {
-        ScriptFunctions.ShellFunctions.SetActionSound(this, in sound);
-    }
+    public void SetActionSound(in string sound) => ScriptFunctions.ShellFunctions.SetActionSound(this, in sound);
 
-    public void SetCollisionSound(in string sound)
-    {
-        ScriptFunctions.ShellFunctions.SetCollisionSound(this, in sound);
-    }
+    public void SetCollisionSound(in string sound) => ScriptFunctions.ShellFunctions.SetCollisionSound(this, in sound);
 
-    public void SetSound(in string sound)
-    {
-        ScriptFunctions.ShellFunctions.SetSound(this, in sound);
-    }
+    public void SetSound(in string sound) => ScriptFunctions.ShellFunctions.SetSound(this, in sound);
 
-    public void SetSpeed(float speed)
-    {
-        ScriptFunctions.ShellFunctions.SetSpeed(this, speed);
-    }
+    public void SetSpeed(float speed) => ScriptFunctions.ShellFunctions.SetSpeed(this, speed);
 
-    public void SetForce(float force)
-    {
-        ScriptFunctions.ShellFunctions.SetForce(this, force);
-    }
+    public void SetForce(float force) => ScriptFunctions.ShellFunctions.SetForce(this, force);
 
-    public void SetRestitution(float restitution)
-    {
-        ScriptFunctions.ShellFunctions.SetRestitution(this, restitution);
-    }
+    public void SetRestitution(float restitution) => ScriptFunctions.ShellFunctions.SetRestitution(this, restitution);
 
-    public void SetGravity(float gravity)
-    {
-        ScriptFunctions.ShellFunctions.SetGravity(this, gravity);
-    }
+    public void SetGravity(float gravity) => ScriptFunctions.ShellFunctions.SetGravity(this, gravity);
 
-    public void SetCollisionRadius(float radius)
-    {
-        ScriptFunctions.ShellFunctions.SetCollisionRadius(this, radius);
-    }
+    public void SetCollisionRadius(float radius) => ScriptFunctions.ShellFunctions.SetCollisionRadius(this, radius);
 
-    public void SetTimeout(float time)
-    {
-        ScriptFunctions.ShellFunctions.SetTimeout(this, time);
-    }
+    public void SetTimeout(float time) => ScriptFunctions.ShellFunctions.SetTimeout(this, time);
 
-    public void SetImpactTime(float time)
-    {
-        ScriptFunctions.ShellFunctions.SetImpactTime(this, time);
-    }
+    public void SetImpactTime(float time) => ScriptFunctions.ShellFunctions.SetImpactTime(this, time);
 
-    public void SetDamage(float damage)
-    {
-        ScriptFunctions.ShellFunctions.SetDamage(this, damage);
-    }
+    public void SetDamage(float damage) => ScriptFunctions.ShellFunctions.SetDamage(this, damage);
 
-    public void SetAction(int action)
-    {
-        ScriptFunctions.ShellFunctions.SetAction(this, action);
-    }
+    public void SetAction(int action) => ScriptFunctions.ShellFunctions.SetAction(this, action);
 
-    public void SetActionRadius(float radius)
-    {
-        ScriptFunctions.ShellFunctions.SetActionRadius(this, radius);
-    }
+    public void SetActionRadius(float radius) => ScriptFunctions.ShellFunctions.SetActionRadius(this, radius);
 
-    public void SetShooter(Player player)
-    {
-        ScriptFunctions.ShellFunctions.SetShooter(this, player);
-    }
+    public void SetShooter(Player player) => ScriptFunctions.ShellFunctions.SetShooter(this, player);
 
-    public void Remove(bool action)
-    {
-        ScriptFunctions.ShellFunctions.Remove(this, action);
-    }
+    public void Remove(bool action) => ScriptFunctions.ShellFunctions.Remove(this, action);
 }

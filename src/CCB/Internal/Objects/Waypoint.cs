@@ -85,18 +85,9 @@ public struct Waypoint(ObjectOpaque opaque) : IScriptObject, IEquatable<Waypoint
         return new Waypoint(opaque);
     }
 
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.WaypointFunctions.GetEntity(this);
-    }
+    public Entity GetEntity() => ScriptFunctions.WaypointFunctions.GetEntity(this);
 
-    public Door GetDoor()
-    {
-        return ScriptFunctions.WaypointFunctions.GetDoor(this);
-    }
+    public Door GetDoor() => ScriptFunctions.WaypointFunctions.GetDoor(this);
 
-    public Room GetRoom()
-    {
-        return ScriptFunctions.WaypointFunctions.GetRoom(this);
-    }
+    public Room GetRoom() => ScriptFunctions.WaypointFunctions.GetRoom(this);
 }

@@ -85,578 +85,233 @@ public struct Player(ObjectOpaque opaque) : IScriptObject, IEquatable<Player>
         return new Player(opaque);
     }
 
-    public Entity GetHitbox()
-    {
-        return ScriptFunctions.PlayerFunctions.GetHitbox(this);
-    }
-
-    public Entity GetHead()
-    {
-        return ScriptFunctions.PlayerFunctions.GetHead(this);
-    }
-
-    public Entity GetEntity()
-    {
-        return ScriptFunctions.PlayerFunctions.GetEntity(this);
-    }
-
-    public void GetScreenSize(out int width, out int height)
-    {
-        ScriptFunctions.PlayerFunctions.GetScreenSize(this, out width, out height);
-    }
-
-    public string GetLanguage()
-    {
-        return ScriptFunctions.PlayerFunctions.GetLanguage(this);
-    }
-
-    public string GetIP()
-    {
-        return ScriptFunctions.PlayerFunctions.GetIP(this);
-    }
-
-    public string GetSteamID()
-    {
-        return ScriptFunctions.PlayerFunctions.GetSteamID(this);
-    }
-
-    public string GetHWID(int wmid)
-    {
-        return ScriptFunctions.PlayerFunctions.GetHWID(this, wmid);
-    }
-
-    public string GetName()
-    {
-        return ScriptFunctions.PlayerFunctions.GetName(this);
-    }
-
-    public void SetSteamID(in string steamid64)
-    {
-        ScriptFunctions.PlayerFunctions.SetSteamID(this, in steamid64);
-    }
-
-    public void SetName(in string name)
-    {
-        ScriptFunctions.PlayerFunctions.SetName(this, in name);
-    }
-
-    public int GetPing()
-    {
-        return ScriptFunctions.PlayerFunctions.GetPing(this);
-    }
-
-    public int GetTime()
-    {
-        return ScriptFunctions.PlayerFunctions.GetTime(this);
-    }
-
-    public int GetIndex()
-    {
-        return ScriptFunctions.PlayerFunctions.GetIndex(this);
-    }
-
-    public string GetVersion()
-    {
-        return ScriptFunctions.PlayerFunctions.GetVersion(this);
-    }
-
-    public bool IsInvisible()
-    {
-        return ScriptFunctions.PlayerFunctions.IsInvisible(this);
-    }
-
-    public bool IsInvisibleForPlayer(Player player)
-    {
-        return ScriptFunctions.PlayerFunctions.IsInvisibleForPlayer(this, player);
-    }
-
-    public void SetInvisible(bool inv)
-    {
-        ScriptFunctions.PlayerFunctions.SetInvisible(this, inv);
-    }
-
-    public void SetLocalInvisible(Player player, bool inv)
-    {
-        ScriptFunctions.PlayerFunctions.SetLocalInvisible(this, player, inv);
-    }
-
-    public void Kick(int code, in string custom)
-    {
-        ScriptFunctions.PlayerFunctions.Kick(this, code, in custom);
-    }
-
-    public void ShowDialog(int type, int index, in string header, in string message, in string leftbutton, in string rightbutton, bool align)
-    {
-        ScriptFunctions.PlayerFunctions.ShowDialog(this, type, index, in header, in message, in leftbutton, in rightbutton, align);
-    }
-
-    public void ShowDialog(int type, ref IntPtr callback, in string header, in string message, in string leftbutton, in string rightbutton, bool align)
-    {
-        ScriptFunctions.PlayerFunctions.ShowDialog(this, type, callback, in header, in message, in leftbutton, in rightbutton, align);
-    }
-
-    public void SetDialogData(in string data)
-    {
-        ScriptFunctions.PlayerFunctions.SetDialogData(this, in data);
-    }
-
-    public string GetDialogData()
-    {
-        return ScriptFunctions.PlayerFunctions.GetDialogData(this);
-    }
-
-    public void HideDialog()
-    {
-        ScriptFunctions.PlayerFunctions.HideDialog(this);
-    }
-
-    public void SendMessage(in string message, float time, bool localized)
-    {
-        ScriptFunctions.PlayerFunctions.SendMessage(this, in message, time, localized);
-    }
-
-    public void Desync(bool value)
-    {
-        ScriptFunctions.PlayerFunctions.Desync(this, value);
-    }
-
-    public bool IsDesync()
-    {
-        return ScriptFunctions.PlayerFunctions.IsDesync(this);
-    }
-
-    public void SetSpectatePlayer(Player target)
-    {
-        ScriptFunctions.PlayerFunctions.SetSpectatePlayer(this, target);
-    }
-
-    public void SetSpectateMode(int mode)
-    {
-        ScriptFunctions.PlayerFunctions.SetSpectateMode(this, mode);
-    }
-
-    public Player GetSpectatePlayer()
-    {
-        return ScriptFunctions.PlayerFunctions.GetSpectatePlayer(this);
-    }
-
-    public int GetSpectateMode()
-    {
-        return ScriptFunctions.PlayerFunctions.GetSpectateMode(this);
-    }
-
-    public bool Kill(bool bloody, bool createcorpse)
-    {
-        return ScriptFunctions.PlayerFunctions.Kill(this, bloody, createcorpse);
-    }
-
-    public bool Respawn()
-    {
-        return ScriptFunctions.PlayerFunctions.Respawn(this);
-    }
-
-    public bool IsDead()
-    {
-        return ScriptFunctions.PlayerFunctions.IsDead(this);
-    }
-
-    public void SetInjuries(float val)
-    {
-        ScriptFunctions.PlayerFunctions.SetInjuries(this, val);
-    }
-
-    public float GetInjuries()
-    {
-        return ScriptFunctions.PlayerFunctions.GetInjuries(this);
-    }
-
-    public void SetBloodloss(float val)
-    {
-        ScriptFunctions.PlayerFunctions.SetBloodloss(this, val);
-    }
-
-    public float GetBloodloss()
-    {
-        return ScriptFunctions.PlayerFunctions.GetBloodloss(this);
-    }
-
-    public bool GetGodmode()
-    {
-        return ScriptFunctions.PlayerFunctions.GetGodmode(this);
-    }
-
-    public void SetGodmode(bool val)
-    {
-        ScriptFunctions.PlayerFunctions.SetGodmode(this, val);
-    }
-
-    public void SetColor(uint hx)
-    {
-        ScriptFunctions.PlayerFunctions.SetColor(this, hx);
-    }
-
-    public uint GetColor()
-    {
-        return ScriptFunctions.PlayerFunctions.GetColor(this);
-    }
-
-    public void GetNetworkPosition(out float x, out float y, out float z)
-    {
-        ScriptFunctions.PlayerFunctions.GetNetworkPosition(this, out x, out y, out z);
-    }
-
-    public void GetNetworkRotation(out float pitch, out float yaw)
-    {
-        ScriptFunctions.PlayerFunctions.GetNetworkRotation(this, out pitch, out yaw);
-    }
-
-    public void SetNetworkPosition(float x, float y, float z)
-    {
-        ScriptFunctions.PlayerFunctions.SetNetworkPosition(this, x, y, z);
-    }
-
-    public void SetNetworkRotation(float pitch, float yaw)
-    {
-        ScriptFunctions.PlayerFunctions.SetNetworkRotation(this, pitch, yaw);
-    }
-
-    public void SetPosition(float x, float y, float z, Room room, bool updatepivot)
-    {
-        ScriptFunctions.PlayerFunctions.SetPosition(this, x, y, z, room, updatepivot);
-    }
-
-    public void SetRotation(float pitch, float yaw)
-    {
-        ScriptFunctions.PlayerFunctions.SetRotation(this, pitch, yaw);
-    }
-
-    public void Teleport(Room room, float x, float y, float z, bool updatepivot)
-    {
-        ScriptFunctions.PlayerFunctions.Teleport(this, room, x, y, z, updatepivot);
-    }
-
-    public void SetRoom(Room room)
-    {
-        ScriptFunctions.PlayerFunctions.SetRoom(this, room);
-    }
-
-    public Room GetRoom()
-    {
-        return ScriptFunctions.PlayerFunctions.GetRoom(this);
-    }
-
-    public void SetPositionBounds(Room room, float x, float y, float z, float distance)
-    {
-        ScriptFunctions.PlayerFunctions.SetPositionBounds(this, room, x, y, z, distance);
-    }
-
-    public void Explode(bool thrust)
-    {
-        ScriptFunctions.PlayerFunctions.Explode(this, thrust);
-    }
-
-    public void MovePlayer(float speedmult, float angle)
-    {
-        ScriptFunctions.PlayerFunctions.MovePlayer(this, speedmult, angle);
-    }
-
-    public void IgnoreProximity(bool value)
-    {
-        ScriptFunctions.PlayerFunctions.IgnoreProximity(this, value);
-    }
-
-    public void SendDamage(Player player, float force, bool headshot, float offsetx, float offsety, float offsetz)
-    {
-        ScriptFunctions.PlayerFunctions.SendDamage(this, player, force, headshot, offsetx, offsety, offsetz);
-    }
-
-    public void SetAdmin(bool val)
-    {
-        ScriptFunctions.PlayerFunctions.SetAdmin(this, val);
-    }
-
-    public bool IsAdmin()
-    {
-        return ScriptFunctions.PlayerFunctions.IsAdmin(this);
-    }
-
-    public void SetGlobalTransmission(bool val)
-    {
-        ScriptFunctions.PlayerFunctions.SetGlobalTransmission(this, val);
-    }
-
-    public bool IsGlobalTransmission()
-    {
-        return ScriptFunctions.PlayerFunctions.IsGlobalTransmission(this);
-    }
-
-    public bool SendVoice(int bank, int radio, bool global, Player target)
-    {
-        return ScriptFunctions.PlayerFunctions.SendVoice(this, bank, radio, global, target);
-    }
-
-    public int GetItemsCount()
-    {
-        return ScriptFunctions.PlayerFunctions.GetItemsCount(this);
-    }
-
-    public Items GetInventory(int unnamed0)
-    {
-        return ScriptFunctions.PlayerFunctions.GetInventory(this, unnamed0);
-    }
-
-    public Items GetSelectedItem()
-    {
-        return ScriptFunctions.PlayerFunctions.GetSelectedItem(this);
-    }
-
-    public float GetBlinkTimer()
-    {
-        return ScriptFunctions.PlayerFunctions.GetBlinkTimer(this);
-    }
-
-    public void SetBlinkTimer(float time)
-    {
-        ScriptFunctions.PlayerFunctions.SetBlinkTimer(this, time);
-    }
-
-    public bool IsBlinking()
-    {
-        return ScriptFunctions.PlayerFunctions.IsBlinking(this);
-    }
-
-    public void SetBlinkEffect(float effectvalue, float time)
-    {
-        ScriptFunctions.PlayerFunctions.SetBlinkEffect(this, effectvalue, time);
-    }
-
-    public void GetBlinkEffect(out float effectvalue, out float time)
-    {
-        ScriptFunctions.PlayerFunctions.GetBlinkEffect(this, out effectvalue, out time);
-    }
-
-    public void EnableBlinking(bool blink)
-    {
-        ScriptFunctions.PlayerFunctions.EnableBlinking(this, blink);
-    }
-
-    public bool IsBlinkingEnabled()
-    {
-        return ScriptFunctions.PlayerFunctions.IsBlinkingEnabled(this);
-    }
-
-    public int GetRadio()
-    {
-        return ScriptFunctions.PlayerFunctions.GetRadio(this);
-    }
-
-    public void PlayAnimation(int animid)
-    {
-        ScriptFunctions.PlayerFunctions.PlayAnimation(this, animid);
-    }
-
-    public void SetNetworkAnimation(int animid)
-    {
-        ScriptFunctions.PlayerFunctions.SetNetworkAnimation(this, animid);
-    }
-
-    public void SetAnimation(int animid)
-    {
-        ScriptFunctions.PlayerFunctions.SetAnimation(this, animid);
-    }
-
-    public int GetAnimation()
-    {
-        return ScriptFunctions.PlayerFunctions.GetAnimation(this);
-    }
-
-    public void SetSpeedMultiplier(float multiplier)
-    {
-        ScriptFunctions.PlayerFunctions.SetSpeedMultiplier(this, multiplier);
-    }
-
-    public void SetStaminaMultiplier(float multiplier)
-    {
-        ScriptFunctions.PlayerFunctions.SetStaminaMultiplier(this, multiplier);
-    }
-
-    public float GetSpeedMultiplier()
-    {
-        return ScriptFunctions.PlayerFunctions.GetSpeedMultiplier(this);
-    }
-
-    public float GetStaminaMultiplier()
-    {
-        return ScriptFunctions.PlayerFunctions.GetStaminaMultiplier(this);
-    }
-
-    public void SetAttach(int bodyindex, int attachmodelindex, Items item)
-    {
-        ScriptFunctions.PlayerFunctions.SetAttach(this, bodyindex, attachmodelindex, item);
-    }
-
-    public int GetAttach(int bodyindex)
-    {
-        return ScriptFunctions.PlayerFunctions.GetAttach(this, bodyindex);
-    }
-
-    public Items GetAttachItem(int bodyindex)
-    {
-        return ScriptFunctions.PlayerFunctions.GetAttachItem(this, bodyindex);
-    }
-
-    public int GetModel()
-    {
-        return ScriptFunctions.PlayerFunctions.GetModel(this);
-    }
-
-    public void SetModel(int modelid, int textureid)
-    {
-        ScriptFunctions.PlayerFunctions.SetModel(this, modelid, textureid);
-    }
-
-    public void SetModelSize(float unnamed0)
-    {
-        ScriptFunctions.PlayerFunctions.SetModelSize(this, unnamed0);
-    }
-
-    public float GetModelSize()
-    {
-        return ScriptFunctions.PlayerFunctions.GetModelSize(this);
-    }
-
-    public void SetModelTexture(int textureid)
-    {
-        ScriptFunctions.PlayerFunctions.SetModelTexture(this, textureid);
-    }
-
-    public int GetModelTexture()
-    {
-        return ScriptFunctions.PlayerFunctions.GetModelTexture(this);
-    }
-
-    public void SetCollisionRadius(float unnamed0)
-    {
-        ScriptFunctions.PlayerFunctions.SetCollisionRadius(this, unnamed0);
-    }
-
-    public float GetCollisionRadius()
-    {
-        return ScriptFunctions.PlayerFunctions.GetCollisionRadius(this);
-    }
-
-    public float GetVolume()
-    {
-        return ScriptFunctions.PlayerFunctions.GetVolume(this);
-    }
-
-    public bool IsCrouch()
-    {
-        return ScriptFunctions.PlayerFunctions.IsCrouch(this);
-    }
-
-    public void SetGravity(float multiplier)
-    {
-        ScriptFunctions.PlayerFunctions.SetGravity(this, multiplier);
-    }
-
-    public float GetGravity()
-    {
-        return ScriptFunctions.PlayerFunctions.GetGravity(this);
-    }
-
-    public void SetTagText(int index, in string unnamed1)
-    {
-        ScriptFunctions.PlayerFunctions.SetTagText(this, index, in unnamed1);
-    }
-
-    public void SetTagScales(int index, float unnamed1, float unnamed2)
-    {
-        ScriptFunctions.PlayerFunctions.SetTagScales(this, index, unnamed1, unnamed2);
-    }
-
-    public void SetTagOffset(int index, float unnamed1)
-    {
-        ScriptFunctions.PlayerFunctions.SetTagOffset(this, index, unnamed1);
-    }
-
-    public void SetTagColors(int index, int unnamed1, int unnamed2)
-    {
-        ScriptFunctions.PlayerFunctions.SetTagColors(this, index, unnamed1, unnamed2);
-    }
-
-    public void SetTagFont(int index, in string unnamed1)
-    {
-        ScriptFunctions.PlayerFunctions.SetTagFont(this, index, in unnamed1);
-    }
-
-    public string GetTagText(int index)
-    {
-        return ScriptFunctions.PlayerFunctions.GetTagText(this, index);
-    }
-
-    public void GetTagScales(int index, out float scalex, out float scaley)
-    {
-        ScriptFunctions.PlayerFunctions.GetTagScales(this, index, out scalex, out scaley);
-    }
-
-    public float GetTagOffset(int index)
-    {
-        return ScriptFunctions.PlayerFunctions.GetTagOffset(this, index);
-    }
-
-    public void GetTagColors(int index, out uint start, out uint end)
-    {
-        ScriptFunctions.PlayerFunctions.GetTagColors(this, index, out start, out end);
-    }
-
-    public string GetTagFont(int index)
-    {
-        return ScriptFunctions.PlayerFunctions.GetTagFont(this, index);
-    }
-
-    public int GetShootsCount()
-    {
-        return ScriptFunctions.PlayerFunctions.GetShootsCount(this);
-    }
-
-    public void SetShootsCount(int count)
-    {
-        ScriptFunctions.PlayerFunctions.SetShootsCount(this, count);
-    }
-
-    public void RedirectMove(bool move)
-    {
-        ScriptFunctions.PlayerFunctions.RedirectMove(this, move);
-    }
-
-    public bool IsBot()
-    {
-        return ScriptFunctions.PlayerFunctions.IsBot(this);
-    }
-
-    public bool IsAiming()
-    {
-        return ScriptFunctions.PlayerFunctions.IsAiming(this);
-    }
-
-    public void SetWearData(int bodyindex, Items item)
-    {
-        ScriptFunctions.PlayerFunctions.SetWearData(this, bodyindex, item);
-    }
-
-    public void Console(in string message)
-    {
-        ScriptFunctions.PlayerFunctions.Console(this, in message);
-    }
-
-    public bool GetKeyState(int keytype)
-    {
-        return ScriptFunctions.PlayerFunctions.GetKeyState(this, keytype);
-    }
-
-    public void GetTeleportData(out float x, out float y, out float z, out Room room, out int tick)
-    {
-        ScriptFunctions.PlayerFunctions.GetTeleportData(this, out x, out y, out z, out room, out tick);
-    }
+    public Entity GetHitbox() => ScriptFunctions.PlayerFunctions.GetHitbox(this);
+
+    public Entity GetHead() => ScriptFunctions.PlayerFunctions.GetHead(this);
+
+    public Entity GetEntity() => ScriptFunctions.PlayerFunctions.GetEntity(this);
+
+    public void GetScreenSize(out int width, out int height) => ScriptFunctions.PlayerFunctions.GetScreenSize(this, out width, out height);
+
+    public string GetLanguage() => ScriptFunctions.PlayerFunctions.GetLanguage(this);
+
+    public string GetIP() => ScriptFunctions.PlayerFunctions.GetIP(this);
+
+    public string GetSteamID() => ScriptFunctions.PlayerFunctions.GetSteamID(this);
+
+    public string GetHWID(int wmid) => ScriptFunctions.PlayerFunctions.GetHWID(this, wmid);
+
+    public string GetName() => ScriptFunctions.PlayerFunctions.GetName(this);
+
+    public void SetSteamID(in string steamid64) => ScriptFunctions.PlayerFunctions.SetSteamID(this, in steamid64);
+
+    public void SetName(in string name) => ScriptFunctions.PlayerFunctions.SetName(this, in name);
+
+    public int GetPing() => ScriptFunctions.PlayerFunctions.GetPing(this);
+
+    public int GetTime() => ScriptFunctions.PlayerFunctions.GetTime(this);
+
+    public int GetIndex() => ScriptFunctions.PlayerFunctions.GetIndex(this);
+
+    public string GetVersion() => ScriptFunctions.PlayerFunctions.GetVersion(this);
+
+    public bool IsInvisible() => ScriptFunctions.PlayerFunctions.IsInvisible(this);
+
+    public bool IsInvisibleForPlayer(Player player) => ScriptFunctions.PlayerFunctions.IsInvisibleForPlayer(this, player);
+
+    public void SetInvisible(bool inv) => ScriptFunctions.PlayerFunctions.SetInvisible(this, inv);
+
+    public void SetLocalInvisible(Player player, bool inv) => ScriptFunctions.PlayerFunctions.SetLocalInvisible(this, player, inv);
+
+    public void Kick(int code, in string custom) => ScriptFunctions.PlayerFunctions.Kick(this, code, in custom);
+
+    public void ShowDialog(int type, int index, in string header, in string message, in string leftbutton, in string rightbutton, bool align) => ScriptFunctions.PlayerFunctions.ShowDialog(this, type, index, in header, in message, in leftbutton, in rightbutton, align);
+
+    public void ShowDialog(int type, ref IntPtr callback, in string header, in string message, in string leftbutton, in string rightbutton, bool align) => ScriptFunctions.PlayerFunctions.ShowDialog(this, type, callback, in header, in message, in leftbutton, in rightbutton, align);
+
+    public void SetDialogData(in string data) => ScriptFunctions.PlayerFunctions.SetDialogData(this, in data);
+
+    public string GetDialogData() => ScriptFunctions.PlayerFunctions.GetDialogData(this);
+
+    public void HideDialog() => ScriptFunctions.PlayerFunctions.HideDialog(this);
+
+    public void SendMessage(in string message, float time, bool localized) => ScriptFunctions.PlayerFunctions.SendMessage(this, in message, time, localized);
+
+    public void Desync(bool value) => ScriptFunctions.PlayerFunctions.Desync(this, value);
+
+    public bool IsDesync() => ScriptFunctions.PlayerFunctions.IsDesync(this);
+
+    public void SetSpectatePlayer(Player target) => ScriptFunctions.PlayerFunctions.SetSpectatePlayer(this, target);
+
+    public void SetSpectateMode(int mode) => ScriptFunctions.PlayerFunctions.SetSpectateMode(this, mode);
+
+    public Player GetSpectatePlayer() => ScriptFunctions.PlayerFunctions.GetSpectatePlayer(this);
+
+    public int GetSpectateMode() => ScriptFunctions.PlayerFunctions.GetSpectateMode(this);
+
+    public bool Kill(bool bloody, bool createcorpse) => ScriptFunctions.PlayerFunctions.Kill(this, bloody, createcorpse);
+
+    public bool Respawn() => ScriptFunctions.PlayerFunctions.Respawn(this);
+
+    public bool IsDead() => ScriptFunctions.PlayerFunctions.IsDead(this);
+
+    public void SetInjuries(float val) => ScriptFunctions.PlayerFunctions.SetInjuries(this, val);
+
+    public float GetInjuries() => ScriptFunctions.PlayerFunctions.GetInjuries(this);
+
+    public void SetBloodloss(float val) => ScriptFunctions.PlayerFunctions.SetBloodloss(this, val);
+
+    public float GetBloodloss() => ScriptFunctions.PlayerFunctions.GetBloodloss(this);
+
+    public bool GetGodmode() => ScriptFunctions.PlayerFunctions.GetGodmode(this);
+
+    public void SetGodmode(bool val) => ScriptFunctions.PlayerFunctions.SetGodmode(this, val);
+
+    public void SetColor(uint hx) => ScriptFunctions.PlayerFunctions.SetColor(this, hx);
+
+    public uint GetColor() => ScriptFunctions.PlayerFunctions.GetColor(this);
+
+    public void GetNetworkPosition(out float x, out float y, out float z) => ScriptFunctions.PlayerFunctions.GetNetworkPosition(this, out x, out y, out z);
+
+    public void GetNetworkRotation(out float pitch, out float yaw) => ScriptFunctions.PlayerFunctions.GetNetworkRotation(this, out pitch, out yaw);
+
+    public void SetNetworkPosition(float x, float y, float z) => ScriptFunctions.PlayerFunctions.SetNetworkPosition(this, x, y, z);
+
+    public void SetNetworkRotation(float pitch, float yaw) => ScriptFunctions.PlayerFunctions.SetNetworkRotation(this, pitch, yaw);
+
+    public void SetPosition(float x, float y, float z, Room room, bool updatepivot) => ScriptFunctions.PlayerFunctions.SetPosition(this, x, y, z, room, updatepivot);
+
+    public void SetRotation(float pitch, float yaw) => ScriptFunctions.PlayerFunctions.SetRotation(this, pitch, yaw);
+
+    public void Teleport(Room room, float x, float y, float z, bool updatepivot) => ScriptFunctions.PlayerFunctions.Teleport(this, room, x, y, z, updatepivot);
+
+    public void SetRoom(Room room) => ScriptFunctions.PlayerFunctions.SetRoom(this, room);
+
+    public Room GetRoom() => ScriptFunctions.PlayerFunctions.GetRoom(this);
+
+    public void SetPositionBounds(Room room, float x, float y, float z, float distance) => ScriptFunctions.PlayerFunctions.SetPositionBounds(this, room, x, y, z, distance);
+
+    public void Explode(bool thrust) => ScriptFunctions.PlayerFunctions.Explode(this, thrust);
+
+    public void MovePlayer(float speedmult, float angle) => ScriptFunctions.PlayerFunctions.MovePlayer(this, speedmult, angle);
+
+    public void IgnoreProximity(bool value) => ScriptFunctions.PlayerFunctions.IgnoreProximity(this, value);
+
+    public void SendDamage(Player player, float force, bool headshot, float offsetx, float offsety, float offsetz) => ScriptFunctions.PlayerFunctions.SendDamage(this, player, force, headshot, offsetx, offsety, offsetz);
+
+    public void SetAdmin(bool val) => ScriptFunctions.PlayerFunctions.SetAdmin(this, val);
+
+    public bool IsAdmin() => ScriptFunctions.PlayerFunctions.IsAdmin(this);
+
+    public void SetGlobalTransmission(bool val) => ScriptFunctions.PlayerFunctions.SetGlobalTransmission(this, val);
+
+    public bool IsGlobalTransmission() => ScriptFunctions.PlayerFunctions.IsGlobalTransmission(this);
+
+    public bool SendVoice(int bank, int radio, bool global, Player target) => ScriptFunctions.PlayerFunctions.SendVoice(this, bank, radio, global, target);
+
+    public int GetItemsCount() => ScriptFunctions.PlayerFunctions.GetItemsCount(this);
+
+    public Items GetInventory(int unnamed0) => ScriptFunctions.PlayerFunctions.GetInventory(this, unnamed0);
+
+    public Items GetSelectedItem() => ScriptFunctions.PlayerFunctions.GetSelectedItem(this);
+
+    public float GetBlinkTimer() => ScriptFunctions.PlayerFunctions.GetBlinkTimer(this);
+
+    public void SetBlinkTimer(float time) => ScriptFunctions.PlayerFunctions.SetBlinkTimer(this, time);
+
+    public bool IsBlinking() => ScriptFunctions.PlayerFunctions.IsBlinking(this);
+
+    public void SetBlinkEffect(float effectvalue, float time) => ScriptFunctions.PlayerFunctions.SetBlinkEffect(this, effectvalue, time);
+
+    public void GetBlinkEffect(out float effectvalue, out float time) => ScriptFunctions.PlayerFunctions.GetBlinkEffect(this, out effectvalue, out time);
+
+    public void EnableBlinking(bool blink) => ScriptFunctions.PlayerFunctions.EnableBlinking(this, blink);
+
+    public bool IsBlinkingEnabled() => ScriptFunctions.PlayerFunctions.IsBlinkingEnabled(this);
+
+    public int GetRadio() => ScriptFunctions.PlayerFunctions.GetRadio(this);
+
+    public void PlayAnimation(int animid) => ScriptFunctions.PlayerFunctions.PlayAnimation(this, animid);
+
+    public void SetNetworkAnimation(int animid) => ScriptFunctions.PlayerFunctions.SetNetworkAnimation(this, animid);
+
+    public void SetAnimation(int animid) => ScriptFunctions.PlayerFunctions.SetAnimation(this, animid);
+
+    public int GetAnimation() => ScriptFunctions.PlayerFunctions.GetAnimation(this);
+
+    public void SetSpeedMultiplier(float multiplier) => ScriptFunctions.PlayerFunctions.SetSpeedMultiplier(this, multiplier);
+
+    public void SetStaminaMultiplier(float multiplier) => ScriptFunctions.PlayerFunctions.SetStaminaMultiplier(this, multiplier);
+
+    public float GetSpeedMultiplier() => ScriptFunctions.PlayerFunctions.GetSpeedMultiplier(this);
+
+    public float GetStaminaMultiplier() => ScriptFunctions.PlayerFunctions.GetStaminaMultiplier(this);
+
+    public void SetAttach(int bodyindex, int attachmodelindex, Items item) => ScriptFunctions.PlayerFunctions.SetAttach(this, bodyindex, attachmodelindex, item);
+
+    public int GetAttach(int bodyindex) => ScriptFunctions.PlayerFunctions.GetAttach(this, bodyindex);
+
+    public Items GetAttachItem(int bodyindex) => ScriptFunctions.PlayerFunctions.GetAttachItem(this, bodyindex);
+
+    public int GetModel() => ScriptFunctions.PlayerFunctions.GetModel(this);
+
+    public void SetModel(int modelid, int textureid) => ScriptFunctions.PlayerFunctions.SetModel(this, modelid, textureid);
+
+    public void SetModelSize(float unnamed0) => ScriptFunctions.PlayerFunctions.SetModelSize(this, unnamed0);
+
+    public float GetModelSize() => ScriptFunctions.PlayerFunctions.GetModelSize(this);
+
+    public void SetModelTexture(int textureid) => ScriptFunctions.PlayerFunctions.SetModelTexture(this, textureid);
+
+    public int GetModelTexture() => ScriptFunctions.PlayerFunctions.GetModelTexture(this);
+
+    public void SetCollisionRadius(float unnamed0) => ScriptFunctions.PlayerFunctions.SetCollisionRadius(this, unnamed0);
+
+    public float GetCollisionRadius() => ScriptFunctions.PlayerFunctions.GetCollisionRadius(this);
+
+    public float GetVolume() => ScriptFunctions.PlayerFunctions.GetVolume(this);
+
+    public bool IsCrouch() => ScriptFunctions.PlayerFunctions.IsCrouch(this);
+
+    public void SetGravity(float multiplier) => ScriptFunctions.PlayerFunctions.SetGravity(this, multiplier);
+
+    public float GetGravity() => ScriptFunctions.PlayerFunctions.GetGravity(this);
+
+    public void SetTagText(int index, in string unnamed1) => ScriptFunctions.PlayerFunctions.SetTagText(this, index, in unnamed1);
+
+    public void SetTagScales(int index, float unnamed1, float unnamed2) => ScriptFunctions.PlayerFunctions.SetTagScales(this, index, unnamed1, unnamed2);
+
+    public void SetTagOffset(int index, float unnamed1) => ScriptFunctions.PlayerFunctions.SetTagOffset(this, index, unnamed1);
+
+    public void SetTagColors(int index, int unnamed1, int unnamed2) => ScriptFunctions.PlayerFunctions.SetTagColors(this, index, unnamed1, unnamed2);
+
+    public void SetTagFont(int index, in string unnamed1) => ScriptFunctions.PlayerFunctions.SetTagFont(this, index, in unnamed1);
+
+    public string GetTagText(int index) => ScriptFunctions.PlayerFunctions.GetTagText(this, index);
+
+    public void GetTagScales(int index, out float scalex, out float scaley) => ScriptFunctions.PlayerFunctions.GetTagScales(this, index, out scalex, out scaley);
+
+    public float GetTagOffset(int index) => ScriptFunctions.PlayerFunctions.GetTagOffset(this, index);
+
+    public void GetTagColors(int index, out uint start, out uint end) => ScriptFunctions.PlayerFunctions.GetTagColors(this, index, out start, out end);
+
+    public string GetTagFont(int index) => ScriptFunctions.PlayerFunctions.GetTagFont(this, index);
+
+    public int GetShootsCount() => ScriptFunctions.PlayerFunctions.GetShootsCount(this);
+
+    public void SetShootsCount(int count) => ScriptFunctions.PlayerFunctions.SetShootsCount(this, count);
+
+    public void RedirectMove(bool move) => ScriptFunctions.PlayerFunctions.RedirectMove(this, move);
+
+    public bool IsBot() => ScriptFunctions.PlayerFunctions.IsBot(this);
+
+    public bool IsAiming() => ScriptFunctions.PlayerFunctions.IsAiming(this);
+
+    public void SetWearData(int bodyindex, Items item) => ScriptFunctions.PlayerFunctions.SetWearData(this, bodyindex, item);
+
+    public void Console(in string message) => ScriptFunctions.PlayerFunctions.Console(this, in message);
+
+    public bool GetKeyState(int keytype) => ScriptFunctions.PlayerFunctions.GetKeyState(this, keytype);
+
+    public void GetTeleportData(out float x, out float y, out float z, out Room room, out int tick) => ScriptFunctions.PlayerFunctions.GetTeleportData(this, out x, out y, out z, out room, out tick);
 }

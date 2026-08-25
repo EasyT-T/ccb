@@ -85,63 +85,27 @@ public struct Connection(ObjectOpaque opaque) : IScriptObject, IEquatable<Connec
         return new Connection(opaque);
     }
 
-    public int GetPort()
-    {
-        return ScriptFunctions.ConnectionFunctions.GetPort(this);
-    }
+    public int GetPort() => ScriptFunctions.ConnectionFunctions.GetPort(this);
 
-    public string GetName()
-    {
-        return ScriptFunctions.ConnectionFunctions.GetName(this);
-    }
+    public string GetName() => ScriptFunctions.ConnectionFunctions.GetName(this);
 
-    public string GetLanguage()
-    {
-        return ScriptFunctions.ConnectionFunctions.GetLanguage(this);
-    }
+    public string GetLanguage() => ScriptFunctions.ConnectionFunctions.GetLanguage(this);
 
-    public string GetHWID(int wmid)
-    {
-        return ScriptFunctions.ConnectionFunctions.GetHWID(this, wmid);
-    }
+    public string GetHWID(int wmid) => ScriptFunctions.ConnectionFunctions.GetHWID(this, wmid);
 
-    public string GetIP()
-    {
-        return ScriptFunctions.ConnectionFunctions.GetIP(this);
-    }
+    public string GetIP() => ScriptFunctions.ConnectionFunctions.GetIP(this);
 
-    public string GetSteamID()
-    {
-        return ScriptFunctions.ConnectionFunctions.GetSteamID(this);
-    }
+    public string GetSteamID() => ScriptFunctions.ConnectionFunctions.GetSteamID(this);
 
-    public int GetQueue()
-    {
-        return ScriptFunctions.ConnectionFunctions.GetQueue(this);
-    }
+    public int GetQueue() => ScriptFunctions.ConnectionFunctions.GetQueue(this);
 
-    public bool Join()
-    {
-        return ScriptFunctions.ConnectionFunctions.Join(this);
-    }
+    public bool Join() => ScriptFunctions.ConnectionFunctions.Join(this);
 
-    public void Accept()
-    {
-        ScriptFunctions.ConnectionFunctions.Accept(this);
-    }
+    public void Accept() => ScriptFunctions.ConnectionFunctions.Accept(this);
 
-    public void Cancel(int code)
-    {
-        ScriptFunctions.ConnectionFunctions.Cancel(this, code);
-    }
+    public void Cancel(int code) => ScriptFunctions.ConnectionFunctions.Cancel(this, code);
 
-    public void Cancel(in string custom)
-    {
-        ScriptFunctions.ConnectionFunctions.Cancel(this, in custom);
-    }
+    public void Cancel(in string custom) => ScriptFunctions.ConnectionFunctions.Cancel(this, in custom);
 
-    public void Remove()
-    {
-        ScriptFunctions.ConnectionFunctions.Remove(this);
-    }
+    public void Remove() => ScriptFunctions.ConnectionFunctions.Remove(this);
 }

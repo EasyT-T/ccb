@@ -35,143 +35,59 @@ public struct World(ObjectOpaque opaque) : IScriptObject, IEquatable<World>
         return new World(opaque);
     }
 
-    public void CreateDecal(int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer)
-    {
-        ScriptFunctions.WorldFunctions.CreateDecal(this, decalid, x, y, z, pitch, yaw, roll, room, lifetime, alpha, size, sizechange, maxsize, alphachange, r, g, b, timer);
-    }
+    public void CreateDecal(int decalid, float x, float y, float z, float pitch, float yaw, float roll, Room room, float lifetime, float alpha, float size, float sizechange, float maxsize, float alphachange, int r, int g, int b, float timer) => ScriptFunctions.WorldFunctions.CreateDecal(this, decalid, x, y, z, pitch, yaw, roll, room, lifetime, alpha, size, sizechange, maxsize, alphachange, r, g, b, timer);
 
-    public void CreateEmitter(Player target, int id, float x, float y, float z)
-    {
-        ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z);
-    }
+    public void CreateEmitter(Player target, int id, float x, float y, float z) => ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z);
 
-    public void CreateEmitter(Player target, int id, float x, float y, float z, Player attachPlayer)
-    {
-        ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z, attachPlayer);
-    }
+    public void CreateEmitter(Player target, int id, float x, float y, float z, Player attachPlayer) => ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z, attachPlayer);
 
-    public void CreateEmitter(Player target, int id, float x, float y, float z, Object attachObject)
-    {
-        ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z, attachObject);
-    }
+    public void CreateEmitter(Player target, int id, float x, float y, float z, Object attachObject) => ScriptFunctions.WorldFunctions.CreateEmitter(this, target, id, x, y, z, attachObject);
 
-    public Waypoint FindWaypoint(float fromx, float fromy, float fromz, float targetX, float targetY, float targetZ)
-    {
-        return ScriptFunctions.WorldFunctions.FindWaypoint(this, fromx, fromy, fromz, targetX, targetY, targetZ);
-    }
+    public Waypoint FindWaypoint(float fromx, float fromy, float fromz, float targetX, float targetY, float targetZ) => ScriptFunctions.WorldFunctions.FindWaypoint(this, fromx, fromy, fromz, targetX, targetY, targetZ);
 
-    public Waypoint FindWaypoint(Entity from, Entity to)
-    {
-        return ScriptFunctions.WorldFunctions.FindWaypoint(this, from, to);
-    }
+    public Waypoint FindWaypoint(Entity from, Entity to) => ScriptFunctions.WorldFunctions.FindWaypoint(this, from, to);
 
-    public int GetZone(float x, float y, float z)
-    {
-        return ScriptFunctions.WorldFunctions.GetZone(this, x, y, z);
-    }
+    public int GetZone(float x, float y, float z) => ScriptFunctions.WorldFunctions.GetZone(this, x, y, z);
 
-    public Player CreateBot(in string unnamed0)
-    {
-        return ScriptFunctions.WorldFunctions.CreateBot(this, in unnamed0);
-    }
+    public Player CreateBot(in string unnamed0) => ScriptFunctions.WorldFunctions.CreateBot(this, in unnamed0);
 
-    public void RaycastItems()
-    {
-        ScriptFunctions.WorldFunctions.RaycastItems(this);
-    }
+    public void RaycastItems() => ScriptFunctions.WorldFunctions.RaycastItems(this);
 
-    public Items FindItem(int index)
-    {
-        return ScriptFunctions.WorldFunctions.FindItem(this, index);
-    }
+    public Items FindItem(int index) => ScriptFunctions.WorldFunctions.FindItem(this, index);
 
-    public Items CreateItem(in string templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)
-    {
-        return ScriptFunctions.WorldFunctions.CreateItem(this, in templatename, collision, x, y, z, r, g, b, alpha, invslots);
-    }
+    public Items CreateItem(in string templatename, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots) => ScriptFunctions.WorldFunctions.CreateItem(this, in templatename, collision, x, y, z, r, g, b, alpha, invslots);
 
-    public Items CreateItem(int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots)
-    {
-        return ScriptFunctions.WorldFunctions.CreateItem(this, templateindex, collision, x, y, z, r, g, b, alpha, invslots);
-    }
+    public Items CreateItem(int templateindex, bool collision, float x, float y, float z, int r, int g, int b, float alpha, int invslots) => ScriptFunctions.WorldFunctions.CreateItem(this, templateindex, collision, x, y, z, r, g, b, alpha, invslots);
 
-    public Room GetRoomByName(in string unnamed0)
-    {
-        return ScriptFunctions.WorldFunctions.GetRoomByName(this, in unnamed0);
-    }
+    public Room GetRoomByName(in string unnamed0) => ScriptFunctions.WorldFunctions.GetRoomByName(this, in unnamed0);
 
-    public Room GetRoomByIndex(int unnamed0)
-    {
-        return ScriptFunctions.WorldFunctions.GetRoomByIndex(this, unnamed0);
-    }
+    public Room GetRoomByIndex(int unnamed0) => ScriptFunctions.WorldFunctions.GetRoomByIndex(this, unnamed0);
 
-    public Room GetRoomByIdentifier(int unnamed0)
-    {
-        return ScriptFunctions.WorldFunctions.GetRoomByIdentifier(this, unnamed0);
-    }
+    public Room GetRoomByIdentifier(int unnamed0) => ScriptFunctions.WorldFunctions.GetRoomByIdentifier(this, unnamed0);
 
-    public Corpse FindCorpse(int index)
-    {
-        return ScriptFunctions.WorldFunctions.FindCorpse(this, index);
-    }
+    public Corpse FindCorpse(int index) => ScriptFunctions.WorldFunctions.FindCorpse(this, index);
 
-    public Door GetDoor(int unnamed0)
-    {
-        return ScriptFunctions.WorldFunctions.GetDoor(this, unnamed0);
-    }
+    public Door GetDoor(int unnamed0) => ScriptFunctions.WorldFunctions.GetDoor(this, unnamed0);
 
-    public Event GetEvent(int index)
-    {
-        return ScriptFunctions.WorldFunctions.GetEvent(this, index);
-    }
+    public Event GetEvent(int index) => ScriptFunctions.WorldFunctions.GetEvent(this, index);
 
-    public Event GetEventByIdentifier(int index)
-    {
-        return ScriptFunctions.WorldFunctions.GetEventByIdentifier(this, index);
-    }
+    public Event GetEventByIdentifier(int index) => ScriptFunctions.WorldFunctions.GetEventByIdentifier(this, index);
 
-    public Object CreateObject(int objectid, Room room, bool animated)
-    {
-        return ScriptFunctions.WorldFunctions.CreateObject(this, objectid, room, animated);
-    }
+    public Object CreateObject(int objectid, Room room, bool animated) => ScriptFunctions.WorldFunctions.CreateObject(this, objectid, room, animated);
 
-    public Object FindObject(int index)
-    {
-        return ScriptFunctions.WorldFunctions.FindObject(this, index);
-    }
+    public Object FindObject(int index) => ScriptFunctions.WorldFunctions.FindObject(this, index);
 
-    public Light CreateLight(int type, float range, Room room)
-    {
-        return ScriptFunctions.WorldFunctions.CreateLight(this, type, range, room);
-    }
+    public Light CreateLight(int type, float range, Room room) => ScriptFunctions.WorldFunctions.CreateLight(this, type, range, room);
 
-    public Light FindLight(int index)
-    {
-        return ScriptFunctions.WorldFunctions.FindLight(this, index);
-    }
+    public Light FindLight(int index) => ScriptFunctions.WorldFunctions.FindLight(this, index);
 
-    public NPC CreateNPC(int npctype, float x, float y, float z)
-    {
-        return ScriptFunctions.WorldFunctions.CreateNPC(this, npctype, x, y, z);
-    }
+    public NPC CreateNPC(int npctype, float x, float y, float z) => ScriptFunctions.WorldFunctions.CreateNPC(this, npctype, x, y, z);
 
-    public NPC GetNPC(int index)
-    {
-        return ScriptFunctions.WorldFunctions.GetNPC(this, index);
-    }
+    public NPC GetNPC(int index) => ScriptFunctions.WorldFunctions.GetNPC(this, index);
 
-    public ModelPreset GetModelPreset(int modelid)
-    {
-        return ScriptFunctions.WorldFunctions.GetModelPreset(this, modelid);
-    }
+    public ModelPreset GetModelPreset(int modelid) => ScriptFunctions.WorldFunctions.GetModelPreset(this, modelid);
 
-    public Shell CreateShell(int weaponid, Player shooter)
-    {
-        return ScriptFunctions.WorldFunctions.CreateShell(this, weaponid, shooter);
-    }
+    public Shell CreateShell(int weaponid, Player shooter) => ScriptFunctions.WorldFunctions.CreateShell(this, weaponid, shooter);
 
-    public Shell FindShell(int index)
-    {
-        return ScriptFunctions.WorldFunctions.FindShell(this, index);
-    }
+    public Shell FindShell(int index) => ScriptFunctions.WorldFunctions.FindShell(this, index);
 }

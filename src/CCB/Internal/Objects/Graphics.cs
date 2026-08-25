@@ -35,43 +35,19 @@ public struct Graphics(ObjectOpaque opaque) : IScriptObject, IEquatable<Graphics
         return new Graphics(opaque);
     }
 
-    public GUIElement CreateOval(Player player, float x, float y, float width, float height, bool align)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateOval(this, player, x, y, width, height, align);
-    }
+    public GUIElement CreateOval(Player player, float x, float y, float width, float height, bool align) => ScriptFunctions.GraphicsFunctions.CreateOval(this, player, x, y, width, height, align);
 
-    public GUIElement CreateRect(Player player, float x, float y, float width, float height, bool align)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateRect(this, player, x, y, width, height, align);
-    }
+    public GUIElement CreateRect(Player player, float x, float y, float width, float height, bool align) => ScriptFunctions.GraphicsFunctions.CreateRect(this, player, x, y, width, height, align);
 
-    public GUIElement CreateProgressBar(Player player, float time, float x, float y, float width, float height, bool align)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateProgressBar(this, player, time, x, y, width, height, align);
-    }
+    public GUIElement CreateProgressBar(Player player, float time, float x, float y, float width, float height, bool align) => ScriptFunctions.GraphicsFunctions.CreateProgressBar(this, player, time, x, y, width, height, align);
 
-    public GUIElement CreateProgressBar(Player player, float time, float x, float y, float width, float height, bool align, in string callback)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateProgressBar(this, player, time, x, y, width, height, align, in callback);
-    }
+    public GUIElement CreateProgressBar(Player player, float time, float x, float y, float width, float height, bool align, in string callback) => ScriptFunctions.GraphicsFunctions.CreateProgressBar(this, player, time, x, y, width, height, align, in callback);
 
-    public GUIElement CreateProgressBar(Player player, float time, float x, float y, float width, float height, bool align, in IntPtr callback)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateProgressBar(this, player, time, x, y, width, height, align, in callback);
-    }
+    public GUIElement CreateProgressBar(Player player, float time, float x, float y, float width, float height, bool align, in IntPtr callback) => ScriptFunctions.GraphicsFunctions.CreateProgressBar(this, player, time, x, y, width, height, align, in callback);
 
-    public GUIElement CreateText(Player player, int fontid, in string text, float x, float y, bool align)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateText(this, player, fontid, in text, x, y, align);
-    }
+    public GUIElement CreateText(Player player, int fontid, in string text, float x, float y, bool align) => ScriptFunctions.GraphicsFunctions.CreateText(this, player, fontid, in text, x, y, align);
 
-    public GUIElement CreateImage(Player player, in string filename, float x, float y, float width, float height, bool align)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreateImage(this, player, in filename, x, y, width, height, align);
-    }
+    public GUIElement CreateImage(Player player, in string filename, float x, float y, float width, float height, bool align) => ScriptFunctions.GraphicsFunctions.CreateImage(this, player, in filename, x, y, width, height, align);
 
-    public GUIElement CreatePostEffect(Player player, in string filename, in string defines)
-    {
-        return ScriptFunctions.GraphicsFunctions.CreatePostEffect(this, player, in filename, in defines);
-    }
+    public GUIElement CreatePostEffect(Player player, in string filename, in string defines) => ScriptFunctions.GraphicsFunctions.CreatePostEffect(this, player, in filename, in defines);
 }
