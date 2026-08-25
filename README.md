@@ -67,7 +67,7 @@ Make sure the .NET SDK 10 (x86) is installed on your machine.
 2. Edit `server.cfg` and add the following lines (**Note: the order must match the example exactly**):
 ```
 plugin ccb/plugin.as
-script ccb/script.as
+script ccb/loader.as
 ```
 3. Launch `server-launcher.exe` and verify that CCB has been installed correctly.
 

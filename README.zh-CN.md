@@ -67,7 +67,7 @@
 2. 修改 server.cfg，加入以下内容（**注意：确保顺序与示例一致**）
 ```
 plugin ccb/plugin.as
-script ccb/script.as
+script ccb/loader.as
 ```
 3. 启动 `server-launcher.exe`，检查 CCB 是否正确安装
 

@@ -13,7 +13,6 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GenerateConfig co
         var ccbNamespace = new NamespaceType("ccb");
         var context = new GlobalContext(ccbNamespace);
 
-        var onInitializeFunction = this.WriteOnInitializeFunction(context);
         writer.WriteLine();
         writer.WriteLine(BuildNamespace(ccbNamespace));
         writer.OpenBlock();
@@ -24,19 +23,7 @@ internal class AngelScriptGenerator(IndentedTextWriter writer, GenerateConfig co
 
         writer.CloseBlock();
 
-        return new BoundTree(tree, onInitializeFunction, properties, functions, classes);
-    }
-
-    private BoundFunctionType WriteOnInitializeFunction(TypeContext context)
-    {
-        var onInitializeFunction = new FunctionType(ValueType.Void, "OnInitialize", []);
-
-        var body = new[]
-        {
-            "load_ccb();",
-        };
-
-        return this.WriteFunctionCore(onInitializeFunction, context, body);
+        return new BoundTree(tree, properties, functions, classes);
     }
 
     private ImmutableArray<BoundClassType> WriteClasses(ImmutableArray<ClassType> classes, TypeContext context)
