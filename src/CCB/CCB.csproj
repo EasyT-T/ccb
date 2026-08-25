@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <EnableHotReload>true</EnableHotReload>
         <PackageId>ccb</PackageId>
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
         <Title>CCB</Title>
         <Authors>EasyT-T</Authors>
         <Description>CB2 CSharp Binding</Description>

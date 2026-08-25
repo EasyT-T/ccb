@@ -11,7 +11,7 @@ English | [简体中文](./README.zh-CN.md)
 A high-performance, modern C# plugin framework for the *SCP: Containment Breach 2* game server
 
 ![License](https://img.shields.io/badge/license-LGPLv2.1-blue.svg)
-![Version](https://img.shields.io/badge/version-v0.1.0-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-v0.1.2-brightgreen.svg)
 ![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-14.0-239120?logo=csharp&logoColor=white)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
