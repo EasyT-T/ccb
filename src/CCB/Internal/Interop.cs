@@ -16,8 +16,7 @@ internal static class Interop
     {
         try
         {
-            SynchronizationContext.SetSynchronizationContext(MainThreadContext.Instance);
-
+            MainThreadContext.Initialize();
             RegisterAssemblyPath();
             RegisterScript();
             RegisterEvents();

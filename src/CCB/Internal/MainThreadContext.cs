@@ -14,9 +14,15 @@ public class MainThreadContext : SynchronizationContext
         this._mainThreadId = mainThreadId;
     }
 
-    public static MainThreadContext Instance => field ??= new MainThreadContext(Environment.CurrentManagedThreadId);
+    public static MainThreadContext Instance { get; private set; } = null!;
 
     public bool IsMainThread => this._mainThreadId == Environment.CurrentManagedThreadId;
+
+    internal static void Initialize()
+    {
+        Instance = new MainThreadContext(Environment.CurrentManagedThreadId);
+        SetSynchronizationContext(Instance);
+    }
 
     public override void Post(SendOrPostCallback d, object? state)
     {
@@ -60,7 +66,7 @@ public class MainThreadContext : SynchronizationContext
 
     internal void Update()
     {
-        foreach (var task in this._tasks)
+        while (this._tasks.TryDequeue(out var task))
         {
             try
             {
@@ -71,7 +77,5 @@ public class MainThreadContext : SynchronizationContext
                 Log.Error(e, "Unexpected exception thrown while updating synchronize context.");
             }
         }
-
-        this._tasks.Clear();
     }
 }
