@@ -6,7 +6,11 @@ using Serilog;
 
 public class MainThreadContext : SynchronizationContext
 {
-    private readonly ConcurrentQueue<(SendOrPostCallback, object?)> _tasks = [];
+    private readonly Lock _lock = new Lock();
+    private List<(SendOrPostCallback, object?)> _tasks = new List<(SendOrPostCallback, object?)>(64);
+    private List<(SendOrPostCallback, object?)> _spare = new List<(SendOrPostCallback, object?)>(64);
+    private volatile int _pendingCount;
+
     private readonly int _mainThreadId;
 
     private MainThreadContext(int mainThreadId)
@@ -26,7 +30,11 @@ public class MainThreadContext : SynchronizationContext
 
     public override void Post(SendOrPostCallback d, object? state)
     {
-        this._tasks.Enqueue((d, state));
+        lock (this._lock)
+        {
+            this._tasks.Add((d, state));
+            this._pendingCount = this._tasks.Count;
+        }
     }
 
     public override void Send(SendOrPostCallback d, object? state)
@@ -40,21 +48,26 @@ public class MainThreadContext : SynchronizationContext
         using var completionEvent = new ManualResetEventSlim(false);
         Exception? exception = null;
 
-        this._tasks.Enqueue((s =>
+        lock (this._lock)
         {
-            try
+            this._tasks.Add((s =>
             {
-                d.Invoke(s);
-            }
-            catch (Exception e)
-            {
-                exception = e;
-            }
-            finally
-            {
-                completionEvent.Set();
-            }
-        }, state));
+                try
+                {
+                    d.Invoke(s);
+                }
+                catch (Exception e)
+                {
+                    exception = e;
+                }
+                finally
+                {
+                    completionEvent.Set();
+                }
+            }, state));
+
+            this._pendingCount = this._tasks.Count;
+        }
 
         completionEvent.Wait();
 
@@ -66,7 +79,27 @@ public class MainThreadContext : SynchronizationContext
 
     internal void Update()
     {
-        while (this._tasks.TryDequeue(out var task))
+        if (this._pendingCount == 0)
+        {
+            return;
+        }
+
+        List<(SendOrPostCallback, object?)> tasks;
+
+        lock (this._lock)
+        {
+            if (this._tasks.Count == 0)
+            {
+                return;
+            }
+
+            tasks = this._tasks;
+            this._tasks = this._spare;
+            this._spare = tasks;
+            this._pendingCount = 0;
+        }
+
+        foreach (var task in tasks)
         {
             try
             {
@@ -77,5 +110,7 @@ public class MainThreadContext : SynchronizationContext
                 Log.Error(e, "Unexpected exception thrown while updating synchronize context.");
             }
         }
+
+        tasks.Clear();
     }
 }
