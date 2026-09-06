@@ -1,6 +1,5 @@
 ﻿namespace CCB.Internal;
 
-using System.Collections.Concurrent;
 using System.Runtime.ExceptionServices;
 using Serilog;
 

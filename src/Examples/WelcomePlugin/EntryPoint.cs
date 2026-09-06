@@ -1,16 +1,16 @@
 ﻿namespace WelcomePlugin;
 
-using System.Runtime.InteropServices;
 using CCB.Abstractions;
 using CCB.Attributes;
-using CCB.Extensions;
 using CCB.Internal;
 using Microsoft.Extensions.Logging;
 
 [Injectable]
-internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfigProvider<WelcomePluginConfig> configProvider) : ILoad, IUnload
+internal class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfigProvider<WelcomePluginConfig> configProvider) : ILoad, IUnload
 {
     private readonly WelcomePluginConfig _config = configProvider.GetConfig();
+
+    private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
     public void Load()
     {
@@ -23,45 +23,46 @@ internal partial class EntryPoint(ILogger<WelcomePluginMetadata> logger, IConfig
     public void Unload()
     {
         EventRegistry.PlayerConnect -= this.OnPlayerConnect;
+        EventRegistry.WorldLoaded -= this.OnWorldLoaded;
+
+        this._cancellationTokenSource.Cancel();
+        this._cancellationTokenSource.Dispose();
     }
 
     private void OnWorldLoaded()
     {
-        var server = GlobalProperties.Server;
+        _ = RunWelcomeMessageHandler(GlobalProperties.Chat);
+
+        return;
+
+        async Task RunWelcomeMessageHandler(Chat chat)
+        {
+            try
+            {
+                while (!this._cancellationTokenSource.Token.IsCancellationRequested)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(300), this._cancellationTokenSource.Token);
+
+                    // SynchronizationContext restored here
+                    // We don't need to call RunOnMainThread because we're actually on the main thread
+
+                    chat.Send("Please follow the server rules!");
+                }
+            }
+            catch (OperationCanceledException)
+            {
+            }
+        }
     }
 
     private void OnPlayerConnect(EventRegistry.PlayerConnectEventArg ev)
     {
         var player = ev.Player;
 
-        this.LogPlayerJoinedTheServer(player.GetName());
+        player.SendMessage(this._config.WelcomeMessage, this._config.Duration);
 
-        player.SendMessage(this._config.WelcomeMessage, this._config.Duration, false);
+        var chat = GlobalProperties.Chat;
 
-        var c = GlobalProperties.Chat;
-
-        //c.Send($"Hello {player.GetName()}!");
-
-        foreach (var p in Player.List())
-        {
-            c.SendPlayer(p, $"{player.GetName()} Joined the game!");
-        }
-
-        Task.Run(async () =>
-        {
-            await Task.Delay(TimeSpan.FromSeconds(5));
-
-            await MainThreadContext.RunOnMainThreadAsync(() =>
-            {
-                c.SendPlayer(player, "A message after 5 secs!");
-            });
-        });
+        chat.Send($"Welcome {player.GetName()}!");
     }
-
-    private void OnIncomingConnection(EventRegistry.IncomingConnectionEventArg ev)
-    {
-    }
-
-    [LoggerMessage(LogLevel.Information, "{player} Joined the server.")]
-    partial void LogPlayerJoinedTheServer(string player);
 }
